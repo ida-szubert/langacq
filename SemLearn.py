@@ -339,7 +339,6 @@ def test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count):
 ###########################################
 
 def main(argv, options):
-    # print "here"
     print argv
     build_or_check = argv[1]
     if len(argv) > 2:
@@ -405,16 +404,10 @@ def main(argv, options):
             if numreps > 1:
                 input_file = input_file + str(numreps) + "reps"
             input_file = input_file + "_" + str(i)
-
-            # if numreps > 1:
-            # test_file = test_file
-            # test_file = test_file+"_"+str(i+1)
-            # input_file = input_file+"_"+str(17)
             if reverse:
                 test_file = test_file + "_" + str(test_file_index)
             else:
                 test_file = test_file + "_" + str(test_file_index)
-            # input_file = "first20train.txt"
             inputpairs = open(input_file).readlines()
 
             outfile = options.train_parses + '_'

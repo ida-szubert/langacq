@@ -127,14 +127,14 @@ inf = float("inf")
 
 ###########################################                                                                                                         # permutations                    #                                                                                                                 ###########################################                                                                                                          
 def permutations(lset):
-		perms = []
+	perms = []
 	if len(lset)==1: return [lset]
-		i = 0
-		for l in lset:
+	i = 0
+	for l in lset:
 		pset = permutations(lset[:i]+lset[i+1:])
 		for p in pset:
-						pl = [l]
+			pl = [l]
 			pl.extend(p)
 			perms.append(pl)
 		i+=1
-		return perms
+	return perms

@@ -1,3 +1,5 @@
+import copy
+import itertools as tools
 ###########################################
 # This is where the SemComponent class    #
 # lives. 								  #
@@ -17,7 +19,7 @@
 class Sem_Component:
 	def __init__(self,name,ty,position,dependents):
 		self.Name = name
-				self.fineType = name.split('|')[0]
+		self.fineType = name.split('|')[0]
 		self.Type = ty
 		self.Dependents = []
 		self.ShadowDeps = []

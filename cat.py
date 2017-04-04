@@ -532,7 +532,8 @@ class cat:
 
         # newLambdas is the number of new lambda terms in the argument
         # numByComp says how many lambda terms composition was used on
-        for (parentSem, childSem, numNew, numByComp, fixeddircats) in self.sem.makePairs():
+        sem_pairs = self.sem.makePairs()
+        for (parentSem, childSem, numNew, numByComp, fixeddircats) in sem_pairs:
 
             # fixed dir cats is a funny one since many of the cats have
             # a lambda associated with them but this is fine since
