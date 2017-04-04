@@ -36,6 +36,7 @@ class exp:
         self.isNull = False
         self.inout = None
         self.doubleQuant = False
+        self.string = ""
 
     #########################################
     # the following two methods are used to #
@@ -52,6 +53,7 @@ class exp:
             argTypes = ["e"]
             e = predicate(name,numArgs,argTypes,type)
             e.setNounMod()
+            e.setString()
             ##e.hasEvent()
             # nouns have event markers??? 
             # and adjectives???
@@ -59,7 +61,7 @@ class exp:
             numArgs = 1
             argTypes = ["t"]
             e = predicate(name,numArgs,argTypes,type)
-            
+            e.setString()
         #entities
         elif type in ["pro","pro:indef","pro:poss","pro:refl","n:prop","pro:dem","pro:wh"]:
             numArgs = 0
@@ -67,11 +69,13 @@ class exp:
             e = constant(name,numArgs,argTypes,type)
             #print "made const for ",name
             e.makeCompNameSet()
+            e.setString()
         # verb modifiers
         elif type in ["inf","adv","adv:int","adv:loc","adv:tem"]:
             numArgs = 1
             argTypes = ["t"]
             e = predicate(name,numArgs,argTypes,type)
+            e.setString()
             #e.hasEvent() # think we're dropping out inf though
             # events?? - sure thing
 
@@ -81,14 +85,15 @@ class exp:
             argTypes = ["<e,t>"] # should actually be <e,t>
             # return an entity
             e = quant(name,type,variable(None))
+            e.setString()
 
         elif type in ["aux"]:
             #numArgs = 2
             #argTypes = ["subj","action"]
             numArgs = 2
             argTypes = ["action","event"]
-            
             e = predicate(name,numArgs,argTypes,type)
+            e.setString()
 
         elif type in ["adv:wh","pro:wh","det:wh"]:
             # obviously don't want to add anything
@@ -111,6 +116,7 @@ class exp:
             numArgs = 2
             argTypes = ["e","ev"]
             e = predicate(name,numArgs,argTypes,type)
+            e.setString()
             #e.hasEvent()
         elif type in ["pro:wh"]:
             e=emptySem()
@@ -123,16 +129,24 @@ class exp:
         #else:
             #print name,"  ",type
         return e
+
+    def setString(self):
+        self.string = self.toString(True)
+
     def resetBinders(self):
         for e in self.allSubExps():
             if e.__class__ in [lambdaExp,quant]:
                 e.var.setBinder(e)
+
     def isQ(self):
         return False
+
     def setIsVerb(self):
         self.isVerb = True
+
     def checkIfVerb(self):
         return self.isVerb
+
     def isConjV(self):
         return False
 
@@ -140,7 +154,6 @@ class exp:
     def buildSubTree(self,pset):
         print "self is ",self.toString(True)
         newnode = self.copyNoVar()
-#       nout = set([])
         nout = []
         for i in range(len(self.arguments)):
             #print pset
@@ -148,35 +161,20 @@ class exp:
                 newnode.arguments[i]==pset[i][0]
                 if pset[i][1] is not None:
                     nout.extend(pset[i][1])
-#                   nout = nout.union(set(pset[i][1]))
             else:
                 v = variable(None)
                 a = pset[i][0]
-#                if pset[i][1]!=[]:
                 for k in range(len(pset[i][1])):
-#                   if pset
                     if pset[i][1][k]!=pset[i][1][k].linkedVar:
                         u = pset[i][1][k].linkedVar
- #                       varset = []
- #                       a.getAllVars(varset)
-#                        if u in a.unboundVars():
                         v.addArg(pset[i][1][k])
                         al = lambdaExp()
                         al.setVar(u)
                         al.setFunct(a)
                         a = al
-#                    else:
-#                        if pset[i][1][k].linkedVar.inout==True: 
-                        #                        if self.inout!=a.binder.inout:#False:
-#                            b = variable(a)#pset[i][1][k].linkedVar)
-#                            self.replace2(a,b)
-#                            a = b
-#                        else:
-#                            a = pset[i][1][k].linkedVar
                 v.arguments.reverse()
                 a = a.copyNoVar()
                 nout.append(a)
-                # nout = nout.union(set([a]))
                 v.setType(a.type())
                 a.linkedVar = v
                 newnode.setArg(i,v)
@@ -191,28 +189,16 @@ class exp:
             print "args and that shit"
             print nodename.toString(True)
             if nodename.__class__ == variable:
-#                Q = Q.union(set([(nodename,None)]))
                 nodename.inout=nodename.binder.inout
                 nodename.linkedVar = nodename
-                #True
-                #if nodename.inout==None:
-                #    nodename.inout==binder.inout()
-                #    error()
                 Q.append((nodename,[nodename]))
-               #.append((nodename,[]))
-                
-                #nodename.inout = False
-                #Q.append((nodename,[]))
-
                 return Q
             newnode = nodename.copyNoVar()
             newnode.inout = True
             Q.append((newnode,nodeout))
-#            Q = Q.union(set([(newnode,nodeout)]))
             newnode = nodename.copyNoVar()
             newnode.inout = False
             Q.append((newnode,nodeout))
-#           Q = Q.union(set([(newnode,nodeout)]))
         elif self.__class__==conjunction:
             newnode = nodename.copyNoVar()
             Q.append((newnode,[]))
@@ -237,21 +223,14 @@ class exp:
                         if (newnode,l) in qseen:
                             print "seen qperm "
                         qseen.append((newnode,l))
-                        
-                        #  Q = Q.union(set([(newnode,tuple(nodeout))]))
-                        Q.append((newnode,l))#nodeout))
-                        #print "made ",newnode.toString(True)
-#                    Q.append((newnode,nodeout))
+
+                        Q.append((newnode,l))
                 newnode = nodename.copyNoVar()
                 newnode.inout = False
                 (newnode,nodeout) = newnode.buildSubTree(B)
-#                for l in list(itertools.permutations(nodeout)):
-# = Q.union(set([(newnode,tuple(nodeout))]))
                 if (newnode,nodeout) in Q:
                     print "duplicating in Q ",newnode.toString(True)
                 Q.append((newnode,nodeout))
-                
-#(newnode,nodeout))
 
         print "Q is ",Q
         qseen = []
@@ -290,7 +269,6 @@ class exp:
                     if u:
                         al.setVar(u)
                         al.setFunct(a)
-                    #  al.replace2(aout[k],u)
                         a = al
                     else:
                         print "none u for ",aout[k].toString(True)
@@ -301,14 +279,10 @@ class exp:
                 else:
                     print "orig a ",a.toString(True)
                 seena.append(a.toString(True))
-#                if self == node:
-#                    f = v
-#                    pass
                 if node.__class__==lambdaExp:
-#                    pass
                     origthing = node.getDeepFunct()
                     print "deep funct"
-                    f = self.replace2(node.getDeepFunct(),v)#getDeepFunct(),v)
+                    f = self.replace2(node.getDeepFunct(),v)
 
                 else:
                     f = self.replace2(node,v)
@@ -316,7 +290,6 @@ class exp:
                 fl = lambdaExp()
                 fl.setFunct(f)
                 fl.setVar(v)
-#                if node.getDeepFunct()==
                 print "\n"
                 print "a is ",a.toString(True)
                 print "f is ",fl.toString(True)
@@ -325,17 +298,9 @@ class exp:
                 print "pair is ",fl.toString(True)," ",a.toString(True)
                 pairsseen.append((fl.toString(True),a.toString(True)))
                 pair = ((fl.copy(),a.copy()))
-#                re = pair[0].apply(pair[1])
-#                print "reapplied : ",re.toString(True)
-                #if node.__class__==lambdaExp:
-#                    pass
-                f = self.replace2(v,origthing)#node.getDeepFunct())#getDeepFunct(),v)
-                #else: self.replace2(v,node)
+                f = self.replace2(v,origthing)
                 print "self back to ",self.toString(True)
 
-
-
-                #self.resetEqualOther()
                 self.resetLinkedVar()
                 self.resetInOut()
 
@@ -375,33 +340,22 @@ class exp:
         print "making ",expString
         if expString[:6]=="lambda":
             vname = expString[7:expString.find("_{")]
-            #print "vname is ",vname
             tstring = expString[expString.find("_{")+2:expString.find("}")]
-            #print "tstring is ",tstring
             t = semType.makeType(tstring)
-            #print "tstring2 is ",t.toString()
             v = variable(None)
             v.t = t
             vardict[vname] = v
             expString = expString[expString.find("}.")+2:]
-            #print "new expstring is ",expString
             (f,expString) = exp.makeExpWithArgs(expString,vardict)
             e = lambdaExp()
             e.setFunct(f)
             e.setVar(v)
-    
-        #elif expString[0]=="$":
-            ##varname = expString.spit(",")[0].strip().rstrip()
-            #if not vardict.has_key(varname): error("unbound var")
-            #var = vardict[varname]
-            ##expString = expString.split(".")[1]
+            e.setString()
             
         elif -1<expString.find("(")<expString.find(")") and \
             (-1<expString.find("(")<expString.find(",") or \
             expString.find(",")==-1):
-            #print "expstring is ",expString
             predstring = expString.split("(")[0]
-            #print "predstring is ",predstring
             expString=expString[expString.find("(")+1:]
             r = exp.makeLogExp(predstring,expString,vardict)
             if r : return r
@@ -418,14 +372,9 @@ class exp:
                 varname = expString[:expString.find(",")]
                 vardict[varname]=var
                 expString = expString[expString.find(","):]
-            ##print "trying to make exp from ",expString.split("(")[0]
-            #print "made e, is ",e.toString(True)
-            #expString=expString[expString.find("(")+1:]
             i=0
-            #print     
             finished = False
             numBrack = 1
-            #print "numbrack is one , expstring is ",expString
             i = 0
             j = 0
             argcount = 0
@@ -445,36 +394,21 @@ class exp:
                 elif expString[i]==")": numBrack-=1
             
                 i += 1
-            
-            
-            
-            
-                #print "e is ",e.toString(True)
-                #print "e1",expString
-                #if expString[0]==",": expString = expString[1:]
-                #r = exp.makeExpWithArgs(expString,vardict)
-                #print "setting arg in position ",i 
-                #e.setArg(i,r[0])
-                #expString = r[1]
-                #i+=1
             expString = expString[i:]
-            #print "expString returned is ",expString
         else:
-            #print "expString is "+expString
-            
             if expString.__contains__(",") and expString.__contains__(")"):
                 constend = min(expString.find(","),expString.find(")"))
             else:
                 constend = max(expString.find(","),expString.find(")"))
             if constend == -1: constend = len(expString)
             conststring = expString[:constend]
-            #print "conststring is "+conststring
             if conststring[0]=="$":
                 if not vardict.has_key(conststring):
                     error("unbound var "+conststring)
                 e = vardict[conststring]
             else: e = exp.makeExp(conststring)
             expString=expString[constend:]
+            e.setString()
         return (e,expString)    
         
     # this gives the vars the arguments that they need
@@ -488,9 +422,7 @@ class exp:
         numBrack = 1
         i = 0
         while not finished:
-            #print "::: "+expString[i:]+" : "+str(numBrack)
             if numBrack==0: finished = True
-            
             elif expString[i]=="," and numBrack==1: numArgs += 1
             elif expString[i]==")": numBrack-=1
             elif expString[i]=="(": numBrack+=1
@@ -504,15 +436,12 @@ class exp:
     @staticmethod
     def makeVerbs(predstring,expString,vardict):
         if predstring.split("|")[0] not in ["v","part"]: return None
-        #print "verbexpstring = "+expString
         numArgs = 1
         finished = False
         numBrack = 1
         i = 0
         while not finished:
-            #print "::: "+expString[i:]+" : "+str(numBrack)
             if numBrack==0: finished = True
-            
             elif expString[i]=="," and numBrack==1: numArgs += 1
             elif expString[i]==")": numBrack-=1
             elif expString[i]=="(": numBrack+=1
@@ -521,6 +450,7 @@ class exp:
         argTypes = []
         for i in range(numArgs): argTypes.append(semType.e)
         verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
+        verb.setString()
         
         return (verb,expString)
             
@@ -532,13 +462,11 @@ class exp:
         if predstring=="and":
             e = conjunction()
             finished = False
-            #print "got conj, expstring is ",expString
             numBrack = 1
             i = 0
             j = 0
             args = []
             while not finished:
-                #print "::: "+expString[i:]+" : "+str(numBrack)
                 if numBrack==0: finished = True
                 
                 elif expString[i] in [",",")"] and numBrack==1:
@@ -553,49 +481,44 @@ class exp:
                 elif expString[i]==")": numBrack-=1
                 i += 1
             expString = expString[i:]
-            #print "and expString now ",expString
+            e.setString()
             return (e,expString)
             
         # need arg1 arg2
         elif predstring=="eq":
             eqargs = []
             while expString[0]!=")":
-                #print expString
                 if expString[0]==",": expString = expString[1:]
                 r = exp.makeExpWithArgs(expString,vardict)
                 eqargs.append(r[0])
-                #e.setArg(i,r[0])
                 expString = r[1]
                 #i+=1
             if len(eqargs)!=3: error(str(len(eqargs))+"args for eq")
             else: e = eq(eqargs[0],eqargs[1],eqargs[2])
             expString = expString[1:]
+            e.setString()
             return (e,expString)
             
         elif predstring=="not":
             negargs = []
             while expString[0]!=")":
-                #print expString
                 if expString[0]==",": expString = expString[1:]
                 r = exp.makeExpWithArgs(expString,vardict)
                 negargs.append(r[0])
-                #e.setArg(i,r[0])
                 expString = r[1]
-                #i+=1
             if len(negargs)!=2: error(str(len(negargs))+"args for neg")
             else: 
                 e = neg(negargs[0])
                 e.setEvent(negargs[1])
             expString = expString[1:]
+            e.setString()
             return (e,expString)
         elif predstring == "Q":    
             qargs = []
             while expString[0]!=")":
-                #print expString
                 if expString[0]==",": expString = expString[1:]
                 r = exp.makeExpWithArgs(expString,vardict)
                 qargs.append(r[0])
-                #e.setArg(i,r[0])
                 expString = r[1]
                 #i+=1
             if len(qargs)!=2: error(str(len(qargs))+"args for Q")
@@ -604,46 +527,41 @@ class exp:
                 e.setEvent(qargs[1])
             
             expString = expString[1:]
+            e.setString()
             return (e,expString)
             
             
         elif predstring == "eqLoc":
             eqargs = []
             while expString[0]!=")":
-                #print expString
                 if expString[0]==",": expString = expString[1:]
                 r = exp.makeExpWithArgs(expString,vardict)
                 eqargs.append(r[0])
-                #e.setArg(i,r[0])
                 expString = r[1]
-                #i+=1
             if len(eqargs)!=2: error(str(len(eqargs))+"args for eqLoc")
             else: 
                 e = predicate("eqLoc",2,["e","e"],None)
                 e.setArg(0,eqargs[0])
                 e.setArg(1,eqargs[1])
-            #eqargs[0],eqargs[1])
             expString = expString[1:]
+            e.setString()
             return (e,expString) 
         elif predstring == "evLoc":
             eqargs = []
             while expString[0]!=")":
-                #print expString
                 if expString[0]==",": expString = expString[1:]
                 r = exp.makeExpWithArgs(expString,vardict)
                 eqargs.append(r[0])
-                #e.setArg(i,r[0])
                 expString = r[1]
-                #i+=1
             if len(eqargs)!=2: error(str(len(eqargs))+"args for evLoc")
             else: 
                 e = predicate("evLoc",2,["e","ev"],None)
                 e.setArg(0,eqargs[0])
                 e.setArg(1,eqargs[1])
-            
-            #e = predicate(eqargs[0],eqargs[1])
+
             expString = expString[1:]
-            return (e,expString) 
+            e.setString()
+            return (e,expString)
     #########################################
     # only lambdas should be allowed to apply
     # and compose.
@@ -694,11 +612,6 @@ class exp:
             if a.isEmpty(): return False
         return True
     def setArg(self,position,argument):
-        # i/f s/e/l/f/./a/r/g/T/y/p/e/s[position]!=argument.getReturnType():
-        # p/r/i/n/t "ERROR: type clash 1"
-        # else:
-        #print "position is ",position
-        #print "this is ",self.printOut(True,0)
         self.arguments.pop(position)
         self.arguments.insert(position,argument)
         if isinstance(argument,exp):
@@ -720,10 +633,7 @@ class exp:
             i+=1
     # this version returns an expression        
     def replace2(self,e1,e2):
-        #print "trying to match ",e1,e1.toString(True)," with ",self,self.toString(True)
-        if self == e1: 
-            #print "matches innit ",self.toString(True)
-            #print "was ",e1," now ",e2
+        if self == e1:
             return e2
         i=0
         for a in self.arguments:
@@ -732,28 +642,28 @@ class exp:
             i+=1
         return self
         
-    #########################################
+    ##########################################
     # this version uses python's inbuilt     #
-    # lambda expression to deal with function
-    # definition. eep.                        #
-    #########################################
+    # lambda expression to deal with function#
+    # definition. eep.                       #
+    ##########################################
     def abstractOver(self,e):
         v = self.makeVariable(e)
         l = lambdaExp()
         l.setFunct(self)
         l.setVar(v)
         return l
-    #########################################
+    ###########################################
     # this function needs work!!!!            #
-    # have ALL the code to do this elsewhere#
-    #                                        #
-    # will need to:                            #
-    #     - be able to recognise and abstract    #
-    #    over complex logical forms            #
-    #    - abstract over one, or many of the #
-    #    same instance of an equivalent         #
-    #    logical form.
-    #########################################
+    # have ALL the code to do this elsewhere  #
+    #                                         #
+    # will need to:                           #
+    #     - be able to recognise and abstract #
+    #    over complex logical forms           #
+    #    - abstract over one, or many of the  #
+    #    same instance of an equivalent       #
+    #    logical form.                        #
+    ###########################################
     def makeVariable(self,e):
         if e in self.arguments:
             var = variable(e)
@@ -763,17 +673,16 @@ class exp:
         
     def bind(self,e):
         pass
-        
-        
-    #def clearOtherEvent(self):
-        #pass
+
     def copyNoVar(self):
         error()
         ## need to change for binders
         #return self.copy()
+
     def copy(self):
         print "copying ",self.toString(True)
         error()
+
     def makeShell(self):
         error()
         #args = []
@@ -789,8 +698,10 @@ class exp:
         #if self.checkIfVerb(): e.setIsVerb()
         #return e
         pass
+
     def isEmpty(self):
         return False
+
     def getName(self):
         return self.name
     # var num will not work with different branches #
@@ -799,109 +710,102 @@ class exp:
 
     def toString(self,top):
         s=self.name
-        #print "tring for ",self.name
         if len(self.arguments)>0: s=s+"("
         for a in self.arguments:
             if isinstance(a,exp): s=s+a.toString(False)
             if self.arguments.index(a)<self.numArgs-1: s=s+","
         if len(self.arguments)>0: s=s+")"
-        ##if self.event:
-            #s=s+":"+self.event.toString(False)
         if top:
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-        #print "returning "+s
         return s
+
     def toStringShell(self,top):
         s="placeholderP"
-        #print "tring for ",self.name
         if len(self.arguments)>0: s=s+"("
         for a in self.arguments:
             if isinstance(a,exp): s=s+a.toStringShell(False)
             if self.arguments.index(a)<self.numArgs-1: s=s+","
         if len(self.arguments)>0: s=s+")"
-        ##if self.event:
-            #s=s+":"+self.event.toString(False)
         if top:
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-        #print "returning "+s
         return s
 
     def toStringUBL(self,top):
-
         s=self.name.replace(":","#")
-        #print "tring for ",self.name
         if len(self.arguments)>0: s="("+s+str(len(self.arguments))+":t "
         for a in self.arguments:
             if isinstance(a,exp): s=s+a.toStringUBL(False)
             if self.arguments.index(a)<self.numArgs-1: s=s+" "
         if len(self.arguments)>0: s=s+")"
-        ##if self.event:
-            #s=s+":"+self.event.toString(False)
         if top:
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-        #print "returning "+s
         return s
+
     def missingArg(self,position):
         if position>=self.numArgs:
             return False
         if self.arguments[position].isEmpty(): return True
         return False
+
     def hasFilledArg(self,position):
         if position>=self.numArgs:
             return False
         if self.arguments[position].isEmpty(): return False
         return True
+
     def addArg(self,arg):
         self.arguments.append(arg)
         pass
+
     def setReturnType(self):
         pass
+
     def getReturnType(self):
         return self.returnType
         
     def type(self):
         print "shouldnt be asking for type here"
-        error()
-        #return self.returnType
+        error("shouldnt be asking for type here")
+
     def getPosType(self):
         if self.posType: return self.posType
         return None
+
     def top_node(self):
         if len(self.parents)==0: return self
         top = None
         for p in self.parents:
             if not p.top_node(): return None
             if top and top!=p.top_node():
-                #error("different parents "+top.toString(True)+"   ########   "+p.top_node().toString(True)+" this is "+self.toString(True)) 
                 print top,"   ",p.top_node()
                 return None
             top = p.top_node()
         return top
+
     def clearNames(self):
         for a in self.arguments:
             if a: a.clearNames()
-        #if self.event: self.event.clearNames()
+
     def equals(self,other):
         print "should never be getting here, equals defined on subexps"
         print "this is ",self.toString(True)
-        error()
+        error("should never be getting here, equals defined on subexps")
         
     def equalsPlaceholder(self,other):
         print "should never be getting here, equals defined on subexps"
         print "this is ",self.toString(True)
-        error()
+        error("should never be getting here, equals defined on subexps")
         
     def resetEqualOther(self):
         for e in self.allSubExps():
             if e.__class__ == variable:
                 e.equalother = None
-    
         
     def resetLinkedVar(self):
         for e in self.allSubExps():
@@ -918,18 +822,22 @@ class exp:
         e.getAllVars(vset)
         for v in vset:
             v.inout = None
+
     def clearParents(self):
         self.parents = []
         for a in self.arguments:
             a.clearParents()
+
     def clearParents2(self):
         self.parents = []
+
     def removeArg(self,arg):
         for i in range(len(self.arguments)):
             a = self.arguments[i]
             if a==arg: 
                 self.arguments.pop(i)
                 return
+
     def recalcParents(self,top):
         if top:
             self.clearParents()
@@ -943,13 +851,13 @@ class exp:
         for d in self.arguments:
             subExps.extend(d.allSubExps())
         return subExps
+
     def allExtractableSubExps(self):    
         subExps = []
         subExps.append(self)
         for d in self.arguments:
             subExps.extend(d.allExtractableSubExps())
         return subExps
-    #def countConsts(self):
         
     def makeTree(self,inNodes,outNodes):
         pass
@@ -963,28 +871,28 @@ class exp:
             
         combs = getCombs(argTrees)
         return selfTrees
+
     def getAllVars(self,vars):
         for a in self.arguments:
             a.getAllVars(vars)
+
     def varsAbove(self,other,vars):
         if self==other: return
         for a in self.arguments:
             a.varsAbove(other,vars)
+
     def unboundVars(self):
         boundVars = []
         vars = []
         for e in self.allSubExps():
             if e.__class__ in [lambdaExp,quant,eventSkolem]:
                 boundVars.append(e.var)
-            #if e.checkIfVerb():
-                #boundVars.append(e.getEvent())
         self.getAllVars(vars)
-        #print 'vars are ',vars    
         unboundvars = []
         for v in vars:
             if not v in boundVars and v!=self: unboundvars.append(v)
         # higher nested things at front
-        #unboundvars.reverse() 
+        #unboundvars.reverse()
         return unboundvars
         
     def partitionVars(self,other):
@@ -1009,7 +917,6 @@ class exp:
     # a variable (with root level lambda terms).
     
 
-    
     #def buildInAndOutTree(self,e,nodestogo,nodestostay):
         ## nodestogo go with e
         ## nodestostay go with v
@@ -1019,20 +926,13 @@ class exp:
         #for a in e.arguments:
             #if a in nodestogo:
                 
-                
-                
-                
-                
-                
-                
                 #e.setArg(
-                
+
+
     # return a pair copy for each way to pull the thing
     # out. can be > 1 because of composition.
-    # 
     # each pair needs to say how many lambda terms go 
     # with composition.
-    
     # just have a different definition in lambdaExp???
     def pullout(self,e,vars,numNewLam):
         vargset = []
@@ -1043,37 +943,29 @@ class exp:
             
         
         # first of all, make function application
-        # case
-        #print "starting sem is ",self.toString(True)
         origsem = self.copy()
         pairs = []
         (belowvars,abovevars,bothvars) = self.partitionVars(e)
         ec = e.copyNoVar()
         
-        if self.__class__==lambdaExp and len(vars)>0: 
-            #print "isalambda"
+        if self.__class__==lambdaExp and len(vars)>0:
             compdone = False
             frontvar = self.var
         else:
             compdone = True
         varindex = len(vars)-1
         compp = self
-        #prevcompp = None
         compvars = []
         numByComp = 0
         while not compdone:
-            #print "varindex is ",varindex
             if vars[varindex] == self.var and \
-            vars[varindex] not in abovevars and \
-            vars[varindex].__class__!=eventMarker:
+				            vars[varindex] not in abovevars and \
+				            vars[varindex].__class__!=eventMarker:
                 compvars.append(vars[varindex])
-                numByComp += 1 
-                #print "can go for composition ",ec.toString(True)
+                numByComp += 1
                 p = compp.compositionSplit(vars,compvars,ec,e)
                 ptuple = (p[0],p[1],numNewLam,numByComp)
                 pairs.append(ptuple)
-                #compp.compositionSplit(vars,compvars,ec,e)
-                #print "back to orig which is ",self.toString(True)
                 if compp.funct.__class__==lambdaExp and\
                  len(vars)>varindex+1:
                     varindex-=1
@@ -1081,20 +973,14 @@ class exp:
                     frontvar=self.funct.var
                 else: compdone = True
             else: compdone = True
-            
-        #print "self 0 is ",self.toString(True)
+
         # all sorts of composition shit in here
         ec = e.copyNoVar()
-        newvariable = variable(ec) 
-        #print "replacing ",e.toString(True)," in ",self.toString(True)
+        newvariable = variable(ec)
         self.replace2(e,newvariable)
         p = self.copyNoVar()
-        #print "p is ",p.toString(True)
         
-    
-        #print "sel
-        #print "p2 is ",p.toString(True)
-        #print "self 1 is ",self.toString(True)
+
         for v in vars:
             nv = variable(v)
             nv.arguments = v.arguments
@@ -1107,60 +993,38 @@ class exp:
             l.setFunct(ec)
             l.setVar(nv)
             ec = l
-            
-        #print "ec is ",ec.toString(True)
         
         newvariable.setType(ec.type())
-        
-        #p = self.copyNoVar()
-        #p = self.replace2(e,newvariable)
         
         l = lambdaExp()
         l.setFunct(p)
         l.setVar(newvariable)
         pair = (l.copy(),ec.copy(),numNewLam,0)
-        #print "pair is ",l.toString(True)," ",ec.toString(True)
         pairs.append(pair)
         
         self.replace2(newvariable,e)
-        
-        #print "self 2 is ",self.toString(True)
     
         i=0
         for v in vars:
             v.arguments = vargset[i]
             i+=1
-    
-        #rint "copying ",pair[0].toString(True)
+
         l1 =  pair[0].copy()
-        #rint "copying ",pair[1].toString(True)
         e1 = pair[1].copy()
-        
-        #print "pair is ",l1.toString(True),"   ",e1.toString(True)
+
         sem = l1.apply(e1)
-        #if not sem:
-            #sem = l1.compose(e1)
         if not sem.equals(self):
             print "sems dont match : "+sem.toString(True)+"  "+self.toString(True)
-        #else:
-            #print "sems match"
-        ##if n
-        #print "reapplied sem is ",sem.toString(True)
-        
-        #print "self 3 is ",self.toString(True)
         
         if not self.equals(origsem):
             print "\nnot back to orig"
             print self.toString(True)
             print origsem.toString(True)
             print ""
-        #newvariable.setType(e.type())
-        #return (e,newvariable)
         return pairs
         
     #def dealWithUnbound(self,evars):
-        ## don't want to change original 
-        
+        ## don't want to change original
         ## partition variables into: below, above, both
         ##(belowvars,abovevars,bothvars) = self.partitionVars(e)
         
@@ -1192,11 +1056,9 @@ class exp:
         for a in self.arguments:
             if a.__class__ == variable:
                 if a.name!=varorder[varnum]:
-                    #print "returning on ",self.toString(True),varnum
                     return False
                 varnum+=1
-        if varnum!=len(varorder): 
-            #print "varnum is ",varnum," len varorder is ",len(varorder)
+        if varnum!=len(varorder):
             return False
         return True        
 
@@ -1210,91 +1072,69 @@ class exp:
             
     def getNullPair(self):
         ## this should ALWAYS be by composition
-        
         # parent, child
         child = self.copy()
         parent = lambdaExp()
-        
-        
+
         var = variable(self)
         parent.setVar(var)
         parent.setFunct(var)
         # all the child cats will have fixed dir and 
         # there are no new lambdas in the arg
         
-        # maybe forget the actual direction just the 
-        # content
+        # maybe forget the actual direction just the content
         # fixeddircats will actually have the variables
         fixeddircats = []
         f = self
-        #print "this is ",f.toString(True)
         done = not (f.__class__==lambdaExp)
-        #print "done1 is ",done
         while not done:
             if not f.__class__==lambdaExp:
                 print "not a lambda expression, is  ",f.toString(True)  
-                error()
+                error("not a lambda expression")
             fixeddircats.append(f.var)
             if not f.funct.__class__==lambdaExp: done = True
             else: f = f.funct
-            #print "nullfixeddircats = ",fixeddircats
             
         return (parent,child,0,0,None)
         
         
     def split(self,e):
         if self.arity() > 3: return []
-        #print "\n\nsplitting ",self.toString(True)
-        #print "going to pull out ",e.toString(True)
         allpairs = []
-        
         self.recalcParents(True)
         origsem = self.copy()
-
         child = e
         sem = self
         
         evars = e.unboundVars()
-        # control the arity of the child 
-        
+        # control the arity of the child
         # this may well be problematic        
         if len(evars)>4: return (None,None)
         ordernum=0
-        #print "evars are ",evars
         
         (orders,numNewLam,fixeddircats) = self.getOrders(evars)
-        
-        
         for order in orders:
             ordernum+=1
-            for splittuple in self.pullout(e,order,numNewLam):
-                allpairs.append((splittuple[0] ,splittuple[1],splittuple[2],splittuple[3], fixeddircats))
-                
+            for parentSem, childSem, numNewLam, numByComp in self.pullout(e,order,numNewLam):
+                allpairs.append((parentSem, childSem, numNewLam, numByComp, fixeddircats))
                 # this should be limited, can only do if none by comp
-                #print "here"
-                #print "exp typeraise ",
-                #exp.allowTypeRaise = False
-                parentSem = splittuple[0]
-                childSem = splittuple[1]
-                if  exp.allowTypeRaise and splittuple[3]==0 and childSem.canTypeRaise():
-                    #print "Type raising for : "+parentSem.toString(True),"  ",childSem.toString(True)
+                # parentSem = splittuple[0]
+                # childSem = splittuple[1]
+                if  exp.allowTypeRaise and numByComp==0 and childSem.canTypeRaise():
                     typeRaisedChild = childSem.typeRaise(parentSem)
                     print "Type raised child is : "+typeRaisedChild.toString(True)
                     print "Parent Sem is : "+parentSem.toString(True)
-                    #print "typeraised child is ",typeRaisedChild.toString(True)
                     # don't know what to do with the newLam integer 
                     trfc =  ["typeraised"]
                     trfc.extend(fixeddircats)
-                    allpairs.append((typeRaisedChild, parentSem.copy(), splittuple[2] ,0,trfc))
-                
-            #print "ordernum is ",ordernum
-            #print "order is ", order
+                    allpairs.append((typeRaisedChild, parentSem.copy(), numNewLam ,0,trfc))
             if len(order)!=len(evars): print "unmatching varlist lengths"
         return allpairs
 
     def canTypeRaise(self):
         #if self.type().equals(semType.e): return True
         return True
+
     def typeRaise(self,parent):
         v = variable(parent)
         v.addArg(self.copy())
@@ -1308,7 +1148,6 @@ class exp:
         # thing then go with that order but otherwise we need to 
         # get iterations.
         uv2 = []
-         #print len(undervars)," undervars"
         evm = None
         for v in undervars: 
             if v.__class__ == eventMarker:
@@ -1317,15 +1156,11 @@ class exp:
             else: uv2.append(v)
         
         fixedorder = []
-        #fixeddircats = []
         
         for lvar in self.getLvars():
             if lvar in undervars:
                 fixedorder.append(lvar)
                 del uv2[uv2.index(lvar)]
-        
-        #print "fixedorder is ",fixedorder    
-        #print "restvars are ",uv2
         
         orderings = []
         if len(uv2)==0:
@@ -1339,21 +1174,10 @@ class exp:
                 ordering = []
                 for v in fixedorder: ordering.append(v)
                 ordering.extend(perm)
-                #print "ordering2 is ",ordering
                 if evm:
-                    #print "adding evm"
                     ordering.append(evm)
-                #else: print "no evm"    
                 ordering.reverse()
                 orderings.append(ordering)
-        
-        #if len(orderings) > 1: print "more than one ordering"    
-        #print len(orderings)," orderings"
-        #print orderings
-        #for v in undervars:
-        #print "numlambs newlambs = ",len(uv2) +((evm or 0) and 1)
-        #print uv2 , evm
-        #print "returning fixedorder ",fixedorder
         return (orderings,len(uv2) +((evm or 0) and 1) , fixedorder)
         
         
