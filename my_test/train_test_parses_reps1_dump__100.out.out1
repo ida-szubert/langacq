@@ -1,0 +1,23 @@
+
+top parse:
+[('Jenny', 'NP', 'n:prop|Jenny'), ('daxed', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)'), ('Jacob', 'NP', 'n:prop|Jacob')]
+-21.3411975607
+
+
+FILE1 Daxed (trans.)	100	((S\NP)\NP)	Pr(syn|all relevant syns)	0.0783533616651
+FILE1 Daxed (trans.)	100	((S\NP)/NP)	Pr(syn|all relevant syns)	0.819453374076
+FILE1 Daxed (trans.)	100	((S/NP)/NP)	Pr(syn|all relevant syns)	0.101859557033
+FILE1 Daxed (trans.)	100	((S/NP)\NP)	Pr(syn|all relevant syns)	0.00033370722585
+FILE1 Daxed (trans.)	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.819453374076
+FILE1 Daxed (trans.)	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	1.0
+FILE1 Daxed (trans.)	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.0714133759968
+FILE1 Daxed (trans.)	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($0,$1,$2)	daxed	0.00993759399094
+FILE1 Daxed (trans.)	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.719351372499
+FILE1 Daxed (trans.)	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.87784295636
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.782362952636
+Daxed (trans.)	100	Pr(correct LF|w)	n:prop|Jacob	daxed	0.103956438761
+Daxed (trans.)	100	Pr(correct LF|w)	n:prop|Jenny	daxed	0.0995134179796
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|dax&PAST(n:prop|Jenny,$0,$1)	daxed	0.00883880183947
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|dax&PAST($0,n:prop|Jacob,$1)	daxed	0.00532838878337
+FILE1 Daxed (trans.)	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($0,$1,$2)	Pr(shell|syn)	0.219368703621
+FILE1 Daxed (trans.)	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($1,$0,$2)	Pr(shell|syn)	0.352267094603

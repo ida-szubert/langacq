@@ -1,0 +1,23 @@
+
+top parse:
+[('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('man', 'N', 'lambda $0_{e}.n|man($0)'), ('daxed', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('baby', 'N', 'lambda $0_{e}.n|baby($0)')]
+-24.1998749327
+
+
+FILE2 Daxed (trans.)	100	((S\NP)\NP)	Pr(syn|all relevant syns)	0.608923466639
+FILE2 Daxed (trans.)	100	((S\NP)/NP)	Pr(syn|all relevant syns)	0.0918255988187
+FILE2 Daxed (trans.)	100	((S/NP)/NP)	Pr(syn|all relevant syns)	0.295478952535
+FILE2 Daxed (trans.)	100	((S/NP)\NP)	Pr(syn|all relevant syns)	0.00377198200671
+FILE2 Daxed (trans.)	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.0918255988187
+FILE2 Daxed (trans.)	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	1.0
+FILE2 Daxed (trans.)	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.0809845114801
+FILE2 Daxed (trans.)	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($0,$1,$2)	daxed	0.0568087493241
+FILE2 Daxed (trans.)	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.053968178257
+FILE2 Daxed (trans.)	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.587724762499
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.851075094551
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<<e,t>,e>}.lambda $2_{<e,t>}.lambda $3_{ev}.v|dax&PAST($0,$1($2),$3)	daxed	0.0492645889183
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<<e,t>,e>}.lambda $2_{<e,t>}.lambda $3_{ev}.v|dax&PAST($1($2),$0,$3)	daxed	0.04926423021
+Daxed (trans.)	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{e}.lambda $2_{<e,t>}.lambda $3_{ev}.v|dax&PAST($0($2),$1,$3)	daxed	0.0474592145018
+Daxed (trans.)	100	Pr(correct LF|w)	det|the($0,n|baby($0))	daxed	0.00293687181862
+FILE2 Daxed (trans.)	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($0,$1,$2)	Pr(shell|syn)	0.391864718366
+FILE2 Daxed (trans.)	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($1,$0,$2)	Pr(shell|syn)	0.253918500254

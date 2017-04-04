@@ -1,0 +1,14 @@
+
+top parse:
+[('this', 'NP', 'pro:dem|this'), ('is', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('corp', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('Mommy', 'N', 'lambda $0_{e}.n|corp($0)')]
+-27.6884640435
+
+
+FILE3 Acorp Prepositions	400	(PP\NP)	Pr(syn|all relevant syns)	0.000125959451399
+FILE3 Acorp Prepositions	400	(PP/NP)	Pr(syn|all relevant syns)	0.999874040549
+FILE3 Acorp Prepositions	400	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.prep|corp($0,$1)	corp	0.999874040549
+FILE3 Acorp Prepositions	400	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.prep|corp($0,$1)	corp	1.0
+Acorp Prepositions	400	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|corp($0,$1)	corp	0.953821460611
+Acorp Prepositions	400	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.eq($1,det|the($3,$0($3)),$2)	corp	0.0234907527082
+Acorp Prepositions	400	Pr(correct LF|w)	det|the($0,n|corp($0))	corp	0.0187984694236
+Acorp Prepositions	400	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,prep|corp($0,$2),$2)	corp	0.00388931725774

@@ -1,0 +1,1680 @@
+Sent : you play with the can down there .
+update weight =  0.00774833866137
+384
+Cat : S:lambda $0_{ev}.and(v|play(pro|you,$0),adv:loc|down($0))
+top parse:
+[('you', 'NP', 'pro|you'), ('play', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|play($0,$1)'), ('with', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('the', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('can', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('down', 'S', 'lambda $0_{ev}.adv:loc|down($0)'), ('there', '(((S\\NP)\\(S\\NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))')]
+-46.9711330675
+
+
+Sent : that 's a can .
+update weight =  0.00773411826241
+385
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,n|can($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('can', 'N', 'lambda $0_{e}.n|can($0)')]
+-12.7331586842
+
+
+Sent : it doesn 't come off .
+update weight =  0.00771995645059
+386
+Cat : S:lambda $0_{ev}.not(and(aux|do&3S(v|come(pro|it,$0),$0),adv|off($0)),$0)
+top parse:
+[('it', 'NP', 'pro|it'), ('doesn', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|come($0,$1)'), ("'t", '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do&3S($0($1,$2),$2)'), ('come', '(((S\\NP)\\(S\\NP))/S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.not(and($1($2,$3),$0($3)),$3)'), ('off', 'S', 'lambda $0_{ev}.adv|off($0)')]
+-35.1174766353
+
+
+Sent : what are they doing ?
+update weight =  0.0077058528513
+387
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(part|do-PROG(pro|they,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)'), ('they', 'NP', 'pro|they'), ('doing', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)')]
+-17.0592512725
+
+
+Sent : look .
+update weight =  0.00769180709318
+388
+Cat : S:lambda $0_{ev}.v|look(pro|you,$0)
+top parse:
+[('look', 'S', 'lambda $0_{ev}.v|look(pro|you,$0)')]
+-6.46266382084
+
+
+Sent : what are those ?
+update weight =  0.00767781880805
+389
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|those,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('those', 'NP', 'pro:dem|those')]
+-20.7568159801
+
+
+Sent : and what do you think of that ?
+update weight =  0.00766388763092
+390
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.and(aux|do(v|think(pro|you,$0,$1),$1),prep|of(pro:dem|that,$1))
+top parse:
+[('and', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)'), ('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('do', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|think($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('think', '((Swh\\(S/NP))/PP)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))'), ('of', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|of($0,$1)'), ('that', 'NP', 'pro:dem|that')]
+-35.2265787102
+
+
+Sent : did you read ?
+update weight =  0.00765001319995
+391
+Cat : Syn:lambda $0_{ev}.Q(aux|do&PAST(v|read&ZERO(pro|you,$0),$0),$0)
+top parse:
+[('did', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do&PAST($0($1),$1)'), ('you', 'NP', 'pro|you'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-11.1924778563
+
+
+Sent : you 've already had it .
+update weight =  0.00763619515638
+392
+Cat : S:lambda $0_{ev}.and(aux|have(part|have&PERF(pro|you,pro|it,$0),$0),adv|already($0))
+top parse:
+[('you', 'NP', 'pro|you'), ("'ve", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|have&PERF($1,$0,$2)'), ('already', 'NP', 'pro|it'), ('had', 'S', 'lambda $0_{ev}.adv|already($0)'), ('it', '(((S\\NP)\\(S\\NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|have($1($2,$3),$3),$0($3))')]
+-34.2295320014
+
+
+Sent : would you like a grahamcracker ?
+update weight =  0.00762243314454
+393
+Cat : Syn:lambda $0_{ev}.Q(aux|will&COND(v|like(pro|you,det|a($1,n|+n|graham+n|cracker($1)),$0),$0),$0)
+top parse:
+[('would', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will&COND($0($1),$1)'), ('you', 'NP', 'pro|you'), ('like', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|like($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('grahamcracker', 'N', 'lambda $0_{e}.n|+n|graham+n|cracker($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-25.329377524
+
+
+Sent : put your highchair back .
+update weight =  0.00760872681178
+394
+Cat : S:lambda $0_{ev}.and(v|put&ZERO(pro|you,pro:poss:det|your($1,n|+adj|high+n|chair($1)),$0),adv:loc|back($0))
+top parse:
+[('put', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:loc|back($1))'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('highchair', 'N', 'lambda $0_{e}.n|+adj|high+n|chair($0)'), ('back', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|put&ZERO(pro|you,$0,$1)')]
+-30.3145857657
+
+
+Sent : good girl .
+update weight =  0.00759507580849
+395
+Cat : Swh:lambda $0_{e}.and(adj|good($0),n|girl($0))
+top parse:
+[('good', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ('girl', 'N', 'lambda $0_{e}.and(adj|good($0),n|girl($0))')]
+-20.5740339131
+
+
+Sent : is your grape juice allgone ?
+update weight =  0.00758147978799
+396
+Cat : Syn:lambda $0_{ev}.Q(pro:poss:det|your($1,and(n|grape($1),adj|all_gone($1),n|juice($1))),$0)
+top parse:
+[('is', '(Syn/Syn)', 'lambda $0_{<ev,t>}.$0'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('grape', 'N', 'lambda $0_{e}.n|grape($0)'), ('juice', 'N', 'lambda $0_{e}.n|juice($0)'), ('allgone', '((N\\N)\\N)', 'lambda $0_{<e,t>}.lambda $1_{<e,t>}.lambda $2_{e}.and($1($2),adj|all_gone($2),$0($2))'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-39.2207338744
+
+
+Sent : there .
+update weight =  0.00756793840657
+397
+Cat : S:lambda $0_{ev}.adv:loc|there($0)
+top parse:
+[('there', 'S', 'lambda $0_{ev}.adv:loc|there($0)')]
+-4.26278710203
+
+
+Sent : who is that man ?
+update weight =  0.00755445132342
+398
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,det|that($2,n|man($2)),$1)
+top parse:
+[('who', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', '(NP/N)', 'lambda $0_{<e,t>}.det|that($1,$0($1))'), ('man', 'N', 'lambda $0_{e}.n|man($0)')]
+-20.7020143456
+
+
+Sent : you  you tell me about it ?
+update weight =  0.0075410182006
+399
+Cat : Syn:lambda $0_{ev}.Q(and(v|tell(pro|you,pro|me,$0),prep|about(pro|it,$0)),$0)
+top parse:
+[('you', '((S/PP)/S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($2),$1($2))'), ('you', 'NP', 'pro|you'), ('tell', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|tell($1,$0,$2)'), ('me', 'NP', 'pro|me'), ('about', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)'), ('it', 'NP', 'pro|it'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-31.2428416382
+
+
+Sent : that 's it .
+update weight =  0.00752763870304
+400
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,pro|it,$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('it', 'NP', 'pro|it')]
+-6.95016373805
+
+
+Sent : now you tell me about your book .
+update weight =  0.00751431249846
+401
+Cat : S:lambda $0_{ev}.and(v|tell(pro|you,pro|me,$0),prep|about(pro:poss:det|your($1,n|book($1)),$0))
+top parse:
+[('now', '((S/PP)/S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($2),$1($2))'), ('you', 'NP', 'pro|you'), ('tell', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|tell($1,$0,$2)'), ('me', 'NP', 'pro|me'), ('about', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('book', 'N', 'lambda $0_{e}.n|book($0)')]
+-28.4267889613
+
+
+Sent : what 's that ?
+update weight =  0.0075010392574
+402
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'s", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-6.72384982344
+
+
+Sent : are you okkay ?
+update weight =  0.00748781865312
+403
+Cat : Syn:lambda $0_{ev}.Q(adj|okkay(pro|you),$0)
+top parse:
+[('are', '(Syn/Syn)', 'lambda $0_{<ev,t>}.$0'), ('you', 'NP', 'pro|you'), ('okkay', '(St\\NP)', 'lambda $0_{e}.adj|okkay($0)'), ('?', '((Syn\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.Q($0($1),$2)')]
+-26.3877554236
+
+
+Sent : you tell me .
+update weight =  0.00747465036165
+404
+Cat : S:lambda $0_{ev}.v|tell(pro|you,pro|me,$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('tell', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|tell($1,$0,$2)'), ('me', 'NP', 'pro|me')]
+-8.73524050761
+
+
+Sent : what 's that ?
+update weight =  0.00746153406169
+405
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'s", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-6.58793265474
+
+
+Sent : you 're doing fine .
+update weight =  0.00744846943462
+406
+Cat : S:lambda $0_{ev}.and(aux|be&PRES(part|do-PROG(pro|you,$0),$0),adv|fine($0))
+top parse:
+[('you', 'NP', 'pro|you'), ("'re", '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|do-PROG($0,$1)'), ('doing', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)'), ('fine', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv|fine($2))')]
+-20.7030202006
+
+
+Sent : what does that mean ?
+update weight =  0.00743545616447
+407
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|do&3S(v|mean(pro:dem|that,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('does', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|mean($0,$1,$2)'), ('that', 'NP', 'pro:dem|that'), ('mean', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do&3S($0($1,$2),$2)')]
+-19.0859555314
+
+
+Sent : you shut the door .
+update weight =  0.00742249393788
+408
+Cat : S:lambda $0_{ev}.v|shut&ZERO(pro|you,det|the($1,n|door($1)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('shut', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|shut&ZERO($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('door', 'N', 'lambda $0_{e}.n|door($0)')]
+-17.1541289165
+
+
+Sent : move your hand .
+update weight =  0.00740958244409
+409
+Cat : S:lambda $0_{ev}.v|move(pro|you,pro:poss:det|your($1,n|hand($1)),$0)
+top parse:
+[('move', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|move(pro|you,$0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('hand', 'N', 'lambda $0_{e}.n|hand($0)')]
+-21.2631085729
+
+
+Sent : cereal ?
+update weight =  0.0073967213749
+410
+Cat : Swh:lambda $0_{e}.n|cereal($0)
+top parse:
+[('cereal', 'Swh', 'lambda $0_{e}.n|cereal($0)')]
+-7.66591098211
+
+
+Sent : what 's it doing under there ?
+update weight =  0.00738391042462
+411
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.and(aux|be&3S(part|do-PROG(pro|it,$0,$1),$1),adv:loc|under($1))
+top parse:
+[('what', '(Swh/(S\\NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'s", '(NP/NP)', 'lambda $0_{e}.$0'), ('it', 'NP', 'pro|it'), ('doing', '((S\\NP)\\NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|do-PROG($0,$1,$2),$2)'), ('under', 'S', 'lambda $0_{ev}.adv:loc|under($0)'), ('there', '(((S\\NP)\\(S\\NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))')]
+-39.0365940853
+
+
+Sent : Mommy 'll get it .
+update weight =  0.0073711492901
+412
+Cat : S:lambda $0_{ev}.aux|will(v|get(n:prop|Mommy,pro|it,$0),$0)
+top parse:
+[('Mommy', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ("'ll", 'NP', 'n:prop|Mommy'), ('get', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)'), ('it', 'NP', 'pro|it')]
+-27.4710574691
+
+
+Sent : that 's your grape juice .
+update weight =  0.00735843767067
+413
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,pro:poss:det|your($1,and(n|grape($1),n|juice($1))),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('grape', '(N/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.and(n|grape($1),$0($1))'), ('juice', 'N', 'lambda $0_{e}.n|juice($0)')]
+-20.4504079535
+
+
+Sent : would you bring me your cup ?
+update weight =  0.0073457752681
+414
+Cat : Syn:lambda $0_{ev}.Q(aux|will&COND(v|bring(pro|you,pro|me,pro:poss:det|your($1,n|cup($1)),$0),$0),$0)
+top parse:
+[('would', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will&COND($0($1),$1)'), ('you', 'NP', 'pro|you'), ('bring', '(((S\\NP)/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|bring($2,$0,$1,$3)'), ('me', 'NP', 'pro|me'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('cup', 'N', 'lambda $0_{e}.n|cup($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-33.977908038
+
+
+Sent : would you bring Mama your cup .
+update weight =  0.00733316178661
+415
+Cat : S:lambda $0_{ev}.aux|will&COND(v|bring(pro|you,n:prop|Mama,pro:poss:det|your($1,n|cup($1)),$0),$0)
+top parse:
+[('would', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will&COND($0($1),$1)'), ('you', 'NP', 'pro|you'), ('bring', '(((S\\NP)/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|bring($2,$0,$1,$3)'), ('Mama', 'NP', 'n:prop|Mama'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('cup', 'N', 'lambda $0_{e}.n|cup($0)')]
+-22.3859468289
+
+
+Sent : that 's a nice dog .
+update weight =  0.00732059693281
+416
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,and(adj|nice($1),n|dog($1))),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('nice', '(N/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.and(adj|nice($1),$0($1))'), ('dog', 'N', 'lambda $0_{e}.n|dog($0)')]
+-16.74235302
+
+
+Sent : that 's a pretty hat .
+update weight =  0.00730808041572
+417
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,and(adj|pretty($1),n|hat($1))),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('pretty', '(N/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.and(adj|pretty($1),$0($1))'), ('hat', 'N', 'lambda $0_{e}.n|hat($0)')]
+-20.3760865153
+
+
+Sent : what are you doing ?
+update weight =  0.00729561194668
+418
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(part|do-PROG(pro|you,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('doing', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)')]
+-12.9265427048
+
+
+Sent : after you read .
+update weight =  0.0072831912394
+419
+Cat : S:lambda $0_{ev}.v|read&ZERO(pro|you,$0)
+top parse:
+[('after', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('you', 'NP', 'pro|you'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)')]
+-19.4368601436
+
+
+Sent : you put them in .
+update weight =  0.00727081800988
+420
+Cat : S:lambda $0_{ev}.and(v|put&ZERO(pro|you,pro|them,$0),adv:loc|in($0))
+top parse:
+[('you', 'NP', 'pro|you'), ('put', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|put&ZERO($1,$0,$2)'), ('them', 'NP', 'pro|them'), ('in', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv:loc|in($2))')]
+-16.2877170618
+
+
+Sent : they go down here .
+update weight =  0.00725849197642
+421
+Cat : S:lambda $0_{ev}.and(v|go(pro|they,$0),adv:loc|down($0))
+top parse:
+[('they', 'NP', 'pro|they'), ('go', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)'), ('down', 'S', 'lambda $0_{ev}.adv:loc|down($0)'), ('here', '((S\\S)\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))')]
+-18.8681016726
+
+
+Sent : that 's a girl .
+update weight =  0.00724621285956
+422
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,n|girl($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('girl', 'N', 'lambda $0_{e}.n|girl($0)')]
+-13.8128986709
+
+
+Sent : and bring the cup too .
+update weight =  0.00723398038211
+423
+Cat : S:lambda $0_{ev}.v|bring(pro|you,det|the($1,n|cup($1)),$0)
+top parse:
+[('and', 'NP', 'pro|you'), ('bring', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|bring($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('cup', 'N', 'lambda $0_{e}.n|cup($0)'), ('too', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.$0')]
+-33.0780897004
+
+
+Sent : bring both cans .
+update weight =  0.00722179426909
+424
+Cat : S:lambda $0_{ev}.v|bring(pro|you,qn|both($1,n|can-PL($1)),$0)
+top parse:
+[('bring', '(NP/N)', 'lambda $0_{<e,t>}.qn|both($1,$0($1))'), ('both', 'N', 'lambda $0_{e}.n|can-PL($0)'), ('cans', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|bring(pro|you,$0,$1)')]
+-25.9283755465
+
+
+Sent : good girl .
+update weight =  0.00720965424769
+425
+Cat : Swh:lambda $0_{e}.and(adj|good($0),n|girl($0))
+top parse:
+[('good', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ('girl', 'N', 'lambda $0_{e}.and(adj|good($0),n|girl($0))')]
+-13.6848113837
+
+
+Sent : shut the door .
+update weight =  0.00719756004732
+426
+Cat : S:lambda $0_{ev}.v|shut&ZERO(pro|you,det|the($1,n|door($1)),$0)
+top parse:
+[('shut', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|shut&ZERO(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('door', 'N', 'lambda $0_{e}.n|door($0)')]
+-18.2424614798
+
+
+Sent : one is the dog 's house .
+update weight =  0.00718551139949
+427
+Cat : S:lambda $0_{ev}.eq(pro:indef|one,det|the($1,and(n|dog($1),n|house($1))),$0)
+top parse:
+[('one', 'NP', 'pro:indef|one'), ('is', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('dog', 'N', 'lambda $0_{e}.n|dog($0)'), ("'s", '((N\\N)/N)', 'lambda $0_{<e,t>}.lambda $1_{<e,t>}.lambda $2_{e}.and($1($2),$0($2))'), ('house', 'N', 'lambda $0_{e}.n|house($0)')]
+-26.610298873
+
+
+Sent : can you throw the ball ?
+update weight =  0.00717350803789
+428
+Cat : Syn:lambda $0_{ev}.Q(aux|can(v|throw(pro|you,det|the($1,n|ball($1)),$0),$0),$0)
+top parse:
+[('can', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|can($0($1),$1)'), ('you', 'NP', 'pro|you'), ('throw', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|throw($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-22.994304193
+
+
+Sent : you catch the ball .
+update weight =  0.00716154969828
+429
+Cat : S:lambda $0_{ev}.v|catch(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('catch', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|catch($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-14.8942862081
+
+
+Sent : catch the ball .
+update weight =  0.00714963611853
+430
+Cat : S:lambda $0_{ev}.v|catch(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('catch', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|catch(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-18.1764886719
+
+
+Sent : you can 't hold the ball .
+update weight =  0.00713776703857
+431
+Cat : S:lambda $0_{ev}.not(aux|can(v|hold(pro|you,det|the($1,n|ball($1)),$0),$0),$0)
+top parse:
+[('you', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.not($0($1),$1)'), ('can', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|can($0($1),$1)'), ("'t", 'NP', 'pro|you'), ('hold', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|hold($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-30.127846126
+
+
+Sent : can you hold the ball ?
+update weight =  0.00712594220037
+432
+Cat : Syn:lambda $0_{ev}.Q(aux|can(v|hold(pro|you,det|the($1,n|ball($1)),$0),$0),$0)
+top parse:
+[('can', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|can($0($1),$1)'), ('you', 'NP', 'pro|you'), ('hold', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|hold($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-15.7285225524
+
+
+Sent : hold the ball .
+update weight =  0.00711416134794
+433
+Cat : S:lambda $0_{ev}.v|hold(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('hold', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|hold(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-15.1106543892
+
+
+Sent : that 's the way .
+update weight =  0.00710242422728
+434
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|the($1,n|way($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('way', 'N', 'lambda $0_{e}.n|way($0)')]
+-12.3225160135
+
+
+Sent : catch the ball  catch the ball .
+update weight =  0.0070907305864
+435
+Cat : S:lambda $0_{ev}.v|catch(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('catch', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('the', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('ball', 'NP', 'pro|you'), ('catch', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|catch($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-40.5679912045
+
+
+Sent : you say that .
+update weight =  0.00707908017525
+436
+Cat : S:lambda $0_{ev}.v|say(pro|you,pro:dem|that,$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('say', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|say($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-9.84062096586
+
+
+Sent : catch the ball .
+update weight =  0.00706747274575
+437
+Cat : S:lambda $0_{ev}.v|catch(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('catch', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|catch(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-12.9903351817
+
+
+Sent : catch the ball .
+update weight =  0.00705590805173
+438
+Cat : S:lambda $0_{ev}.v|catch(pro|you,det|the($1,n|ball($1)),$0)
+top parse:
+[('catch', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|catch(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('ball', 'N', 'lambda $0_{e}.n|ball($0)')]
+-12.3634742966
+
+
+Sent : you say that .
+update weight =  0.00704438584894
+439
+Cat : S:lambda $0_{ev}.v|say(pro|you,pro:dem|that,$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('say', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|say($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-7.63811205266
+
+
+Sent : you had it on your tummy .
+update weight =  0.00703290589501
+440
+Cat : S:lambda $0_{ev}.and(v|have&PAST(pro|you,pro|it,$0),prep|on(pro:poss:det|your($1,n|tummy($1)),$0))
+top parse:
+[('you', 'NP', 'pro|you'), ('had', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&PAST($1,$0,$2)'), ('it', 'NP', 'pro|it'), ('on', '(((S\\NP)\\(S\\NP))/NP)', 'lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('tummy', 'N', 'lambda $0_{e}.n|tummy($0)')]
+-24.6972078938
+
+
+Sent : where 's my pencil ?
+update weight =  0.00702146794947
+441
+Cat : Swh:lambda $0_{e}.eqLoc(pro:poss:det|my($1,n|pencil($1)),$0)
+top parse:
+[('where', '(Swh/(St/NP))', 'lambda $0_{<e,t>}.$0'), ("'s", '((St/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)'), ('my', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|my($1,$0($1))'), ('pencil', 'N', 'lambda $0_{e}.n|pencil($0)')]
+-15.2108458719
+
+
+Sent : where 's your pencil ?
+update weight =  0.00701007177366
+442
+Cat : Swh:lambda $0_{e}.eqLoc(pro:poss:det|your($1,n|pencil($1)),$0)
+top parse:
+[('where', '(Swh/(St/NP))', 'lambda $0_{<e,t>}.$0'), ("'s", '((St/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('pencil', 'N', 'lambda $0_{e}.n|pencil($0)')]
+-13.0399345787
+
+
+Sent : garbage ?
+update weight =  0.0069987171308
+443
+Cat : Swh:lambda $0_{e}.n|garbage($0)
+top parse:
+[('garbage', 'Swh', 'lambda $0_{e}.n|garbage($0)')]
+-8.39227156963
+
+
+Sent : is that Racketyboom .
+update weight =  0.0069874037859
+444
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,n:prop|Racketyboom,$0)
+top parse:
+[('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($0,$1,$2)'), ('that', 'NP', 'pro:dem|that'), ('Racketyboom', 'NP', 'n:prop|Racketyboom')]
+-12.8086148505
+
+
+Sent : Mommy 's busy .
+update weight =  0.00697613150578
+445
+Cat : St:adj|busy(n:prop|Mommy)
+top parse:
+[('Mommy', 'NP', 'n:prop|Mommy'), ("'s", '(St\\NP)', 'lambda $0_{e}.adj|busy($0)'), ('busy', '(St\\St)', 'lambda $0_{t}.$0')]
+-19.769441322
+
+
+Sent : you read .
+update weight =  0.00696490005905
+446
+Cat : S:lambda $0_{ev}.v|read&ZERO(pro|you,$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)')]
+-6.0801414252
+
+
+Sent : later we 'll read .
+update weight =  0.00695370921606
+447
+Cat : S:lambda $0_{ev}.and(aux|will(v|read&ZERO(pro|we,$0),$0),adv|later($0))
+top parse:
+[('later', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv|later($1))'), ('we', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ("'ll", 'NP', 'pro|we'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)')]
+-15.6206342089
+
+
+Sent : what is that ?
+update weight =  0.00694255874895
+448
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-7.77110368938
+
+
+Sent : you don 't drink coffee .
+update weight =  0.00693144843155
+449
+Cat : S:lambda $0_{ev}.not(aux|do(v|drink(pro|you,lambda $1_{e}.n|coffee($1),$0),$0),$0)
+top parse:
+[('you', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.not($0($1),$1)'), ('don', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do($0($1),$1)'), ("'t", 'NP', 'pro|you'), ('drink', '((S\\NP)/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)'), ('coffee', 'N', 'lambda $0_{e}.n|coffee($0)')]
+-31.0696930722
+
+
+Sent : empty garbage ?
+update weight =  0.00692037803944
+450
+Cat : Syn:lambda $0_{ev}.Q(v|empty(pro|you,lambda $1_{e}.n|garbage($1),$0),$0)
+top parse:
+[('empty', '(S/N)', 'lambda $0_{<e,t>}.lambda $1_{ev}.v|empty(pro|you,$0,$1)'), ('garbage', 'N', 'lambda $0_{e}.n|garbage($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-23.6991979546
+
+
+Sent : later .
+update weight =  0.00690934734988
+451
+Cat : S:lambda $0_{ev}.adv|later($0)
+top parse:
+[('later', 'S', 'lambda $0_{ev}.adv|later($0)')]
+-12.0177174092
+
+
+Sent : what 's dirty ?
+update weight =  0.00689835614181
+452
+Cat : Swh:lambda $0_{e}.adj|dirty($0)
+top parse:
+[('what', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ("'s", '(N/N)', 'lambda $0_{<e,t>}.$0'), ('dirty', 'N', 'lambda $0_{e}.adj|dirty($0)')]
+-27.9945416737
+
+
+Sent : your foot ?
+update weight =  0.00688740419586
+453
+Cat : Syn:lambda $0_{ev}.Q(pro:poss:det|your($1,n|foot($1)),$0)
+top parse:
+[('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('foot', 'N', 'lambda $0_{e}.n|foot($0)'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-12.3976196759
+
+
+Sent : swim ?
+update weight =  0.00687649129428
+454
+Cat : Swh:lambda $0_{e}.n|swim($0)
+top parse:
+[('swim', 'Swh', 'lambda $0_{e}.n|swim($0)')]
+-6.29206601992
+
+
+Sent : a cracker ?
+update weight =  0.00686561722099
+455
+Cat : Syn:lambda $0_{ev}.Q(det|a($1,n|cracker($1)),$0)
+top parse:
+[('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('cracker', 'N', 'lambda $0_{e}.n|cracker($0)'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-9.1147387715
+
+
+Sent : lay down .
+update weight =  0.00685478176149
+456
+Cat : S:lambda $0_{ev}.and(v|lay(pro|you,$0),adv:loc|down($0))
+top parse:
+[('lay', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and(v|lay(pro|you,$1),$0($1))'), ('down', 'S', 'lambda $0_{ev}.adv:loc|down($0)')]
+-13.3878762707
+
+
+Sent : lay down here .
+update weight =  0.00684398470292
+457
+Cat : S:lambda $0_{ev}.and(v|lay(pro|you,$0),adv:loc|down($0))
+top parse:
+[('lay', 'S', 'lambda $0_{ev}.v|lay(pro|you,$0)'), ('down', 'S', 'lambda $0_{ev}.adv:loc|down($0)'), ('here', '((S\\S)\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))')]
+-18.7672871564
+
+
+Sent : pottie ?
+update weight =  0.00683322583399
+458
+Cat : Swh:lambda $0_{e}.n|pot-DIM($0)
+top parse:
+[('pottie', 'Swh', 'lambda $0_{e}.n|pot-DIM($0)')]
+-7.61852930417
+
+
+Sent : excuse me .
+update weight =  0.006822504945
+459
+Cat : S:lambda $0_{ev}.v|excuse(pro|you,pro|me,$0)
+top parse:
+[('excuse', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|excuse(pro|you,$0,$1)'), ('me', 'NP', 'pro|me')]
+-15.4587317402
+
+
+Sent : and Mommy will read to you .
+update weight =  0.00681182182779
+460
+Cat : S:lambda $0_{ev}.and(aux|will(v|read&ZERO(n:prop|Mommy,$0),$0),prep|to(pro|you,$0))
+top parse:
+[('and', '((S/PP)/S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($2),$1($2))'), ('Mommy', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ('will', 'NP', 'n:prop|Mommy'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)'), ('to', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|to($0,$1)'), ('you', 'NP', 'pro|you')]
+-36.2482490801
+
+
+Sent : shall we read Racketyboom ?
+update weight =  0.00680117627575
+461
+Cat : Syn:lambda $0_{ev}.Q(aux|shall(v|read&ZERO(pro|we,n:prop|Racketyboom,$0),$0),$0)
+top parse:
+[('shall', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|shall($0($1),$1)'), ('we', 'NP', 'pro|we'), ('read', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)'), ('Racketyboom', 'NP', 'n:prop|Racketyboom'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-26.2542999478
+
+
+Sent : I 'll read .
+update weight =  0.00679056808382
+462
+Cat : S:lambda $0_{ev}.aux|will(v|read&ZERO(pro|I,$0),$0)
+top parse:
+[('I', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ("'ll", 'NP', 'pro|I'), ('read', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)')]
+-23.2950236978
+
+
+Sent : turn the page .
+update weight =  0.00677999704843
+463
+Cat : S:lambda $0_{ev}.v|turn(pro|you,det|the($1,n|page($1)),$0)
+top parse:
+[('turn', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|turn(pro|you,$0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('page', 'N', 'lambda $0_{e}.n|page($0)')]
+-18.9839406579
+
+
+Sent : you turn the page .
+update weight =  0.00676946296754
+464
+Cat : S:lambda $0_{ev}.v|turn(pro|you,det|the($1,n|page($1)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('turn', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|turn($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('page', 'N', 'lambda $0_{e}.n|page($0)')]
+-12.9463032453
+
+
+Sent : you 're going backwards .
+update weight =  0.00675896564057
+465
+Cat : S:lambda $0_{ev}.and(aux|be&PRES(part|go-PROG(pro|you,$0),$0),adv:loc|backwards($0))
+top parse:
+[('you', 'NP', 'pro|you'), ("'re", '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(part|go-PROG($0,$1),$1)'), ('going', 'S', 'lambda $0_{ev}.adv:loc|backwards($0)'), ('backwards', '(((S\\NP)\\(S\\NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))')]
+-31.8511094565
+
+
+Sent : you read the story to Mommy .
+update weight =  0.00674850486842
+466
+Cat : S:lambda $0_{ev}.and(v|read&ZERO(pro|you,det|the($1,n|story($1)),$0),prep|to(n:prop|Mommy,$0))
+top parse:
+[('you', 'NP', 'pro|you'), ('read', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('story', 'N', 'lambda $0_{e}.n|story($0)'), ('to', '(((S\\NP)\\(S\\NP))/NP)', 'lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|to($0,$3))'), ('Mommy', 'NP', 'n:prop|Mommy')]
+-26.0042495887
+
+
+Sent : turn around .
+update weight =  0.00673808045348
+467
+Cat : S:lambda $0_{ev}.and(v|turn(pro|you,$0),adv:loc|around($0))
+top parse:
+[('turn', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:loc|around($1))'), ('around', 'S', 'lambda $0_{ev}.v|turn(pro|you,$0)')]
+-17.4130983912
+
+
+Sent : that 's a girl ? .
+update weight =  0.00672769219955
+468
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,n|girl($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('girl', 'N', 'lambda $0_{e}.n|girl($0)'), ('?', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.$0')]
+-21.5661991529
+
+
+Sent : is that Papa ?
+update weight =  0.00671733991189
+469
+Cat : Syn:lambda $0_{ev}.Q(eq(pro:dem|that,n:prop|Papa,$0),$0)
+top parse:
+[('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($0,$1,$2)'), ('that', 'NP', 'pro:dem|that'), ('Papa', 'NP', 'n:prop|Papa'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-13.2998408836
+
+
+Sent : there .
+update weight =  0.00670702339715
+470
+Cat : S:lambda $0_{ev}.adv:loc|there($0)
+top parse:
+[('there', 'S', 'lambda $0_{ev}.adv:loc|there($0)')]
+-4.23343843497
+
+
+Sent : you sit on the pillow .
+update weight =  0.00669674246343
+471
+Cat : S:lambda $0_{ev}.and(v|sit(pro|you,$0),prep|on(det|the($1,n|pillow($1)),$0))
+top parse:
+[('you', 'NP', 'pro|you'), ('sit', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|sit($0,$1)'), ('on', '(((S\\NP)\\(S\\NP))/NP)', 'lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('pillow', 'N', 'lambda $0_{e}.n|pillow($0)')]
+-22.5347411487
+
+
+Sent : not those pillows .
+update weight =  0.0066864969202
+472
+Cat : S:lambda $0_{ev}.not(det|those($1,n|pillow-PL($1)),$0)
+top parse:
+[('not', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.not($0,$1)'), ('those', '(NP/N)', 'lambda $0_{<e,t>}.det|those($1,$0($1))'), ('pillows', 'N', 'lambda $0_{e}.n|pillow-PL($0)')]
+-23.4346808554
+
+
+Sent : come over on these pillows .
+update weight =  0.0066762865783
+473
+Cat : S:lambda $0_{ev}.and(v|come(pro|you,$0),prep|on(det|these($1,n|pillow-PL($1)),$0))
+top parse:
+[('come', 'S', 'lambda $0_{ev}.v|come(pro|you,$0)'), ('over', '((S\\S)/PP)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))'), ('on', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)'), ('these', '(NP/N)', 'lambda $0_{<e,t>}.det|these($1,$0($1))'), ('pillows', 'N', 'lambda $0_{e}.n|pillow-PL($0)')]
+-32.1506722159
+
+
+Sent : wait .
+update weight =  0.00666611124996
+474
+Cat : S:lambda $0_{ev}.v|wait(pro|you,$0)
+top parse:
+[('wait', 'S', 'lambda $0_{ev}.v|wait(pro|you,$0)')]
+-9.80793559184
+
+
+Sent : this is Racketyboom .
+update weight =  0.00665597074876
+475
+Cat : S:lambda $0_{ev}.eq(pro:dem|this,n:prop|Racketyboom,$0)
+top parse:
+[('this', 'NP', 'pro:dem|this'), ('is', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('Racketyboom', 'NP', 'n:prop|Racketyboom')]
+-10.5899240969
+
+
+Sent : lunch .
+update weight =  0.00664586488963
+476
+Cat : Swh:lambda $0_{e}.n|lunch($0)
+top parse:
+[('lunch', 'Swh', 'lambda $0_{e}.n|lunch($0)')]
+-3.36013338527
+
+
+Sent : you move your highchair .
+update weight =  0.00663579348883
+477
+Cat : S:lambda $0_{ev}.v|move(pro|you,pro:poss:det|your($1,n|+adj|high+n|chair($1)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('move', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|move($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('highchair', 'N', 'lambda $0_{e}.n|+adj|high+n|chair($0)')]
+-14.6583680412
+
+
+Sent : lunch .
+update weight =  0.00662575636393
+478
+Cat : Swh:lambda $0_{e}.n|lunch($0)
+top parse:
+[('lunch', 'Swh', 'lambda $0_{e}.n|lunch($0)')]
+-3.20769476892
+
+
+Sent : lunch .
+update weight =  0.00661575333381
+479
+Cat : Swh:lambda $0_{e}.n|lunch($0)
+top parse:
+[('lunch', 'Swh', 'lambda $0_{e}.n|lunch($0)')]
+-3.0460438862
+
+
+Sent : cracker ?
+update weight =  0.00660578421867
+480
+Cat : Swh:lambda $0_{e}.n|cracker($0)
+top parse:
+[('cracker', 'Swh', 'lambda $0_{e}.n|cracker($0)')]
+-3.25033640478
+
+
+Sent : cracker .
+update weight =  0.00659584883996
+481
+Cat : Swh:lambda $0_{e}.n|cracker($0)
+top parse:
+[('cracker', 'Swh', 'lambda $0_{e}.n|cracker($0)')]
+-3.09197921342
+
+
+Sent : you want your custard now ?
+update weight =  0.00658594702042
+482
+Cat : Syn:lambda $0_{ev}.Q(and(v|want(pro|you,pro:poss:det|your($1,n|custard($1)),$0),adv|now($0)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('want', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('custard', 'N', 'lambda $0_{e}.n|custard($0)'), ('now', '((S\\NP)\\(S\\NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv|now($2))'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-25.4181269212
+
+
+Sent : this is your lunch .
+update weight =  0.00657607858406
+483
+Cat : S:lambda $0_{ev}.eq(pro:dem|this,pro:poss:det|your($1,n|lunch($1)),$0)
+top parse:
+[('this', 'NP', 'pro:dem|this'), ('is', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('lunch', 'N', 'lambda $0_{e}.n|lunch($0)')]
+-12.8211411079
+
+
+Sent : Eve 's having lunch .
+update weight =  0.00656624335614
+484
+Cat : S:lambda $0_{ev}.aux|be&3S(part|have-PROG(n:prop|Eve,lambda $1_{e}.n|lunch($1),$0),$0)
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('having', '((S\\NP)/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|have-PROG($1,$0,$2),$2)'), ('lunch', 'N', 'lambda $0_{e}.n|lunch($0)')]
+-25.1485078058
+
+
+Sent : where is Papa ?
+update weight =  0.00655644116313
+485
+Cat : Swh:lambda $0_{e}.eqLoc(n:prop|Papa,$0)
+top parse:
+[('where', '(Swh/(St/NP))', 'lambda $0_{<e,t>}.$0'), ('is', '((St/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)'), ('Papa', 'NP', 'n:prop|Papa')]
+-12.3099675062
+
+
+Sent : Papa 's going to have lunch .
+update weight =  0.00654667183275
+486
+Cat : S:lambda $0_{ev}.aux|be&3S(and(part|go-PROG(n:prop|Papa,$0),v|have(n:prop|Papa,lambda $1_{e}.n|lunch($1),$0)),$0)
+top parse:
+[('Papa', 'NP', 'n:prop|Papa'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('going', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|go-PROG($0,$1)'), ('to', '(((S\\NP)\\(S\\NP))/S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S(and($1($2,$3),$0($3)),$3)'), ('have', '(S/N)', 'lambda $0_{<e,t>}.lambda $1_{ev}.v|have(n:prop|Papa,$0,$1)'), ('lunch', 'N', 'lambda $0_{e}.n|lunch($0)')]
+-37.8396684132
+
+
+Sent : Eve 's having lunch .
+update weight =  0.00653693519396
+487
+Cat : S:lambda $0_{ev}.aux|be&3S(part|have-PROG(n:prop|Eve,lambda $1_{e}.n|lunch($1),$0),$0)
+top parse:
+[('Eve', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&3S($0($1),$1)'), ("'s", 'NP', 'n:prop|Eve'), ('having', '((S\\NP)/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|have-PROG($1,$0,$2)'), ('lunch', 'N', 'lambda $0_{e}.n|lunch($0)')]
+-18.6915409965
+
+
+Sent : your drink ?
+update weight =  0.00652723107687
+488
+Cat : Syn:lambda $0_{ev}.Q(pro:poss:det|your($1,n|drink($1)),$0)
+top parse:
+[('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('drink', 'N', 'lambda $0_{e}.n|drink($0)'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-12.5735014162
+
+
+Sent : you drinking your milk ?
+update weight =  0.00651755931284
+489
+Cat : Syn:lambda $0_{ev}.Q(part|drink-PROG(pro|you,pro:poss:det|your($1,n|milk($1)),$0),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('drinking', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('milk', 'N', 'lambda $0_{e}.n|milk($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-19.3652555948
+
+
+Sent : Eve ?
+update weight =  0.00650791973439
+490
+Cat : Syn:lambda $0_{ev}.Q(n:prop|Eve,$0)
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-6.9026918274
+
+
+Sent : drink your milk .
+update weight =  0.00649831217521
+491
+Cat : S:lambda $0_{ev}.v|drink(pro|you,pro:poss:det|your($1,n|milk($1)),$0)
+top parse:
+[('drink', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|drink(pro|you,$0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('milk', 'N', 'lambda $0_{e}.n|milk($0)')]
+-17.5528321296
+
+
+Sent : that 's a girl .
+update weight =  0.00648873647016
+492
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|a($1,n|girl($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('girl', 'N', 'lambda $0_{e}.n|girl($0)')]
+-10.9448113339
+
+
+Sent : you want more soup ?
+update weight =  0.00647919245527
+493
+Cat : Syn:lambda $0_{ev}.Q(v|want(pro|you,qn|more($1,n|soup($1)),$0),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('want', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)'), ('more', '(NP/N)', 'lambda $0_{<e,t>}.qn|more($1,$0($1))'), ('soup', 'N', 'lambda $0_{e}.n|soup($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-13.8264846871
+
+
+Sent : what is that ?
+update weight =  0.00646967996767
+494
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-8.19210407267
+
+
+Sent : noodle soup ?
+update weight =  0.00646019884568
+495
+Cat : Swh:lambda $0_{e}.and(n|noodle($0),n|soup($0))
+top parse:
+[('noodle', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ('soup', 'N', 'lambda $0_{e}.and(n|noodle($0),n|soup($0))')]
+-24.0303889589
+
+
+Sent : Mommy 's gonna have soup .
+update weight =  0.0064507489287
+496
+Cat : S:lambda $0_{ev}.aux|be&3S(and(part|go-PROG(n:prop|Mommy,$0),v|have(n:prop|Mommy,lambda $1_{e}.n|soup($1),$0)),$0)
+top parse:
+[('Mommy', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&3S($0($1),$1)'), ("'s", '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and(part|go-PROG(n:prop|Mommy,$1),$0($1))'), ('gonna', 'NP', 'n:prop|Mommy'), ('have', '((S\\NP)/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)'), ('soup', 'N', 'lambda $0_{e}.n|soup($0)')]
+-25.4661066431
+
+
+Sent : eating .
+update weight =  0.00644133005727
+497
+Cat : S:lambda $0_{ev}.part|eat-PROG(pro|you,$0)
+top parse:
+[('eating', 'S', 'lambda $0_{ev}.part|eat-PROG(pro|you,$0)')]
+-10.3407278544
+
+
+Sent : is Eve eating ?
+update weight =  0.00643194207301
+498
+Cat : Syn:lambda $0_{ev}.Q(aux|be&3S(part|eat-PROG(n:prop|Eve,$0),$0),$0)
+top parse:
+[('is', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&3S($0($1),$1)'), ('Eve', 'NP', 'n:prop|Eve'), ('eating', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|eat-PROG($0,$1)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-19.6338474463
+
+
+Sent : what 's she eating ?
+update weight =  0.00642258481866
+499
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&3S(part|eat-PROG(pro|she,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'s", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|eat-PROG($0,$1,$2)'), ('she', 'NP', 'pro|she'), ('eating', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S($0($1,$2),$2)')]
+-21.4391434497
+
+
+Sent : touch ?
+update weight =  0.00641325813802
+500
+Cat : Swh:lambda $0_{e}.n|touch($0)
+top parse:
+[('touch', 'Swh', 'lambda $0_{e}.n|touch($0)')]
+-6.73233358298
+
+
+Sent : what is that ?
+update weight =  0.00640396187599
+501
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('is', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-8.09717887066
+
+
+Sent : taperecorder .
+update weight =  0.00639469587851
+502
+Cat : Swh:lambda $0_{e}.n|+n|tape+n|recorder($0)
+top parse:
+[('taperecorder', 'Swh', 'lambda $0_{e}.n|+n|tape+n|recorder($0)')]
+-3.21425586867
+
+
+Sent : it 's a noodle .
+update weight =  0.00638545999261
+503
+Cat : S:lambda $0_{ev}.eq(pro|it,det|a($1,n|noodle($1)),$0)
+top parse:
+[('it', 'NP', 'pro|it'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('noodle', 'N', 'lambda $0_{e}.n|noodle($0)')]
+-15.6796584216
+
+
+Sent : what .
+update weight =  0.00637625406633
+504
+Cat : NP:pro:wh|what
+top parse:
+[('what', 'NP', 'pro:wh|what')]
+-6.3186623482
+
+
+Sent : Eve ?
+update weight =  0.00636707794877
+505
+Cat : Syn:lambda $0_{ev}.Q(n:prop|Eve,$0)
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-6.34865432022
+
+
+Sent : are you finished ?
+update weight =  0.00635793149007
+506
+Cat : Syn:lambda $0_{ev}.Q(aux|be&PRES(part|finish-PERF(pro|you,$0),$0),$0)
+top parse:
+[('are', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&PRES($0($1),$1)'), ('you', 'NP', 'pro|you'), ('finished', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|finish-PERF($0,$1)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-21.9003640695
+
+
+Sent : would you sit down then ?
+update weight =  0.00634881454136
+507
+Cat : Syn:lambda $0_{ev}.Q(and(aux|will&COND(v|sit(pro|you,$0),$0),adv:tem|then($0)),$0)
+top parse:
+[('would', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will&COND($0($1),$1)'), ('you', 'NP', 'pro|you'), ('sit', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|sit($0,$1)'), ('down', 'S', 'lambda $0_{ev}.adv:tem|then($0)'), ('then', '((S\\S)\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-30.2136959212
+
+
+Sent : sit down .
+update weight =  0.00633972695482
+508
+Cat : S:lambda $0_{ev}.and(v|sit(pro|you,$0),adv:loc|down($0))
+top parse:
+[('sit', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and(v|sit(pro|you,$1),$0($1))'), ('down', 'S', 'lambda $0_{ev}.adv:loc|down($0)')]
+-12.7852683713
+
+
+Sent : I 'm sorry .
+update weight =  0.00633066858359
+509
+Cat : St:adj|sorry(pro|I)
+top parse:
+[('I', 'NP', 'pro|I'), ("'m", '(St\\NP)', 'lambda $0_{e}.adj|sorry($0)'), ('sorry', '((St\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.$0')]
+-17.7962780463
+
+
+Sent : I 'm sorry .
+update weight =  0.00632163928184
+510
+Cat : St:adj|sorry(pro|I)
+top parse:
+[('I', 'NP', 'pro|I'), ("'m", '(St\\NP)', 'lambda $0_{e}.adj|sorry($0)'), ('sorry', '((St\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.$0')]
+-11.944671927
+
+
+Sent : I 'm awfully sorry .
+update weight =  0.00631263890472
+511
+Cat : St:adj|sorry(pro|I)
+top parse:
+[('I', 'NP', 'pro|I'), ("'m", '(St\\NP)', 'lambda $0_{e}.adj|sorry($0)'), ('awfully', '((St\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.$0'), ('sorry', '((St\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.$0')]
+-24.4221246054
+
+
+Sent : is Eve tired ?
+update weight =  0.00630366730834
+512
+Cat : Syn:lambda $0_{ev}.Q(aux|be&3S(part|tire-PERF(n:prop|Eve,$0),$0),$0)
+top parse:
+[('is', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&3S($0($1),$1)'), ('Eve', 'NP', 'n:prop|Eve'), ('tired', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|tire-PERF($0,$1)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-17.219487539
+
+
+Sent : she is .
+update weight =  0.00629472434979
+513
+Cat : NP:pro|she
+top parse:
+[('she', 'NP', 'pro|she'), ('is', '(NP\\NP)', 'lambda $0_{e}.$0')]
+-16.27856365
+
+
+Sent : we 'll go to bed .
+update weight =  0.00628580988714
+514
+Cat : S:lambda $0_{ev}.and(aux|will(v|go(pro|we,$0),$0),prep|to(lambda $1_{e}.n|bed($1),$0))
+top parse:
+[('we', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ("'ll", 'NP', 'pro|we'), ('go', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)'), ('to', '((S\\S)/N)', 'lambda $0_{<e,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|to($0,$2))'), ('bed', 'N', 'lambda $0_{e}.n|bed($0)')]
+-25.9891344517
+
+
+Sent : bed ?
+update weight =  0.00627692377938
+515
+Cat : Swh:lambda $0_{e}.n|bed($0)
+top parse:
+[('bed', 'Swh', 'lambda $0_{e}.n|bed($0)')]
+-3.09192619834
+
+
+Sent : move your fingers .
+update weight =  0.00626806588647
+516
+Cat : S:lambda $0_{ev}.v|move(pro|you,pro:poss:det|your($1,n|finger-PL($1)),$0)
+top parse:
+[('move', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|move(pro|you,$0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('fingers', 'N', 'lambda $0_{e}.n|finger-PL($0)')]
+-18.9716842678
+
+
+Sent : we go .
+update weight =  0.00625923606929
+517
+Cat : S:lambda $0_{ev}.v|go(pro|we,$0)
+top parse:
+[('we', 'NP', 'pro|we'), ('go', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)')]
+-9.17273725848
+
+
+Sent : she 's sleepy .
+update weight =  0.00625043418966
+518
+Cat : St:adj|sleepy(pro|she)
+top parse:
+[('she', 'NP', 'pro|she'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('sleepy', '(St\\NP)', 'lambda $0_{e}.adj|sleepy($0)')]
+-16.5084727431
+
+
+Sent : you bumped your head .
+update weight =  0.00624166011032
+519
+Cat : S:lambda $0_{ev}.v|bump-PAST(pro|you,pro:poss:det|your($1,n|head($1)),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('bumped', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|bump-PAST($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('head', 'N', 'lambda $0_{e}.n|head($0)')]
+-15.7956189107
+
+
+Sent : bumped your head .
+update weight =  0.00623291369493
+520
+Cat : S:lambda $0_{ev}.v|bump-PAST(pro|you,pro:poss:det|your($1,n|head($1)),$0)
+top parse:
+[('bumped', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|bump-PAST(pro|you,$0,$1)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('head', 'N', 'lambda $0_{e}.n|head($0)')]
+-17.5208957876
+
+
+Sent : Mommy 'll move your chair .
+update weight =  0.00622419480804
+521
+Cat : S:lambda $0_{ev}.aux|will(v|move(n:prop|Mommy,pro:poss:det|your($1,n|chair($1)),$0),$0)
+top parse:
+[('Mommy', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|will($0($1),$1)'), ("'ll", 'NP', 'n:prop|Mommy'), ('move', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|move($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('chair', 'N', 'lambda $0_{e}.n|chair($0)')]
+-20.5960813165
+
+
+Sent : coffee .
+update weight =  0.0062155033151
+522
+Cat : Swh:lambda $0_{e}.n|coffee($0)
+top parse:
+[('coffee', 'Swh', 'lambda $0_{e}.n|coffee($0)')]
+-3.14616431868
+
+
+Sent : come here .
+update weight =  0.00620683908248
+523
+Cat : S:lambda $0_{ev}.and(v|come(pro|you,$0),adv:loc|here($0))
+top parse:
+[('come', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and(v|come(pro|you,$1),$0($1))'), ('here', 'S', 'lambda $0_{ev}.adv:loc|here($0)')]
+-11.2539705588
+
+
+Sent : what do you want ?
+update weight =  0.00619820197738
+524
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|do(v|want(pro|you,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('do', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('want', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)')]
+-13.7790904607
+
+
+Sent : Mommy 's cutting a pumpkin .
+update weight =  0.00618959186794
+525
+Cat : S:lambda $0_{ev}.aux|be&3S(part|cut-PROG(n:prop|Mommy,det|a($1,n|pumpkin($1)),$0),$0)
+top parse:
+[('Mommy', 'NP', 'n:prop|Mommy'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('cutting', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|cut-PROG($1,$0,$2),$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('pumpkin', 'N', 'lambda $0_{e}.n|pumpkin($0)')]
+-31.9139239249
+
+
+Sent : I 'm sorry .
+update weight =  0.00618100862311
+526
+Cat : St:adj|sorry(pro|I)
+top parse:
+[('I', 'NP', 'pro|I'), ("'m", '(St\\NP)', 'lambda $0_{e}.adj|sorry($0)'), ('sorry', '((St\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.$0')]
+-10.145874184
+
+
+Sent : I 'm gonna cook it .
+update weight =  0.00617245211274
+527
+Cat : S:lambda $0_{ev}.aux|be&1S(and(part|go-PROG(pro|I,$0),v|cook(pro|I,pro|it,$0)),$0)
+top parse:
+[('I', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&1S($0($1),$1)'), ("'m", 'NP', 'pro|I'), ('gonna', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|go-PROG($0,$1)'), ('cook', '(((S\\NP)\\(S\\NP))/NP)', 'lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),v|cook(pro|I,$0,$3))'), ('it', 'NP', 'pro|it')]
+-31.5647802304
+
+
+Sent : I 'm gonna cook it .
+update weight =  0.00616392220752
+528
+Cat : S:lambda $0_{ev}.aux|be&1S(and(part|go-PROG(pro|I,$0),v|cook(pro|I,pro|it,$0)),$0)
+top parse:
+[('I', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&1S($0($1),$1)'), ("'m", '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and(part|go-PROG(pro|I,$1),$0($1))'), ('gonna', 'NP', 'pro|I'), ('cook', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|cook($1,$0,$2)'), ('it', 'NP', 'pro|it')]
+-23.7660621149
+
+
+Sent : coffee ?
+update weight =  0.00615541877899
+529
+Cat : Swh:lambda $0_{e}.n|coffee($0)
+top parse:
+[('coffee', 'Swh', 'lambda $0_{e}.n|coffee($0)')]
+-3.01720707695
+
+
+Sent : that 's right .
+update weight =  0.00614694169952
+530
+Cat : St:adj|right(pro:dem|that)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('right', '(St\\NP)', 'lambda $0_{e}.adj|right($0)')]
+-11.1453302482
+
+
+Sent : what 're you doing ?
+update weight =  0.00613849084234
+531
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(part|do-PROG(pro|you,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'re", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('doing', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)')]
+-14.6924801421
+
+
+Sent : what 're you doing on the table ?
+update weight =  0.00613006608147
+532
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.and(aux|be&PRES(part|do-PROG(pro|you,$0,$1),$1),prep|on(det|the($2,n|table($2)),$1))
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'re", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('doing', '((Swh\\(S/NP))/PP)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|be&PRES($1($2,$3),$3),$0($3))'), ('on', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('table', 'N', 'lambda $0_{e}.n|table($0)')]
+-24.9810894083
+
+
+Sent : that 's not Papa .
+update weight =  0.00612166729179
+533
+Cat : S:lambda $0_{ev}.not(eq(pro:dem|that,n:prop|Papa,$0),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('not', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.not(eq($1,$0,$2),$2)'), ('Papa', 'NP', 'n:prop|Papa')]
+-16.9855984149
+
+
+Sent : that 's the mailman .
+update weight =  0.00611329434895
+534
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|the($1,n|mailman($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('mailman', 'N', 'lambda $0_{e}.n|mailman($0)')]
+-15.7061108802
+
+
+Sent : that 's the mailman .
+update weight =  0.00610494712945
+535
+Cat : S:lambda $0_{ev}.eq(pro:dem|that,det|the($1,n|mailman($1)),$0)
+top parse:
+[('that', 'NP', 'pro:dem|that'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('mailman', 'N', 'lambda $0_{e}.n|mailman($0)')]
+-10.6520415062
+
+
+Sent : a letter .
+update weight =  0.00609662551056
+536
+Cat : NP:det|a($0,n|letter($0))
+top parse:
+[('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('letter', 'N', 'lambda $0_{e}.n|letter($0)')]
+-5.95953698217
+
+
+Sent : Eve has a letter .
+update weight =  0.00608832937034
+537
+Cat : S:lambda $0_{ev}.v|have&3S(n:prop|Eve,det|a($1,n|letter($1)),$0)
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ('has', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('letter', 'N', 'lambda $0_{e}.n|letter($0)')]
+-14.7951989052
+
+
+Sent : Eve got a letter from Nanny .
+update weight =  0.00608005858767
+538
+Cat : S:lambda $0_{ev}.and(v|get&PAST(n:prop|Eve,det|a($1,n|letter($1)),$0),prep|from(n:prop|Nanny,$0))
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ('got', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get&PAST($1,$0,$2)'), ('a', '(NP/N)', 'lambda $0_{<e,t>}.det|a($1,$0($1))'), ('letter', 'N', 'lambda $0_{e}.n|letter($0)'), ('from', '(((S\\NP)\\(S\\NP))/NP)', 'lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|from($0,$3))'), ('Nanny', 'NP', 'n:prop|Nanny')]
+-31.3917352007
+
+
+Sent : paper .
+update weight =  0.00607181304217
+539
+Cat : Swh:lambda $0_{e}.n|paper($0)
+top parse:
+[('paper', 'Swh', 'lambda $0_{e}.n|paper($0)')]
+-3.15524128434
+
+
+Sent : Nanny wrote you the letter .
+update weight =  0.00606359261426
+540
+Cat : S:lambda $0_{ev}.v|write&PAST(n:prop|Nanny,pro|you,det|the($1,n|letter($1)),$0)
+top parse:
+[('Nanny', 'NP', 'n:prop|Nanny'), ('wrote', '(((S\\NP)/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|write&PAST($2,$0,$1,$3)'), ('you', 'NP', 'pro|you'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('letter', 'N', 'lambda $0_{e}.n|letter($0)')]
+-21.446768353
+
+
+Sent : Nanny ?
+update weight =  0.00605539718512
+541
+Cat : Syn:lambda $0_{ev}.Q(n:prop|Nanny,$0)
+top parse:
+[('Nanny', 'NP', 'n:prop|Nanny'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-6.36011521351
+
+
+Sent : teeth .
+update weight =  0.00604722663669
+542
+Cat : Swh:lambda $0_{e}.n|tooth&PL($0)
+top parse:
+[('teeth', 'Swh', 'lambda $0_{e}.n|tooth&PL($0)')]
+-6.60665305216
+
+
+Sent : grape juice .
+update weight =  0.00603908085168
+543
+Cat : Swh:lambda $0_{e}.and(n|grape($0),n|juice($0))
+top parse:
+[('grape', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ('juice', 'N', 'lambda $0_{e}.and(n|grape($0),n|juice($0))')]
+-23.4520479143
+
+
+Sent : this is your pumpkin .
+update weight =  0.00603095971352
+544
+Cat : S:lambda $0_{ev}.eq(pro:dem|this,pro:poss:det|your($1,n|pumpkin($1)),$0)
+top parse:
+[('this', 'NP', 'pro:dem|this'), ('is', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('pumpkin', 'N', 'lambda $0_{e}.n|pumpkin($0)')]
+-12.6591322892
+
+
+Sent : I 'm going to cook it .
+update weight =  0.0060228631064
+545
+Cat : S:lambda $0_{ev}.aux|be&1S(and(part|go-PROG(pro|I,$0),v|cook(pro|I,pro|it,$0)),$0)
+top parse:
+[('I', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&1S($0($1),$1)'), ("'m", 'NP', 'pro|I'), ('going', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|go-PROG($0,$1)'), ('to', '(((S/NP)/(S/NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))'), ('cook', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|cook(pro|I,$0,$1)'), ('it', 'NP', 'pro|it')]
+-28.0957055337
+
+
+Sent : more water ?
+update weight =  0.00601479091527
+546
+Cat : Syn:lambda $0_{ev}.Q(qn|more($1,n|water($1)),$0)
+top parse:
+[('more', '(NP/N)', 'lambda $0_{<e,t>}.qn|more($1,$0($1))'), ('water', 'N', 'lambda $0_{e}.n|water($0)'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-13.5113508653
+
+
+Sent : more grape juice .
+update weight =  0.00600674302576
+547
+Cat : NP:qn|more($0,and(n|grape($0),n|juice($0)))
+top parse:
+[('more', '(NP/N)', 'lambda $0_{<e,t>}.qn|more($1,$0($1))'), ('grape', '(N/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.and(n|grape($1),$0($1))'), ('juice', 'N', 'lambda $0_{e}.n|juice($0)')]
+-12.7023797078
+
+
+Sent : bring your cup here .
+update weight =  0.00599871932427
+548
+Cat : S:lambda $0_{ev}.and(v|bring(pro|you,pro:poss:det|your($1,n|cup($1)),$0),adv:loc|here($0))
+top parse:
+[('bring', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:loc|here($1))'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('cup', 'N', 'lambda $0_{e}.n|cup($0)'), ('here', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|bring(pro|you,$0,$1)')]
+-15.992812223
+
+
+Sent : it 's allgone .
+update weight =  0.0059907196979
+549
+Cat : St:adj|all_gone(pro|it)
+top parse:
+[('it', 'NP', 'pro|it'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('allgone', '(St\\NP)', 'lambda $0_{e}.adj|all_gone($0)')]
+-10.7159788132
+
+
+Sent : are you alright ?
+update weight =  0.00598274403446
+550
+Cat : Syn:lambda $0_{ev}.Q(adj|alright(pro|you),$0)
+top parse:
+[('are', '(Syn/Syn)', 'lambda $0_{<ev,t>}.$0'), ('you', 'NP', 'pro|you'), ('alright', '(St\\NP)', 'lambda $0_{e}.adj|alright($0)'), ('?', '((Syn\\NP)\\(St\\NP))', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.Q($0($1),$2)')]
+-24.1127669972
+
+
+Sent : Eve ?
+update weight =  0.00597479222249
+551
+Cat : Syn:lambda $0_{ev}.Q(n:prop|Eve,$0)
+top parse:
+[('Eve', 'NP', 'n:prop|Eve'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-5.79901099831
+
+
+Sent : what are these ?
+update weight =  0.00596686415122
+552
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|these,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('these', 'NP', 'pro:dem|these')]
+-21.7282640951
+
+
+Sent : what do you see ?
+update weight =  0.00595895971056
+553
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|do(v|see(pro|you,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('do', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|see($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('see', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)')]
+-21.3114568101
+
+
+Sent : good girl .
+update weight =  0.00595107879114
+554
+Cat : Swh:lambda $0_{e}.and(adj|good($0),n|girl($0))
+top parse:
+[('good', '(Swh/N)', 'lambda $0_{<e,t>}.$0'), ('girl', 'N', 'lambda $0_{e}.and(adj|good($0),n|girl($0))')]
+-12.6080919931
+
+
+Sent : what 's that ?
+update weight =  0.00594322128425
+555
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.eq($0,pro:dem|that,$1)
+top parse:
+[('what', '(Swh/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ("'s", '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('that', 'NP', 'pro:dem|that')]
+-8.21516342915
+
+
+Sent : what are you doing ?
+update weight =  0.00593538708188
+556
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(part|do-PROG(pro|you,$0,$1),$1)
+top parse:
+[('what', '((S/NP)/(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '((S/NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)'), ('you', 'NP', 'pro|you'), ('doing', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)')]
+-13.6060535621
+
+
+Sent : can I help you ?
+update weight =  0.0059275760767
+557
+Cat : Syn:lambda $0_{ev}.Q(aux|can(v|help(pro|I,pro|you,$0),$0),$0)
+top parse:
+[('can', '(S/S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.aux|can($0($1),$1)'), ('I', 'NP', 'pro|I'), ('help', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|help($1,$0,$2)'), ('you', 'NP', 'pro|you'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-17.3878749716
+
+
+Sent : take that outof your mouth first .
+update weight =  0.00591978816203
+558
+Cat : S:lambda $0_{ev}.and(v|take(pro|you,pro:dem|that,$0),adv|first($0))
+top parse:
+[('take', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('that', 'NP', 'pro:dem|that'), ('outof', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|take(pro|you,$0,$1)'), ('your', '(S/S)', 'lambda $0_{<ev,t>}.$0'), ('mouth', 'S', 'lambda $0_{ev}.adv|first($0)'), ('first', '(((S\\NP)\\(S\\NP))\\S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))')]
+-53.5448484855
+
+
+Sent : it 's your horsie .
+update weight =  0.00591202323185
+559
+Cat : S:lambda $0_{ev}.eq(pro|it,pro:poss:det|your($1,n|horse-DIM($1)),$0)
+top parse:
+[('it', 'NP', 'pro|it'), ("'s", '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)'), ('your', '(NP/N)', 'lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))'), ('horsie', 'N', 'lambda $0_{e}.n|horse-DIM($0)')]
+-11.4537713093
+
+
+Sent : horse .
+update weight =  0.00590428118084
+560
+Cat : Swh:lambda $0_{e}.n|horse($0)
+top parse:
+[('horse', 'Swh', 'lambda $0_{e}.n|horse($0)')]
+-3.19743187766
+
+
+Sent : Mommy 's sitting on the stool .
+update weight =  0.00589656190428
+561
+Cat : S:lambda $0_{ev}.and(aux|be&3S(part|sit-PROG(n:prop|Mommy,$0),$0),prep|on(det|the($1,n|stool($1)),$0))
+top parse:
+[('Mommy', 'NP', 'n:prop|Mommy'), ("'s", '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|sit-PROG($0,$1)'), ('sitting', '(((S\\NP)\\(S\\NP))/PP)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|be&3S($1($2,$3),$3),$0($3))'), ('on', '(PP/NP)', 'lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('stool', 'N', 'lambda $0_{e}.n|stool($0)')]
+-30.5693123758
+
+
+Sent : here .
+update weight =  0.00588886529815
+562
+Cat : S:lambda $0_{ev}.adv:loc|here($0)
+top parse:
+[('here', 'S', 'lambda $0_{ev}.adv:loc|here($0)')]
+-4.36824056129
+
+
+Sent : I get it .
+update weight =  0.00588119125903
+563
+Cat : S:lambda $0_{ev}.v|get(pro|I,pro|it,$0)
+top parse:
+[('I', 'NP', 'pro|I'), ('get', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)'), ('it', 'NP', 'pro|it')]
+-9.83563101415
+
+
+Sent : nothing 's happening .
+update weight =  0.00587353968417
+564
+Cat : S:lambda $0_{ev}.aux|be&3S(part|happen-PROG(pro:indef|nothing,$0),$0)
+top parse:
+[('nothing', 'NP', 'pro:indef|nothing'), ("'s", '(NP\\NP)', 'lambda $0_{e}.$0'), ('happening', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.aux|be&3S(part|happen-PROG($0,$1),$1)')]
+-25.9321608691
+
+
+Sent : I 'm not doing anything .
+update weight =  0.00586591047145
+565
+Cat : S:lambda $0_{ev}.not(aux|be&1S(part|do-PROG(pro|I,pro:indef|anything,$0),$0),$0)
+top parse:
+[('I', 'NP', 'pro|I'), ("'m", 'NP', 'pro:indef|anything'), ('not', '((S\\NP)\\NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($1,$0,$2)'), ('doing', '(((S\\NP)\\NP)\\((S\\NP)\\NP))', 'lambda $0_{<e,<e,<ev,t>>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&1S($0($1,$2,$3),$3)'), ('anything', '(((S\\NP)\\NP)\\((S\\NP)\\NP))', 'lambda $0_{<e,<e,<ev,t>>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)')]
+-34.5943089082
+
+
+Sent : you want machine ?
+update weight =  0.00585830351935
+566
+Cat : Syn:lambda $0_{ev}.Q(v|want(pro|you,lambda $1_{e}.n|machine($1),$0),$0)
+top parse:
+[('you', 'NP', 'pro|you'), ('want', '((S\\NP)/N)', 'lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)'), ('machine', 'N', 'lambda $0_{e}.n|machine($0)'), ('?', '(Syn\\S)', 'lambda $0_{<ev,t>}.lambda $1_{ev}.Q($0($1),$1)')]
+-19.0476144109
+
+
+Sent : the machine ?
+update weight =  0.00585071872702
+567
+Cat : Syn:lambda $0_{ev}.Q(det|the($1,n|machine($1)),$0)
+top parse:
+[('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('machine', 'N', 'lambda $0_{e}.n|machine($0)'), ('?', '(Syn\\NP)', 'lambda $0_{e}.lambda $1_{ev}.Q($0,$1)')]
+-8.21221859413
+
+
+Sent : you can watch the washingmachine later .
+update weight =  0.00584315599419
+568
+Cat : S:lambda $0_{ev}.and(aux|can(v|watch(pro|you,det|the($1,n|+n|washing+n|machine($1)),$0),$0),adv|later($0))
+top parse:
+[('you', 'NP', 'pro|you'), ('can', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|watch($1,$0,$2)'), ('watch', 'N', 'lambda $0_{e}.n|+n|washing+n|machine($0)'), ('the', '(NP\\N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('washingmachine', '(((S\\NP)\\(S\\NP))/S)', 'lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|can($1($2,$3),$3),$0($3))'), ('later', 'S', 'lambda $0_{ev}.adv|later($0)')]
+-44.2346203374
+
+
+Sent : watch what ?
+update weight =  0.00583561522122
+569
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.v|watch(pro|you,$0,$1)
+top parse:
+[('watch', '(S/NP)', 'lambda $0_{e}.lambda $1_{ev}.v|watch(pro|you,$0,$1)'), ('what', '(Swh\\(S/NP))', 'lambda $0_{<e,<ev,t>>}.$0')]
+-10.5873977669
+
+
+Sent : what are we going to do ?
+update weight =  0.00582809630909
+570
+Cat : Swh:lambda $0_{e}.lambda $1_{ev}.aux|be&PRES(and(part|go-PROG(pro|we,$1),v|do(pro|we,$0,$1)),$1)
+top parse:
+[('what', '(Swh/(S\\NP))', 'lambda $0_{<e,<ev,t>>}.$0'), ('are', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.v|do(pro|we,$0,$1)'), ('we', 'NP', 'pro|we'), ('going', '(S\\NP)', 'lambda $0_{e}.lambda $1_{ev}.part|go-PROG($0,

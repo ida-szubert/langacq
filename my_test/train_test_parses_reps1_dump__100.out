@@ -1,0 +1,840 @@
+Transitives	100	((S\NP)\NP)	Pr(syn|all relevant syns)	0.0756642358316
+Transitives	100	((S\NP)/NP)	Pr(syn|all relevant syns)	0.825035646442
+Transitives	100	((S/NP)/NP)	Pr(syn|all relevant syns)	0.0989715923468
+Transitives	100	((S/NP)\NP)	Pr(syn|all relevant syns)	0.00032852537974
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.0659864069656
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($0,$1,$2)	has	0.00930634376841
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.723059489745
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.876397877914
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.933917869791
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.0985677954052
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($0,$1,$2)	want	0.00916525531245
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.754846764839
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.86055559904
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.068106018587
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($0,$1,$2)	write	0.0091641533984
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.727187369042
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.881401151791
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.0611701095062
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($0,$1,$2)	do	0.0106005184737
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.703177919156
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.853554017836
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.288207335116
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.056982926143
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($0,$1,$2)	took	0.00929050747477
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.709378445331
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.247805136904
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.0624532199322
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($0,$1,$2)	ate	0.0091641533984
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.719464150707
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.872040079492
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.0751567523571
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($0,$1,$2)	read	0.0091641533984
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.735369232693
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.891318133785
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.813030559158
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.0637828792397
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($0,$1,$2)	find	0.00941043137054
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.71896118056
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.708499582006
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.275384748219
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.0631316245851
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($0,$1,$2)	drinking	0.00920886814332
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.720009482048
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.240328561298
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.993698683963
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.10965644257
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($0,$1,$2)	have	0.00973340613164
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.757773587672
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.913086201009
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	drink	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	drink	0.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	drink	0.0558369534449
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($0,$1,$2)	drink	0.00916449311104
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	drink	0.708714642852
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	drink	0.0688051874336
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.0623088941183
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	eat	0.00916426148688
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.719249882039
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.914653543402
+Transitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.825035646442
+Transitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	1.0
+Transitives	100	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.064790922281
+Transitives	100	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($0,$1,$2)	get	0.00917733900357
+Transitives	100	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.722672393799
+Transitives	100	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.875928690979
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do&PAST($0($1),$1)	did	0.559107680296
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($0,$1,$2)	did	0.388795858541
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	did	0.0433704381844
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|do($0,$1,$2),$2)	did	0.00872602297811
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.975391870908
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|eat&PAST($0,pro|it,$1)	ate	0.0246081290925
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.939183173406
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|write($2,$0($1),$3)	write	0.0608168265936
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.619065606775
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|telephone($0)	get	0.219650487274
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	get	0.0968232928788
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.$0	get	0.0360408514495
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|get(pro|you,$0,$1)	get	0.0227701062476
+Transitives	100	Pr(correct LF|w)	det|a($0,n|fly($0))	get	0.00564965537573
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|water($0)	drink	0.895134349721
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|drink(pro|you,$0,$1)	drink	0.0769426782717
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($0,$1,$2)	drink	0.0255024073933
+Transitives	100	Pr(correct LF|w)	det|the($0,n|water($0))	drink	0.00242056461351
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|juice($0)	had	0.328595150584
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.22513926736
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.198151607796
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|have&PERF($1,$0,$2)	had	0.16087005854
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.part|have&PERF(pro|you,$0,$1)	had	0.0475789975888
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|have&PERF($1,qn|some($3,$0($3)),$2)	had	0.0300694418086
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|have(part|have&PERF($1,$0,$2),$2)	had	0.00959547632252
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|her($1,$0($1))	give	0.606372822158
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|bottle($0)	give	0.361972118126
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,t>}.lambda $2_{ev}.v|give(pro|you,$1,$0,$2)	give	0.0149033715304
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give($0,lambda $3_{e}.n|doll-DIM($3),$1,$2)	give	0.00929910894274
+Transitives	100	Pr(correct LF|w)	pro:poss:det|her($0,n|bottle($0))	give	0.00745257924336
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)	go	0.896993678515
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	go	0.0571931561214
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.$0	go	0.0458131653639
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.86920114364
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	eat	0.0958746372409
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|eat($0,pro|it,$1)	eat	0.0228048161571
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|eat($1,$0,$2),$2)	eat	0.012119402962
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)	read	0.425882906141
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.125635945362
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	read	0.118269449372
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	read	0.113769271395
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|book($0)	read	0.0738703841715
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.0624665874908
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<ev,t>,<ev,t>>>}.lambda $1_{<ev,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES($0($1,$2,$3),$3)	read	0.0312338686423
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{ev}.and(v|read&ZERO($1,$2),$0($2))	read	0.0188423734457
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.$0	read	0.0109079308713
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(v|read&ZERO($2,$3),$0($1,$3))	read	0.00814301174065
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	do	0.444248030484
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.254850966617
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.138561014501
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|do(pro|you,$0,$1)	do	0.0810902446253
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|do(and($0($3),$1($2,$3)),$3)	do	0.0207230362707
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))	do	0.0201879093651
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|will($1($2,$3),$3),$0($3))	do	0.0158833651971
+Transitives	100	Pr(correct LF|w)	lambda $0_{ev}.prep|with(pro|it,$0)	do	0.00994153963229
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|do($0,pro|it,$1)	do	0.00918825942453
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|can(v|do($1,$0,$2),$2)	do	0.00384334965815
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|coffee($0)	drinking	0.342989544336
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|his($1,$0($1))	drinking	0.328359502441
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.210001856798
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	drinking	0.062114394345
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.part|drink-PROG(pro|he,$0,$1)	drinking	0.0308970322124
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|drink-PROG($2,$0($1),$3)	drinking	0.0102189202986
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|drink-PROG($1,$0,$2),$2)	drinking	0.00852646408221
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,pro:poss:det|his($3,$0($3)),$2)	drinking	0.00610041493244
+Transitives	100	Pr(correct LF|w)	pro:poss:det|his($0,n|coffee($0))	drinking	0.000791870554508
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:loc|here($1))	bring	0.981521122551
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv:loc|here($2))	bring	0.016764277656
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.and(v|bring($1,$0,$2),adv:loc|here($2))	bring	0.00141647426436
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.and(v|bring(pro|you,pro|it,$1),$0($1))	bring	0.000298125529039
+Transitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|come(pro|you,$0)	come	1.0
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|top($0)	top	1.0
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.38411529006
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	want	0.219394120703
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do($0($1),$1)	want	0.102897069389
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	want	0.100716146429
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.0675154029611
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	want	0.0507311864833
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.n|cookie($0)	want	0.0496767917605
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.aux|do(v|want($1,$0,$2),$2)	want	0.00770667584322
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not(aux|do($0($1,$2,$3),$3),$3)	want	0.0063844849516
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.v|want(pro|you,$0,$1)	want	0.0062197822797
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.549341937832
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|take&PAST(pro|I,$0,$1)	took	0.257357426158
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|take&PAST($0,pro|it,$1)	took	0.169659252098
+Transitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|take&PAST(pro|I,pro|it,$0)	took	0.0236413839116
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.77763286061
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|find(pro|you,$0,$1)	find	0.134844985737
+Transitives	100	Pr(correct LF|w)	lambda $0_{ev}.part|go-PROG(pro|you,$0)	find	0.0202087777612
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES(and($2($3),$0($1,$3)),$3)	find	0.0192832389704
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG($1,$2),$0($2))	find	0.0177885997678
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG(pro|you,$2),$0($1,$2))	find	0.0165989266812
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))	find	0.00290425766282
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and($0($3),v|find($2,$1,$3)),$3)	find	0.00251716879039
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and(part|go-PROG($2,$3),$0($1,$3)),$3)	find	0.00246171138929
+Transitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|find(pro|you,pro|it,$0)	find	0.0024004290234
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|say($0,$1,$2)	say	0.951819128731
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|say(det|the($3,$0($3)),$1,$2)	say	0.0313772857814
+Transitives	100	Pr(correct LF|w)	det|the($0,n|duck-PL($0))	say	0.016803585488
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	1.0
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.428611680936
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.363531351143
+Transitives	100	Pr(correct LF|w)	pro|we	have	0.0812734657648
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|have($2,$0($1),$3)	have	0.033668676961
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	have	0.0335946106638
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have($0,lambda $2_{e}.n|milk($2),$1)	have	0.0167670354051
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|he,$0,$1)	have	0.00675218135071
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|I,$0,$1)	have	0.00598800891422
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|we,$0,$1)	have	0.00479749889406
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do($0($1),$1)	have	0.00464268846487
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	sit	0.602409491065
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	sit	0.108163403915
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),$1($3))	sit	0.0660359958423
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	sit	0.065026698265
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<e,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	sit	0.0412499929397
+Transitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.$0	sit	0.0338935251463
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.$0	sit	0.0150040183461
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	sit	0.00965217663971
+Transitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<ev,t>,<ev,t>>>}.$0	sit	0.00889799019494
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	sit	0.00863933370037
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$0,$1,$3)	gave	0.30050186449
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($0,$1,$2,$3)	gave	0.246983900352
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$1,$0,$3)	gave	0.245543193974
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST($1,pro|you,$0,$2)	gave	0.103955993637
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST(pro|he,$0,$1,$2)	gave	0.0633463451971
+Transitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$1,pro:poss:det|your($4,$0($4)),$3)	gave	0.0181537212278
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST($1,$0,pro:poss:det|your($3,n|telephone($3)),$2)	gave	0.010072952661
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST(pro|he,$1,$0,$2)	gave	0.00979526656513
+Transitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|give&PAST(pro|he,pro|you,$0,$1)	gave	0.00164676189604
+Transitives	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($0,$1,$2)	Pr(shell|syn)	0.221578544138
+Transitives	100	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($1,$0,$2)	Pr(shell|syn)	0.342476793948
+Intransitives	100	(S/NP)	Pr(syn|all relevant syns)	0.0106948688631
+Intransitives	100	(S\NP)	Pr(syn|all relevant syns)	0.989305131137
+Intransitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)	go	0.989305131137
+Intransitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)	go	1.0
+Intransitives	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)	read	0.989305131137
+Intransitives	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)	read	1.0
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	do	0.445962018456
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.255834227006
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.139095607557
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|do(pro|you,$0,$1)	do	0.0814031052219
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|do(and($0($3),$1($2,$3)),$3)	do	0.020802989433
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))	do	0.0202657979126
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|will($1($2,$3),$3),$0($3))	do	0.0159446460471
+Intransitives	100	Pr(correct LF|w)	lambda $0_{ev}.prep|with(pro|it,$0)	do	0.00997989586164
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|do($0,pro|it,$1)	do	0.00922370936477
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.$0	do	0.0010284054303
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|top($0)	top	1.0
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($1,$0,$2)	eat	0.86920114364
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	eat	0.0958746372409
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|eat($0,pro|it,$1)	eat	0.0228048161571
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|eat($1,$0,$2),$2)	eat	0.012119402962
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$0,$1,$3)	gave	0.30050186449
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($0,$1,$2,$3)	gave	0.246983900352
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$1,$0,$3)	gave	0.245543193974
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST($1,pro|you,$0,$2)	gave	0.103955993637
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST(pro|he,$0,$1,$2)	gave	0.0633463451971
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.v|give&PAST($2,$1,pro:poss:det|your($4,$0($4)),$3)	gave	0.0181537212278
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST($1,$0,pro:poss:det|your($3,n|telephone($3)),$2)	gave	0.010072952661
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give&PAST(pro|he,$1,$0,$2)	gave	0.00979526656513
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|give&PAST(pro|he,pro|you,$0,$1)	gave	0.00164676189604
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|her($1,$0($1))	give	0.606372822158
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|bottle($0)	give	0.361972118126
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,t>}.lambda $2_{ev}.v|give(pro|you,$1,$0,$2)	give	0.0149033715304
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give($0,lambda $3_{e}.n|doll-DIM($3),$1,$2)	give	0.00929910894274
+Intransitives	100	Pr(correct LF|w)	pro:poss:det|her($0,n|bottle($0))	give	0.00745257924336
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	1.0
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat&PAST($1,$0,$2)	ate	0.975391870908
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|eat&PAST($0,pro|it,$1)	ate	0.0246081290925
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|coffee($0)	drinking	0.342989544336
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|his($1,$0($1))	drinking	0.328359502441
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	drinking	0.210001856798
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	drinking	0.062114394345
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.part|drink-PROG(pro|he,$0,$1)	drinking	0.0308970322124
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|drink-PROG($2,$0($1),$3)	drinking	0.0102189202986
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|drink-PROG($1,$0,$2),$2)	drinking	0.00852646408221
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,pro:poss:det|his($3,$0($3)),$2)	drinking	0.00610041493244
+Intransitives	100	Pr(correct LF|w)	pro:poss:det|his($0,n|coffee($0))	drinking	0.000791870554508
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|water($0)	drink	0.895134349721
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|drink(pro|you,$0,$1)	drink	0.0769426782717
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($0,$1,$2)	drink	0.0255024073933
+Intransitives	100	Pr(correct LF|w)	det|the($0,n|water($0))	drink	0.00242056461351
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|go($0,$1)	go	0.896993678515
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	go	0.0571931561214
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.$0	go	0.0458131653639
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:loc|here($1))	bring	0.981521122551
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv:loc|here($2))	bring	0.016764277656
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.and(v|bring($1,$0,$2),adv:loc|here($2))	bring	0.00141647426436
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.and(v|bring(pro|you,pro|it,$1),$0($1))	bring	0.000298125529039
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,$1)	read	0.426339911873
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.125770762577
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	read	0.11839636176
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	read	0.113891354739
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|book($0)	read	0.0739496528825
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	read	0.0625336190343
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<ev,t>,<ev,t>>>}.lambda $1_{<ev,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES($0($1,$2,$3),$3)	read	0.031267385031
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{ev}.and(v|read&ZERO($1,$2),$0($2))	read	0.018862592789
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.$0	read	0.0109196359359
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(v|read&ZERO($2,$3),$0($1,$3))	read	0.00815174983037
+Intransitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|come(pro|you,$0)	come	1.0
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.428611680936
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.363531351143
+Intransitives	100	Pr(correct LF|w)	pro|we	have	0.0812734657648
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|have($2,$0($1),$3)	have	0.033668676961
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	have	0.0335946106638
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have($0,lambda $2_{e}.n|milk($2),$1)	have	0.0167670354051
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|he,$0,$1)	have	0.00675218135071
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|I,$0,$1)	have	0.00598800891422
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|we,$0,$1)	have	0.00479749889406
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do($0($1),$1)	have	0.00464268846487
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	sit	0.602409491065
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	sit	0.108163403915
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),$1($3))	sit	0.0660359958423
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	sit	0.065026698265
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<e,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	sit	0.0412499929397
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.$0	sit	0.0338935251463
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.$0	sit	0.0150040183461
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	sit	0.00965217663971
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<ev,t>,<ev,t>>>}.$0	sit	0.00889799019494
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	sit	0.00863933370037
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|take&PAST($1,$0,$2)	took	0.549341937832
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|take&PAST(pro|I,$0,$1)	took	0.257357426158
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|take&PAST($0,pro|it,$1)	took	0.169659252098
+Intransitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|take&PAST(pro|I,pro|it,$0)	took	0.0236413839116
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|get($1,$0,$2)	get	0.619065606775
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|telephone($0)	get	0.219650487274
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	get	0.0968232928788
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.$0	get	0.0360408514495
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|get(pro|you,$0,$1)	get	0.0227701062476
+Intransitives	100	Pr(correct LF|w)	det|a($0,n|fly($0))	get	0.00564965537573
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.378187621832
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	want	0.21600843002
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do($0($1),$1)	want	0.101309161527
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	want	0.0991618945762
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	want	0.0664735050743
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	want	0.049948302672
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|cookie($0)	want	0.0489101793714
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($0,$1,$2)	want	0.0154320027902
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.aux|do(v|want($1,$0,$2),$2)	want	0.00758774640011
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not(aux|do($0($1,$2,$3),$3),$3)	want	0.00628595956201
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do&PAST($0($1),$1)	did	0.559107680296
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($0,$1,$2)	did	0.388795858541
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	did	0.0433704381844
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|do($0,$1,$2),$2)	did	0.00872602297811
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($1,$0,$2)	find	0.77763286061
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|find(pro|you,$0,$1)	find	0.134844985737
+Intransitives	100	Pr(correct LF|w)	lambda $0_{ev}.part|go-PROG(pro|you,$0)	find	0.0202087777612
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES(and($2($3),$0($1,$3)),$3)	find	0.0192832389704
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG($1,$2),$0($2))	find	0.0177885997678
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG(pro|you,$2),$0($1,$2))	find	0.0165989266812
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))	find	0.00290425766282
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and($0($3),v|find($2,$1,$3)),$3)	find	0.00251716879039
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and(part|go-PROG($2,$3),$0($1,$3)),$3)	find	0.00246171138929
+Intransitives	100	Pr(correct LF|w)	lambda $0_{ev}.v|find(pro|you,pro|it,$0)	find	0.0024004290234
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|say($0,$1,$2)	say	0.951819128731
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|say(det|the($3,$0($3)),$1,$2)	say	0.0313772857814
+Intransitives	100	Pr(correct LF|w)	det|the($0,n|duck-PL($0))	say	0.016803585488
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.n|juice($0)	had	0.328595150584
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.22513926736
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.198151607796
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|have&PERF($1,$0,$2)	had	0.16087005854
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.part|have&PERF(pro|you,$0,$1)	had	0.0475789975888
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|have&PERF($1,qn|some($3,$0($3)),$2)	had	0.0300694418086
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|have(part|have&PERF($1,$0,$2),$2)	had	0.00959547632252
+Intransitives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|write($1,$0,$2)	write	0.939183173406
+Intransitives	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|write($2,$0($1),$3)	write	0.0608168265936
+Adjectives	100	(N\N)	Pr(syn|all relevant syns)	0.477755710698
+Adjectives	100	(N/N)	Pr(syn|all relevant syns)	0.522244289302
+Adjectives	100	Pr(correct LF|w)	lambda $0_{t}.lambda $1_{ev}.not($0,$1)	sure	0.706215002762
+Adjectives	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.not($0($1),$2)	sure	0.141317725236
+Adjectives	100	Pr(correct LF|w)	adj|sure(pro|I)	sure	0.0795296878445
+Adjectives	100	Pr(correct LF|w)	lambda $0_{<t,<ev,t>>}.$0	sure	0.0440218341683
+Adjectives	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.not(adj|sure($0),$1)	sure	0.0267631408259
+Adjectives	100	Pr(correct LF|w)	lambda $0_{ev}.not(adj|sure(pro|I),$0)	sure	0.00215260916258
+Adjectives	100	Pr(correct LF|w)	lambda $0_{t}.$0	busy	0.597462830942
+Adjectives	100	Pr(correct LF|w)	adj|busy(pro|I)	busy	0.244524822662
+Adjectives	100	Pr(correct LF|w)	lambda $0_{e}.adj|busy($0)	busy	0.158012346396
+Prepositions	100	(PP\NP)	Pr(syn|all relevant syns)	6.79253021884e-05
+Prepositions	100	(PP/NP)	Pr(syn|all relevant syns)	0.999932074698
+Prepositions	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)	about	0.999932074698
+Prepositions	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)	about	0.629403541592
+Prepositions	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.prep|with($0,$1)	with	0.999932074698
+Prepositions	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.prep|with($0,$1)	with	1.0
+Prepositions	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.prep|in($0,$1)	in	0.999932074698
+Prepositions	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.prep|in($0,$1)	in	1.0
+Prepositions	100	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	on	0.999932074698
+Prepositions	100	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	on	0.971680743737
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)	about	0.386745360793
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	about	0.116426810013
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|about($0,$3))	about	0.108860174403
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.n|+on|choo+on|choo($0)	about	0.0869894628482
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|about($0,$2))	about	0.0687281723166
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),prep|about($1,$3))	about	0.0651297357029
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),$1($3))	about	0.0349907332732
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|about($0($1),$2)	about	0.0308728907976
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	about	0.0259554644565
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(v|read&ZERO($2,$3),$0($1,$3))	about	0.0220683174143
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($0($3),$1($2,$3))	to	0.399322216807
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|will($0($1,$2),$2)	to	0.142106570165
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	to	0.128765946778
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<ev,t>,<ev,t>>>}.lambda $1_{<ev,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES($0($1,$2,$3),$3)	to	0.093336591862
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES($0($1,$2),$2)	to	0.0692133002869
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.$0	to	0.065548834735
+Prepositions	100	Pr(correct LF|w)	lambda $0_{ev}.v|read&ZERO(pro|you,$0)	to	0.0316920078525
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and(aux|will($1($2,$3),$3),$0($3))	to	0.0141334609762
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|do(and($0($3),$1($2,$3)),$3)	to	0.0137818443828
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	to	0.0130560509899
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|in($0,$1)	in	0.815705165174
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|in($0($1),$2)	in	0.184294834826
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|with($0,$1)	with	0.945092864416
+Prepositions	100	Pr(correct LF|w)	lambda $0_{ev}.prep|with(pro|it,$0)	with	0.0360843761872
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|with($0,$3))	with	0.00666144900081
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	with	0.00613144035535
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	with	0.00602987004081
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	on	0.602357878163
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	on	0.123516749184
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|on($0($1),$2)	on	0.122475828587
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))	on	0.0186749579717
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.$0	on	0.0175915717827
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|on($0,$2))	on	0.01729514143
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),prep|on($1,$3))	on	0.0167069272763
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(part|go-PROG($2,$3),$0($1,$3))	on	0.016582516909
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,<<ev,t>,<ev,t>>>}.$0	on	0.016533463304
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,<ev,t>>,<e,<<ev,t>,<ev,t>>>>}.$0	on	0.0165222572785
+Prepositions	100	Pr(correct LF|w)	lambda $0_{e}.n|lunch($0)	for	0.224405526183
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|will($0($1,$2,$3),$3)	for	0.20737091294
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	for	0.176327250178
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.prep|for($0,$1)	for	0.119039185675
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<e,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	for	0.109886477417
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{<e,t>}.lambda $3_{ev}.and($1($3),$0($2,$3))	for	0.0592217069063
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.$0	for	0.0334635310137
+Prepositions	100	Pr(correct LF|w)	lambda $0_{ev}.prep|for(lambda $1_{e}.n|lunch($1),$0)	for	0.0326747198531
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|for($0,$2))	for	0.0196410990006
+Prepositions	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.aux|will(v|have($1,$0,$2),$2)	for	0.00881578124293
+Determiners	100	(NP/N)	Pr(syn|all relevant syns)	0.858141378587
+Determiners	100	(NP\N)	Pr(syn|all relevant syns)	0.141858621413
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.qn|more($1,$0($1))	more	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.qn|more($1,$0($1))	more	0.205919042935
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.det|a($1,$0($1))	a	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.det|a($1,$0($1))	a	1.0
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.pro:poss:det|his($1,$0($1))	his	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.pro:poss:det|his($1,$0($1))	his	0.619192587324
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.pro:poss:det|her($1,$0($1))	her	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.pro:poss:det|her($1,$0($1))	her	0.0
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.det|the($1,$0($1))	the	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.det|the($1,$0($1))	the	1.0
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.det|that($1,$0($1))	that	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.det|that($1,$0($1))	that	0.988255657573
+Determiners	100	Pr(correct syn|LF)	lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))	your	0.858141378587
+Determiners	100	Pr(correct word|LF)	lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))	your	0.997605516767
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|his($1,$0($1))	his	0.327161468061
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.n|coffee($0)	his	0.198239989571
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	his	0.139863154925
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|drink-PROG($2,$0($1),$3)	his	0.131043645422
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,<e,<ev,t>>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	his	0.128797924572
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,$0,$2)	his	0.0555452209314
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,pro:poss:det|his($3,$0($3)),$2)	his	0.0193485965182
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.det|the($1,$0($1))	the	0.708094143909
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|about($0,$1)	the	0.132680304936
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	the	0.0519285074494
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<e,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	the	0.0496810296395
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	the	0.0231933435937
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.prep|about(det|the($2,$0($2)),$1)	the	0.00998066289871
+Determiners	100	Pr(correct LF|w)	det|the($0,n|+on|choo+on|choo($0))	the	0.00831284390975
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,det|the($3,$0($3)),$2)	the	0.00579233179473
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&3S(part|do-PROG($0,$1,$2),$2)	the	0.00333122914069
+Determiners	100	Pr(correct LF|w)	det|the($0,n|water($0))	the	0.0017696288503
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.det|a($1,$0($1))	a	0.566611226474
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	a	0.19862181518
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.n|fly($0)	a	0.126602468113
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.eq($1,det|a($3,$0($3)),$2)	a	0.0237434323505
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|write($1,det|a($3,$0($3)),$2)	a	0.0236907830781
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,det|a($3,$0($3)),$2)	a	0.0236868330159
+Determiners	100	Pr(correct LF|w)	det|a($0,n|baby($0))	a	0.00678114142965
+Determiners	100	Pr(correct LF|w)	det|a($0,n|letter($0))	a	0.00677554529434
+Determiners	100	Pr(correct LF|w)	det|a($0,n|cookie($0))	a	0.00677523455653
+Determiners	100	Pr(correct LF|w)	det|a($0,n|fly($0))	a	0.00676511879765
+Determiners	100	Pr(correct LF|w)	pro:dem|that	that	0.664193132782
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.det|that($1,$0($1))	that	0.313999049433
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,<e,<ev,t>>>}.$0	that	0.0107699139658
+Determiners	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	that	0.00354605334472
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.eq(pro:dem|that,$0,$1)	that	0.00208078159581
+Determiners	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.$0	that	0.00185156456718
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.$0	that	0.00108451227731
+Determiners	100	Pr(correct LF|w)	det|that($0,n|stool($0))	that	0.000839733806547
+Determiners	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	that	0.000474557276949
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	that	0.000434781584236
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.n|doll-DIM($0)	her	0.970368760223
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,t>}.lambda $2_{ev}.v|give(pro|you,$1,$0,$2)	her	0.027075662524
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|give(pro|you,lambda $2_{e}.n|doll-DIM($2),$0,$1)	her	0.00255557725254
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.pro:poss:det|your($1,$0($1))	your	0.813186092985
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.eqLoc($0($1),$2)	your	0.0978110657713
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)	your	0.0451878866894
+Determiners	100	Pr(correct LF|w)	pro:poss:det|your($0,n|telephone($0))	your	0.0195056568057
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.eqLoc(pro:poss:det|your($2,$0($2)),$1)	your	0.00726518329902
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,t>>}.$0	your	0.00712055072728
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,<e,t>>}.$0	your	0.00711704059884
+Determiners	100	Pr(correct LF|w)	pro:poss:det|your($0,n|hat($0))	your	0.0017802383129
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	your	0.000488627755476
+Determiners	100	Pr(correct LF|w)	lambda $0_{e}.n|hat($0)	your	0.000277425572017
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.Q($0($1),$2)	more	0.698293430439
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.qn|more($1,$0($1))	more	0.22363480389
+Determiners	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.Q(qn|more($2,$0($2)),$1)	more	0.0442825312162
+Determiners	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.$0	more	0.021949171462
+Determiners	100	Pr(correct LF|w)	qn|more($0,n|juice($0))	more	0.00922214826554
+Determiners	100	Pr(correct LF|w)	lambda $0_{ev}.Q(qn|more($1,n|juice($1)),$0)	more	0.00261791472663
+Nouns	100	N	Pr(syn|all relevant syns)	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|shoe($0)	shoe	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|shoe($0)	shoe	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|top($0)	top	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|top($0)	top	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|stool($0)	stool	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|stool($0)	stool	0.985689559811
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|cup($0)	cup	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|cup($0)	cup	0.590327690021
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|water($0)	water	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|water($0)	water	0.224789134621
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|book($0)	book	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|book($0)	book	0.734383254534
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|corner($0)	corner	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|corner($0)	corner	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|fly($0)	fly	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|fly($0)	fly	0.492940452748
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|lunch($0)	lunch	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|lunch($0)	lunch	0.207837314097
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|telephone($0)	telephone	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|telephone($0)	telephone	0.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|cookie($0)	cookie	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|cookie($0)	cookie	0.881467350116
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|baby($0)	baby	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|baby($0)	baby	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|milk($0)	milk	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|milk($0)	milk	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|bottle($0)	bottle	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|bottle($0)	bottle	0.507923091916
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|letter($0)	letter	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|letter($0)	letter	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|juice($0)	juice	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|juice($0)	juice	0.295424757702
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|radio($0)	radio	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|radio($0)	radio	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|hat($0)	hat	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|hat($0)	hat	0.998487624737
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|man($0)	man	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|man($0)	man	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|pencil($0)	pencil	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|pencil($0)	pencil	1.0
+Nouns	100	Pr(correct syn|LF)	lambda $0_{e}.n|coffee($0)	coffee	1.0
+Nouns	100	Pr(correct word|LF)	lambda $0_{e}.n|coffee($0)	coffee	0.615696758524
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|shoe($0)	shoe	1.0
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|radio($0)	radio	1.0
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|hat($0)	hat	0.74632991227
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|have($2,$0($1),$3)	hat	0.0765121748844
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	hat	0.07589798283
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.eqLoc($0($1),$2)	hat	0.0561064879407
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<e,t>>}.$0	hat	0.0103497653235
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,t>>}.$0	hat	0.0103446741109
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.eqLoc(pro:poss:det|your($2,$0($2)),$1)	hat	0.0103061913916
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,det|a($3,$0($3)),$2)	hat	0.00899144740658
+Nouns	100	Pr(correct LF|w)	pro:poss:det|your($0,n|hat($0))	hat	0.00259600195347
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)	hat	0.00138780054364
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|corner($0)	corner	0.972745124564
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|in($0($1),$2)	corner	0.0239144088146
+Nouns	100	Pr(correct LF|w)	det|the($0,n|corner($0))	corner	0.00334046662116
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.$0	telephone	0.653591498409
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.$0	telephone	0.346408501591
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|coffee($0)	coffee	0.544831565394
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|be&3S($0($1),$1)	coffee	0.380276247375
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	coffee	0.0417706408019
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|drink-PROG($2,$0($1),$3)	coffee	0.0151295336323
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<e,<ev,t>>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.aux|be&3S($0($1,$2,$3),$3)	coffee	0.0143295998942
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.part|drink-PROG($1,pro:poss:det|his($3,$0($3)),$2)	coffee	0.00366241290249
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|milk($0)	milk	0.443113791371
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	milk	0.136557045727
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.not($0($1,$2),$2)	milk	0.134359578396
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.not($0($1,$2),$2)	milk	0.117475253438
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	milk	0.0530961087966
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	milk	0.0449691215298
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.prep|for($0,$1)	milk	0.0405483166613
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.not(aux|do($0($1,$2),$2),$2)	milk	0.0135639038699
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not(aux|do($0($1,$2,$3),$3),$3)	milk	0.00577352941456
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<<ev,t>,<ev,t>>,<<ev,t>,<ev,t>>>}.$0	milk	0.00469784285044
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|baby($0)	baby	0.983999819324
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.eq(pro|it,$0,$1)	baby	0.0123608572745
+Nouns	100	Pr(correct LF|w)	det|a($0,n|baby($0))	baby	0.00363932340118
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|bottle($0)	bottle	0.819265777686
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|give(pro|you,$0,$1,$2)	bottle	0.171742713258
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give($0,lambda $3_{e}.n|doll-DIM($3),$1,$2)	bottle	0.00374507270407
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|give($1,lambda $3_{e}.n|doll-DIM($3),$0,$2)	bottle	0.00266075308759
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,t>}.lambda $2_{ev}.v|give(pro|you,$1,$0,$2)	bottle	0.00209986301875
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|give(pro|you,lambda $2_{e}.n|doll-DIM($2),$0,$1)	bottle	0.000485820245889
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|water($0)	drink	0.895134349721
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|drink(pro|you,$0,$1)	drink	0.0769426782717
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($0,$1,$2)	drink	0.0255024073933
+Nouns	100	Pr(correct LF|w)	det|the($0,n|water($0))	drink	0.00242056461351
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|stool($0)	stool	0.940079886049
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|on($0($1),$2)	stool	0.0360243474251
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))	stool	0.00529523553971
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	stool	0.00524593850568
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.$0	stool	0.00488062777512
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.$0	stool	0.00278944002352
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.$0	stool	0.00162258527122
+Nouns	100	Pr(correct LF|w)	det|that($0,n|stool($0))	stool	0.00121018844604
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	stool	0.000908857763977
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	stool	0.000626594967157
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|man($0)	man	0.995167107526
+Nouns	100	Pr(correct LF|w)	det|the($0,n|man($0))	man	0.00483289247375
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|will($0($1,$2,$3),$3)	lunch	0.289769479786
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),$0($2))	lunch	0.113383237297
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|for($0,$2))	lunch	0.109463803388
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	lunch	0.0937452681271
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.prep|for($0,$1)	lunch	0.0923143146965
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<ev,t>>}.lambda $1_{<e,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	lunch	0.0922677950021
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|lunch($0)	lunch	0.0857022250869
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.$0	lunch	0.0474025491734
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<<e,t>,<ev,t>>}.lambda $2_{<e,t>}.lambda $3_{ev}.and($0($3),$1($2,$3))	lunch	0.0243885793112
+Nouns	100	Pr(correct LF|w)	lambda $0_{ev}.prep|for(lambda $1_{e}.n|lunch($1),$0)	lunch	0.0154460341208
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|book($0)	book	0.500040439373
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|read&ZERO($1,$0,$2)	book	0.495465604313
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|read&ZERO($0,lambda $2_{e}.n|book($2),$1)	book	0.00322875497964
+Nouns	100	Pr(correct LF|w)	det|the($0,n|book($0))	book	0.00126520133456
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.qn|more($1,$0($1))	juice	0.262769899957
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|juice($0)	juice	0.175712559813
+Nouns	100	Pr(correct LF|w)	lambda $0_{ev}.adv:int|just($0)	juice	0.124197602023
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{<<ev,t>,<ev,t>>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($1($2,$3),$0($3))	juice	0.103854909957
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv:int|just($2))	juice	0.102516692167
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv:int|just($1))	juice	0.0830153797591
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($1,$2),adv:int|just($2))	juice	0.0425301352988
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	juice	0.0388647917655
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($0($2,$3),$1($3))	juice	0.0323997538016
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{ev}.Q(qn|more($2,$0($2)),$1)	juice	0.0138282399415
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|fly($0)	fly	1.0
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|can($0($1),$1)	can	0.647228222498
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|can($0($1,$2),$2)	can	0.311499037978
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.Q(aux|can($0($1),$1),$1)	can	0.00993662679659
+Nouns	100	Pr(correct LF|w)	lambda $0_{<ev,t>}.lambda $1_{ev}.not(aux|can($0($1),$1),$1)	can	0.00862357841925
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.aux|can(v|read&ZERO($0,$1),$1)	can	0.00827182820122
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.not(aux|can($0($1,$2),$2),$2)	can	0.00781631854542
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|can(v|do($0,$1,$2),$2)	can	0.00662438756106
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|cookie($0)	cookie	0.937161349454
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	cookie	0.0620275781032
+Nouns	100	Pr(correct LF|w)	det|a($0,n|cookie($0))	cookie	0.000811072443175
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|pencil($0)	pencil	1.0
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|cup($0)	cup	0.466625738872
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.not($0($1,$2),$2)	cup	0.255006073217
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.eq($2,$0($1),$3)	cup	0.0988733127454
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	cup	0.0635499743624
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.eqLoc($0($1),$2)	cup	0.0526657947892
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)	cup	0.0250489577368
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.$0	cup	0.0133402311925
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.eq($1,det|a($3,$0($3)),$2)	cup	0.00849427189633
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not(eq($2,$0($1),$3),$3)	cup	0.00775394926419
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.eqLoc(pro:poss:det|your($2,$0($2)),$1)	cup	0.00773135907528
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|letter($0)	letter	0.97074298252
+Nouns	100	Pr(correct LF|w)	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|write($2,$0($1),$3)	letter	0.0253062711511
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|write($1,det|a($3,$0($3)),$2)	letter	0.00315070221848
+Nouns	100	Pr(correct LF|w)	det|a($0,n|letter($0))	letter	0.000800044110159
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{ev}.v|drink(pro|you,$0,$1)	water	0.448233545617
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|water($0)	water	0.438138581583
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,$0,$2)	water	0.0476376866221
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|drink($0,$1,$2)	water	0.0451614637499
+Nouns	100	Pr(correct LF|w)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|drink($1,det|the($3,$0($3)),$2)	water	0.0142944441799
+Nouns	100	Pr(correct LF|w)	det|the($0,n|water($0))	water	0.00653427824765
+Nouns	100	Pr(correct LF|w)	lambda $0_{e}.n|top($0)	top	1.0
+Negation	100	Pr(correct syn,LF|w)	N	lambda $0_{e}.n|cup($0)	not	0.214733340281
+Negation	100	Pr(correct syn,LF|w)	(((S/NP)\N)/(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.eq($2,$0($1),$3)	not	0.101592365525
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.eq($2,$0($1),$3)	not	0.101592365525
+Negation	100	Pr(correct syn,LF|w)	(S\St)	lambda $0_{t}.lambda $1_{ev}.not($0,$1)	not	0.0686907461178
+Negation	100	Pr(correct syn,LF|w)	(S/St)	lambda $0_{t}.lambda $1_{ev}.not($0,$1)	not	0.0686907461178
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	not	0.0654835087526
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S/NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	not	0.0654835087526
+Negation	100	Pr(correct syn,LF|w)	(St\NP)	lambda $0_{e}.adj|sure($0)	not	0.0608228971124
+Negation	100	Pr(correct syn,LF|w)	(St/NP)	lambda $0_{e}.adj|sure($0)	not	0.0608228971124
+Negation	100	Pr(correct syn,LF|w)	((S\NP)\(St\NP))	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.not($0($1),$2)	not	0.0570586255563
+Negation	100	Pr(correct syn,LF|w)	((S\NP)/N)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	't	0.126883510245
+Negation	100	Pr(correct syn,LF|w)	((S\NP)\N)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	't	0.126883510245
+Negation	100	Pr(correct syn,LF|w)	((S/NP)\N)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	't	0.126883510245
+Negation	100	Pr(correct syn,LF|w)	((S/NP)/N)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|want($1,$0,$2)	't	0.126883510245
+Negation	100	Pr(correct syn,LF|w)	NP	pro|he	't	0.0725846811156
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S/NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	't	0.0723320524504
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	't	0.0723320524504
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.not($0($1,$2,$3),$3)	't	0.0660303042563
+Negation	100	Pr(correct syn,LF|w)	NP	pro|I	't	0.0624635758364
+Negation	100	Pr(correct syn,LF|w)	NP	n:prop|Mommy	't	0.0597415640565
+Negation	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|find($0,$1,$2)	gonna	0.843541572699
+Negation	100	Pr(correct syn,LF|w)	(((S/NP)/(S/NP))\S)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and($0($3),$1($2,$3)),$3)	gonna	0.054082001591
+Negation	100	Pr(correct syn,LF|w)	((S\S)/S)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.aux|be&PRES(and($1($2),$0($2)),$2)	gonna	0.0182652579193
+Negation	100	Pr(correct syn,LF|w)	S	lambda $0_{ev}.part|go-PROG(pro|you,$0)	gonna	0.0152822639471
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)\S)/(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and($1($3),$0($2,$3)),$3)	gonna	0.014123934031
+Negation	100	Pr(correct syn,LF|w)	(((S\S)/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.aux|be&PRES(and($2($3),$0($1,$3)),$3)	gonna	0.0129011137993
+Negation	100	Pr(correct syn,LF|w)	(((S\NP)/S)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{e}.lambda $3_{ev}.aux|be&PRES(and($0($2,$3),$1($3)),$3)	gonna	0.0111957055613
+Negation	100	Pr(correct syn,LF|w)	((S/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG(pro|you,$2),$0($1,$2))	gonna	0.0086157861154
+Negation	100	Pr(correct syn,LF|w)	((S\NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and(part|go-PROG(pro|you,$2),$0($1,$2))	gonna	0.0086157861154
+Negation	100	Pr(correct syn,LF|w)	((S\NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),v|find(pro|you,pro|it,$2))	gonna	0.00332644220564
+Adverbs	100	Pr(correct syn,LF|w)	(PP/NP)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	on	0.527752827113
+Adverbs	100	Pr(correct syn,LF|w)	(((PP\S)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	on	0.11913704696
+Adverbs	100	Pr(correct syn,LF|w)	(((S\S)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	on	0.108218578923
+Adverbs	100	Pr(correct syn,LF|w)	((PP/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|on($0($1),$2)	on	0.107306581574
+Adverbs	100	Pr(correct syn,LF|w)	(((S\NP)\(S\NP))/NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))	on	0.0163619705545
+Adverbs	100	Pr(correct syn,LF|w)	((PP/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.$0	on	0.0154127671908
+Adverbs	100	Pr(correct syn,LF|w)	((S\S)/NP)	lambda $0_{e}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|on($0,$2))	on	0.0151530512274
+Adverbs	100	Pr(correct syn,LF|w)	(((S\NP)/NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),prep|on($1,$3))	on	0.0146376903534
+Adverbs	100	Pr(correct syn,LF|w)	(((S\NP)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(part|go-PROG($2,$3),$0($1,$3))	on	0.0145286888354
+Adverbs	100	Pr(correct syn,LF|w)	(((S\S)/NP)\((S\S)/NP))	lambda $0_{<e,<<ev,t>,<ev,t>>>}.$0	on	0.0144857107659
+Adverbs	100	Pr(correct syn,LF|w)	S	lambda $0_{ev}.adv|later($0)	later	0.249156774446
+Adverbs	100	Pr(correct syn,LF|w)	(S/S)	lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv|later($1))	later	0.239547627652
+Adverbs	100	Pr(correct syn,LF|w)	(S\S)	lambda $0_{<ev,t>}.lambda $1_{ev}.and($0($1),adv|later($1))	later	0.239547627652
+Adverbs	100	Pr(correct syn,LF|w)	((S/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv|later($2))	later	0.0608169881719
+Adverbs	100	Pr(correct syn,LF|w)	((S/NP)/(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv|later($2))	later	0.0608169881719
+Adverbs	100	Pr(correct syn,LF|w)	((S\NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.and($0($1,$2),adv|later($2))	later	0.0608169881719
+Adverbs	100	Pr(correct syn,LF|w)	((S\S)\S)	lambda $0_{<ev,t>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($2),$1($2))	later	0.027385503268
+Adverbs	100	Pr(correct syn,LF|w)	(((S\S)\S)\(S\S))	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($0($2,$3),$1($3))	later	0.0210324519139
+Adverbs	100	Pr(correct syn,LF|w)	((S\S)\(S\S))	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($1,$2),adv|later($2))	later	0.00909056347808
+Adverbs	100	Pr(correct syn,LF|w)	((S/S)/(S/S))	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($0($1,$2),adv|later($2))	later	0.00909056347808
+Auxiliaries	100	Pr(correct syn,LF|w)	((Swh\(S/NP))/PP)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	do	0.197261903798
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\(S\NP))/PP)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),$0($3))	do	0.191805705643
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.113162880666
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.113162880666
+Auxiliaries	100	Pr(correct syn,LF|w)	(Swh\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.0947827351603
+Auxiliaries	100	Pr(correct syn,LF|w)	(Swh\(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.aux|do($0($1,$2),$2)	do	0.0947827351603
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($1,$0,$2)	do	0.0615260116808
+Auxiliaries	100	Pr(correct syn,LF|w)	(S\NP)	lambda $0_{e}.lambda $1_{ev}.v|do(pro|you,$0,$1)	do	0.0360069486787
+Auxiliaries	100	Pr(correct syn,LF|w)	(S/NP)	lambda $0_{e}.lambda $1_{ev}.v|do(pro|you,$0,$1)	do	0.0360069486787
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S/NP)/(S/NP))/S)	lambda $0_{<ev,t>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|do(and($0($3),$1($2,$3)),$3)	do	0.00920176411989
+Auxiliaries	100	Pr(correct syn,LF|w)	(S\S)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do&PAST($0($1),$1)	did	0.285750400182
+Auxiliaries	100	Pr(correct syn,LF|w)	(S/S)	lambda $0_{<ev,t>}.lambda $1_{ev}.aux|do&PAST($0($1),$1)	did	0.285750400182
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($0,$1,$2)	did	0.19870693264
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|do($0,$1,$2)	did	0.19870693264
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|eat($0,$1,$2)	did	0.0221658913014
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|do($0,$1,$2),$2)	did	0.00445972152747
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|do&PAST(v|do($0,$1,$2),$2)	did	0.00445972152747
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.12895231425
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.12895231425
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.12895231425
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.12895231425
+Auxiliaries	100	Pr(correct syn,LF|w)	((St/NP)/NP)	lambda $0_{e}.lambda $1_{e}.eqLoc($0,$1)	is	0.127818417924
+Auxiliaries	100	Pr(correct syn,LF|w)	(Swh/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.126172504128
+Auxiliaries	100	Pr(correct syn,LF|w)	(Swh\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($1,$0,$2)	is	0.126172504128
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.eq($0,$1,$2)	is	0.0538225241397
+Auxiliaries	100	Pr(correct syn,LF|w)	(((St/NP)/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.eqLoc($0($1),$2)	is	0.0290277620453
+Auxiliaries	100	Pr(correct syn,LF|w)	((Swh\NP)/(Swh\NP))	lambda $0_{<e,<e,<ev,t>>>}.$0	is	0.00428151220282
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|do-PROG($0,$1,$2)	are	0.265113211825
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|call-PROG($0,$1,$2)	are	0.145666771839
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.part|call-PROG($0,$1,$2)	are	0.145666771839
+Auxiliaries	100	Pr(correct syn,LF|w)	((Syn/S)/(S/S))	lambda $0_{<<ev,t>,<ev,t>>}.lambda $1_{<ev,t>}.lambda $2_{ev}.Q($0($1,$2),$2)	are	0.0862589226828
+Auxiliaries	100	Pr(correct syn,LF|w)	(Swh/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES(part|do-PROG($0,$1,$2),$2)	are	0.0624424660056
+Auxiliaries	100	Pr(correct syn,LF|w)	(((Syn/NP)/(S\NP))/((S/NP)/(S\NP)))	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.Q($0($1,$2,$3),$3)	are	0.051975156843
+Auxiliaries	100	Pr(correct syn,LF|w)	(((Syn/NP)/(S/NP))/((S/NP)/(S/NP)))	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.Q($0($1,$2,$3),$3)	are	0.051975156843
+Auxiliaries	100	Pr(correct syn,LF|w)	((Syn/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.Q($0($1,$2),$2)	are	0.0440988951549
+Auxiliaries	100	Pr(correct syn,LF|w)	((Syn/NP)/(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{ev}.Q($0($1,$2),$2)	are	0.0440988951549
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.aux|be&PRES(part|do-PROG($0,$1,$2),$2)	are	0.0431477485693
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.293126683559
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.293126683559
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)/N)	lambda $0_{<e,t>}.lambda $1_{e}.lambda $2_{ev}.v|have($1,$0,$2)	have	0.248618374324
+Auxiliaries	100	Pr(correct syn,LF|w)	NP	pro|we	have	0.0555827630012
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.v|have($2,$0($1),$3)	have	0.0230259417939
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S/NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	have	0.0229752879992
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|do&3S($0($1,$2,$3),$3)	have	0.0229752879992
+Auxiliaries	100	Pr(correct syn,LF|w)	(S\NP)	lambda $0_{e}.lambda $1_{ev}.v|have($0,lambda $2_{e}.n|milk($2),$1)	have	0.0114669424563
+Auxiliaries	100	Pr(correct syn,LF|w)	(S/NP)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|he,$0,$1)	have	0.00461780351343
+Auxiliaries	100	Pr(correct syn,LF|w)	(S/NP)	lambda $0_{e}.lambda $1_{ev}.v|have(pro|I,$0,$1)	have	0.00409518749073
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)\NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.333333333333
+Auxiliaries	100	Pr(correct syn,LF|w)	((S/NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.333333333333
+Auxiliaries	100	Pr(correct syn,LF|w)	((S\NP)/NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|have&3S($1,$0,$2)	has	0.333333333333
+Auxiliaries	100	Pr(correct syn,LF|w)	N	lambda $0_{e}.n|juice($0)	had	0.108166001226
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)\((S/NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.0741106928267
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.0741106928267
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)/((S/NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.0741106928267
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)\((S\NP)\N))	lambda $0_{<<e,t>,<e,<ev,t>>>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.aux|have($0($1,$2,$3),$3)	had	0.0741106928267
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)/(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.0652269731118
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.0652269731118
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S/NP)\N)/(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.0652269731118
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S/NP)\N)\(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.0652269731118
+Auxiliaries	100	Pr(correct syn,LF|w)	(((S\NP)\N)\(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{e}.lambda $3_{ev}.part|have&PERF($2,$0($1),$3)	had	0.0652269731118
+WH words	100	Pr(correct syn,LF|w)	(Swh/(S/NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.1571956927
+WH words	100	Pr(correct syn,LF|w)	(Swh\(S\NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.1571956927
+WH words	100	Pr(correct syn,LF|w)	(Swh/(S\NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.1571956927
+WH words	100	Pr(correct syn,LF|w)	(Swh\(S/NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.1571956927
+WH words	100	Pr(correct syn,LF|w)	((S/NP)\(S/NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.0877062822073
+WH words	100	Pr(correct syn,LF|w)	((S\NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.0877062822073
+WH words	100	Pr(correct syn,LF|w)	((S\NP)/(S\NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.0877062822073
+WH words	100	Pr(correct syn,LF|w)	((S/NP)/(S/NP))	lambda $0_{<e,<ev,t>>}.$0	what	0.0877062822073
+WH words	100	Pr(correct syn,LF|w)	((Swh/(S\NP))/((S/NP)/(S\NP)))	lambda $0_{<<e,<ev,t>>,<e,<ev,t>>>}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.aux|do($0($1,$2,$3),$3)	what	0.00515373874036
+WH words	100	Pr(correct syn,LF|w)	(((S/NP)/NP)/((S/NP)/NP))	lambda $0_{<e,<e,<ev,t>>>}.$0	what	0.0046085994115
+PrepCheck	100	Pr(correct syn,LF|w)	(PP/NP)	lambda $0_{e}.lambda $1_{ev}.prep|on($0,$1)	on	0.527752827113
+PrepCheck	100	Pr(correct syn,LF|w)	(((PP\S)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	on	0.11913704696
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\S)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{<ev,t>}.lambda $3_{ev}.and($2($3),$0($1,$3))	on	0.108218578923
+PrepCheck	100	Pr(correct syn,LF|w)	((PP/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|on($0($1),$2)	on	0.107306581574
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\NP)\(S\NP))/NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|on($0,$3))	on	0.0163619705545
+PrepCheck	100	Pr(correct syn,LF|w)	((PP/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.$0	on	0.0154127671908
+PrepCheck	100	Pr(correct syn,LF|w)	((S\S)/NP)	lambda $0_{e}.lambda $1_{<ev,t>}.lambda $2_{ev}.and($1($2),prep|on($0,$2))	on	0.0151530512274
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\NP)/NP)\(S\NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and($0($2,$3),prep|on($1,$3))	on	0.0146376903534
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\NP)/NP)\(PP/NP))	lambda $0_{<e,<ev,t>>}.lambda $1_{e}.lambda $2_{e}.lambda $3_{ev}.and(part|go-PROG($2,$3),$0($1,$3))	on	0.0145286888354
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\S)/NP)\((S\S)/NP))	lambda $0_{<e,<<ev,t>,<ev,t>>>}.$0	on	0.0144857107659
+PrepCheck	100	Pr(correct syn,LF|w)	(PP/NP)	lambda $0_{e}.lambda $1_{ev}.prep|in($0,$1)	in	0.407852582587
+PrepCheck	100	Pr(correct syn,LF|w)	(PP\NP)	lambda $0_{e}.lambda $1_{ev}.prep|in($0,$1)	in	0.407852582587
+PrepCheck	100	Pr(correct syn,LF|w)	((PP/N)/(NP/N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|in($0($1),$2)	in	0.0921474174132
+PrepCheck	100	Pr(correct syn,LF|w)	((PP\N)\(NP\N))	lambda $0_{<<e,t>,e>}.lambda $1_{<e,t>}.lambda $2_{ev}.prep|in($0($1),$2)	in	0.0921474174132
+PrepCheck	100	Pr(correct syn,LF|w)	(PP/NP)	lambda $0_{e}.lambda $1_{ev}.prep|with($0,$1)	with	0.465172351527
+PrepCheck	100	Pr(correct syn,LF|w)	(PP\NP)	lambda $0_{e}.lambda $1_{ev}.prep|with($0,$1)	with	0.465172351527
+PrepCheck	100	Pr(correct syn,LF|w)	PP	lambda $0_{ev}.prep|with(pro|it,$0)	with	0.0177606399925
+PrepCheck	100	Pr(correct syn,LF|w)	(((S\NP)\(S\NP))/NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|with($0,$3))	with	0.0036404926069
+PrepCheck	100	Pr(correct syn,LF|w)	((Swh\(S\NP))/NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|with($0,$3))	with	0.00327874858964
+PrepCheck	100	Pr(correct syn,LF|w)	((Swh\(S/NP))/NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|with($0,$3))	with	0.00327874858964
+PrepCheck	100	Pr(correct syn,LF|w)	((Swh\(S/NP))\NP)	lambda $0_{e}.lambda $1_{<e,<ev,t>>}.lambda $2_{e}.lambda $3_{ev}.and($1($2,$3),prep|with($0,$3))	with	0.00327874858964
+PrepCheck	100	Pr(correct syn,LF|w)	(((Swh\(S/NP))\PP)/((Swh\(S/NP))\PP))	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	with	0.00301787965579
+PrepCheck	100	Pr(correct syn,LF|w)	(((Swh\(S/NP))\PP)\((Swh\(S/NP))\PP))	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	with	0.00301787965579
+PrepCheck	100	Pr(correct syn,LF|w)	(((Swh\(S/NP))/PP)\((Swh\(S/NP))/PP))	lambda $0_{<<ev,t>,<<e,<ev,t>>,<e,<ev,t>>>>}.$0	with	0.00301787965579
+PrepCheck	100	Pr(correct syn,LF|w)	(St\St)	lambda $0_{t}.$0	busy	0.597462830942
+PrepCheck	100	Pr(correct syn,LF|w)	St	adj|busy(pro|I)	busy	0.244524822662
+PrepCheck	100	Pr(correct syn,LF|w)	(St\NP)	lambda $0_{e}.adj|busy($0)	busy	0.158012346396
+SynYield	100	Pr(yield syn|syn)	PP	(PP/NP)	NP	0.977558854005
+SynYield	100	Pr(yield syn|syn)	PP	PP_LEX	EMPTY	0.0130016242659
+SynYield	100	Pr(yield syn|syn)	PP	(PP/PP)	PP	0.00529236496669
+SynYield	100	Pr(yield syn|syn)	PP	PP	(PP\PP)	0.00317950108522
+SynYield	100	Pr(yield syn|syn)	PP	NP	(PP\NP)	0.000394923041579
+SynYield	100	Pr(yield syn|syn)	PP	(PP/N)	N	0.000290174744504
+SynYield	100	Pr(yield syn|syn)	PP	N	(PP\N)	0.000282557890898
+SynYield	100	Pr(yield syn|syn)	NP	NP_LEX	EMPTY	0.704346271031
+SynYield	100	Pr(yield syn|syn)	NP	(NP/N)	N	0.228363040915
+SynYield	100	Pr(yield syn|syn)	NP	N	(NP\N)	0.0384493635876
+SynYield	100	Pr(yield syn|syn)	NP	NP	(NP\NP)	0.0198849006427
+SynYield	100	Pr(yield syn|syn)	NP	(NP/NP)	NP	0.00895642382409
+SynYield	100	Pr(yield syn|syn)	(PP/N)	(PP/N)_LEX	EMPTY	0.910179485475
+SynYield	100	Pr(yield syn|syn)	(PP/N)	((PP/N)/(NP/N))	(NP/N)	0.0380156531958
+SynYield	100	Pr(yield syn|syn)	(PP/N)	(PP/NP)	(NP/N)	0.0242458337521
+SynYield	100	Pr(yield syn|syn)	(PP/N)	((PP/N)/(PP/N))	(PP/N)	0.0141803622183
+SynYield	100	Pr(yield syn|syn)	(PP/N)	(PP/N)	((PP/N)\(PP/N))	0.0133786653589
+SynYield	100	Pr(yield syn|syn)	(S\NP)	((S\NP)/NP)	NP	0.439898420181
+SynYield	100	Pr(yield syn|syn)	(S\NP)	(S\NP)	((S\NP)\(S\NP))	0.235632363785
+SynYield	100	Pr(yield syn|syn)	(S\NP)	(S\NP)_LEX	EMPTY	0.219578794073
+SynYield	100	Pr(yield syn|syn)	(S\NP)	N	((S\NP)\N)	0.0419779831255
+SynYield	100	Pr(yield syn|syn)	(S\NP)	NP	((S\NP)\NP)	0.0405291936445
+SynYield	100	Pr(yield syn|syn)	(S\NP)	((S\NP)/N)	N	0.0193755339682
+SynYield	100	Pr(yield syn|syn)	(S\NP)	((S\NP)/(S\NP))	(S\NP)	0.0017700670152
+SynYield	100	Pr(yield syn|syn)	(S\NP)	((S\NP)/PP)	PP	0.000829839224223
+SynYield	100	Pr(yield syn|syn)	(S\NP)	PP	((S\NP)\PP)	0.000306639727432
+SynYield	100	Pr(yield syn|syn)	(S\NP)	S	((S\NP)\S)	3.29715890547e-05
+SynYield	100	Pr(yield syn|syn)	(S/NP)	((S/NP)/NP)	NP	0.6669907104
+SynYield	100	Pr(yield syn|syn)	(S/NP)	((S/NP)/(S/NP))	(S/NP)	0.298188411956
+SynYield	100	Pr(yield syn|syn)	(S/NP)	(S/NP)_LEX	EMPTY	0.0300864364435
+SynYield	100	Pr(yield syn|syn)	(S/NP)	NP	((S/NP)\NP)	0.00303186927566
+SynYield	100	Pr(yield syn|syn)	(S/NP)	(S/NP)	((S/NP)\(S/NP))	0.00129759503668
+SynYield	100	Pr(yield syn|syn)	(S/NP)	((S/NP)/N)	N	0.000123447245251
+SynYield	100	Pr(yield syn|syn)	(S/NP)	N	((S/NP)\N)	5.1824965466e-05
+SynYield	100	Pr(yield syn|syn)	(S/NP)	((S/NP)/PP)	PP	4.48963003317e-05
+SynYield	100	Pr(yield syn|syn)	(S/NP)	((S/NP)/S)	S	4.4727510675e-05
+SynYield	100	Pr(yield syn|syn)	(S/NP)	S	((S/NP)\S)	4.166128052e-05
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	((S\NP)/N)_LEX	EMPTY	0.987934661401
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	(((S\NP)/N)/N)	N	0.00102328773277
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	N	(((S\NP)/N)\N)	0.00102328454858
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	(((S\NP)/N)/NP)	NP	0.00102157861395
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	NP	(((S\NP)/N)\NP)	0.00102157830058
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	(((S\NP)/N)/S)	S	0.00102121630506
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	S	(((S\NP)/N)\S)	0.00102121630506
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	PP	(((S\NP)/N)\PP)	0.00102121466265
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	(((S\NP)/N)/PP)	PP	0.00102121466265
+SynYield	100	Pr(yield syn|syn)	((S\NP)/N)	(((S\NP)/N)/((S\NP)/N))	((S\NP)/N)	0.000806912234627

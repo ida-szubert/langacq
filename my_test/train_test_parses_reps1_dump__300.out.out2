@@ -1,0 +1,19 @@
+
+top parse:
+[('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('man', 'N', 'lambda $0_{e}.n|man($0)'), ('daxed', '((S\\NP)/NP)', 'lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)'), ('the', '(NP/N)', 'lambda $0_{<e,t>}.det|the($1,$0($1))'), ('baby', 'N', 'lambda $0_{e}.n|baby($0)')]
+-18.7761443752
+
+
+FILE2 Daxed (trans.)	300	((S\NP)\NP)	Pr(syn|all relevant syns)	0.00342214962682
+FILE2 Daxed (trans.)	300	((S\NP)/NP)	Pr(syn|all relevant syns)	0.918486612616
+FILE2 Daxed (trans.)	300	((S/NP)/NP)	Pr(syn|all relevant syns)	0.0780868352028
+FILE2 Daxed (trans.)	300	((S/NP)\NP)	Pr(syn|all relevant syns)	4.40255479284e-06
+FILE2 Daxed (trans.)	300	Pr(correct syn|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.918486612616
+FILE2 Daxed (trans.)	300	Pr(correct word|LF)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	1.0
+FILE2 Daxed (trans.)	300	Pr(LF1)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.0624380386892
+FILE2 Daxed (trans.)	300	Pr(LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($0,$1,$2)	daxed	0.00390229793912
+FILE2 Daxed (trans.)	300	Pr(correct syn|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.864459024007
+FILE2 Daxed (trans.)	300	Pr(correct word|LF1 or LF2)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	0.941177598164
+Daxed (trans.)	300	Pr(correct LF|w)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|dax&PAST($1,$0,$2)	daxed	1.0
+FILE2 Daxed (trans.)	300	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($0,$1,$2)	Pr(shell|syn)	0.176436005198
+FILE2 Daxed (trans.)	300	((S|NP)|NP)	lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.placeholderP($1,$0,$2)	Pr(shell|syn)	0.298859695402
