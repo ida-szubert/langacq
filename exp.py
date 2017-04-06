@@ -39,9 +39,65 @@ class exp:
         self.string = ""
 
     #########################################
-    # the following two methods are used to #
-    # build a logical form from a string     #
+    # the following methods are used to     #
+    # build a logical form from a string    #
     #########################################
+    @staticmethod
+    def parseExp(expString):
+        tokens = separate_parens(expString).split()
+        expList, _ = parse(tokens, 0)
+        return expList
+
+    @staticmethod
+    def parse(expression, index):
+        # expression can be a lambda expression or a function application
+        # returns an expression an the index of the first element after the closing ) of the expression
+        if expression[index] == "lambda":
+            typed_variable = expression[index+1]
+            body, next_index = parse(expression, index+3)
+            lam_args = [typed_variable, body]
+            return ["lambda", lam_args], next_index+1
+        else:
+            pred = expression[index]
+            args, next_index = parse_arguments(expression, [], index+2)
+            return [pred, args], next_index
+
+    @staticmethod
+    def parse_arguments(arg_string, args, next_index):
+        next_piece = arg_string[next_index]
+        if next_piece == ")":
+            return args, next_index+1
+        elif next_piece != "(":
+            if arg_string[next_index+1] != "(":
+                args.append(next_piece)
+                return parse_arguments(arg_string, args, next_index+1)
+            else:
+                children_args, new_next_index = parse_arguments(arg_string, [], next_index+2)
+                arg = [next_piece, children_args]
+                args.append(arg)
+                return parse_arguments(arg_string, args, new_next_index)
+        else:
+            arg, new_next_index = parse(arg_string, next_index)
+            args.append(arg)
+            return parse_arguments(arg_string, args, new_next_index)
+
+    @staticmethod
+    def separate_parens(expression):
+        new_expression = []
+        for char in expression:
+            if char == "(":
+                new_expression.append(" ( ")
+            elif char == ")":
+                new_expression.append(" ) ")
+            elif char == ".":
+                new_expression.append(" . ")
+            elif char == ",":
+                new_expression.append(" ")
+            else:
+                new_expression.append(char)
+        return ''.join(new_expression)
+
+
     @staticmethod
     def makeExp(expString):
         name = expString.strip().rstrip()
@@ -459,7 +515,7 @@ class exp:
     @staticmethod
     def makeLogExp(predstring,expString,vardict):
         e = None
-        if predstring=="and":
+        if predstring=="and" or predstring=="and_comp":
             e = conjunction()
             finished = False
             numBrack = 1
@@ -485,6 +541,7 @@ class exp:
             return (e,expString)
             
         # need arg1 arg2
+        # IDA: not used any more
         elif predstring=="eq":
             eqargs = []
             while expString[0]!=")":
@@ -1115,19 +1172,22 @@ class exp:
         (orders,numNewLam,fixeddircats) = self.getOrders(evars)
         for order in orders:
             ordernum+=1
-            for parentSem, childSem, numNewLam, numByComp in self.pullout(e,order,numNewLam):
+            splits = self.pullout(e,order,numNewLam)
+            for parentSem, childSem, numNewLam, numByComp in splits:
                 allpairs.append((parentSem, childSem, numNewLam, numByComp, fixeddircats))
                 # this should be limited, can only do if none by comp
                 # parentSem = splittuple[0]
                 # childSem = splittuple[1]
-                if  exp.allowTypeRaise and numByComp==0 and childSem.canTypeRaise():
-                    typeRaisedChild = childSem.typeRaise(parentSem)
-                    print "Type raised child is : "+typeRaisedChild.toString(True)
-                    print "Parent Sem is : "+parentSem.toString(True)
-                    # don't know what to do with the newLam integer 
-                    trfc =  ["typeraised"]
-                    trfc.extend(fixeddircats)
-                    allpairs.append((typeRaisedChild, parentSem.copy(), numNewLam ,0,trfc))
+                if self.allowTypeRaise:
+                    if numByComp==0:
+                        if childSem.canTypeRaise():
+                            typeRaisedChild = childSem.typeRaise(parentSem)
+                            print "Type raised child is : "+typeRaisedChild.toString(True)
+                            print "Parent Sem is : "+parentSem.toString(True)
+                            # don't know what to do with the newLam integer
+                            trfc =  ["typeraised"]
+                            trfc.extend(fixeddircats)
+                            allpairs.append((typeRaisedChild, parentSem.copy(), numNewLam ,0,trfc))
             if len(order)!=len(evars): print "unmatching varlist lengths"
         return allpairs
 
@@ -1139,6 +1199,9 @@ class exp:
         v = variable(parent)
         v.addArg(self.copy())
         l = lambdaExp()
+        # it's an opaque way of setting it up,
+        # but child is now an argument to which whatever
+        # replaces the variable will be applied
         l.setVar(v)
         l.setFunct(v)
         return l
@@ -1579,13 +1642,14 @@ class exp:
 
             print "numsplits i= ",numsplits
         return pairs
+
     # to do in make pairs:
     # 1. want to be able to pull a variable out in one 
     # place only (or in multiple places simultaneously).
     # 2. want to get all subtrees in there. this will 
     # cause a ridiculous blowup in complexity...
     # 
-    # CONSTRAINTS: is accross board consraint ok with
+    # CONSTRAINTS: is across board constraint ok with
     # prepositions????
     # how to do A-over-A constraint???
             
@@ -2935,8 +2999,10 @@ class lambdaExp(exp):
             return self.funct.vartopprior()
         else:
             return self.funct.semprior()
+
     def isQ(self):
         return self.funct.isQ()
+
     def makeShell(self):
         l = lambdaExp()
         v = variable(self.var)
@@ -2947,6 +3013,7 @@ class lambdaExp(exp):
         l.setFunct(f)
         if self.getIsNull(): l.setIsNull()
         return l
+
     def copy(self):
         #print "copying ",self.toString(True)
         #print "\n\ncopying lambda ",self
@@ -2960,6 +3027,7 @@ class lambdaExp(exp):
         l.setFunct(f)
         if self.getIsNull(): l.setIsNull()
         return l
+
     def copyNoVar(self):
         l = lambdaExp()
         l.setVar(self.var)
@@ -2969,16 +3037,19 @@ class lambdaExp(exp):
         l.setFunct(f)
         if self.getIsNull(): l.setIsNull()
         return l
+
     def getLvars(self):
         lvars = [self.var]
         lvars.extend(self.funct.getLvars())
         return lvars
+
     def isConjV(self):
         return self.funct.isConjV()
+
     def checkIfVerb(self):
         return self.funct.checkIfVerb()
+
     # this is going to pull out all nested things too.
-    # make 
     def makeInOut(self):
         # make logical form and variable 
         selfnew = self.copyNoVar()
@@ -3025,7 +3096,6 @@ class lambdaExp(exp):
         return (selfnew,outargs,vset)
 
     def compositionSplit(self,vars,compvars,ec,e):
-        
         vargset = []
         for v in vars:
             vset = []
@@ -3135,6 +3205,7 @@ class lambdaExp(exp):
         subexps.extend(self.funct.allSubExps())
         if self.funct in subexps: subexps.remove(self.funct)
         return subexps
+
     def allExtractableSubExps(self):
         subexps = []
         subexps.append(self)
@@ -3142,20 +3213,25 @@ class lambdaExp(exp):
         if self.funct in subexps:
             subexps.remove(self.funct)
         return subexps
+
     def getAllVars(self,vars):
         #self.var.getAllVars(vars)
         self.funct.getAllVars(vars)
+
     def getheadlambdas(self):
         headlambdas = [self]
         headlambdas.extend(self.funct.getheadlambdas())
         return headlambdas
+
     def varsAbove(self,other,vars):
         if self==other: return
         self.funct.varsAbove(other,vars)
+
     def nullSem(self):
         if self.funct==self.var and len(self.funct.arguments)==0:
             return True
         return False
+
     def type(self):
         #print "finding type for ",self.toString(True)
         argType = self.var.type()
@@ -3165,33 +3241,41 @@ class lambdaExp(exp):
         t = semType(argType,functType)
         #print " pe ",t.toString()
         return t
+
     def getPosType(self):
         return self.funct.getPosType()
+
     def isConjN(self):
         if self.funct.__class__==conjunction:
             return self.funct.isConjN()
         elif self.funct.__class__==lambdaExp:
             return self.funct.isConjN()
         return False
+
     def setFunct(self,e):
         self.funct = e
         self.returnType = e.getReturnType()
         e.add_parent(self)
         self.argSet = True
+
     def setVar(self,var):
         self.var = var
         var.setBinder(self)
+
     def getVar(self):
         return self.var
+
     def getFunct(self):
         return self.funct
+
     def getDeepFunct(self):
         if self.funct.__class__!=lambdaExp: return self.funct 
         else: return self.funct.getDeepFunct()
 
     def arity(self):
         return 1+self.funct.arity()
-    # apply 
+
+    # apply
     def apply(self,e):
         # print "trying to apply ",self.toString(True)," to ",e.toString(True)
         
@@ -3207,6 +3291,7 @@ class lambdaExp(exp):
             return newExp
         
         #else: print self.var.type().toString()," does not equal ",e.type().toString()
+
     def compose(self,arg):
         if arg.__class__!=lambdaExp: return None
         #complambda = arg
@@ -3222,17 +3307,22 @@ class lambdaExp(exp):
             return arg
         else:
             return None
+
     def argsFilled(self):
         print "checking if args filled"
         return self.funct.argsFilled()
+
     def isNounMod(self):
         return self.funct.isNounMod()
         #return False
+
     def getReturnType(self):
         return self.type()
         #.getReturnType()
+
     def printOut(self,top,varNum):
         print self.toString(top)
+
     def hasVarOrder(self,varorder):
         #if exp.varNum==0:
         #print  "checking varorder for ",self.toString(True)
@@ -3241,6 +3331,7 @@ class lambdaExp(exp):
         result = self.funct.hasVarOrder(varorder)
         exp.varNum=0
         return result
+
     def varOrder(self,L):
         """Omri added this. Extends L with the order of variables"""
         self.var.name = exp.varNum
@@ -3248,8 +3339,10 @@ class lambdaExp(exp):
         result = self.funct.varOrder(varorder)
         exp.varNum=0
         return result
+
     def setArg(self,position,pred):
         self.funct.setArg(position,pred)
+
     def toString(self,top):
         s=""
         self.var.name = "$"+str(exp.varNum)#+"_"+str(id(self.var))
@@ -3262,6 +3355,7 @@ class lambdaExp(exp):
             exp.emptyNum = 0
             self.clearNames()
         return s
+
     def toStringShell(self,top):
         s=""
         self.var.name = "$"+str(exp.varNum)#+"_"+str(id(self.var))
@@ -3274,6 +3368,7 @@ class lambdaExp(exp):
             exp.emptyNum = 0
             self.clearNames()
         return s
+
     def toStringUBL(self,top):
         s=""
         self.var.name = "$"+str(exp.varNum)#+"_"+str(id(self.var))
@@ -3286,9 +3381,11 @@ class lambdaExp(exp):
             exp.emptyNum = 0
             self.clearNames()
         return s
+
     def clearNames(self):
         self.var.name=None
         self.funct.clearNames()
+
     def equalsPlaceholder(self,other):
         if other.__class__ != lambdaExp or \
         not other.var.equalType(self.var):
@@ -3304,6 +3401,7 @@ class lambdaExp(exp):
         self.var.setEqualTo(other.var)
         other.var.setEqualTo(self.var)
         return other.funct.equals(self.funct)
+
     def replace2(self,e1,e2):
         if self.var == e1:
             self.var = e2
