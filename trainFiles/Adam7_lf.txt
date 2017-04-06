@@ -1,0 +1,8 @@
+Sent: excuse me please .
+Sem: lambda $0_{ev}.and(v|excuse(you,pro:obj|me,$0),co|please($0))
+example_end
+
+Sent: be careful .
+Sem: lambda $0_{e}.lambda $1_{ev}.adj|care-dn($0,$1)
+example_end
+

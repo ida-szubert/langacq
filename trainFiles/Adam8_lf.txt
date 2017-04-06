@@ -1,0 +1,4 @@
+Sent: you missed it .
+Sem: lambda $0_{ev}.v|miss-past(pro:per|you,pro:per|it,$0)
+example_end
+

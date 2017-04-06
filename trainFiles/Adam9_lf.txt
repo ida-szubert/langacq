@@ -1,0 +1,4 @@
+Sent: get down .
+Sem: lambda $0_{ev}.and(v|get(you,$0),adv|down($0))
+example_end
+

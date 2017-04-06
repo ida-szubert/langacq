@@ -1,0 +1,12 @@
+Sent: nineteen o'clock ?
+Sem: lambda $0_{e}.Q(n|o'clock($0))
+example_end
+
+Sent: it works .
+Sem: lambda $0_{ev}.v|work-3s(pro:per|it,$0)
+example_end
+
+Sent: Adam do .
+Sem: lambda $0_{ev}.v|do(n:prop|adam,$0)
+example_end
+

@@ -1,0 +1,28 @@
+Sent: no it didn 't .
+Sem: lambda $0_{ev}.co|no($0)
+example_end
+
+Sent: it sticks .
+Sem: lambda $0_{ev}.v|stick-3s(pro:per|it,$0)
+example_end
+
+Sent: got stuck .
+Sem: lambda $0_{ev}.v|stick-past(you,$0)
+example_end
+
+Sent: saucer 's all_gone .
+Sem: lambda $0_{e}.n|saucer($0)
+example_end
+
+Sent: he 's jumping ?
+Sem: lambda $0_{ev}.Q(aux|~be(part|jump-presp(pro:sub|he,$0),$0))
+example_end
+
+Sent: another purse ?
+Sem: lambda $0_{e}.Q(n|purse($0))
+example_end
+
+Sent: train pull ?
+Sem: lambda $0_{ev}.Q(v|pull(lambda $1_{e}.n|train($1),$0))
+example_end
+

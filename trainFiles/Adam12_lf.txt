@@ -1,0 +1,52 @@
+Sent: you finished ?
+Sem: lambda $0_{ev}.Q(v|finish-past(pro:per|you,$0))
+example_end
+
+Sent: all set ?
+Sem: lambda $0_{e}.Q(n|set($0))
+example_end
+
+Sent: you 're exercising ?
+Sem: lambda $0_{ev}.Q(aux|~be(part|exercise-presp(pro:per|you,$0),$0))
+example_end
+
+Sent: more juice ?
+Sem: lambda $0_{e}.Q(n|juice($0))
+example_end
+
+Sent: more coffee ?
+Sem: lambda $0_{e}.Q(n|coffee($0))
+example_end
+
+Sent: two Adam ?
+Sem: lambda $0_{e}.Q(n:prop|adam($0))
+example_end
+
+Sent: one leg ?
+Sem: lambda $0_{e}.Q(n|leg($0))
+example_end
+
+Sent: I think they 're okay .
+Sem: lambda $0_{ev}.v|think(pro:sub|i,$0)
+example_end
+
+Sent: more gas ?
+Sem: lambda $0_{e}.Q(n|gas($0))
+example_end
+
+Sent: I know .
+Sem: lambda $0_{ev}.v|know(pro:sub|i,$0)
+example_end
+
+Sent: it 's attached .
+Sem: lambda $0_{ev}.aux|~be(part|attach-pastp(pro:per|it,$0),$0)
+example_end
+
+Sent: three six ears ?
+Sem: lambda $0_{e}.Q(n|ear-pl($0))
+example_end
+
+Sent: that hurts .
+Sem: lambda $0_{ev}.v|hurt-3s(pro:dem|that,$0)
+example_end
+
