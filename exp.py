@@ -44,8 +44,8 @@ class exp:
     #########################################
     @staticmethod
     def parseExp(expString):
-        tokens = separate_parens(expString).split()
-        expList, _ = parse(tokens, 0)
+        tokens = ex.separate_parens(expString).split()
+        expList, _ = ex.parse(tokens, 0)
         return expList
 
     @staticmethod
@@ -54,12 +54,12 @@ class exp:
         # returns an expression an the index of the first element after the closing ) of the expression
         if expression[index] == "lambda":
             typed_variable = expression[index+1]
-            body, next_index = parse(expression, index+3)
+            body, next_index = ex.parse(expression, index+3)
             lam_args = [typed_variable, body]
             return ["lambda", lam_args], next_index+1
         else:
             pred = expression[index]
-            args, next_index = parse_arguments(expression, [], index+2)
+            args, next_index = ex.parse_arguments(expression, [], index+2)
             return [pred, args], next_index
 
     @staticmethod
@@ -70,16 +70,16 @@ class exp:
         elif next_piece != "(":
             if arg_string[next_index+1] != "(":
                 args.append(next_piece)
-                return parse_arguments(arg_string, args, next_index+1)
+                return ex.parse_arguments(arg_string, args, next_index+1)
             else:
-                children_args, new_next_index = parse_arguments(arg_string, [], next_index+2)
+                children_args, new_next_index = ex.parse_arguments(arg_string, [], next_index+2)
                 arg = [next_piece, children_args]
                 args.append(arg)
-                return parse_arguments(arg_string, args, new_next_index)
+                return ex.parse_arguments(arg_string, args, new_next_index)
         else:
-            arg, new_next_index = parse(arg_string, next_index)
+            arg, new_next_index = ex.parse(arg_string, next_index)
             args.append(arg)
-            return parse_arguments(arg_string, args, new_next_index)
+            return ex.parse_arguments(arg_string, args, new_next_index)
 
     @staticmethod
     def separate_parens(expression):
@@ -99,8 +99,8 @@ class exp:
 
 
     @staticmethod
-    def makeExp(expString):
-        name = expString.strip().rstrip()
+    def makeExp(predString, expString):
+        name = predString.strip().rstrip()
         type = name.split("|")[0]
         e = None
         # predicates that take a single entity
@@ -109,15 +109,14 @@ class exp:
             argTypes = ["e"]
             e = predicate(name,numArgs,argTypes,type)
             e.setNounMod()
-            e.setString()
             ##e.hasEvent()
             # nouns have event markers??? 
             # and adjectives???
+        # IDA: not used
         elif name == "PAST":
             numArgs = 1
             argTypes = ["t"]
             e = predicate(name,numArgs,argTypes,type)
-            e.setString()
         #entities
         elif type in ["pro","pro:indef","pro:poss","pro:refl","n:prop","pro:dem","pro:wh"]:
             numArgs = 0
@@ -125,13 +124,11 @@ class exp:
             e = constant(name,numArgs,argTypes,type)
             #print "made const for ",name
             e.makeCompNameSet()
-            e.setString()
         # verb modifiers
         elif type in ["inf","adv","adv:int","adv:loc","adv:tem"]:
             numArgs = 1
             argTypes = ["t"]
             e = predicate(name,numArgs,argTypes,type)
-            e.setString()
             #e.hasEvent() # think we're dropping out inf though
             # events?? - sure thing
 
@@ -141,7 +138,6 @@ class exp:
             argTypes = ["<e,t>"] # should actually be <e,t>
             # return an entity
             e = quant(name,type,variable(None))
-            e.setString()
 
         elif type in ["aux"]:
             #numArgs = 2
@@ -149,7 +145,6 @@ class exp:
             numArgs = 2
             argTypes = ["action","event"]
             e = predicate(name,numArgs,argTypes,type)
-            e.setString()
 
         elif type in ["adv:wh","pro:wh","det:wh"]:
             # obviously don't want to add anything
@@ -172,19 +167,16 @@ class exp:
             numArgs = 2
             argTypes = ["e","ev"]
             e = predicate(name,numArgs,argTypes,type)
-            e.setString()
             #e.hasEvent()
         elif type in ["pro:wh"]:
             e=emptySem()
-        elif type in []:
-            pass
-        elif type in []:
-            pass
-        elif type in []:
-            pass
         #else:
             #print name,"  ",type
-        return e
+        args, expString = exp.extractArguments(expString)
+        for i, arg in enumerate(args):
+            e.setArg(i,arg)
+        e.setString()
+        return (e, expString)
 
     def setString(self):
         self.string = self.toString(True)
@@ -312,7 +304,7 @@ class exp:
             node.inout = False
             seena = []
             for (a,aout) in node.buildAllSubTrees():
-                
+
                 v = variable(None)
                 print "aout is ",aout
                 print "before doing lambdas a is ",a.toString(True)
@@ -374,26 +366,31 @@ class exp:
         ##else:
         #self.event=ev
         #ev.setBinder(self)
-            
-    @staticmethod
-    def makeVerb(expString,verbType):
-        if verbType=="trans":
-            numArgs = 2
-            argTypes = ["subj","obj"]
-        elif verbType=="inTrans":
-            numArgs = 1
-            argTypes = ["subj"]
-        elif verbType=="withLoc":  # should be a better name
-            numArgs = 3
-            argTypes = ["subj","obj","loc"]
-            
-        pass    
+
+    # IDA: unused
+    # @staticmethod
+    # def makeVerb(expString,verbType):
+    #     if verbType=="trans":
+    #         numArgs = 2
+    #         argTypes = ["subj","obj"]
+    #     elif verbType=="inTrans":
+    #         numArgs = 1
+    #         argTypes = ["subj"]
+    #     elif verbType=="withLoc":  # should be a better name
+    #         numArgs = 3
+    #         argTypes = ["subj","obj","loc"]
+    #
+    #     pass
 
             
         
     @staticmethod
     def makeExpWithArgs(expString,vardict):
         print "making ",expString
+        arguments_present = -1<expString.find("(")<expString.find(")")
+        no_commas = expString.find(",")==-1
+        commas_inside_parens = -1<expString.find("(")<expString.find(",")
+
         if expString[:6]=="lambda":
             vname = expString[7:expString.find("_{")]
             tstring = expString[expString.find("_{")+2:expString.find("}")]
@@ -408,106 +405,149 @@ class exp:
             e.setVar(v)
             e.setString()
             
-        elif -1<expString.find("(")<expString.find(")") and \
-            (-1<expString.find("(")<expString.find(",") or \
-            expString.find(",")==-1):
-            predstring = expString.split("(")[0]
-            expString=expString[expString.find("(")+1:]
+        elif arguments_present and (commas_inside_parens or no_commas):
+            # predstring = expString.split("(")[0]
+            # expString=expString[expString.find("(")+1:]
+            predstring, expString = expString.split("(",1)
             r = exp.makeLogExp(predstring,expString,vardict)
-            if r : return r
-            r = exp.makeVerbs(predstring,expString,vardict)
-            if r : e=r[0]
-            elif predstring[0]=="$": 
-                e = exp.makeVars(predstring,expString,vardict)
+            if r:
+                return r
             else:
-                e = exp.makeExp(predstring)
-            if e is None: print "none e for |" + predstring + "|"
-            if e.__class__  == quant:
-                var = e.getVar()
-                var.t = semType.e
-                varname = expString[:expString.find(",")]
-                vardict[varname]=var
-                expString = expString[expString.find(","):]
-            i=0
-            finished = False
-            numBrack = 1
-            i = 0
-            j = 0
-            argcount = 0
-            while not finished:
-                if numBrack==0: finished = True
-                elif expString[i] in [",",")"] and numBrack==1:
-                    if i>j:
-                        r = exp.makeExpWithArgs(expString[j:i],vardict)
-                        if r: a = r[0]
-                        else: error("cannot make exp for "+expString[j:i])
-                        e.setArg(argcount,r[0])
-                        argcount+=1
-                    j = i+1
-                    if expString[i]==")": finished = True
-                    
-                elif expString[i]=="(": numBrack+=1
-                elif expString[i]==")": numBrack-=1
-            
-                i += 1
-            expString = expString[i:]
+                e, expString = exp.makeVerbs(predstring,expString,vardict)
+                # if r:
+                #     e=r[0]
+                # elif predstring[0]=="$":
+                if e is None:
+                    if predstring[0]=="$":
+                        e, expString = exp.makeVars(predstring,expString,vardict)
+                    else:
+                        e, expString = exp.makeExp(predstring, expString)
+                    if e is None:
+                        print "none e for |" + predstring + "|"
+                    # IDA: don't know what this is but I messed with expString above
+                    if e.__class__  == quant:
+                        var = e.getVar()
+                        var.t = semType.e
+                        varname = expString[:expString.find(",")]
+                        vardict[varname]=var
+                        expString = expString[expString.find(","):]
+                # read in the arguments
+                # i=0
+                # finished = False
+                # numBrack = 1
+                # i = 0
+                # j = 0
+                # argcount = 0
+                # while not finished:
+                #     if numBrack==0:
+                #         finished = True
+                #     elif expString[i] in [",",")"] and numBrack==1:
+                #         if i>j:
+                #             r = exp.makeExpWithArgs(expString[j:i],vardict)
+                #             if r: a = r[0]
+                #             else: error("cannot make exp for "+expString[j:i])
+                #             e.setArg(argcount,a)
+                #             argcount+=1
+                #         j = i+1
+                #         if expString[i]==")": finished = True
+                #
+                #     elif expString[i]=="(": numBrack+=1
+                #     elif expString[i]==")": numBrack-=1
+                #
+                #     i += 1
+                # expString = expString[i:]
+        # constants
         else:
             if expString.__contains__(",") and expString.__contains__(")"):
                 constend = min(expString.find(","),expString.find(")"))
             else:
                 constend = max(expString.find(","),expString.find(")"))
-            if constend == -1: constend = len(expString)
+            if constend == -1:
+                constend = len(expString)
             conststring = expString[:constend]
             if conststring[0]=="$":
                 if not vardict.has_key(conststring):
                     error("unbound var "+conststring)
                 e = vardict[conststring]
-            else: e = exp.makeExp(conststring)
+            else:
+                e = exp.makeExp(conststring)
             expString=expString[constend:]
             e.setString()
         return (e,expString)    
-        
+
+    @staticmethod
+    def extractArguments(expString):
+        i=0
+        finished = False
+        numBrack = 1
+        i = 0
+        j = 0
+        arglist = []
+        while not finished:
+            if numBrack==0:
+                finished = True
+            elif expString[i] in [",",")"] and numBrack==1:
+                if i>j:
+                    r = exp.makeExpWithArgs(expString[j:i],vardict)
+                    if r: a = r[0]
+                    else: error("cannot make exp for "+expString[j:i])
+                    arglist.append(a)
+                j = i+1
+                if expString[i]==")": finished = True
+
+            elif expString[i]=="(": numBrack+=1
+            elif expString[i]==")": numBrack-=1
+            i += 1
+        return arglist, expString[i:]
+
     # this gives the vars the arguments that they need
     @staticmethod
     def makeVars(predstring,expString,vardict):
         if not vardict.has_key(predstring):
             error("unbound var "+predstring)
         e = vardict[predstring]
-        numArgs = 1
-        finished = False
-        numBrack = 1
-        i = 0
-        while not finished:
-            if numBrack==0: finished = True
-            elif expString[i]=="," and numBrack==1: numArgs += 1
-            elif expString[i]==")": numBrack-=1
-            elif expString[i]=="(": numBrack+=1
-            #elif expString[i]=="," and numBrack==1: numArgs += 1
-            i += 1
-        for i in range(numArgs):
-            e.addArg(emptyExp())
-        return e
+        # numArgs = 1
+        # finished = False
+        # numBrack = 1
+        # i = 0
+        # while not finished:
+        #     if numBrack==0: finished = True
+        #     elif expString[i]=="," and numBrack==1: numArgs += 1
+        #     elif expString[i]==")": numBrack-=1
+        #     elif expString[i]=="(": numBrack+=1
+        #     #elif expString[i]=="," and numBrack==1: numArgs += 1
+        #     i += 1
+        args, expString = exp.extractArguments(expString)
+        # for i in range(numArgs):
+        #     e.addArg(emptyExp())
+        for arg in args:
+            e.addArg(arg)
+        return (e, expString)
     
     # this makes the set verbs
     @staticmethod
     def makeVerbs(predstring,expString,vardict):
-        if predstring.split("|")[0] not in ["v","part"]: return None
-        numArgs = 1
-        finished = False
-        numBrack = 1
-        i = 0
-        while not finished:
-            if numBrack==0: finished = True
-            elif expString[i]=="," and numBrack==1: numArgs += 1
-            elif expString[i]==")": numBrack-=1
-            elif expString[i]=="(": numBrack+=1
-            #elif expString[i]=="," and numBrack==1: numArgs += 1
-            i += 1
-        argTypes = []
-        for i in range(numArgs): argTypes.append(semType.e)
+        if predstring.split("|")[0] not in ["v","part"]:
+            return None
+        # numArgs = 1
+        # finished = False
+        # numBrack = 1
+        # i = 0
+        # while not finished:
+        #     if numBrack==0: finished = True
+        #     elif expString[i]=="," and numBrack==1: numArgs += 1
+        #     elif expString[i]==")": numBrack-=1
+        #     elif expString[i]=="(": numBrack+=1
+        #     i += 1
+        args, expString = exp.extractArguments(expString)
+        # argTypes = []
+        # for i in range(numArgs): argTypes.append(semType.e)
+        argTypes = [x.type() for x in args]
+        numArgs = len(args)
         verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
+        for i, arg in enumerate(args):
+            verb.setArg(i,arg)
         verb.setString()
-        
         return (verb,expString)
             
     
@@ -635,10 +675,13 @@ class exp:
     
     def setNounMod(self):
         self.nounMod = True
+
     def setIsNull(self):
         self.isNull=True
+
     def getIsNull(self):
         return self.isNull
+
     def isNounMod(self):
         if self.posType in ["n","adj"]:
              #or \
@@ -646,11 +689,14 @@ class exp:
             #self.posType=="pro:indef":
             return True
         return False
+
     def isEntity(self):
         return False
+
     def add_parent(self,e):
         if not e in self.parents:
             self.parents.append(e)
+
     def remove_parent(self,e):
         if e in self.parents:
             self.parents.remove(e)
@@ -662,18 +708,21 @@ class exp:
             print e.toString(True)," not in ",self.toString(True)," parents"
             print "parents are ",self.parents
             print "e is ",e
+
     def argsFilled(self):
         #print "this is ",self.name
         for a in self.arguments:
             #print a
             if a.isEmpty(): return False
         return True
+
     def setArg(self,position,argument):
         self.arguments.pop(position)
         self.arguments.insert(position,argument)
         if isinstance(argument,exp):
             argument.add_parent(self)
             self.argSet = True
+
     def getArg(self,position):
         if position>len(self.arguments)-1: error("only got "+str(len(self.arguments))+" arguments")
         else: return self.arguments[position]
@@ -688,7 +737,8 @@ class exp:
                 e2.add_parent(self)
             else: a.replace(e1,e2)
             i+=1
-    # this version returns an expression        
+
+    # this version returns an expression
     def replace2(self,e1,e2):
         if self == e1:
             return e2
@@ -761,6 +811,7 @@ class exp:
 
     def getName(self):
         return self.name
+
     # var num will not work with different branches #
     def printOut(self,top,varNum):
         print self.toString(top)
@@ -1108,6 +1159,7 @@ class exp:
         
     def arity(self):
         return 0
+
     def hasVarOrder(self,varorder):
         varnum = 0
         for a in self.arguments:
@@ -1245,157 +1297,163 @@ class exp:
         
         
     def getLvars(self): return []
-    def notgonnagethere(self):
-    
-        (belowvars,abovevars,bothvars) = self.partitionVars(e)
-        (e,var) = e.dealWithUnbound()
 
-        # need a list of arguments for var (initially
-        # going to be just other variables
-        
-        # really need to do other variable orderings too
-        
-        #print "replacing ",child.toString(True)," in ",sem.toString(True)
-        parent = sem.replace2(child,var)
-        
-        compositionvars = []
-        #comprep = parent
-        
-        # composition needs to work with categories
-        # can just say how many vars go with comp
-        
-        # if we are going with composition then we really
-        # need to make sure that the variable ordering 
-        # is the right one 
-        
-        
-        
-        
-        
-        
-        # need to not add the vars that do go with composition
-        for l in parent.getheadlambdas():
-            if l.var in belowvars and not l.var in abovevars:
-                print "have var for composition bound by ",l.toString(True)
-                parent = l.funct
-                var.removeArg(l.var)
-                #parent.removeArg(l.var)
-            # want to remove the lambda term
-            pass
-        
-        child = e
-        #pair = self.makepair(parent,e)
-    #def 
-        child.parents = []
-        l = lambdaExp()
-        l.setFunct(parent)
-        l.setVar(var)
-        
-        #parent.top_node()
-        print "\n\n*******************************\norig sem was ",origsem.toString(True)
-        print "parent sem is ",l.toString(True)
-        
-        #print l
-        #parent.top_node()
-        print "child sem is ",child.toString(True)
-                
-        pair = (l.copy(),child.copy())
-
-        #print >> 
-        sem=l.apply(e)    
-        print "sem is ",sem
-        # p r i n t  " \ n s e m   i s " , s e m . t o  S t r i n g ( T r u e )
-        # p r i n t  " e i s   " , e . t o S i t r i n  g ( T r u e )
-        print "comparing ",sem.toString(True)," to ",origsem.toString(True)
-        print "done that"
-        if not sem.equals(origsem):
-            print "\nERROR apply does not give origsem"
-            print sem.toString(True)
-            print origsem.toString(True)
-            print ""
-            p2 = pair[0].copy()
-            a2 = pair[1].copy()
-            if a2.__class__==lambdaExp:
-                print "trying to compose ",p2.toString(True)," and ",a2.toString(True)
-                p2 = p2.compose(a2)
-            if p2: print "sem from compose is ",p2.toString(True)
-        
-        print "sem now is ",sem.toString(True)
-        return pair
+    # IDA: unused
+    # def notgonnagethere(self):
+    #
+    #     (belowvars,abovevars,bothvars) = self.partitionVars(e)
+    #     (e,var) = e.dealWithUnbound()
+    #
+    #     # need a list of arguments for var (initially
+    #     # going to be just other variables
+    #
+    #     # really need to do other variable orderings too
+    #
+    #     #print "replacing ",child.toString(True)," in ",sem.toString(True)
+    #     parent = sem.replace2(child,var)
+    #
+    #     compositionvars = []
+    #     #comprep = parent
+    #
+    #     # composition needs to work with categories
+    #     # can just say how many vars go with comp
+    #
+    #     # if we are going with composition then we really
+    #     # need to make sure that the variable ordering
+    #     # is the right one
+    #
+    #
+    #
+    #
+    #
+    #
+    #     # need to not add the vars that do go with composition
+    #     for l in parent.getheadlambdas():
+    #         if l.var in belowvars and not l.var in abovevars:
+    #             print "have var for composition bound by ",l.toString(True)
+    #             parent = l.funct
+    #             var.removeArg(l.var)
+    #             #parent.removeArg(l.var)
+    #         # want to remove the lambda term
+    #         pass
+    #
+    #     child = e
+    #     #pair = self.makepair(parent,e)
+    # #def
+    #     child.parents = []
+    #     l = lambdaExp()
+    #     l.setFunct(parent)
+    #     l.setVar(var)
+    #
+    #     #parent.top_node()
+    #     print "\n\n*******************************\norig sem was ",origsem.toString(True)
+    #     print "parent sem is ",l.toString(True)
+    #
+    #     #print l
+    #     #parent.top_node()
+    #     print "child sem is ",child.toString(True)
+    #
+    #     pair = (l.copy(),child.copy())
+    #
+    #     #print >>
+    #     sem=l.apply(e)
+    #     print "sem is ",sem
+    #     # p r i n t  " \ n s e m   i s " , s e m . t o  S t r i n g ( T r u e )
+    #     # p r i n t  " e i s   " , e . t o S i t r i n  g ( T r u e )
+    #     print "comparing ",sem.toString(True)," to ",origsem.toString(True)
+    #     print "done that"
+    #     if not sem.equals(origsem):
+    #         print "\nERROR apply does not give origsem"
+    #         print sem.toString(True)
+    #         print origsem.toString(True)
+    #         print ""
+    #         p2 = pair[0].copy()
+    #         a2 = pair[1].copy()
+    #         if a2.__class__==lambdaExp:
+    #             print "trying to compose ",p2.toString(True)," and ",a2.toString(True)
+    #             p2 = p2.compose(a2)
+    #         if p2: print "sem from compose is ",p2.toString(True)
+    #
+    #     print "sem now is ",sem.toString(True)
+    #     return pair
         
     
     def getheadlambdas(self):
         return []
-        
-    def splitconj(self,conj,inconj,outconj):
-        print "calling splitconj"
-        print "inconj is ",inconj.toString()
-        print "outconj is ",outconj.toString()
-        #return []
-        origsem = self.copy()
-        #print "getting top_node1"
-        #self.top_node()
-        #print "done that"
-        child = outconj
-        sem = self
-        evars = outconj.unboundVars()
-        # eventually need to do all orders
-        for evar in evars:
-            newvar = variable(evar)
-            outconj.replace2(evar,newvar)
-            l = lambdaExp()
-            l.setFunct(outconj)
-            l.setVar(newvar)
-            outconj = l
-        var = variable(outconj)            
-        for evar in evars:
-            var.addAtFrontArg(evar)
-        
-        inconj.addArg(var)
-        # need a list of arguments for var (initially
-        # going to be just other variables
-        print "replacing conj ",conj," in ",sem.toString(True)
-        parent = sem.replace2(conj,inconj)
-        print "got parent ",parent.toString(True)
-        child = outconj
-        child.parents = []
-        
-        l = lambdaExp()
-        l.setFunct(parent)
-        l.setVar(var)
-        
-        #parent.top_node()
-        print "parent sem is ",l.toString(True)
-        #print l
-        #parent.top_node()
-        print "child sem is ",child.toString(True)
-        print "\n\ncopying pair"
-        pair = (l.copy(),child.copy())
-        
-        
-        
-        
-        print "pair from conj is ",pair[0].toString(True),"   ",pair[1].toString(True)
-        sem=l.apply(outconj)
-        print "sem from conj now is ",sem.toString(True)
-        print "self now is ",self.toString(True)
-        print "sem is ",sem
-        print "comparing ",sem.toString(True)," to ",origsem.toString(True)
-        if not sem.equals(origsem):
-            print "\nERROR sem from conj does not match origsem"
-            print sem.toString(True)
-            print origsem.toString(True)
-            print ""
-        print "conj is ",conj
-        return pair    
+
+    # IDA: unused
+    # def splitconj(self,conj,inconj,outconj):
+    #     print "calling splitconj"
+    #     print "inconj is ",inconj.toString()
+    #     print "outconj is ",outconj.toString()
+    #     #return []
+    #     origsem = self.copy()
+    #     #print "getting top_node1"
+    #     #self.top_node()
+    #     #print "done that"
+    #     child = outconj
+    #     sem = self
+    #     evars = outconj.unboundVars()
+    #     # eventually need to do all orders
+    #     for evar in evars:
+    #         newvar = variable(evar)
+    #         outconj.replace2(evar,newvar)
+    #         l = lambdaExp()
+    #         l.setFunct(outconj)
+    #         l.setVar(newvar)
+    #         outconj = l
+    #     var = variable(outconj)
+    #     for evar in evars:
+    #         var.addAtFrontArg(evar)
+    #
+    #     inconj.addArg(var)
+    #     # need a list of arguments for var (initially
+    #     # going to be just other variables
+    #     print "replacing conj ",conj," in ",sem.toString(True)
+    #     parent = sem.replace2(conj,inconj)
+    #     print "got parent ",parent.toString(True)
+    #     child = outconj
+    #     child.parents = []
+    #
+    #     l = lambdaExp()
+    #     l.setFunct(parent)
+    #     l.setVar(var)
+    #
+    #     #parent.top_node()
+    #     print "parent sem is ",l.toString(True)
+    #     #print l
+    #     #parent.top_node()
+    #     print "child sem is ",child.toString(True)
+    #     print "\n\ncopying pair"
+    #     pair = (l.copy(),child.copy())
+    #
+    #
+    #
+    #
+    #     print "pair from conj is ",pair[0].toString(True),"   ",pair[1].toString(True)
+    #     sem=l.apply(outconj)
+    #     print "sem from conj now is ",sem.toString(True)
+    #     print "self now is ",self.toString(True)
+    #     print "sem is ",sem
+    #     print "comparing ",sem.toString(True)," to ",origsem.toString(True)
+    #     if not sem.equals(origsem):
+    #         print "\nERROR sem from conj does not match origsem"
+    #         print sem.toString(True)
+    #         print origsem.toString(True)
+    #         print ""
+    #     print "conj is ",conj
+    #     return pair
     
     def markCanBePulled(self):
         for e in self.allSubExps():
             pass
+
     def getCanBePulled(self):
         pass
+
     def setInOut(self,inout):
         self.inout = inout
+
     def setInOuts(self):
         for e in self.allSubExps():
             if e==self: continue
