@@ -7,7 +7,6 @@ from semType import semType
 import copy
 import random
 from tools import permutations
-# import variable
 
 verboseSplit = False
 class exp:
@@ -72,7 +71,7 @@ class exp:
                 if pset[i][1] is not None:
                     nout.extend(pset[i][1])
             else:
-                v = variable.variable(None)
+                v = variable(None)
                 a = pset[i][0]
                 for k in range(len(pset[i][1])):
                     if pset[i][1][k]!=pset[i][1][k].linkedVar:
@@ -98,7 +97,7 @@ class exp:
         if len(nodename.arguments)==0 and self.__class__!=lambdaExp:
             print "args and that shit"
             print nodename.toString(True)
-            if nodename.__class__ == variable.variable:
+            if nodename.__class__ == variable:
                 nodename.inout=nodename.binder.inout
                 nodename.linkedVar = nodename
                 Q.append((nodename,[nodename]))
@@ -167,7 +166,7 @@ class exp:
             seena = []
             for (a,aout) in node.buildAllSubTrees():
 
-                v = variable.variable(None)
+                v = variable(None)
                 print "aout is ",aout
                 print "before doing lambdas a is ",a.toString(True)
                 for k in range(len(aout)):
@@ -228,21 +227,6 @@ class exp:
         ##else:
         #self.event=ev
         #ev.setBinder(self)
-
-    # IDA: unused
-    # @staticmethod
-    # def makeVerb(expString,verbType):
-    #     if verbType=="trans":
-    #         numArgs = 2
-    #         argTypes = ["subj","obj"]
-    #     elif verbType=="inTrans":
-    #         numArgs = 1
-    #         argTypes = ["subj"]
-    #     elif verbType=="withLoc":  # should be a better name
-    #         numArgs = 3
-    #         argTypes = ["subj","obj","loc"]
-    #
-    #     pass
 
 
     #########################################
@@ -359,7 +343,7 @@ class exp:
     ###########################################
     def makeVariable(self,e):
         if e in self.arguments:
-            var = variable.variable(e)
+            var = variable(e)
             self.arguments[self.arguments.index(e)] = var
             return var
         return None
@@ -498,7 +482,7 @@ class exp:
         
     def resetEqualOther(self):
         for e in self.allSubExps():
-            if e.__class__ == variable.variable:
+            if e.__class__ == variable:
                 e.equalother = None
         
     def resetLinkedVar(self):
@@ -609,18 +593,6 @@ class exp:
     # to be pulled out. Will return a new 
     # (with no root level lambda terms) and 
     # a variable (with root level lambda terms).
-    
-
-    #def buildInAndOutTree(self,e,nodestogo,nodestostay):
-        ## nodestogo go with e
-        ## nodestostay go with v
-        #v = variable(e)
-        
-        #i = 0
-        #for a in e.arguments:
-            #if a in nodestogo:
-                
-                #e.setArg(
 
 
     # return a pair copy for each way to pull the thing
@@ -670,13 +642,13 @@ class exp:
 
         # all sorts of composition shit in here
         ec = e.copyNoVar()
-        newvariable = variable.variable(ec)
+        newvariable = variable(ec)
         self.replace2(e,newvariable)
         p = self.copyNoVar()
         
 
         for v in vars:
-            nv = variable.variable(v)
+            nv = variable(v)
             nv.arguments = v.arguments
             ec.replace2(v,nv)
             # this line is definitely not always right
@@ -717,39 +689,13 @@ class exp:
             print ""
         return pairs
         
-    #def dealWithUnbound(self,evars):
-        ## don't want to change original
-        ## partition variables into: below, above, both
-        ##(belowvars,abovevars,bothvars) = self.partitionVars(e)
-        
-        #e = self
-        
-        ## only want to think about variables that are now unbound
-        ## below.
-        ##evars = e.unboundVars()
-        #print "child has ",len(evars)," unbound variables"
-        #newvariable = variable(e)
-        #for v in evars:
-            #nv = variable(v)
-            #nv.arguments = v.arguments
-            #e.replace2(v,nv)
-            #v.arguments = []
-            #newvariable.addAtFrontArg(v)
-            #l = lambdaExp()
-            #l.setFunct(e)
-            #l.setVar(nv)
-            #e = l
-            
-        #newvariable.setType(e.type())
-        #return (e,newvariable)
-        
     def arity(self):
         return 0
 
     def hasVarOrder(self,varorder):
         varnum = 0
         for a in self.arguments:
-            if a.__class__ == variable.variable:
+            if a.__class__ == variable:
                 if a.name!=varorder[varnum]:
                     return False
                 varnum+=1
@@ -761,7 +707,7 @@ class exp:
         """Omri added 25/7"""
         varnum = 0
         for a in self.arguments:
-            if a.__class__ == variable.variable:
+            if a.__class__ == variable:
                 L[varnum] = a.name
                 varnum+=1
             
@@ -771,7 +717,7 @@ class exp:
         child = self.copy()
         parent = lambdaExp()
 
-        var = variable.variable(self)
+        var = variable(self)
         parent.setVar(var)
         parent.setFunct(var)
         # all the child cats will have fixed dir and 
@@ -834,7 +780,7 @@ class exp:
         return True
 
     def typeRaise(self,parent):
-        v = variable.variable(parent)
+        v = variable(parent)
         v.addArg(self.copy())
         l = lambdaExp()
         # it's an opaque way of setting it up,
@@ -883,152 +829,9 @@ class exp:
         
         
     def getLvars(self): return []
-
-    # IDA: unused
-    # def notgonnagethere(self):
-    #
-    #     (belowvars,abovevars,bothvars) = self.partitionVars(e)
-    #     (e,var) = e.dealWithUnbound()
-    #
-    #     # need a list of arguments for var (initially
-    #     # going to be just other variables
-    #
-    #     # really need to do other variable orderings too
-    #
-    #     #print "replacing ",child.toString(True)," in ",sem.toString(True)
-    #     parent = sem.replace2(child,var)
-    #
-    #     compositionvars = []
-    #     #comprep = parent
-    #
-    #     # composition needs to work with categories
-    #     # can just say how many vars go with comp
-    #
-    #     # if we are going with composition then we really
-    #     # need to make sure that the variable ordering
-    #     # is the right one
-    #
-    #
-    #
-    #
-    #
-    #
-    #     # need to not add the vars that do go with composition
-    #     for l in parent.getheadlambdas():
-    #         if l.var in belowvars and not l.var in abovevars:
-    #             print "have var for composition bound by ",l.toString(True)
-    #             parent = l.funct
-    #             var.removeArg(l.var)
-    #             #parent.removeArg(l.var)
-    #         # want to remove the lambda term
-    #         pass
-    #
-    #     child = e
-    #     #pair = self.makepair(parent,e)
-    # #def
-    #     child.parents = []
-    #     l = lambdaExp()
-    #     l.setFunct(parent)
-    #     l.setVar(var)
-    #
-    #     #parent.top_node()
-    #     print "\n\n*******************************\norig sem was ",origsem.toString(True)
-    #     print "parent sem is ",l.toString(True)
-    #
-    #     #print l
-    #     #parent.top_node()
-    #     print "child sem is ",child.toString(True)
-    #
-    #     pair = (l.copy(),child.copy())
-    #
-    #     #print >>
-    #     sem=l.apply(e)
-    #     print "sem is ",sem
-    #     # p r i n t  " \ n s e m   i s " , s e m . t o  S t r i n g ( T r u e )
-    #     # p r i n t  " e i s   " , e . t o S i t r i n  g ( T r u e )
-    #     print "comparing ",sem.toString(True)," to ",origsem.toString(True)
-    #     print "done that"
-    #     if not sem.equals(origsem):
-    #         print "\nERROR apply does not give origsem"
-    #         print sem.toString(True)
-    #         print origsem.toString(True)
-    #         print ""
-    #         p2 = pair[0].copy()
-    #         a2 = pair[1].copy()
-    #         if a2.__class__==lambdaExp:
-    #             print "trying to compose ",p2.toString(True)," and ",a2.toString(True)
-    #             p2 = p2.compose(a2)
-    #         if p2: print "sem from compose is ",p2.toString(True)
-    #
-    #     print "sem now is ",sem.toString(True)
-    #     return pair
-        
     
     def getheadlambdas(self):
         return []
-
-    # IDA: unused
-    # def splitconj(self,conj,inconj,outconj):
-    #     print "calling splitconj"
-    #     print "inconj is ",inconj.toString()
-    #     print "outconj is ",outconj.toString()
-    #     #return []
-    #     origsem = self.copy()
-    #     #print "getting top_node1"
-    #     #self.top_node()
-    #     #print "done that"
-    #     child = outconj
-    #     sem = self
-    #     evars = outconj.unboundVars()
-    #     # eventually need to do all orders
-    #     for evar in evars:
-    #         newvar = variable(evar)
-    #         outconj.replace2(evar,newvar)
-    #         l = lambdaExp()
-    #         l.setFunct(outconj)
-    #         l.setVar(newvar)
-    #         outconj = l
-    #     var = variable(outconj)
-    #     for evar in evars:
-    #         var.addAtFrontArg(evar)
-    #
-    #     inconj.addArg(var)
-    #     # need a list of arguments for var (initially
-    #     # going to be just other variables
-    #     print "replacing conj ",conj," in ",sem.toString(True)
-    #     parent = sem.replace2(conj,inconj)
-    #     print "got parent ",parent.toString(True)
-    #     child = outconj
-    #     child.parents = []
-    #
-    #     l = lambdaExp()
-    #     l.setFunct(parent)
-    #     l.setVar(var)
-    #
-    #     #parent.top_node()
-    #     print "parent sem is ",l.toString(True)
-    #     #print l
-    #     #parent.top_node()
-    #     print "child sem is ",child.toString(True)
-    #     print "\n\ncopying pair"
-    #     pair = (l.copy(),child.copy())
-    #
-    #
-    #
-    #
-    #     print "pair from conj is ",pair[0].toString(True),"   ",pair[1].toString(True)
-    #     sem=l.apply(outconj)
-    #     print "sem from conj now is ",sem.toString(True)
-    #     print "self now is ",self.toString(True)
-    #     print "sem is ",sem
-    #     print "comparing ",sem.toString(True)," to ",origsem.toString(True)
-    #     if not sem.equals(origsem):
-    #         print "\nERROR sem from conj does not match origsem"
-    #         print sem.toString(True)
-    #         print origsem.toString(True)
-    #         print ""
-    #     print "conj is ",conj
-    #     return pair
     
     def markCanBePulled(self):
         for e in self.allSubExps():
@@ -1078,7 +881,7 @@ class exp:
                     selfnew.setArg(i,v)
                 else:
                 
-                    v = variable.variable(None)
+                    v = variable(None)
                     print "making var for ",anew.toString(False)#," but have variables ",
                     print "setting new arg in ",selfnew.toString(True)
                     
@@ -1173,59 +976,43 @@ class exp:
             if not eorig.equals(self):
                 print "not back to orig"
             print "******* DONE *********"
-        print "reutrning ",pair
+        print "returning ",pair
         return pair
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        v = variable.variable(anew)
-        for a in outs:
-            print "aout is ",a.toString(True),a
-            v.addArg(a)
-                
-        # REALLY NEED TO MATCH VARIABLE ORDER TO ARG
-        # ORDER AND LAMBDA ORDER
-
-        print "a1 is ",anew.toString(True)
-        print "e is ",self.toString(True)
-            
-        # do not want to do this 
-        self.replace2(undere,v)
-        for av in vset:
-            l = lambdaExp()
-            l.setVar(av)
-            l.setFunct(anew)
-            anew = l
-
-        
-
-        print "Anew is ",anew.toString(True)
-        #    print "Vnew is ",v.toString(True)
-            
-        enew = self.copyNoVar()
-        l = lambdaExp()
-        l.setVar(v)
-        l.setFunct(enew)
-        enew = l.copy()
-        
-        print "here ENew is ",enew.toString(False)
-        self.replace2(v,undere)
-        print "self back to ",self.toString(True)
-        return (enew,anew)
+        # v = variable(anew)
+        # for a in outs:
+        #     print "aout is ",a.toString(True),a
+        #     v.addArg(a)
+        #
+        # # REALLY NEED TO MATCH VARIABLE ORDER TO ARG
+        # # ORDER AND LAMBDA ORDER
+        #
+        # print "a1 is ",anew.toString(True)
+        # print "e is ",self.toString(True)
+        #
+        # # do not want to do this
+        # self.replace2(undere,v)
+        # for av in vset:
+        #     l = lambdaExp()
+        #     l.setVar(av)
+        #     l.setFunct(anew)
+        #     anew = l
+        #
+        #
+        #
+        # print "Anew is ",anew.toString(True)
+        # #    print "Vnew is ",v.toString(True)
+        #
+        # enew = self.copyNoVar()
+        # l = lambdaExp()
+        # l.setVar(v)
+        # l.setFunct(enew)
+        # enew = l.copy()
+        #
+        # print "here ENew is ",enew.toString(False)
+        # self.replace2(v,undere)
+        # print "self back to ",self.toString(True)
+        # return (enew,anew)
 
     def makePairs2(self,depth=1):
         if depth>6: return
@@ -1243,7 +1030,7 @@ class exp:
             print "e is ",e.toString(True)
             for e2 in e.allExtractableSubExps():
                 if e2 == e: continue 
-                if e2.__class__==variable.variable: continue
+                if e2.__class__==variable: continue
                 # not sure that we have a decent thing going 
                 # on with return type but that can be fixed 
                 nu += 1
@@ -1262,7 +1049,7 @@ class exp:
                 j = 0
                 for e2 in e.allExtractableSubExps():
                     if e2 == e: continue 
-                    if e2.__class__==variable.variable: continue
+                    if e2.__class__==variable: continue
 
                     print "e2 is ",e2.toString(True)
                     if  bi[j]==0:  e2.setInOut(False)
@@ -1308,16 +1095,14 @@ class exp:
         conjunctions = []
         for e in subExps:
             
-            # this is how we should add null if we're going 
-            # to.
+            # this is how we should add null if we're going to
             allowNull = True
             if e==self: 
                 if allowNull:
                     nullpair = self.getNullPair()
                     repPairs.append(nullpair)
-                    #print "got null pair :: ",nullpair[0].toString(True)," ",nullpair[1].toString(True)
                 continue
-            if e.__class__==variable.variable:# and e.arguments==[]:
+            if e.__class__==variable:# and e.arguments==[]:
                 continue
                 #return (None,None)
             if e.__class__==eventMarker: continue
@@ -1361,39 +1146,13 @@ class exp:
     
     @staticmethod
     def main():
-        #pass
-        ##templates = {}
-        #inFile = open("/home/tom/Corpora/Brown/Eve/scripts/sems","r")
-        #readInExps.addFromFile(inFile,templates)
-    
-        #iV = {}
-        #intransVerbs = open("/home/tom/Corpora/Brown/Eve/scripts/intransVerbs","r")
-        #readInExps.addIntransVerbs(intransVerbs,iV)
-        #tV = {}
-        #transVerbs = open("/home/tom/Corpora/Brown/Eve/scripts/transVerbs","r")
-        #readInExps.addTransVerbs(transVerbs,tV)
-        #dtV = {}
-        #ditransVerbs = open("/home/tom/Corpora/Brown/Eve/scripts/ditransVerbs","r")
-        #readInExps.addDitransVerbs(ditransVerbs,dtV)
-        #con = {}
-        #controlVerbs = open("/home/tom/Corpora/Brown/Eve/scripts/controlVerbs","r")
-        #readInExps.addDitransVerbs(controlVerbs,con)
-        
-        #r = exp.makeExpWithArgs("lambda $0_{ev}.Q(aux|will&COND(v|like(pro|you,qn|more($1,and(n|grape($1),n|juice($1))),$0),$0),$0)",{})
-        #r = exp.makeExpWithArgs("lambda $0_{ev}.and(v|have(pro|you,qn|another($1,n|cookie($1)),$0),prep|on(det|the($2,n|table($2)),$0),adv|right($0))",{})
-
 
         r1 = exp.makeExpWithArgs("lambda $0_{e}.lambda $1_{ev}.and(aux|be&PRES(part|do-PROG(pro|you,$0,$1),$1),prep|in(det|that($2,n|placeholderP($2)),$1))",{})
         r2 = exp.makeExpWithArgs("lambda $0_{ev}.not(and(aux|do(and(v|want(pro|I,pro|you,$0),v|trip(pro|I,$0)),$0),prep|on(pro:poss:det|your($1,n|shoelace($1)),$0)),$0)",{});
         r3 = exp.makeExpWithArgs("lambda $0_{ev}.Q(aux|do&PAST(v|find(pro|you,det|the($1,and(adj|little($1),adj|red($1),n|bicycle($1))),$0),$0),$0)",{})
         r4 = exp.makeExpWithArgs("lambda $0_{ev}.aux|be&3S(and(part|go-PROG(pro|she,$0),v|have(pro|she,det|a($1,n|bottle($1)),$0)),$0)",{});
         r4 = exp.makeExpWithArgs("lambda $0_{ev}.not(and(aux|do(and(v|want(pro|I,pro|you,$0),v|trip(pro|I,$0)),$0),prep|on(pro:poss:det|your($1,n|shoelace($1)),$0)),$0)",{})
-#        r4 = exp.makeExpWithArgs("lambda $0_{e}.eqLoc(pro:poss:det|your($1,n|blanket($1)),$0)",{})
 
-        #r = exp.makeExpWithArgs("lambda $0_{ev}.and(v|go&PAST(n:prop|Momma,$0),prep|to(n:prop|Boston,$0))",{})
-    
-        # r = exp.makeExpWithArgs("lambda $0_{e}.and(n|grape($0),n|juice($0))",{})
-        # r = exp.makeExpWithArgs("lambda $0_{ev}.aux|can(v|see(pro|you,pro|her,$0),$0)",{})
         print "made reps"
         e1 = r1[0]
         e2 = r2[0]
@@ -1406,22 +1165,8 @@ class exp:
         e4 = r4[0]
         b = e4.makePairs()
 
-#        st = e4.buildAllSubTrees()
-#        print len(st)," subtrees"
-                        
-
         e4.genAllSplits()
 
-        #e2 = r2[0]
-        #print "\n\nmade exp"
-        #e2.printOut(True,0)
-        #eorig = e.copy()
-        
-        #print e1.equalsPlaceholder(e2)
-        #print e2.equalsPlaceholder(e1)
-        
-        
-        #return
         return
         a = e4.makePairs2()
         print "makepairs2 DONE\n\n\n"
@@ -1429,27 +1174,21 @@ class exp:
         for p in a:
             print "pair2",p[0].toString(True),p[1].toString(True)
         print len(a), " from makepairs2"
-        #print len(b)," from makepairs"
         return 
 
-        #sc = synCat.allSynCats(e.type())[0]
-        #topCat = cat(sc,e)
         print "\nExp Splits are:"
         for split in e.makePairs():
-            #print split
             print split[0].toString(True)," ",split[1].toString(True)
         print "\n\n\n\n"
         i = 0
         for undere in e.allSubExps():
-            if undere.__class__==variable.variable: continue
+            if undere.__class__==variable: continue
             print "e now is ",e.toString(True) 
             e.resetBinders()
             for unune in e.allSubExps():
                 unune.linkedVar = None 
                 print "setting to false for ",unune.toString(True)
                 unune.setInOut(False)
-                #if unune.__class__==variable and unune.binder not in undere.allSubExps:
-                #    ununue
             print "\n\nundere is ",undere.toString(True)
             if undere.__class__ == lambdaExp: continue
             if e.__class__ == lambdaExp and undere==e.funct: continue
@@ -1464,8 +1203,7 @@ class exp:
             (anew,outs,vset) = undere.makeInOut()
             print "made inout"
             print "ANEW WITH LAMBDA IS ",anew.toString(True)
-            #v = variable(anew)
-            v = variable.variable(anew)
+            v = variable(anew)
             lambdaord = []
             for a in outs:
                 print "aout is ",a.toString(True),a
@@ -1483,13 +1221,9 @@ class exp:
             print "a1 is ",anew.toString(True)
             print "e is ",e.toString(True)
 
-            # do not want to do this 
             e.replace2(undere,v)
-            #for av in vset:
-
 
             print "Anew is ",anew.toString(True)
-            # print "Vnew is ",v.toString(True)
             print "e1 is ",e.toString(True)            
 
             enew = e.copyNoVar()
@@ -1498,15 +1232,13 @@ class exp:
             l.setVar(v)
             l.setFunct(enew)
 
-            #print "pair is ",l.toString(True),anew.toString(True)
             enew = l.copy()
 
             print "here2 ENew is ",enew.toString(False)
             print "pair is ",enew.toString(True),anew.toString(True)
             
             eback = enew.apply(anew)
-            
-            
+
             if eback:
                 print "enew back to ",eback.toString(True)
                 eback.resetEqualOther()
@@ -1522,62 +1254,6 @@ class exp:
             if not eorig.equals(e):
                 print "not back to orig"
             print "******* DONE *********"
-        #print "making pairs 2"
-            #print "EStill is ",e.toString(True)
-        #r = exp.makeExpWithArgs("lambda $0_{<e,t>}.Q(pro:poss:det|your($1,$0($1)))",{})
-        ##lambda $0_{ev}.aux|can(v|see(pro|you,pro|her,$0))",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        #lambda $0_{<e,t>}.Q(pro:poss:det|your($1,$0($1)))
-        
-        #r = exp.makeExpWithArgs("adj|big(pro|you)",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        #sc = synCat.allSynCats(e.type())[0]
-        #topCat = cat(sc,e)
-        #print "\nPairs are:"
-        #for pair in topCat.allPairs({}):
-            #print pair[0].toString()," ",pair[1].toString()
-        
-        #r = exp.makeExpWithArgs("eq(pro|you,pro:dem|that)",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        #r = exp.makeExpWithArgs("lambda $0_{e}.eq($0,pro:dem|that)",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        
-        #r = exp.makeExpWithArgs("Q(qn|more($0,n|juice($0)))",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        
-        #r = exp.makeExpWithArgs("not(adj|sure(pro|I))",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-                
-        #r = exp.makeExpWithArgs("lambda $0_{ev}.v|eat&PAST(pro|you,pro|it,$0)",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        
-        #r = exp.makeExpWithArgs("lambda $0_{ev}.aux|be&3S(part|drink-PROG(pro|he,pro:poss:det|his($1,n|coffee($1)),$0))",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-
-        
-        #r = exp.makeExpWithArgs("eq(pro:dem|that,and(n:prop|Jack,n:prop|Jill))",{})
-        #e = r[0]
-        #print "\n\nmade exp"
-        #e.printOut(True,0)
-        
-        #l = e.abstractOver(e.arguments[0])
-        #l.printOut(True,0)
 
 
 class emptyExp(exp):
@@ -1624,7 +1300,6 @@ class emptyExp(exp):
             exp.eventNum = 0
             exp.emptyNum = 0
             self.clearNames()
-        #print "returning ",s
         return s
 
     def toStringUBL(self,top):
@@ -1637,7 +1312,6 @@ class emptyExp(exp):
             exp.eventNum = 0
             exp.emptyNum = 0
             self.clearNames()
-        #print "returning ",s
         return s
 
     def clearNames(self):
@@ -1654,7 +1328,6 @@ class emptyExp(exp):
             
 class variable(exp):
     def __init__(self,e):
-        #print "making variable "+str(id(self))
         self.linkedVar = None
         self.name = None
         self.arguments = []
@@ -1668,17 +1341,13 @@ class variable(exp):
         self.inout=None
         self.doubleQuant = False
         if e:
-            #print "making var for ",e.toString(True)
             self.t = e.type()
-
-            #print "type is ",self.t.toString()
             self.numArgs = e.numArgs
             self.argTypes = e.argTypes
             #self.arguments = []
             #for a in e.arguments:
                 #print "adding arg ",a
                 #self.addAtFrontArg(a)
-            #print "var now is ",self.toString(True)
             #self.arguments = e.arguments
             self.returnType = e.getReturnType()
 
@@ -1715,7 +1384,7 @@ class variable(exp):
     def vartopprior(self):
         return -2.0
         #return self.semprior()
-    #return -3 * self.type().toString().count(",") - 1
+        #return -3 * self.type().toString().count(",") - 1
 
     def makeShell(self):
         if self.varcopy is None: return None
@@ -1727,20 +1396,14 @@ class variable(exp):
         return v
 
     def isEmpty(self):
-        #print "checking if empty"
         return False
 
     def isConjN(self):
         return False
 
     def copy(self):
-        #print "copying ",self.toString(True)
-
-        if self.varcopy is None: return None
-#            print "nonevarcopy in ",self.toString(True)
-#            return variable(self)
-
-
+        if self.varcopy is None:
+            return None
         args = []
         for a in self.arguments:
             args.append(a.copy())
@@ -1751,12 +1414,9 @@ class variable(exp):
 
     def copyNoVar(self):
         return self
-        #e = exp(None,self.numArgs,self.argTypes,self.returnType)
-        #return variable(e)
 
     def allSubExps(self):
         subexps = [self]
-        #subexps = []
         if len(self.arguments)>0:
             subexps.append(self)
             for a in self.arguments:
@@ -1788,7 +1448,6 @@ class variable(exp):
 
     def toString(self,top):
         s=""
-        #print "var var is ",self
         if not self.name:
             self.name="UNBOUND"#+str(id(self)) #exp.varNum)
         s=self.name #+str(id(self))#+"_{"+self.type().toString()+"}"#"_"+str(id(self))+"_{"+self.type().toString()+"}"
@@ -1812,7 +1471,6 @@ class variable(exp):
 
     def toStringShell(self,top):
         s=""
-        #print "var var is ",self
         if not self.name:
             self.name="UNBOUND"#+str(id(self)) #exp.varNum)
         s=self.name#+"_{"+self.type().toString()+"}"#"_"+str(id(self))+"_{"+self.type().toString()+"}"
@@ -1836,7 +1494,6 @@ class variable(exp):
 
     def toStringUBL(self,top):
         s=""
-        #print "var var is ",self
         if not self.name:
             self.name="UNBOUND"#+str(id(self)) #exp.varNum)
         s=self.name#+"_{"+self.type().toString()+"}"#"_"+str(id(self))+"_{"+self.type().toString()+"}"
@@ -1871,8 +1528,6 @@ class variable(exp):
 
     # call this whenever introducing a variable
     def setEqualTo(self,other):
-        #print "self is ",self
-        #print "setting var equal to ",other
         self.equalother = other
 
     def setVarCopy(self,other):
@@ -1895,19 +1550,12 @@ class variable(exp):
         return other==self.equalother
 
     def equals(self,other):
-        #if other!=self.equalother:
-            #print "variable does not match"
-            #print "self is ",id(self)
-            #print "other is ",id(other)
-            #print id(self.equalother)
-            #print "other is  ",other.__class__
         if len(self.arguments)!=len(other.arguments): return False
         i = 0
         for a in self.arguments:
             if not a.equals(other.arguments[i]): return False
             i+=1
         return other==self.equalother
-
 
 
 def allcombinations(arguments,index,allcombs):

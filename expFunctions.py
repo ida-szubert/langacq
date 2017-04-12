@@ -1,10 +1,3 @@
-import itertools
-from errorFunct import error
-from semType import semType
-import copy
-import random
-from tools import permutations
-# from variable import *
 from predicate import *
 from constant import *
 from quant import *
@@ -83,11 +76,13 @@ def makeExp(predString, expString, vardict):
         ##e.hasEvent()
         # nouns have event markers???
         # and adjectives???
+
     # IDA: not used
     elif name == "PAST":
         numArgs = 1
         argTypes = ["t"]
         e = predicate(name,numArgs,argTypes,type)
+
     #entities
     elif type in ["pro","pro:indef","pro:poss","pro:refl","n:prop","pro:dem","pro:wh"]:
         numArgs = 0
@@ -95,6 +90,7 @@ def makeExp(predString, expString, vardict):
         e = constant(name,numArgs,argTypes,type)
         #print "made const for ",name
         e.makeCompNameSet()
+
     # verb modifiers
     elif type in ["inf","adv","adv:int","adv:loc","adv:tem"]:
         numArgs = 1
@@ -123,22 +119,25 @@ def makeExp(predString, expString, vardict):
         # the type of the variable is going to depend
         # on the wh word (loc, or otherwise);/../
         pass
+
     elif type in ["v","part"]:
         # whole verbal heirarchy needed here, do this
         # from a different file
         # these are obviously all events
-
         pass
+
     elif type in ["conj:coo"]:
         # check both sides and then conjoin
         e = conjunction()
         e.setType(name)
         #pass
+
     elif type in ["prep"]:
         numArgs = 2
         argTypes = ["e","ev"]
         e = predicate(name,numArgs,argTypes,type)
         #e.hasEvent()
+
     elif type in ["pro:wh"]:
         # WTF
         pass
@@ -149,7 +148,7 @@ def makeExp(predString, expString, vardict):
     for i, arg in enumerate(args):
         e.setArg(i,arg)
     e.setString()
-    return (e, expString)
+    return e, expString
 
 
 def makeExpWithArgs(expString,vardict):
@@ -173,17 +172,12 @@ def makeExpWithArgs(expString,vardict):
         e.setString()
 
     elif arguments_present and (commas_inside_parens or no_commas):
-        # predstring = expString.split("(")[0]
-        # expString=expString[expString.find("(")+1:]
         predstring, expString = expString.split("(",1)
         e, expString = makeLogExp(predstring,expString,vardict)
         if e:
             return e, expString
         else:
             e, expString = makeVerbs(predstring,expString,vardict)
-            # if r:
-            #     e=r[0]
-            # elif predstring[0]=="$":
             if e is None:
                 if predstring[0]=="$":
                     e, expString = makeVars(predstring,expString,vardict)
@@ -198,32 +192,6 @@ def makeExpWithArgs(expString,vardict):
                     varname = expString[:expString.find(",")]
                     vardict[varname]=var
                     expString = expString[expString.find(","):]
-            # read in the arguments
-            # i=0
-            # finished = False
-            # numBrack = 1
-            # i = 0
-            # j = 0
-            # argcount = 0
-            # while not finished:
-            #     if numBrack==0:
-            #         finished = True
-            #     elif expString[i] in [",",")"] and numBrack==1:
-            #         if i>j:
-            #             r = exp.makeExpWithArgs(expString[j:i],vardict)
-            #             if r: a = r[0]
-            #             else: error("cannot make exp for "+expString[j:i])
-            #             e.setArg(argcount,a)
-            #             argcount+=1
-            #         j = i+1
-            #         if expString[i]==")": finished = True
-            #
-            #     elif expString[i]=="(": numBrack+=1
-            #     elif expString[i]==")": numBrack-=1
-            #
-            #     i += 1
-            # expString = expString[i:]
-    # constants
     else:
         if expString.__contains__(",") and expString.__contains__(")"):
             constend = min(expString.find(","),expString.find(")"))
@@ -239,13 +207,10 @@ def makeExpWithArgs(expString,vardict):
             expString=expString[constend:]
         else:
             e, expString = makeExp(conststring, "", vardict)
-        # expString=expString[constend:]
-        # e.setString()
-    return (e,expString)
+    return e,expString
 
 
 def extractArguments(expString, vardict):
-    i=0
     finished = False if expString else True
     numBrack = 1
     i = 0
@@ -257,8 +222,6 @@ def extractArguments(expString, vardict):
         elif expString[i] in [",",")"] and numBrack==1:
             if i>j:
                 a, _ = makeExpWithArgs(expString[j:i],vardict)
-                # if r: a = r[0]
-                # else: error("cannot make exp for "+expString[j:i])
                 if not a:
                     error("cannot make exp for "+expString[j:i])
                 arglist.append(a)
@@ -271,54 +234,27 @@ def extractArguments(expString, vardict):
     return arglist, expString[i:]
 
 
-# this gives the vars the arguments that they need
 def makeVars(predstring,expString,vardict):
     if not vardict.has_key(predstring):
         error("unbound var "+predstring)
     e = vardict[predstring]
-    # numArgs = 1
-    # finished = False
-    # numBrack = 1
-    # i = 0
-    # while not finished:
-    #     if numBrack==0: finished = True
-    #     elif expString[i]=="," and numBrack==1: numArgs += 1
-    #     elif expString[i]==")": numBrack-=1
-    #     elif expString[i]=="(": numBrack+=1
-    #     #elif expString[i]=="," and numBrack==1: numArgs += 1
-    #     i += 1
     args, expString = extractArguments(expString, vardict)
-    # for i in range(numArgs):
-    #     e.addArg(emptyExp())
     for arg in args:
         e.addArg(arg)
-    return (e, expString)
+    return e, expString
 
 
-# this makes the set verbs
 def makeVerbs(predstring,expString,vardict):
     if predstring.split("|")[0] not in ["v","part"]:
         return None, expString
-    # numArgs = 1
-    # finished = False
-    # numBrack = 1
-    # i = 0
-    # while not finished:
-    #     if numBrack==0: finished = True
-    #     elif expString[i]=="," and numBrack==1: numArgs += 1
-    #     elif expString[i]==")": numBrack-=1
-    #     elif expString[i]=="(": numBrack+=1
-    #     i += 1
     args, expString = extractArguments(expString)
-    # argTypes = []
-    # for i in range(numArgs): argTypes.append(semType.e)
     argTypes = [x.type() for x in args]
     numArgs = len(args)
     verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
     for i, arg in enumerate(args):
         verb.setArg(i,arg)
     verb.setString()
-    return (verb,expString)
+    return verb,expString
 
 
 # this makes the set logical expressions
@@ -349,23 +285,22 @@ def makeLogExp(predstring,expString,vardict):
             i += 1
         expString = expString[i:]
         e.setString()
-        # return (e,expString)
 
     # need arg1 arg2
     # IDA: not used any more
-    elif predstring=="eq":
-        eqargs = []
-        while expString[0]!=")":
-            if expString[0]==",": expString = expString[1:]
-            r = makeExpWithArgs(expString,vardict)
-            eqargs.append(r[0])
-            expString = r[1]
-            #i+=1
-        if len(eqargs)!=3: error(str(len(eqargs))+"args for eq")
-        else: e = eq(eqargs[0],eqargs[1],eqargs[2])
-        expString = expString[1:]
-        e.setString()
-        # return (e,expString)
+    # elif predstring=="eq":
+    #     eqargs = []
+    #     while expString[0]!=")":
+    #         if expString[0]==",": expString = expString[1:]
+    #         r = makeExpWithArgs(expString,vardict)
+    #         eqargs.append(r[0])
+    #         expString = r[1]
+    #         #i+=1
+    #     if len(eqargs)!=3: error(str(len(eqargs))+"args for eq")
+    #     else: e = eq(eqargs[0],eqargs[1],eqargs[2])
+    #     expString = expString[1:]
+    #     e.setString()
+    #     # return (e,expString)
 
     elif predstring=="not":
         negargs = []
@@ -374,7 +309,6 @@ def makeLogExp(predstring,expString,vardict):
                 expString = expString[1:]
             a, expString = makeExpWithArgs(expString,vardict)
             negargs.append(a)
-            # expString = r[1]
         if len(negargs)!=2:
             error(str(len(negargs))+"args for neg")
         else:
@@ -382,7 +316,7 @@ def makeLogExp(predstring,expString,vardict):
             e.setEvent(negargs[1])
         expString = expString[1:]
         e.setString()
-        # return (e,expString)
+
     elif predstring == "Q":
         qargs = []
         while expString[0]!=")":
@@ -395,40 +329,36 @@ def makeLogExp(predstring,expString,vardict):
         else:
             e = qMarker(qargs[0])
             # e.setEvent(qargs[1])
-
         expString = expString[1:]
-        # e.setString()
-        # return (e,expString)
 
-
-    elif predstring == "eqLoc":
-        eqargs = []
-        while expString[0]!=")":
-            if expString[0]==",": expString = expString[1:]
-            r = makeExpWithArgs(expString,vardict)
-            eqargs.append(r[0])
-            expString = r[1]
-        if len(eqargs)!=2: error(str(len(eqargs))+"args for eqLoc")
-        else:
-            e = predicate("eqLoc",2,["e","e"],None)
-            e.setArg(0,eqargs[0])
-            e.setArg(1,eqargs[1])
-        expString = expString[1:]
-        e.setString()
-        # return (e,expString)
-    elif predstring == "evLoc":
-        eqargs = []
-        while expString[0]!=")":
-            if expString[0]==",": expString = expString[1:]
-            r = makeExpWithArgs(expString,vardict)
-            eqargs.append(r[0])
-            expString = r[1]
-        if len(eqargs)!=2: error(str(len(eqargs))+"args for evLoc")
-        else:
-            e = predicate("evLoc",2,["e","ev"],None)
-            e.setArg(0,eqargs[0])
-            e.setArg(1,eqargs[1])
-
-        expString = expString[1:]
-        e.setString()
-    return (e,expString)
+    # elif predstring == "eqLoc":
+    #     eqargs = []
+    #     while expString[0]!=")":
+    #         if expString[0]==",": expString = expString[1:]
+    #         r = makeExpWithArgs(expString,vardict)
+    #         eqargs.append(r[0])
+    #         expString = r[1]
+    #     if len(eqargs)!=2: error(str(len(eqargs))+"args for eqLoc")
+    #     else:
+    #         e = predicate("eqLoc",2,["e","e"],None)
+    #         e.setArg(0,eqargs[0])
+    #         e.setArg(1,eqargs[1])
+    #     expString = expString[1:]
+    #     e.setString()
+    #     # return (e,expString)
+    # elif predstring == "evLoc":
+    #     eqargs = []
+    #     while expString[0]!=")":
+    #         if expString[0]==",": expString = expString[1:]
+    #         r = makeExpWithArgs(expString,vardict)
+    #         eqargs.append(r[0])
+    #         expString = r[1]
+    #     if len(eqargs)!=2: error(str(len(eqargs))+"args for evLoc")
+    #     else:
+    #         e = predicate("evLoc",2,["e","ev"],None)
+    #         e.setArg(0,eqargs[0])
+    #         e.setArg(1,eqargs[1])
+    #
+    #     expString = expString[1:]
+    #     e.setString()
+    return e,expString
