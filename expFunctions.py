@@ -64,100 +64,166 @@ def separate_parens(expression):
 
 
 def makeExp(predString, expString, vardict):
+    # expression types which can be returned:
+    # constant, predicate, quant, conjunction
+    # quant is an expression type for determiners
+    # (possesive as well) and quantifiers
+
+    # CHILDES POS tags are:
+    #n:prop, n:gerund, n, adj
+    #pro:sub, pro:obj, pro:per, pro:poss, pro:rel, pro:refl, pro:exist, pro:int, pro:dem, pro:indef
+    #mod:aux, aux, mod, v, part, cop
+    #det:dem, det:num, det:poss, det:art
+    #adv, adv:int, adv:tem
+    #conj, coord, co, prep, post
+    #qn
+
+    #n, adj can be like a nominal (one arg, a variable), predicate, or article (if possesive)
+    #n:prop can be a constant, predicate, or an article (if possesive)
+    #n:gerund can be like a nominal or like a predicate
+    #pro:exist has one arg (event)
+    #pro:int can be a constant, a placeholder for a nominal, or a predicate (anything really)
+    #pro:dem can be a constant or a determiner (2 args)
+    #pro:indef can be a constant, a placeholder for a nominal, or a predicate
+    #mod:aux, aux, mod are a predicate (2 args, a predicate expression and an event)
+    #v, part are a predicate with max 4 arguments (one event and the rest can be e or <ev, t>)
+    #cop is like any other verb (if it was parsed as a copula, it wouldn't show up)
+    #det:dem is constant or like an article
+    #det:num predicate with one arg (nominal or variable(if standing in for a nominal)), constant
+    #det:poss should be like articles, some constants due to POS mistakes
+    #det:art like article, first arg a variable/constant
+    #adv has one argument (variable or predicate)
+    #adv:int, adv:tem have one argument (variable)
+    #conj has 2 args (predicates)
+    #coord has 2 args (can be anything)
+    #co is mostly adjunct (one arg, the event), but can be a constant or a predicate
+    #prep mostly has 2 args (nominal and event variable), but can have one of them
+    #post has one arg (constant, lambda expression, predicate, variable)
+    #qn is like an article or adjective
+
     name = predString.strip().rstrip()
     type = name.split("|")[0]
-    e = None
-    # predicates that take a single entity
-    if type in ["adj","n"]:
-        numArgs = 1
-        argTypes = ["e"]
-        e = predicate(name,numArgs,argTypes,type)
-        e.setNounMod()
-        ##e.hasEvent()
-        # nouns have event markers???
-        # and adjectives???
-
-    # IDA: not used
-    elif name == "PAST":
-        numArgs = 1
-        argTypes = ["t"]
-        e = predicate(name,numArgs,argTypes,type)
-
-    #entities
-    elif type in ["pro","pro:indef","pro:poss","pro:refl","n:prop","pro:dem","pro:wh"]:
-        numArgs = 0
-        argTypes = []
-        e = constant(name,numArgs,argTypes,type)
-        #print "made const for ",name
-        e.makeCompNameSet()
-
-    # verb modifiers
-    elif type in ["inf","adv","adv:int","adv:loc","adv:tem"]:
-        numArgs = 1
-        argTypes = ["t"]
-        e = predicate(name,numArgs,argTypes,type)
-        #e.hasEvent() # think we're dropping out inf though
-        # events?? - sure thing
-
-    # introduce lambda
-    elif type in ["det","pro:poss:det","det:num","qn"]:
-        numArgs = 1
-        argTypes = ["<e,t>"] # should actually be <e,t>
-        # return an entity
-        e = quant(name,type,variable(None))
-
-    elif type in ["aux"]:
-        #numArgs = 2
-        #argTypes = ["subj","action"]
-        numArgs = 2
-        argTypes = ["action","event"]
-        e = predicate(name,numArgs,argTypes,type)
-
-    elif type in ["adv:wh","pro:wh","det:wh"]:
-        # obviously don't want to add anything
-        # for the wh word apart from a lambda term.
-        # the type of the variable is going to depend
-        # on the wh word (loc, or otherwise);/../
-        pass
-
-    elif type in ["v","part"]:
-        # whole verbal heirarchy needed here, do this
-        # from a different file
-        # these are obviously all events
-        pass
-
-    elif type in ["conj:coo"]:
-        # check both sides and then conjoin
-        e = conjunction()
-        e.setType(name)
-        #pass
-
-    elif type in ["prep"]:
-        numArgs = 2
-        argTypes = ["e","ev"]
-        e = predicate(name,numArgs,argTypes,type)
-        #e.hasEvent()
-
-    elif type in ["pro:wh"]:
-        # WTF
-        pass
-        # e=emptySem()
-    #else:
-        #print name,"  ",type
+    # e = None
     args, expString = extractArguments(expString, vardict)
+    argTypes = [x.type() for x in args]
+    numArgs = len(args)
+
+    #constants or variables
+    if numArgs == 0:
+        # pro:sub, pro:obj, pro:per (mostly), pro:refl
+        # pro:rel (unless used as complementizers or mistaken with det:dem)
+        # some tokens of: pro:int, pro:dem, pro:indef, det:dem, det:num, co
+        e = constant(name,numArgs,argTypes,type)
+        e.makeCompNameSet()
+    elif numArgs == 1:
+        # adj, n, n:gerund, n:prop, pro:indef,
+        # det:num, pro:exist, pro:int, v, part,
+        # adv, adv:int, adv:tem, co, prep, post, qn
+        e = predicate(name,numArgs,argTypes,type)
+        if type in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
+            e.setNounMod()
+    elif numArgs == 2:
+        # adj, n, n:prop, pro:int, pro:indef, prep
+        # mod:aux, aux, mod, v, part, cop, co, n:gerund
+        # pro:dem, det:dem, det:poss, det:art, qn
+        # conj, coord
+        if type in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
+            e = quant(name,type,args[0])
+            args = args[1:]
+        elif type in ['conj', 'coord']:
+            e = conjunction()
+            e.setType(name)
+        else:
+            e = predicate(name,numArgs,argTypes,type)
+    else:
+        # adj, n, pro:indef, pro:int, n:prop
+        # v, part, cop, co, n:gerund
+        e = predicate(name,numArgs,argTypes,type)
+
     for i, arg in enumerate(args):
         e.setArg(i,arg)
     e.setString()
+
     return e, expString
+
+    # # nouns and adjectives can be non-predicative or predicative
+    # if type in ["adj","n"]:
+    #     numArgs = 1
+    #     argTypes = ["e"]
+    #     e = predicate(name,numArgs,argTypes,type)
+    #     e.setNounMod()
+    #     ##e.hasEvent()
+    #     # nouns have event markers???
+    #     # and adjectives???
+    #
+    # # IDA: not used
+    # elif name == "PAST":
+    #     numArgs = 1
+    #     argTypes = ["t"]
+    #     e = predicate(name,numArgs,argTypes,type)
+    #
+    # #entities
+    # elif type in ["pro","pro:indef","pro:poss","pro:refl","n:prop","pro:dem","pro:wh"]:
+    #     numArgs = 0
+    #     argTypes = []
+    #     e = constant(name,numArgs,argTypes,type)
+    #     e.makeCompNameSet()
+    #
+    # # verb modifiers
+    # elif type in ["inf","adv","adv:int","adv:loc","adv:tem"]:
+    #     numArgs = 1
+    #     argTypes = ["t"]
+    #     e = predicate(name,numArgs,argTypes,type)
+    #     #e.hasEvent() # think we're dropping out inf though
+    #     # events?? - sure thing
+    #
+    # # introduce lambda
+    # elif type in ["det","pro:poss:det","det:num","qn"]:
+    #     numArgs = 1
+    #     argTypes = ["<e,t>"] # should actually be <e,t>
+    #     # return an entity
+    #     e = quant(name,type,variable(None))
+    #
+    # elif type in ["aux"]:
+    #     #numArgs = 2
+    #     #argTypes = ["subj","action"]
+    #     numArgs = 2
+    #     argTypes = ["action","event"]
+    #     e = predicate(name,numArgs,argTypes,type)
+    #
+    # elif type in ["adv:wh","pro:wh","det:wh"]:
+    #     # obviously don't want to add anything
+    #     # for the wh word apart from a lambda term.
+    #     # the type of the variable is going to depend
+    #     # on the wh word (loc, or otherwise);/../
+    #     pass
+    #
+    # elif type in ["v","part"]:
+    #     # whole verbal hierarchy needed here
+    #     # do this from a different file
+    #     # these are obviously all events
+    #     pass
+    #
+    # elif type in ["conj:coo"]:
+    #     e = conjunction()
+    #     e.setType(name)
+    #
+    # elif type in ["prep"]:
+    #     numArgs = 2
+    #     argTypes = ["e","ev"]
+    #     e = predicate(name,numArgs,argTypes,type)
+    #     #e.hasEvent()
+    # return e, expString
 
 
 def makeExpWithArgs(expString,vardict):
     print "making ",expString
+    is_lambda = expString[:6]=="lambda"
     arguments_present = -1<expString.find("(")<expString.find(")")
     no_commas = expString.find(",")==-1
     commas_inside_parens = -1<expString.find("(")<expString.find(",")
 
-    if expString[:6]=="lambda":
+    if is_lambda:
         vname = expString[7:expString.find("_{")]
         tstring = expString[expString.find("_{")+2:expString.find("}")]
         t = semType.makeType(tstring)
@@ -201,10 +267,11 @@ def makeExpWithArgs(expString,vardict):
             constend = len(expString)
         conststring = expString[:constend]
         if conststring[0]=="$":
-            if not vardict.has_key(conststring):
-                error("unbound var "+conststring)
-            e = vardict[conststring]
-            expString=expString[constend:]
+            e, expString = makeVars(conststring, expString[constend:], vardict, parse_args=False)
+            # if not vardict.has_key(conststring):
+            #     error("unbound var "+conststring)
+            # e = vardict[conststring]
+            # expString=expString[constend:]
         else:
             e, expString = makeExp(conststring, "", vardict)
     return e,expString
@@ -233,21 +300,53 @@ def extractArguments(expString, vardict):
         i += 1
     return arglist, expString[i:]
 
+# finished = False
+# numBrack = 1
+# i = 0
+# j = 0
+# args = []
+# while not finished:
+#     if numBrack==0:
+#         finished = True
+#     elif expString[i] in [",",")"] and numBrack==1:
+#         a, _ = makeExpWithArgs(expString[j:i],vardict)
+#         if not a:
+#             error("cannot make exp for "+expString[j:i])
+#         e.addArg(a)
+#         j = i+1
+#         if expString[i]==")": finished = True
+#
+#     elif expString[i]=="(": numBrack+=1
+#     elif expString[i]==")": numBrack-=1
+#     i += 1
 
-def makeVars(predstring,expString,vardict):
+
+def makeVars(predstring,expString,vardict,parse_args=True):
     if not vardict.has_key(predstring):
-        error("unbound var "+predstring)
-    e = vardict[predstring]
-    args, expString = extractArguments(expString, vardict)
-    for arg in args:
-        e.addArg(arg)
+        if "_{" in predstring:
+            vname = predstring[:predstring.find("_{")]
+            tstring = predstring[predstring.find("_{")+2:predstring.find("}")]
+        else:
+            vname = predstring
+            tstring = 'e'
+        t = semType.makeType(tstring)
+        e = variable(None)
+        e.t = t
+        vardict[vname] = e
+    else:
+        e = vardict[predstring]
+
+    if e.numArgs == 0 and parse_args:
+        args, expString = extractArguments(expString, vardict)
+        for arg in args:
+            e.addArg(arg)
     return e, expString
 
 
 def makeVerbs(predstring,expString,vardict):
     if predstring.split("|")[0] not in ["v","part"]:
         return None, expString
-    args, expString = extractArguments(expString)
+    args, expString = extractArguments(expString, vardict)
     argTypes = [x.type() for x in args]
     numArgs = len(args)
     verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
@@ -260,33 +359,36 @@ def makeVerbs(predstring,expString,vardict):
 # this makes the set logical expressions
 def makeLogExp(predstring,expString,vardict):
     e = None
+    # adjunctive 'and' takes 2 arguments
     if predstring=="and" or predstring=="and_comp":
         e = conjunction()
-        finished = False
-        numBrack = 1
-        i = 0
-        j = 0
-        args = []
-        while not finished:
-            if numBrack==0: finished = True
-
-            elif expString[i] in [",",")"] and numBrack==1:
-                a, _ = makeExpWithArgs(expString[j:i],vardict)
-                # if r: a = r[0]
-                # else: error("cannot make exp for "+expString[j:i])
-                if not a:
-                    error("cannot make exp for "+expString[j:i])
-                e.addArg(a)
-                j = i+1
-                if expString[i]==")": finished = True
-
-            elif expString[i]=="(": numBrack+=1
-            elif expString[i]==")": numBrack-=1
-            i += 1
-        expString = expString[i:]
+        args, expString = extractArguments(expString, vardict)
+        for a in args:
+            e.addArg(a)
+        # finished = False
+        # numBrack = 1
+        # i = 0
+        # j = 0
+        # args = []
+        # while not finished:
+        #     if numBrack==0: finished = True
+        #
+        #     elif expString[i] in [",",")"] and numBrack==1:
+        #         a, _ = makeExpWithArgs(expString[j:i],vardict)
+        #         # if r: a = r[0]
+        #         # else: error("cannot make exp for "+expString[j:i])
+        #         if not a:
+        #             error("cannot make exp for "+expString[j:i])
+        #         e.addArg(a)
+        #         j = i+1
+        #         if expString[i]==")": finished = True
+        #
+        #     elif expString[i]=="(": numBrack+=1
+        #     elif expString[i]==")": numBrack-=1
+        #     i += 1
+        # expString = expString[i:]
         e.setString()
 
-    # need arg1 arg2
     # IDA: not used any more
     # elif predstring=="eq":
     #     eqargs = []
@@ -301,7 +403,8 @@ def makeLogExp(predstring,expString,vardict):
     #     expString = expString[1:]
     #     e.setString()
     #     # return (e,expString)
-
+    # 'not' takes 2 arguments, negated expression and event variable
+    # IDA: but negation need not be over an event predicate
     elif predstring=="not":
         negargs = []
         while expString[0]!=")":
@@ -309,14 +412,16 @@ def makeLogExp(predstring,expString,vardict):
                 expString = expString[1:]
             a, expString = makeExpWithArgs(expString,vardict)
             negargs.append(a)
-        if len(negargs)!=2:
-            error(str(len(negargs))+"args for neg")
+        # if len(negargs)!=2:
+        #     error(str(len(negargs))+"args for neg")
         else:
-            e = neg(negargs[0])
-            e.setEvent(negargs[1])
+            e = neg(negargs[0], len(negargs))
+            if len(negargs) > 1:
+                e.setEvent(negargs[1])
         expString = expString[1:]
         e.setString()
 
+    # IDA: Q takes just 1 argument
     elif predstring == "Q":
         qargs = []
         while expString[0]!=")":
@@ -331,34 +436,4 @@ def makeLogExp(predstring,expString,vardict):
             # e.setEvent(qargs[1])
         expString = expString[1:]
 
-    # elif predstring == "eqLoc":
-    #     eqargs = []
-    #     while expString[0]!=")":
-    #         if expString[0]==",": expString = expString[1:]
-    #         r = makeExpWithArgs(expString,vardict)
-    #         eqargs.append(r[0])
-    #         expString = r[1]
-    #     if len(eqargs)!=2: error(str(len(eqargs))+"args for eqLoc")
-    #     else:
-    #         e = predicate("eqLoc",2,["e","e"],None)
-    #         e.setArg(0,eqargs[0])
-    #         e.setArg(1,eqargs[1])
-    #     expString = expString[1:]
-    #     e.setString()
-    #     # return (e,expString)
-    # elif predstring == "evLoc":
-    #     eqargs = []
-    #     while expString[0]!=")":
-    #         if expString[0]==",": expString = expString[1:]
-    #         r = makeExpWithArgs(expString,vardict)
-    #         eqargs.append(r[0])
-    #         expString = r[1]
-    #     if len(eqargs)!=2: error(str(len(eqargs))+"args for evLoc")
-    #     else:
-    #         e = predicate("evLoc",2,["e","ev"],None)
-    #         e.setArg(0,eqargs[0])
-    #         e.setArg(1,eqargs[1])
-    #
-    #     expString = expString[1:]
-    #     e.setString()
     return e,expString

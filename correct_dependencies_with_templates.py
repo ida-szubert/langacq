@@ -1,4 +1,11 @@
 from exp import *
+from constant import *
+from eventMarker import *
+# from emptyExp import *
+# from variable import *
+from qMarker import *
+from conjunction import *
+from lambdaExp import *
 # from oldTranslationFunctions import *
 from newTranslationFunctions import *
 import readInExps
@@ -252,7 +259,7 @@ def checkForAdjAdv(root_sem, sent, semline):
 def getRepFragments(root_sem):
     reps = set([])
     for e in root_sem.all_nodes():
-        if e.semTemp and e.semTemp.argSet or e.semTemp.__class__ == exp.constant:
+        if e.semTemp and e.semTemp.argSet or e.semTemp.__class__ == constant:
             reps.add(e.semTemp.top_node())
     reps.discard(None)
     todel = []
@@ -303,7 +310,7 @@ def checkUnboundVar(rep):
     for e in rep.allSubExps():
         for a in e.arguments:
             # print 'e is ',e.toString(True)
-            if a.__class__ == exp.variable or a.__class__ == exp.eventMarker:
+            if a.__class__ == variable or a.__class__ == eventMarker:
                 print 'got var'
                 if a.binder is None:
                     # pass
@@ -313,7 +320,7 @@ def checkUnboundVar(rep):
 def checkEmpty(rep):
     for e in rep.allSubExps():
         for a in e.arguments:
-            if a.__class__ == exp.emptyExp:
+            if a.__class__ == emptyExp:
                 # pass
                 errorFunct.error('emptyExp in ' + rep.toString(True))
 
@@ -333,14 +340,21 @@ def collapseFragments(replist):
 def checkNonConstDup(rep):
     seensubexps = []
     for e in rep.allSubExps():
-        if e in seensubexps and e.__class__ != exp.constant and e.__class__ != exp.variable:
+        if e in seensubexps and e.__class__ != constant and e.__class__ != variable:
             errorFunct.error("non const duplication " + e.toString(True))
         seensubexps.append(e)
 
 
 def checkIfWh(rep):
-    if rep.__class__ == lambdaExp and rep.getVar().type() == semType.e:  # and rep.type().toString() == '<ev,t>'
-        return True
+    is_lambda = rep.__class__ == lambdaExp
+    if is_lambda:
+        has_e_var = rep.getVar().type() == semType.e
+        funct = rep.getFunct()
+        funct_is_lambda = funct.__class__ == lambdaExp
+        if is_lambda and has_e_var and funct_is_lambda:
+            return True
+    else:
+        return False
 
 
 def repFromExample(line_count, semStore, f, output, ubloutput, rejected, c, w, templates, iV, tV, dtV, con, eveAll,
@@ -485,7 +499,7 @@ def repFromExample(line_count, semStore, f, output, ubloutput, rejected, c, w, t
                                 functev = rep.getVar()
                                 # print
                                 print "functrep is ", functrep.toString(True)
-                            q = exp.qMarker(functrep)
+                            q = qMarker(functrep)
                             print "q is ", q.toString(True)
                             # q.setArg(0,rep)
                             q.setArg(1, functev)

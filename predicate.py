@@ -1,4 +1,5 @@
 from exp import *
+from eventMarker import *
 
 # predicates take a number of arguments (not fixed) and
 # return a truth value

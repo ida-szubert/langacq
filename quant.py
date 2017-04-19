@@ -9,7 +9,10 @@ class quant(exp):
         self.name=name
         self.numArgs=1
         self.var = var
-        var.setBinder(self)
+        self.varIsConst = True
+        if var.__class__ == variable:
+            var.setBinder(self)
+            self.varIsConst = False
         self.arguments=[emptyExp()]
         self.argTypes=[]
         self.parents=[]

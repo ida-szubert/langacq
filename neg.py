@@ -1,16 +1,21 @@
 from exp import *
+from eventMarker import *
 
 class neg(exp):
-    def __init__(self,arg):
+    def __init__(self,arg,numArgs):
         self.name="not"
-        self.numArgs=2
-        self.arguments=[arg,eventMarker()]
+        self.numArgs=numArgs
+        if numArgs == 2:
+            self.arguments=[arg,eventMarker()]
+        else:
+            self.arguments=[arg]
         self.argTypes=arg.type()
         self.linkedVar = None
         arg.add_parent(self)
         self.parents=[]
         self.argSet=True
-        self.returnType = semType.tType()
+        # self.returnType = semType.tType()
+        self.returnType = arg.returnType
         self.isNull = False
         self.posType=None
         self.inout=None

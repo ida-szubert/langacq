@@ -253,12 +253,13 @@ class exp:
         return self.isNull
 
     def isNounMod(self):
-        if self.posType in ["n","adj"]:
-             #or \
-            #self.name=="qn|other" or \
-            #self.posType=="pro:indef":
-            return True
-        return False
+        return self.nounMod
+        # if self.posType in ["n","adj"]:
+        #      #or \
+        #     #self.name=="qn|other" or \
+        #     #self.posType=="pro:indef":
+        #     return True
+        # return False
 
     def isEntity(self):
         return False
@@ -296,6 +297,9 @@ class exp:
     def getArg(self,position):
         if position>len(self.arguments)-1: error("only got "+str(len(self.arguments))+" arguments")
         else: return self.arguments[position]
+
+    def numArgs(self):
+        return len(self.arguments)
             
     def replace(self,e1,e2):
         # replaces all instances of e1 with e2r
