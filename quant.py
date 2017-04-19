@@ -10,9 +10,11 @@ class quant(exp):
         self.numArgs=1
         self.var = var
         self.varIsConst = True
+        self.returnType = semType.tType()
         if var.__class__ == variable:
             var.setBinder(self)
             self.varIsConst = False
+            self.returnType = semType.eType()
         self.arguments=[emptyExp()]
         self.argTypes=[]
         self.parents=[]
@@ -20,7 +22,6 @@ class quant(exp):
         #self.event = None
         self.posType = posType
         self.isVerb=False
-        self.returnType = semType.eType()
         self.isNull = False
         #self.posType="quant"
         self.inout = None
