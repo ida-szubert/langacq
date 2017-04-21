@@ -3,8 +3,8 @@ from exp import *
 class conjunction(exp):
     def __init__(self):
         self.linkedVar = None
-        self.numArgs = 0
-        self.arguments = []
+        self.numArgs = 2
+        self.arguments = [emptyExp(), emptyExp()]
         self.argTypes=[]
         self.parents = []
         self.returnType = "t"

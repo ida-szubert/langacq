@@ -154,4 +154,5 @@ class quant(exp):
         return s
 
     def type(self):
-        return semType.eType()
+        # return semType.eType()
+        return self.returnType

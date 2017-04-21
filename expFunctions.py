@@ -262,8 +262,10 @@ def makeLogExp(predstring,expString,vardict):
     if predstring=="and" or predstring=="and_comp":
         e = conjunction()
         args, expString = extractArguments(expString, vardict)
-        for a in args:
-            e.addArg(a)
+        for i, arg in enumerate(args):
+            e.setArg(i,arg)
+        # for a in args:
+        #     e.addArg(a)
         e.setString()
 
     elif predstring=="not":
