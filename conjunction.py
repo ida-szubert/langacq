@@ -23,6 +23,9 @@ class conjunction(exp):
                 return False
         return True
 
+    def isNounMod(self):
+        return self.isConjN()
+
     def isConjV(self):
         for a in self.arguments:
             if a.checkIfVerb:
@@ -46,7 +49,8 @@ class conjunction(exp):
         for a in self.arguments:
             if t and t!=a.getPosType():
                 return None
-            else: t = a.getPosType()
+            else:
+                t = a.getPosType()
         return t
 
     def getReturnType(self):
@@ -67,11 +71,13 @@ class conjunction(exp):
     def makeShell(self):
         c = conjunction()
         c.setType(self.name)
-        for a in self.arguments:
+        for i, a in enumerate(self.arguments):
+        # for a in self.arguments:
             #print "gonna makeShell ",a.toString(True)
             a2 = a.makeShell()
             #print "got it ",a2.toString(True)
-            c.addArg(a2)
+            c.setArg(i, a2)
+            # c.addArg(a2)
         return c
 
     def copy(self):
@@ -79,20 +85,23 @@ class conjunction(exp):
         c = conjunction()
         c.linkedVar = self.linkedVar
         c.setType(self.name)
-        for a in self.arguments:
+        for i, a in enumerate(self.arguments):
+        # for a in self.arguments:
             #print "gonna copy ",a.toString(True)
             a2 = a.copy()
             #print "got it ",a2.toString(True)
-            c.addArg(a2)
+            c.setArg(i, a2)
+            # c.addArg(a2)
         return c
 
     def copyNoVar(self):
         c = conjunction()
         c.linkedVar = self.linkedVar
         c.setType(self.name)
-        for a in self.arguments:
+        for i, a in enumerate(self.arguments):
             a2 = a.copyNoVar()
-            c.addArg(a2)
+            c.setArg(i, a2)
+            # c.addArg(a2)
         return c
 
     def addArg(self,arg):
@@ -105,7 +114,7 @@ class conjunction(exp):
                 a.remove_parent(arg)
             return
         #print "here2, adding ",arg.toString(True)
-        self.numArgs += 1
+        # self.numArgs += 1
         self.arguments.append(arg)
         arg.add_parent(self)
         self.argSet=True
@@ -120,13 +129,15 @@ class conjunction(exp):
                 return
 
     def replace2(self,e1,e2):
-        if e1==self: return e2
+        if e1==self:
+            return e2
         newargset = []
         for a in self.arguments:
             newargset.append(a.replace2(e1,e2))
-        self.arguments = []
-        for a in newargset:
-            self.addArg(a)
+        # self.arguments = []
+        for i, a in enumerate(newargset):
+            # self.addArg(a)
+            self.setArg(i, a)
         return self
 
     def setArg(self,position,argument):
@@ -258,11 +269,13 @@ class conjunction(exp):
         for combination in conjunctionorders:
             inconj = conjunction()
             outconj = conjunction()
-            for a in self.arguments:
+            for i, a in enumerate(self.arguments):
                 if a in combination:
-                    outconj.addArg(a.copy())
+                    outconj.setArg(i, a.copy())
+                    # outconj.addArg(a.copy())
                 else:
-                    inconj.addArg(a.copy())
+                    inconj.setArg(i, a.copy())
+                    # inconj.addArg(a.copy())
             conjsplits.append((inconj,outconj))
         return conjsplits
 

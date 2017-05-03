@@ -66,7 +66,7 @@ class constant(exp):
 
     def addArg(self,arg):
         print "error, trying to add arg to const"
-        error()
+        error("error, trying to add arg to const")
 
     def toStringUBL(self,top):
         n = self.name.replace(":","#")

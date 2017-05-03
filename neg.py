@@ -5,10 +5,12 @@ class neg(exp):
     def __init__(self,arg,numArgs):
         self.name="not"
         self.numArgs=numArgs
+        self.nounMod = False
         if numArgs == 2:
             self.arguments=[arg,eventMarker()]
         else:
             self.arguments=[arg]
+            self.nounMod = arg.isNounMod()
         self.argTypes=arg.type()
         self.linkedVar = None
         arg.add_parent(self)
@@ -27,20 +29,23 @@ class neg(exp):
         return -1.0 + self.arguments[0].semprior()
 
     def makeShell(self):
-        n = neg(self.arguments[0].makeShell())
-        n.setEvent(self.arguments[1].makeShell())
+        n = neg(self.arguments[0].makeShell(), self.numArgs)
+        if self.numArgs == 2:
+            n.setEvent(self.arguments[1].makeShell())
         return n
 
     def copy(self):
         #print "copying ",self.toString(True)
-        n = neg(self.arguments[0].copy())
-        n.setEvent(self.arguments[1].copy())
+        n = neg(self.arguments[0].copy(), self.numArgs)
+        if self.numArgs == 2:
+            n.setEvent(self.arguments[1].copy())
         n.linkedVar = self.linkedVar
         return n
 
     def copyNoVar(self):
-        n = neg(self.arguments[0].copyNoVar())
-        n.setEvent(self.arguments[1].copyNoVar())
+        n = neg(self.arguments[0].copyNoVar(), self.numArgs)
+        if self.numArgs == 2:
+            n.setEvent(self.arguments[1].copyNoVar())
         n.linkedVar = self.linkedVar
         return n
 

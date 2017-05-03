@@ -1,5 +1,5 @@
 from exp import *
-from conjunction import conjunction
+# from conjunction import conjunction
 
 class lambdaExp(exp):
     def __init__(self):
@@ -270,11 +270,16 @@ class lambdaExp(exp):
         return self.funct.getPosType()
 
     def isConjN(self):
-        if self.funct.__class__==conjunction:
-            return self.funct.isConjN()
-        elif self.funct.__class__==lambdaExp:
-            return self.funct.isConjN()
-        return False
+        try:
+            isConj = self.funct.isConjN()
+        except NameError:
+            isConj = False
+        return isConj
+        # if self.funct.__class__==conjunction:
+        #     return self.funct.isConjN()
+        # elif self.funct.__class__==lambdaExp:
+        #     return self.funct.isConjN()
+        # return False
 
     def setFunct(self,e):
         self.funct = e
