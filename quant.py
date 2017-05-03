@@ -5,16 +5,17 @@ from exp import *
 class quant(exp):
     def __init__(self,name,posType,var):
         self.linkedVar = None
-
         self.name=name
         self.numArgs=1
         self.var = var
         self.varIsConst = True
         self.returnType = semType.tType()
+        self.nounMod = False
         if var.__class__ == variable:
             var.setBinder(self)
             self.varIsConst = False
             self.returnType = semType.eType()
+            self.nounMod = True
         self.arguments=[emptyExp()]
         self.argTypes=[]
         self.parents=[]
@@ -31,20 +32,31 @@ class quant(exp):
         return -1.0 + self.arguments[0].semprior()
 
     def makeShell(self):
-        newvar = variable(None)
-        self.var.setVarCopy(newvar)
+        if self.varIsConst:
+            newvar = self.var.makeShell()
+        else:
+            newvar = variable(None)
+            self.var.setVarCopy(newvar)
         q=quant(self.name,self.posType,newvar)
-        q.setArg(0,self.arguments[0].makeShell())
+        for i, a in enumerate(self.arguments):
+            q.setArg(i, a.makeShell())
+        # q.setArg(0,self.arguments[0].makeShell())
         return q
 
     def copy(self):
         #print "copying ",self.toString(True)
-        newvar = variable(None)
-        self.var.setVarCopy(newvar)
+        if not self.varIsConst:
+        # if self.var.__class__ == variable:
+            newvar = variable(None)
+            self.var.setVarCopy(newvar)
+        else:
+            newvar = self.var.copy()
         #print "newvar is ",newvar
         q=quant(self.name,self.posType,newvar)
         #print "q var is ",q.var
-        q.setArg(0,self.arguments[0].copy())
+        for i, a in enumerate(self.arguments):
+            q.setArg(i, a.copy())
+        # q.setArg(0,self.arguments[0].copy())
         q.linkedVar = self.linkedVar
         #newvar = variable()
         #q.setVar(newva
@@ -53,12 +65,25 @@ class quant(exp):
 
     def copyNoVar(self):
         q=quant(self.name,self.posType,self.var)
-        q.setArg(0,self.arguments[0].copyNoVar())
+        for i, a in enumerate(self.arguments):
+            q.setArg(i, a.copyNoVar())
+        # q.setArg(0,self.arguments[0].copyNoVar())
         q.linkedVar = self.linkedVar
         return q
 
     def setArg(self,position,pred):
-        if position!=0: error("only one arg for quant")
+        if position!=0:
+            if pred.__class__ == eventMarker:
+                self.arguments.append(pred)
+            else:
+                error("only eventMarker acceptable as second arg for quant")
+        if self.varIsConst:
+            pred_arg = None
+            for a in pred.allArgs():
+                if a.equals(self.var):
+                    pred_arg = a
+                    break
+            pred.replace2(pred_arg, self.var)
         self.arguments=[pred]
         self.argSet=True
 
@@ -75,21 +100,28 @@ class quant(exp):
     def allExtractableSubExps(self):
         subExps = []
         subExps.append(self)
-        subExps.extend(self.arguments[0].allExtractableSubExps())
+        for a in self.arguments:
+            subExps.extend(a.allExtractableSubExps())
         return subExps
 
     def allSubExps(self):
         subExps = []
         subExps.append(self)
-        subExps.extend(self.arguments[0].allSubExps())
+        for a in self.arguments:
+            subExps.extend(a.allSubExps())
+        # subExps.extend(self.arguments[0].allSubExps())
         return subExps
 
     def getAllVars(self,vars):
-        self.arguments[0].getAllVars(vars)
+        for a in self.arguments:
+            a.getAllVars(vars)
+        # self.arguments[0].getAllVars(vars)
 
     def varsAbove(self,other,vars):
         if self==other: return
-        self.arguments[0].varsAbove(other,vars)
+        for a in self.arguments:
+            a.varsAbove(other,vars)
+        # self.arguments[0].varsAbove(other,vars)
 
     def equalsPlaceholder(self,other):
         if other.__class__ != quant or \
@@ -99,17 +131,38 @@ class quant(exp):
             return False
         self.var.setEqualTo(other.var)
         other.var.setEqualTo(self.var)
-        return other.arguments[0].equalsPlaceholder(self.arguments[0])
+        if len(self.arguments) != len(other.arguments):
+            return False
+        return all([a_o.equalsPlaceholder(a) for a, a_o in zip(self.arguments, other.arguments)])
+        # return other.arguments[0].equalsPlaceholder(self.arguments[0])
 
     def equals(self,other):
-        if other.__class__ != quant or \
-        not self.var.equalType(other.var) or \
-            self.name!=other.name:
-            print "quant fail"
+        if other.__class__ != quant:
             return False
-        self.var.setEqualTo(other.var)
-        other.var.setEqualTo(self.var)
-        return other.arguments[0].equals(self.arguments[0])
+        if self.varIsConst and other.varIsConst:
+            eq_var = self.var.equals(other.var)
+        elif self.varIsConst or other.varIsConst:
+            eq_var = False
+        else:
+            eq_var = self.var.equalType(other.var)
+            if eq_var:
+                self.var.setEqualTo(other.var)
+                other.var.setEqualTo(self.var)
+
+        eq_pred = len(self.arguments) != len(other.arguments) and \
+                  all([a_o.equalsPlaceholder(a) for a, a_o in zip(self.arguments, other.arguments)])
+        # eq_pred = other.arguments[0].equals(self.arguments[0])
+        eq_name = self.name==other.name
+        return eq_var and eq_pred and eq_name
+
+        # if other.__class__ != quant or \
+        # not self.var.equalType(other.var) or \
+        #     self.name!=other.name:
+        #     print "quant fail"
+        #     return False
+        # self.var.setEqualTo(other.var)
+        # other.var.setEqualTo(self.var)
+        # return other.arguments[0].equals(self.arguments[0])
 
     def toStringShell(self,top):
         s=self.name
@@ -117,8 +170,13 @@ class quant(exp):
         exp.varNum+=1
         if not self.arguments[0]: print "NONE VAR FOR ",s
         #print "quantvar is ",self.var
-        if not self.arguments[0].isEmpty():
-            s=s+"("+self.var.name+","+self.arguments[0].toStringShell(False)+")"
+        s = s+"("+self.var.name
+        for a in self.arguments:
+            if not a.isEmpty():
+                s = s+","+a.toStringShell(False)
+        s += ")"
+        # if not self.arguments[0].isEmpty():
+        #     s=s+"("+self.var.name+","+self.arguments[0].toStringShell(False)+")"
         if top:
             exp.varNum = 0
             exp.eventNum = 0
@@ -131,8 +189,13 @@ class quant(exp):
         exp.varNum+=1
         if not self.arguments[0]: print "NONE VAR FOR ",s
         #print "quantvar is ",self.var
-        if not self.arguments[0].isEmpty():
-            s=s+"("+self.var.name+","+self.arguments[0].toString(False)+")"
+        s = s+"("+self.var.name
+        for a in self.arguments:
+            if not a.isEmpty():
+                s = s+","+a.toString(False)
+        s += ")"
+        # if not self.arguments[0].isEmpty():
+        #     s=s+"("+self.var.name+","+self.arguments[0].toString(False)+")"
         if top:
             exp.varNum = 0
             exp.eventNum = 0
@@ -145,8 +208,13 @@ class quant(exp):
         exp.varNum+=1
         if not self.arguments[0]: print "NONE VAR FOR ",s
         #print "quantvar is ",self.var
-        if not self.arguments[0].isEmpty():
-            s="("+s+" "+self.var.name+" "+self.arguments[0].toStringUBL(False)+")"
+        s = s+"("+self.var.name
+        for a in self.arguments:
+            if not a.isEmpty():
+                s = s+","+a.toStringUBL(False)
+        s += ")"
+        # if not self.arguments[0].isEmpty():
+        #     s="("+s+" "+self.var.name+" "+self.arguments[0].toStringUBL(False)+")"
         if top:
             exp.varNum = 0
             exp.eventNum = 0
