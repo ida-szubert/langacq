@@ -8,40 +8,40 @@
 ## want ONE function to check parses (deal with search problem)
 ## MAKE INTO SEPARATE FILES
 
-
-
-import pdb
-import copy
-import math
+# import pdb
+# import copy
+# import math
+# import random
+# import os
+# from math import log
+# from math import exp
+# from scipy.special import psi
+# from timeit import Timer
+# from tools import *
+# from semc import *
+# from build_inside_outside_chart import *
+# from inside_outside_calc import *
+# from print_parses import *
+# from semType import semType
+# from correct_dependencies_with_templates import repFromExample
+# import readInExps
 import cPickle
 import sys
-import random
-import os
 import verb_repo
 from optparse import OptionParser
-from math import log
-from math import exp
-from scipy.special import psi
-from timeit import Timer
 from generator import generateSent
-from tools import *
 from grammar_classes import *
 from lexicon_classes import *
-from semc import *
-from build_inside_outside_chart import *
-from inside_outside_calc import *
 from parser import *
 from sample_most_probable_parse import *
-from print_parses import *
 from makeGraphs import *
 from cat import synCat
 import cat
 import extract_from_lexicon3
 import exp
-from semType import semType
-from correct_dependencies_with_templates import repFromExample
 from correct_dependencies_with_templates import checkIfWh
-import readInExps
+import expFunctions
+
 
 noQ = False
 
@@ -79,7 +79,6 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
     sentence_charts = {}
     catStore = {}
     sentence_limit = 10
-    # fName='childes-data.txt'
     line_count = 0
     lo = None
     sentence = None
@@ -91,7 +90,6 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
         if line[:5] == "Sent:":
             isQ = False
             donetest = False
-            # print "got sent ",line
             sentence = line[6:].strip().rstrip()
             if sentence.count(" ") > sentence_limit:
                 print "rejecting ", line
@@ -101,10 +99,8 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
             sentisq = False
 
         if sentence and line[:4] == "Sem:":
-            # print "got sem ",line
             semstring = line[5:].strip().rstrip()
-            # if semstring.__contains__("^"): continue
-            r = exp.exp.makeExpWithArgs(semstring, {})
+            r = expFunctions.makeExpWithArgs(semstring, {})
             if len(r[0].allExtractableSubExps()) > 9 and truncate_complex_exps:
                 print "rejecting ", r[0].toString(True)
                 for e in r[0].allExtractableSubExps():
@@ -121,13 +117,12 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
             if checkIfWh(sem):
                 isQ = False
                 sc = synCat.swh
-            elif sem.isQ():  # __==exp.qMarker:
+            elif sem.isQ():
                 isQ = True
                 sc = synCat.q
                 if topCatList == []: sentisq = True
             else:
                 isQ = False
-                # print "finding cat for ",sem.toString(True)," which has type ",sem.type().toString()
                 sc = synCat.allSynCats(sem.type())[0]
 
             words = sentence.split()  # [:-11]
@@ -166,26 +161,21 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
             topCatList.append(topCat)
 
         if sentence and line[:11] == "example_end":
-            # sem_store.clear()
             print '\ngot training pair'
             print "Sent : " + sentence
             print >> output, "Sent : " + sentence
-            # print >> output,"Sent : "+sentence
             print >> output, "update weight = ", lexicon.get_learning_rate(sentence_count)
             print >> output, sentence_count
             for topCat in topCatList:
                 print "Cat : " + topCat.toString()
                 print >> output, "Cat : " + topCat.toString()
 
-            # if topCat.getSyn()==cat.synCat.swh: continue
             catStore = {}
             if len(words) > 8 or (noQ and "?" in sentence):
                 sentence = []
                 sem = None
                 continue
             chart = build_chart(topCatList, words, RuleSet, lexicon, catStore, sem_store, oneWord)
-
-            # chart = None
             # do the update
             print "got chart"
             if chart is not None:
@@ -211,9 +201,9 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
 
                 # pickling lexicon (added by Omri)
                 if dump_lexicons and sentence_count % dump_interval == 0:
-                    if sentence_count >= min_lex_dump and \
-                                    sentence_count <= max_lex_dump and \
-                                            sentence_count % dump_interval == 0:
+                    if max_lex_dump >= sentence_count >= min_lex_dump:
+                       # sentence_count <= max_lex_dump and \
+                       # sentence_count % dump_interval == 0:
                         f_lexicon = open(dump_out + '_' + str(sentence_count), 'wb')
                         to_pickle_obj = (lexicon, sentence_count, sem_store, RuleSet)
                         cPickle.dump(to_pickle_obj, f_lexicon, cPickle.HIGHEST_PROTOCOL)
@@ -249,23 +239,16 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
                     print >> f_out_additional, "\n"
 
                 print "outputting cat probs"
-                # cats_to_check = []
-                ## this samples the probabilities of each of the syn cats
-                # for a given type
+                # this samples the probabilities of each of the syn cat for a given type
                 for c in cats_to_check:
                     posType = c[0]
 
                     lfType = c[2]
                     arity = c[3]
                     # these go in cats
-                    # varorder = None
-
                     cats = c[4]
-
                     outputFile = c[1]
-                    # outputCatProbs(posType,lfType,arity,varorder,cats,lexicon,sem_store,RuleSet,outputFile)
                     outputCatProbs(posType, lfType, arity, cats, lexicon, sem_store, RuleSet, outputFile)
-                    # outputCatProbs(postype,c[0],c[2],lexicon,sem_store,RuleSet,c[1])
                 print "done with sent\n\n"
                 if sentence_count == train_limit: return sentence_count
 
@@ -273,7 +256,7 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
             if doingGenerate:
                 sentnum = 1
                 for (gensent, gensemstr) in sentstogen:
-                    gensem = exp.exp.makeExpWithArgs(gensemstr, {})[0]
+                    gensem = expFunctions.makeExpWithArgs(gensemstr, {})[0]
                     if checkIfWh(gensem):
                         sc = synCat.swh
                     elif gensem.isQ():
@@ -300,9 +283,8 @@ def test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count):
     for line in test_file:
         if line[:5] == "Sent:":
             sentence = line[6:].split()
-            # if len(sentence)>5:
         if line[:4] == "Sem:":
-            sem = exp.exp.makeExpWithArgs(line[5:].strip().rstrip(), {})[0]
+            sem = expFunctions.makeExpWithArgs(line[5:].strip().rstrip(), {})[0]
             if not sem.isQ() and sentence[-1] in [".", "?"]:
                 sentence = sentence[:-1]
             if len(sentence) == 0:
@@ -329,7 +311,6 @@ def test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count):
 
             print >> test_out, 'top parse:'
             print >> test_out, top_parse
-            # print >> test_out, top.inside_score
             print >> test_out, "\n"
 
 
@@ -397,58 +378,61 @@ def main(argv, options):
             test_file_index = 19
         else:
             test_file_index = 20
-        for i in range(1, test_file_index):
-            input_file = options.inp_file  # "trainFiles/trainPairs"
-            test_file = options.inp_file  # "trainFiles/trainPairs"
+        # for i in range(1, test_file_index):
+        # for i in [1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 13, 14]:
+        input_file = options.inp_file  # "trainFiles/trainPairs"
+        test_file = options.inp_file  # "trainFiles/trainPairs"
 
-            if numreps > 1:
-                input_file = input_file + str(numreps) + "reps"
-            input_file = input_file + "_" + str(i)
-            if reverse:
-                test_file = test_file + "_" + str(test_file_index)
-            else:
-                test_file = test_file + "_" + str(test_file_index)
-            inputpairs = open(input_file).readlines()
+        # # if numreps > 1:
+        # #     input_file = input_file + str(numreps) + "reps"
+        # # input_file = input_file + "_" + str(i)
 
-            outfile = options.train_parses + '_'
-            testoutfile = options.test_parses + '_'
+        # input_file += "{0:d}_lf.txt".format(i)
+        if reverse:
+            test_file = test_file + "_" + str(test_file_index)
+        else:
+            test_file = test_file + "_" + str(test_file_index)
+        inputpairs = open(input_file).readlines()
 
-            if oneWord:
-                outfile = outfile + "1W"
-                testoutfile = testoutfile + "1W"
-            else:
-                outfile = outfile + "MWE"
-                testoutfile = testoutfile + "MWE"
+        outfile = options.train_parses + '_'
+        testoutfile = options.test_parses + '_'
 
-            if numreps > 1:
-                outfile = outfile + "_" + str(numreps) + "reps"
-                testoutfile = testoutfile + "_" + str(numreps) + "reps"
+        if oneWord:
+            outfile = outfile + "1W"
+            testoutfile = testoutfile + "1W"
+        else:
+            outfile = outfile + "MWE"
+            testoutfile = testoutfile + "MWE"
 
-            outfile = outfile + "_" + str(i)
-            testoutfile = testoutfile + "_" + str(i)
-            output = open(outfile, "w")
+        if numreps > 1:
+            outfile = outfile + "_" + str(numreps) + "reps"
+            testoutfile = testoutfile + "_" + str(numreps) + "reps"
 
-            sentence_count = train_rules(sem_store, RuleSet, Current_Lex, oneWord, inputpairs,
-                                         cats_to_check, output, None, False, sentence_count,
-                                         min_lex_dump=options.min_lex_dump,
-                                         max_lex_dump=options.max_lex_dump,
-                                         dump_lexicons=options.dump_lexicons,
-                                         dump_interval=options.dump_interval,
-                                         dump_out=options.dump_out,
-                                         verb_repository=verb_repository,
-                                         dump_verb_repo=options.dump_verb_repo,
-                                         analyze_lexicons=options.analyze_lexicons)
+        # outfile = outfile + "_" + str(i)
+        # testoutfile = testoutfile + "_" + str(i)
+        output = open(outfile, "w")
 
-            print "returned sentence count = ", sentence_count
+        sentence_count = train_rules(sem_store, RuleSet, Current_Lex, oneWord, inputpairs,
+                                     cats_to_check, output, None, False, sentence_count,
+                                     min_lex_dump=options.min_lex_dump,
+                                     max_lex_dump=options.max_lex_dump,
+                                     dump_lexicons=options.dump_lexicons,
+                                     dump_interval=options.dump_interval,
+                                     dump_out=options.dump_out,
+                                     verb_repository=verb_repository,
+                                     dump_verb_repo=options.dump_verb_repo,
+                                     analyze_lexicons=options.analyze_lexicons)
 
-            dotest = options.dotest
-            if dotest:
-                test_out = open(testoutfile, "w")
-                print >> test_out, "trained on up to ", input_file, " testing on ", test_file
-                test_file = open(test_file, "r")
-                test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count)
-                test_out.close()
-            print "at end, lexicon size is ", len(Current_Lex.lex)
+        print "returned sentence count = ", sentence_count
+
+        dotest = options.dotest
+        if dotest:
+            test_out = open(testoutfile, "w")
+            print >> test_out, "trained on up to ", input_file, " testing on ", test_file
+            test_file = open(test_file, "r")
+            test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count)
+            test_out.close()
+        print "at end, lexicon size is ", len(Current_Lex.lex)
 
 
 def cmd_line_parser():

@@ -33,7 +33,7 @@ def train_rules(sem_store, RuleSet, lexicon, inputpairs, output,
     topCatList = []
     sents_with_no_sc = []
 
-    with open("./logical_forms/Adam_no_sc.txt", "w") as no_sc_file:
+    with open("./my_test/Adam_no_sc.txt", "w") as no_sc_file:
         while line_count < len(inputpairs):
             line = inputpairs[line_count]
             line_count += 1
