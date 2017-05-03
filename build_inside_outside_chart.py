@@ -6,9 +6,10 @@
 
 import pdb, re
 from exp import exp
-from exp import variable
+# from variable import variable
 from lexicon_classes import syn_cat
 from tools import inf
+import expFunctions
 
 
 ########################################
@@ -40,7 +41,7 @@ class SemStore:
         # constpen = -10
         if not self.check(sem_key):
             print "not got ", sem_key
-            sem = exp.makeExpWithArgs(sem_key, {})
+            sem = expFunctions.makeExpWithArgs(sem_key, {})
             # OMRI ADDED THE NEXT TWO LINES
             if isinstance(sem, tuple):
                 sem = sem[0]
@@ -309,7 +310,8 @@ def build_chart(topCatList, sentence, RuleSet, lexicon, catStore, sem_store, one
     for ind, topCat in enumerate(topCatList):
         print 'sem is ', topCat.sem.toString(True)
         c1 = chart_entry(topCat, 0, len(sentence), sentence)
-        if not sem_store.check(topCat.sem.toString(True)): sem_store.add(topCat.sem)
+        if not sem_store.check(topCat.sem.toString(True)):
+            sem_store.add(topCat.sem)
         chart[len(sentence)][(topCat.synString(), topCat.semString(), 0, len(sentence))] = c1
         RuleSet.check_start_rule(topCat.syn)
         RuleSet.check_rule(topCat.synString(), None, None, None, None)

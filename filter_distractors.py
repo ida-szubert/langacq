@@ -45,6 +45,7 @@ from correct_dependencies_with_templates import repFromExample
 from correct_dependencies_with_templates import checkIfWh
 import readInExps
 from errorFunct import error
+import expFunctions
 
 
 
@@ -93,7 +94,7 @@ def train_rules(sem_store,RuleSet,lexicon,oneWord,inputpairs,
             #print "got sem ",line
             semstring = line[5:].strip().rstrip()
             #if semstring.__contains__("^"): continue
-            r = exp.exp.makeExpWithArgs(semstring,{})
+            r = expFunctions.makeExpWithArgs(semstring,{})
             if len(r[0].allExtractableSubExps()) > 9 and truncate_complex_exps:
                 print "rejecting ",r[0].toString(True)
                 for e in r[0].allExtractableSubExps():
@@ -159,7 +160,7 @@ def test(test_file,sem_store,RuleSet,Current_Lex,test_out,sentence_count):
             sentence = line[6:].split()
             #if len(sentence)>5: 
         if line[:4] == "Sem:":
-            sem = exp.exp.makeExpWithArgs(line[5:].strip().rstrip(),{})[0]
+            sem = expFunctions.makeExpWithArgs(line[5:].strip().rstrip(),{})[0]
             if not sem.isQ() and sentence[-1] in [".","?"]:
                 sentence = sentence[:-1]
             if len(sentence)==0:

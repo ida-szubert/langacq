@@ -4,8 +4,8 @@
 
 import pdb
 from semType import *
-from exp import exp
-from exp import variable
+from exp import *
+import expFunctions
 import re
 
 trans_binding1 = re.compile('lambda\\ \\$0\\_\\{e\\}\\.lambda\\ \\$1\\_\\{e\\}\\.lambda\\ ' +
@@ -896,7 +896,7 @@ class cat:
         synstring = catstring.split(" :: ")[0]
         semstring = catstring.split(" :: ")[1]
         # print "semstring is |"+semstring+"|"
-        (semrep, expString) = exp.makeExpWithArgs(semstring, {})
+        (semrep, expString) = expFunctions.makeExpWithArgs(semstring, {})
         # print "made sem: ",semrep.toString(True)
         syncat = synCat.readCat(synstring)
         c = cat(syncat, semrep)

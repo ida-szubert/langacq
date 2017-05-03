@@ -9,11 +9,16 @@
 # det - <<e,t>,e>
 
 from exp import *
+from conjunction import *
+from constant import *
+from quant import *
+from predicate import *
+import expFunctions
 
 def addFromFile(langFile,inFile,templates):
 	for line in inFile:
 		if line.find("|")!=-1:
-			e = exp.makeExp(line)
+			e = expFunctions.makeExp(line)
 			if e:
 				templates[e.getName()] = e
 				if e.getName()[:3]=="aux":

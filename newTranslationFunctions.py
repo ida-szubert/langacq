@@ -1,7 +1,21 @@
 # new translate dependencies. draws more from the pos tags than before
 # but still need dependency labels.
 from errorFunct import error
-import exp
+from exp import *
+# from variable import *
+from eventSkolem import *
+from lambdaExp import *
+from neg import *
+from function import *
+from conjunction import *
+from constant import *
+from predicate import *
+from eq import *
+# from emptyExp import *
+from eventMarker import *
+import expFunctions
+
+
 import semType
 
 def findVarIntro(node):
@@ -33,14 +47,14 @@ def findVarIntro(node):
 
 def findNounAdjConj(node):
     # also prep in here - bit of apple
-    v = exp.variable(None)
+    v = variable(None)
     n = node.semTemp
     #print "n is ",node.name
     n.setArg(0,v)
     if len(node.children)==0: 
         print "zero children, returning ",n.toString(True)
         return (n,v)
-    e = exp.conjunction()
+    e = conjunction()
     gotMod = False
     for c in node.children:
         if len(c.children)==0:
@@ -85,12 +99,12 @@ def doNeg(root_sem):
                 continue
             rep = node.parents[0].semTemp
             repo = rep
-            if not rep.__class__ in [exp.eventSkolem,exp.lambdaExp]:
+            if not rep.__class__ in [eventSkolem,lambdaExp]:
                 print "neg rep is ",rep.toString(True)
                 print rep.__class__
                 functrep = rep
                 rep.clearParents2()
-                functev = exp.variable(None)
+                functev = variable(None)
                 functev.setType(semType.semType.event)
             else:
                 functrep = rep.getFunct()
@@ -99,12 +113,12 @@ def doNeg(root_sem):
             functrep.clearParents2()
             #print "clearing parents for ",
             print "functrep is ",functrep.toString(True)
-            n = exp.neg(functrep)
+            n = neg(functrep)
             
             print "neg is ",n.toString(True)
             n.setArg(1,functev)
             print "neg is ",n.toString(True)
-            rep = exp.lambdaExp()
+            rep = lambdaExp()
             rep.setVar(functev)
             rep.setFunct(n)
             node.semTemp = n
@@ -118,10 +132,10 @@ def doPoss(root_sem):
         if node.pos in ["poss","poss|s"] and node.parents!=[] and node.parents[0].pos=="n":
             #if not node.semTemp: print "null sem for ",node.to_string()
             print "poss thing is ",node.parents[0].to_string()
-            poss = exp.function("poss",3,["e","<e,t>","e"],"poss")
+            poss = function("poss",3,["e","<e,t>","e"],"poss")
             ent = None
             for c in node.parents[0].children:
-                if c.semTemp and isinstance(c.semTemp,exp.exp) and c.semTemp.isEntity(): 
+                if c.semTemp and isinstance(c.semTemp,exp) and c.semTemp.isEntity():
                     if ent: continue
                     ent = c.semTemp
             if not ent: continue
@@ -131,7 +145,7 @@ def doPoss(root_sem):
             newN = nSem.copy()
             #newN = nSem
             #l = exp.lambdaExp()
-            v = exp.variable(None)
+            v = variable(None)
             poss.setArg(0,v)
             #l.setVar(v)
             newN.setArg(0,v)
@@ -207,7 +221,7 @@ def isET(node):
         #pass    
 
 def makeConstConj(constList):
-    conjSem = exp.conjunction()
+    conjSem = conjunction()
     for e in constList:
         conjSem.addArg(e)
     return conjSem
@@ -290,9 +304,9 @@ def findConjunctions(root_sem):
                     if isinstance(c.semTemp,list):
                         print "verblist ",c.semTemp
                         verbList.append((c.semTemp,c))
-                    elif isinstance(c.semTemp,exp.constant):
+                    elif isinstance(c.semTemp,constant):
                         constList.append(c.semTemp)
-                    elif isinstance(c.semTemp,exp.predicate):
+                    elif isinstance(c.semTemp,predicate):
                         if c.semTemp.isEntity():
                             constList.append(c.semTemp)
                         else: predList.append(c.semTemp)
@@ -311,7 +325,7 @@ def findConjunctions(root_sem):
                 print "all verbs ",verbList
                 vSems = makeVerbConj(verbList)
                 if not vSems: continue
-                conjSem = exp.conjunction()
+                conjSem = conjunction()
                 conjSem.setType(node.name)
                 i=0
                 for v in vSems:
@@ -406,12 +420,12 @@ def doCopula(root_sem):
             nodeArgs = isEq(node)
             if nodeArgs:
                 print node.to_string()+" is equal"    
-                eqevent = exp.variable(None)
+                eqevent = variable(None)
                 eqevent.setType(semType.semType.event)
                 #eq = exp.eq(nodeArgs[0],nodeArgs[1])
-                eq = exp.lambdaExp()
+                eq = lambdaExp()
                 eq.setVar(eqevent)
-                eq.setFunct(exp.eq(nodeArgs[0],nodeArgs[1],eqevent))
+                eq.setFunct(eq(nodeArgs[0],nodeArgs[1],eqevent))
                 #for p in node.semTemp.parents:
                     #p.replace(node.semTemp,eq)
                 print "got cop : ",eq.toString(True)
@@ -425,7 +439,7 @@ def getNestedAd(adsemnode):
             ad.setArg(0,adsem.getArg(0))            
             ad = getNestedAd(node)
 
-            c = exp.conjunction()
+            c = conjunction()
             c.addArg(adsem)
             c.addArg(ad)
             print "done nested"
@@ -450,7 +464,7 @@ def attachPreds(root_sem):
                 ad.setArg(0,v.getEvent())
                 ad = getNestedAd(node)
 
-            c = exp.conjunction()
+            c = conjunction()
             print "v is ",v.toString(True)
             c.addArg(v.getFunct())
             c.addArg(ad)
@@ -508,10 +522,10 @@ def attachPreds(root_sem):
 
                         pass
                 if tooManyChildren:
-                    node.semTemp=exp.emptyExp()
+                    node.semTemp = emptyExp()
                     continue
                 
-                c = exp.conjunction()
+                c = conjunction()
                 c.addArg(v.getFunct())
                 c.addArg(p)
                 for ad in adv:
@@ -635,7 +649,7 @@ def addSkolem(root_sem):
             var = node.semTemp.arguments[0]
             print 'var type is ',type(var)
             print var.__class__
-            if var.__class__==exp.emptyExp: 
+            if var.__class__== emptyExp:
                 print 'got empty var'
                 continue
             if var.binder is None:
@@ -673,7 +687,7 @@ def setObj(e,e2):
 
 
 def setSubj(e,e2):
-    if isinstance(e,exp.conjunction):
+    if isinstance(e,conjunction):
         for a in e.arguments:
             if a.checkIfVerb: setSubj(a,e2)
         return
@@ -695,7 +709,7 @@ def setObj2(e,e2):
 
 def setAuxVerb(e,e2):
     if e2:
-        if e2.__class__==exp.eventSkolem:
+        if e2.__class__==eventSkolem:
             f = e2.funct
             s = e2
             e.replace(e.arguments[0],f)
@@ -712,17 +726,17 @@ def setAuxVerb(e,e2):
 def fillOutSRL(root_sem):
     for node in root_sem.all_nodes():
         if node.cat=="SRL" and node.semTemp and \
-        node.semTemp.__class__==exp.eventSkolem:
+        node.semTemp.__class__==eventSkolem:
             e = node.semTemp.getFunct()
             print "e is ",e.toString(True)
             if node.num_parents==1:
                 v=node.parents[0]
                 vSem=v.semTemp
                 print "vSem is ",vSem.toString(True)
-                if vSem.__class__!=exp.eventSkolem: 
+                if vSem.__class__!=eventSkolem:
                     error("Not verb in SRL")
                     return
-            c = exp.conjunction()
+            c = conjunction()
             
             if node.has_child_cat("SUBJ"):
                 subj = node.get_child_cat("SUBJ").semTemp
@@ -756,7 +770,7 @@ def dealWithInf(root_sem):
                 print "parentparent is ",node.parents[0].parents[0].semTemp.toString(True)
                 subj = node.parents[0].parents[0].semTemp.getFunct().arguments[0]
                 print "parentsem ",node.parents[0].semTemp.toString(True)
-                if node.parents[0].semTemp.__class__!=exp.eventSkolem:
+                if node.parents[0].semTemp.__class__!=eventSkolem:
                     error("not verb in INF")
                     return
                 infSem = node.parents[0].semTemp.getFunct()
@@ -764,14 +778,14 @@ def dealWithInf(root_sem):
                 print "infsem is ",infSem.toString(True)
                 vN = node.parents[0].parents[0]
                 vSem = vN.semTemp
-                if vSem.__class__!=exp.eventSkolem: print "not eventSkolem in inf"
+                if vSem.__class__!=eventSkolem: print "not eventSkolem in inf"
                 if infSem: 
                     infSem.setArg(0,subj)
                     infSem.setEvent(vSem.getEvent())
                     if vSem.numArgs>1 and vSem.arguments[1].isEmpty():
                         vSem.setArg(1,infSem)
                     else:
-                        c = exp.conjunction()
+                        c = conjunction()
                         v2 = vSem.getFunct()
                         print "clearning parents for ",v2.toString(True)
                         print "clearning parents for ",infSem.toString(True)
@@ -793,9 +807,9 @@ def dealWithInf(root_sem):
     #for node in root_sem.all_nodes(
 
 def addEvent(e):
-        event = exp.eventMarker()
+        event = eventMarker()
         e.setEvent(event)
-        sk = exp.eventSkolem()
+        sk = eventSkolem()
         sk.setVar(event)
         sk.setFunct(e)
         return sk
@@ -861,7 +875,7 @@ def fillOutVerbs(root_sem):
                 obj2 = getObj2(node)
                 subj = getSubj(node)
                 if subj is None and False:#s[0]=="i":
-                    subj = exp.exp.makeExp("pro|you")
+                    subj = expFunctions.makeExp("pro|you")
                     #nullsubj += 1
                 #if s[0]=="i":
                     print "nullsubj"
@@ -975,12 +989,12 @@ def findWh(root_sem,templates):
             and node.name.find("how")==-1 \
             and node.name.find("when")==-1:
                 #and node.name.find("where")==-1\
-            v = exp.variable(None)
+            v = variable(None)
             # what sorts of arguments can these variables
             # fill? only arg in adj, subj or obj or indobj
             # in verb
             if node.parents==[]:
-                l = exp.lambdaExp()
+                l = lambdaExp()
                 l.setVar(v)
                 l.setFunct(v)
                 return
@@ -1014,11 +1028,11 @@ def findWh(root_sem,templates):
                             asems.append(a.semTemp)
                         else: print "no semtemp"
                     if len(asems)==1:
-                        v = exp.variable(None)
+                        v = variable(None)
                         lc = templates["eqLoc"].copy()
                         lc.setArg(0,asems[0])
                         lc.setArg(1,v)
-                        lam = exp.lambdaExp()
+                        lam = lambdaExp()
                         lam.setVar(v)
                         lam.setFunct(lc)
                         p.semTemp = lam
@@ -1048,7 +1062,7 @@ def findWh(root_sem,templates):
                 e = findWhHead2(semtemp)
                 if e: 
                     print 'wh head is ',e.toString(True)
-                    l = exp.lambdaExp()
+                    l = lambdaExp()
                     l.setFunct(e)
                     e.replace2(semtemp,v)
                     l.setVar(v)
@@ -1089,7 +1103,7 @@ def splitPast(rep,sentence):
         print st
         if not st.name: continue
         if st.name.find("-PAST")!=-1:
-            pastnode = exp.predicate("PAST",0,"t","PAST")
+            pastnode = predicate("PAST",0,"t","PAST")
             st.name=st.name.split("-")[0]
             for p in st.parents:
                 print "parent is ",p.toString(True)
@@ -1104,7 +1118,7 @@ def splitPast(rep,sentence):
                     sentence = sentence.replace(w,st.name.split("|")[1]+" ed")
 
         elif st.name.find("-PERF")!=-1:
-            pastnode = exp.predicate("PAST",0,"t","PAST")
+            pastnode = predicate("PAST",0,"t","PAST")
             st.name=st.name.split("-")[0]
             for p in st.parents:
                 print "parent is ",p.toString(True)
@@ -1120,8 +1134,8 @@ def splitPast(rep,sentence):
 
 
         if st.name.find("&PAST")!=-1:
-            pastnode = exp.predicate("PAST",0,"t","PAST")
-            if isinstance(st,exp.conjunction):
+            pastnode = predicate("PAST",0,"t","PAST")
+            if isinstance(st,conjunction):
                 for a in st.arguments:
                     if a.name.find("&PAST")!=-1:
                         st = a
