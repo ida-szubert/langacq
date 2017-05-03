@@ -7,60 +7,6 @@ from neg import *
 from qMarker import *
 from exp import *
 
-def parseExp(expString):
-    tokens = separate_parens(expString).split()
-    expList, _ = parse(tokens, 0)
-    return expList
-
-
-def parse(expression, index):
-    # expression can be a lambda expression or a function application
-    # returns an expression an the index of the first element after the closing ) of the expression
-    if expression[index] == "lambda":
-        typed_variable = expression[index+1]
-        body, next_index = parse(expression, index+3)
-        lam_args = [typed_variable, body]
-        return ["lambda", lam_args], next_index+1
-    else:
-        pred = expression[index]
-        args, next_index = parse_arguments(expression, [], index+2)
-        return [pred, args], next_index
-
-
-def parse_arguments(arg_string, args, next_index):
-    next_piece = arg_string[next_index]
-    if next_piece == ")":
-        return args, next_index+1
-    elif next_piece != "(":
-        if arg_string[next_index+1] != "(":
-            args.append(next_piece)
-            return parse_arguments(arg_string, args, next_index+1)
-        else:
-            children_args, new_next_index = parse_arguments(arg_string, [], next_index+2)
-            arg = [next_piece, children_args]
-            args.append(arg)
-            return parse_arguments(arg_string, args, new_next_index)
-    else:
-        arg, new_next_index = parse(arg_string, next_index)
-        args.append(arg)
-        return parse_arguments(arg_string, args, new_next_index)
-
-
-def separate_parens(expression):
-    new_expression = []
-    for char in expression:
-        if char == "(":
-            new_expression.append(" ( ")
-        elif char == ")":
-            new_expression.append(" ) ")
-        elif char == ".":
-            new_expression.append(" . ")
-        elif char == ",":
-            new_expression.append(" ")
-        else:
-            new_expression.append(char)
-    return ''.join(new_expression)
-
 
 def makeExp(predString, expString, vardict):
     # CHILDES POS tags are:
@@ -96,8 +42,7 @@ def makeExp(predString, expString, vardict):
     #qn is like an article or adjective
 
     name = predString.strip().rstrip()
-    type = name.split("|")[0]
-    # e = None
+    pos = name.split("|")[0]
     args, expString = extractArguments(expString, vardict)
     argTypes = [x.type() for x in args]
     numArgs = len(args)
@@ -107,32 +52,39 @@ def makeExp(predString, expString, vardict):
         # pro:sub, pro:obj, pro:per (mostly), pro:refl
         # pro:rel (unless used as complementizers or mistaken with det:dem)
         # some tokens of: pro:int, pro:dem, pro:indef, det:dem, det:num, co
-        e = constant(name,numArgs,argTypes,type)
+        e = constant(name,numArgs,argTypes,pos)
         e.makeCompNameSet()
     elif numArgs == 1:
         # adj, n, n:gerund, n:prop, pro:indef,
         # det:num, pro:exist, pro:int, v, part,
         # adv, adv:int, adv:tem, co, prep, post, qn
-        e = predicate(name,numArgs,argTypes,type)
-        if type in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
+        e = predicate(name,numArgs,argTypes,pos)
+        if pos in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
             e.setNounMod()
     elif numArgs == 2:
         # adj, n, n:prop, pro:int, pro:indef, prep
         # mod:aux, aux, mod, v, part, cop, co, n:gerund
         # pro:dem, det:dem, det:poss, det:art, qn
         # conj, coord
-        if type in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
-            e = quant(name,type,args[0])
+        if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
+            e = quant(name,pos,args[0])
             args = args[1:]
-        elif type in ['conj', 'coord']:
+        elif pos in ['conj', 'coord']:
             e = conjunction()
             e.setType(name)
         else:
-            e = predicate(name,numArgs,argTypes,type)
+            e = predicate(name,numArgs,argTypes,pos)
+    elif numArgs == 3:
+        # DPs as sentential adjuncts
+        if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
+            e = quant(name,pos,args[0])
+            args = args[1:]
+        else:
+            e = predicate(name,numArgs,argTypes,pos)
     else:
         # adj, n, pro:indef, pro:int, n:prop
         # v, part, cop, co, n:gerund
-        e = predicate(name,numArgs,argTypes,type)
+        e = predicate(name,numArgs,argTypes,pos)
 
     for i, arg in enumerate(args):
         e.setArg(i,arg)
@@ -168,21 +120,28 @@ def makeExpWithArgs(expString,vardict):
         if e:
             return e, expString
         else:
-            e, expString = makeVerbs(predstring,expString,vardict)
+            if predstring[0]=="$":
+                e, expString = makeVars(predstring,expString,vardict)
+            else:
+                e, expString = makeExp(predstring, expString, vardict)
             if e is None:
-                if predstring[0]=="$":
-                    e, expString = makeVars(predstring,expString,vardict)
-                else:
-                    e, expString = makeExp(predstring, expString, vardict)
-                if e is None:
-                    print "none e for |" + predstring + "|"
-                # IDA: don't know what this is but I messed with expString above
-                if e.__class__  == quant:
-                    var = e.getVar()
-                    var.t = semType.e
-                    varname = expString[:expString.find(",")]
-                    vardict[varname]=var
-                    expString = expString[expString.find(","):]
+                print "none e for |" + predstring + "|"
+        # else:
+        #     e, expString = makeVerbs(predstring,expString,vardict)
+        #     if e is None:
+        #         if predstring[0]=="$":
+        #             e, expString = makeVars(predstring,expString,vardict)
+        #         else:
+        #             e, expString = makeExp(predstring, expString, vardict)
+        #         if e is None:
+        #             print "none e for |" + predstring + "|"
+                # IDA: variable object is created when parsing a quantifier/determiner expression
+                # if e.__class__  == quant:
+                #     var = e.getVar()
+                #     var.t = semType.e
+                #     varname = expString[:expString.find(",")]
+                #     vardict[varname]=var
+                #     expString = expString[expString.find(","):]
     else:
         if expString.__contains__(",") and expString.__contains__(")"):
             constend = min(expString.find(","),expString.find(")"))
@@ -243,18 +202,18 @@ def makeVars(predstring,expString,vardict,parse_args=True):
             e.addArg(arg)
     return e, expString
 
-
-def makeVerbs(predstring,expString,vardict):
-    if predstring.split("|")[0] not in ["v","part"]:
-        return None, expString
-    args, expString = extractArguments(expString, vardict)
-    argTypes = [x.type() for x in args]
-    numArgs = len(args)
-    verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
-    for i, arg in enumerate(args):
-        verb.setArg(i,arg)
-    verb.setString()
-    return verb,expString
+# IDA: there's nothing special about parsing verbs any more
+# def makeVerbs(predstring,expString,vardict):
+#     if predstring.split("|")[0] not in ["v","part"]:
+#         return None, expString
+#     args, expString = extractArguments(expString, vardict)
+#     argTypes = [x.type() for x in args]
+#     numArgs = len(args)
+#     verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
+#     for i, arg in enumerate(args):
+#         verb.setArg(i,arg)
+#     verb.setString()
+#     return verb,expString
 
 
 def makeLogExp(predstring,expString,vardict):
@@ -264,8 +223,6 @@ def makeLogExp(predstring,expString,vardict):
         args, expString = extractArguments(expString, vardict)
         for i, arg in enumerate(args):
             e.setArg(i,arg)
-        # for a in args:
-        #     e.addArg(a)
         e.setString()
 
     elif predstring=="not":
@@ -285,7 +242,8 @@ def makeLogExp(predstring,expString,vardict):
     elif predstring == "Q":
         qargs = []
         while expString[0]!=")":
-            if expString[0]==",": expString = expString[1:]
+            if expString[0]==",":
+                expString = expString[1:]
             a, expString = makeExpWithArgs(expString,vardict)
             qargs.append(a)
         if len(qargs)!=1:
@@ -295,3 +253,59 @@ def makeLogExp(predstring,expString,vardict):
         expString = expString[1:]
 
     return e,expString
+
+
+#IDA: generic expression parsing code; use if simplification of the old code doesn't work out
+# def parseExp(expString):
+#     tokens = separate_parens(expString).split()
+#     expList, _ = parse(tokens, 0)
+#     return expList
+#
+#
+# def parse(expression, index):
+#     # expression can be a lambda expression or a function application
+#     # returns an expression an the index of the first element after the closing ) of the expression
+#     if expression[index] == "lambda":
+#         typed_variable = expression[index+1]
+#         body, next_index = parse(expression, index+3)
+#         lam_args = [typed_variable, body]
+#         return ["lambda", lam_args], next_index+1
+#     else:
+#         pred = expression[index]
+#         args, next_index = parse_arguments(expression, [], index+2)
+#         return [pred, args], next_index
+#
+#
+# def parse_arguments(arg_string, args, next_index):
+#     next_piece = arg_string[next_index]
+#     if next_piece == ")":
+#         return args, next_index+1
+#     elif next_piece != "(":
+#         if arg_string[next_index+1] != "(":
+#             args.append(next_piece)
+#             return parse_arguments(arg_string, args, next_index+1)
+#         else:
+#             children_args, new_next_index = parse_arguments(arg_string, [], next_index+2)
+#             arg = [next_piece, children_args]
+#             args.append(arg)
+#             return parse_arguments(arg_string, args, new_next_index)
+#     else:
+#         arg, new_next_index = parse(arg_string, next_index)
+#         args.append(arg)
+#         return parse_arguments(arg_string, args, new_next_index)
+#
+#
+# def separate_parens(expression):
+#     new_expression = []
+#     for char in expression:
+#         if char == "(":
+#             new_expression.append(" ( ")
+#         elif char == ")":
+#             new_expression.append(" ) ")
+#         elif char == ".":
+#             new_expression.append(" . ")
+#         elif char == ",":
+#             new_expression.append(" ")
+#         else:
+#             new_expression.append(char)
+#     return ''.join(new_expression)
