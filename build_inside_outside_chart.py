@@ -5,9 +5,9 @@
 #     (head,p,q)
 
 import pdb, re
-from exp import exp
+# from exp import exp
 # from variable import variable
-from lexicon_classes import syn_cat
+# from lexicon_classes import syn_cat
 from tools import inf
 import expFunctions
 

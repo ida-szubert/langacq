@@ -1,3 +1,4 @@
 .idea/*
 *.pyc
 .idea/langacq.iml
+my_test/*
