@@ -124,17 +124,30 @@ class quant(exp):
         # self.arguments[0].varsAbove(other,vars)
 
     def equalsPlaceholder(self,other):
-        if other.__class__ != quant or \
-        not self.var.equalType(other.var)or \
-            self.name!=other.name:
+        if other.__class__ != quant:
+            answer = False
+        elif self.var.__class__ != other.var.__class__:
+            answer = False
+        elif self.var.__class__== variable and \
+                not self.var.equalType(other.var):
+            answer = False
+        elif not self.var.equalsPlaceholder(other.var):
+            answer = False
+        elif self.name!=other.name:
+            answer = False
             print "quant fail"
-            return False
-        self.var.setEqualTo(other.var)
-        other.var.setEqualTo(self.var)
-        if len(self.arguments) != len(other.arguments):
-            return False
-        return all([a_o.equalsPlaceholder(a) for a, a_o in zip(self.arguments, other.arguments)])
+            # return False
+        elif len(self.arguments) != len(other.arguments):
+            answer = False
+        else:
+            if self.var.__class__ == variable:
+                self.var.setEqualTo(other.var)
+                other.var.setEqualTo(self.var)
+            # if len(self.arguments) != len(other.arguments):
+            #     return False
+            answer = all([a_o.equalsPlaceholder(a) for a, a_o in zip(self.arguments, other.arguments)])
         # return other.arguments[0].equalsPlaceholder(self.arguments[0])
+        return answer
 
     def equals(self,other):
         if other.__class__ != quant:
