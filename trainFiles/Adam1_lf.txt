@@ -426,7 +426,7 @@ Sent: I help to move rocks .
 Sem: lambda $0_{ev}.v|help(pro:sub|i,lambda $1_{ev}.n|move(pro:sub|i,lambda $2_{e}.n|rock-pl($2),$1),$0)
 example_end
 
-Sent: what is this ?
+Sent: what is this .
 Sem: lambda $1_{e}.lambda $0_{ev}.$1(pro:dem|this,$0)
 example_end
 
@@ -798,7 +798,7 @@ Sent: Mommy 's tea ?
 Sem: lambda $0_{e}.Q(n:prop|mommy's($1,n|tea($1),$0))
 example_end
 
-Sent: what are you doing Adam ?
+Sent: what are you doing Adam .
 Sem: lambda $1_{e}.lambda $0_{ev}.aux|be-pres(part|do-presp(pro:per|you,$1,$0),$0)
 example_end
 
@@ -1032,10 +1032,6 @@ example_end
 
 Sent: oh pin game .
 Sem: lambda $0_{ev}.and(and_comp(n|pin($0),n|game($0)),co|oh($0))
-example_end
-
-Sent: John Buzzhart !
-Sem: 
 example_end
 
 Sent: Adam you don 't tell him what to write .

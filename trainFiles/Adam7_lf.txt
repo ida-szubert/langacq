@@ -1,8 +1,20 @@
+Sent: you 're dripping .
+Sem: lambda $0_{ev}.aux|~be(part|drip-presp(pro:per|you,$0),$0)
+example_end
+
 Sent: excuse me please .
 Sem: lambda $0_{ev}.and(v|excuse(you,pro:obj|me,$0),co|please($0))
 example_end
 
+Sent: too big .
+Sem: lambda $0_{e}.adv|too(adj|big($0))
+example_end
+
 Sent: be careful .
 Sem: lambda $0_{e}.lambda $1_{ev}.adj|care-dn($0,$1)
+example_end
+
+Sent: that 's his tongue ?
+Sem: lambda $0_{ev}.Q(det:poss|his(pro:dem|that,n|tongue(pro:dem|that,$0)))
 example_end
 

@@ -150,6 +150,10 @@ Sent: do you know what that is ?
 Sem: lambda $0_{e}.lambda $1_{e}.lambda $2_{ev}.v|know($1,$0,$2)
 example_end
 
+Sent: you don 't know .
+Sem: lambda $0_{ev}.not(mod|do(v|know(pro:per|you,$0),$0),$0)
+example_end
+
 Sent: that 's the mail car .
 Sem: lambda $0_{ev}.det:art|the(pro:dem|that,and_comp(n|mail(pro:dem|that,$0),n|car(pro:dem|that,$0)))
 example_end
@@ -1054,10 +1058,6 @@ Sent: whose book is that ?
 Sem: lambda $1_{e}.lambda $0_{ev}.$1(pro:dem|that,n|book(pro:dem|that,$0))
 example_end
 
-Sent: Bruno Walter .
-Sem: 
-example_end
-
 Sent: playing the piano .
 Sem: lambda $0_{ev}.part|play-presp(you,det:art|the($1,n|piano($1)),$0)
 example_end
@@ -1178,6 +1178,10 @@ Sent: you want some paper ?
 Sem: lambda $0_{ev}.Q(v|want(pro:per|you,qn|some($1,n|paper($1)),$0))
 example_end
 
+Sent: where did you get that ?
+Sem: lambda $1_{e}.lambda $0_{ev}.mod|do-past(and(v|get(pro:per|you,pro:dem|that,$0),$1($0)),$0)
+example_end
+
 Sent: Adam are you writing .
 Sem: lambda $0_{ev}.aux|be-pres(part|write-presp(pro:per|you,$0),$0)
 example_end
@@ -1286,8 +1290,8 @@ Sent: don 't ride the roadgrader up there .
 Sem: lambda $0_{ev}.not(mod|do(and(v|ride(you,det:art|the($1,n|roadgrader($1)),$0),adv|up(adv|there($0))),$0),$0)
 example_end
 
-Sent: that 's right .
-Sem: lambda $0_{ev}.n|right(pro:dem|that,$0)
+Sent: that 's right ?
+Sem: lambda $0_{ev}.Q(n|right(pro:dem|that,$0))
 example_end
 
 Sent: it 's not a big hill .
@@ -1526,8 +1530,8 @@ Sent: did you throw the ball ?
 Sem: lambda $0_{ev}.Q(v|do-past(v|throw(pro:per|you,det:art|the($1,n|ball($1)),$0),$0))
 example_end
 
-Sent: the light .
-Sem: det:art|the($0,n|light($0))
+Sent: the light ?
+Sem: lambda $0_{e}.Q(det:art|the($1,n|light($1),$0))
 example_end
 
 Sent: are you hitting the ball .

@@ -1,0 +1,8 @@
+Sent: you 're tired .
+Sem: lambda $0_{ev}.part|tire-pastp(pro:per|you,$0)
+example_end
+
+Sent: turn it over .
+Sem: lambda $0_{ev}.and(v|turn(you,pro:per|it,$0),adv|over($0))
+example_end
+

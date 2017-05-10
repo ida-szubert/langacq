@@ -654,8 +654,8 @@ Sent: no you don 't write on buttons .
 Sem: lambda $0_{ev}.and(not(mod|do(and(v|write(pro:per|you,$0),prep|on(lambda $1_{e}.n|button-pl($1),$0)),$0),$0),co|no($0))
 example_end
 
-Sent: tomato soup ?
-Sem: lambda $0_{e}.Q(and_comp(n|tomato($0),n|soup($0)))
+Sent: tomato soup .
+Sem: lambda $0_{e}.and_comp(n|tomato($0),n|soup($0))
 example_end
 
 Sent: how can I drink so much coffee ?
@@ -1050,8 +1050,8 @@ Sent: how did you hurt your knee ?
 Sem: lambda $2_{e}.lambda $0_{ev}.mod|do-past(and(v|hurt-zero(pro:per|you,det:poss|your($1,n|knee($1)),$0),$2($0)),$0)
 example_end
 
-Sent: on the chair ?
-Sem: Q(prep|on(det:art|the($0,n|chair($0))))
+Sent: on the chair .
+Sem: prep|on(det:art|the($0,n|chair($0)))
 example_end
 
 Sent: how did you hurt your arm ?
@@ -1106,12 +1106,8 @@ Sent: time for bed ?
 Sem: lambda $0_{e}.Q(att(n|time($0),prep|for(lambda $1_{e}.n|bed($1))))
 example_end
 
-Sent: for whom ?
-Sem: 
-example_end
-
-Sent: for Mommy ?
-Sem: Q(conj|for(n:prop|mommy))
+Sent: for Mommy .
+Sem: conj|for(n:prop|mommy)
 example_end
 
 Sent: it 's not time for bed for Adam ?

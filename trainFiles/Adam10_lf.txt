@@ -46,7 +46,7 @@ Sent: you didn 't see an elephant .
 Sem: lambda $0_{ev}.not(mod|do(v|see(pro:per|you,det:art|a($1,n|elephant($1)),$0),$0),$0)
 example_end
 
-Sent: what else did you see ?
+Sent: what else did you see .
 Sem: lambda $1_{e}.lambda $0_{ev}.mod|do-past(v|see(pro:per|you,$1,$0),$0)
 example_end
 
@@ -646,10 +646,6 @@ Sent: put it in your hat .
 Sem: lambda $0_{ev}.and(v|put-zero(you,pro:per|it,$0),prep|in(det:poss|your($1,n|hat($1)),$0))
 example_end
 
-Sent: you will ?
-Sem: lambda $0_{ev}.Q(mod|will(pro:per|you,$0))
-example_end
-
 Sent: just a minute Santa Claus .
 Sem: adv|just(det:art|a($0,n|minute($0)))
 example_end
@@ -738,7 +734,7 @@ Sent: is that part of the broom ?
 Sem: lambda $0_{ev}.Q(att(n|part(pro:dem|that,$0),prep|of(det:art|the($1,n|broom($1)))))
 example_end
 
-Sent: Adam no .
+Sent: Adam no !
 Sem: lambda $0_{ev}.co|no($0)
 example_end
 
@@ -1026,8 +1022,8 @@ Sent: what is that in the bottle ?
 Sem: lambda $1_{e}.lambda $0_{ev}.$1(att(pro:dem|that,prep|in(det:art|the($2,n|bottle($2)))),$0)
 example_end
 
-Sent: it 's hot ?
-Sem: lambda $0_{ev}.Q(adj|hot(pro:per|it,$0))
+Sent: it 's hot .
+Sem: lambda $0_{ev}.adj|hot(pro:per|it,$0)
 example_end
 
 Sent: what 's hot ?

@@ -1,4 +1,16 @@
+Sent: see it .
+Sem: lambda $0_{ev}.v|see(you,pro:per|it,$0)
+example_end
+
 Sent: get down .
 Sem: lambda $0_{ev}.and(v|get(you,$0),adv|down($0))
+example_end
+
+Sent: Rusty 's hat ?
+Sem: lambda $0_{e}.Q(n:prop|rusty's($1,n|hat($1),$0))
+example_end
+
+Sent: behind you .
+Sem: prep|behind(pro:per|you)
 example_end
 

@@ -114,6 +114,10 @@ Sent: well it doesn 't really belong there .
 Sem: lambda $0_{ev}.and(not(mod|do(and(and(v|belong(pro:per|it,$0),adv|real-dadj($0)),adv|there($0)),$0),$0),co|well($0))
 example_end
 
+Sent: I don 't know what happened .
+Sem: lambda $0_{ev}.not(mod|do(v|know(pro:sub|i,lambda $1_{ev}.v|happen-past(pro:int|what,$1),$0),$0),$0)
+example_end
+
 Sent: what happened to him ?
 Sem: lambda $1_{e}.lambda $0_{ev}.and(v|happen-past($1,$0),prep|to(pro:obj|him,$0))
 example_end
@@ -164,10 +168,6 @@ example_end
 
 Sent: where are you trying to send your rocket ?
 Sem: lambda $3_{e}.lambda $0_{ev}.aux|be-pres(and(part|try-presp(pro:per|you,lambda $1_{ev}.v|send(pro:per|you,det:poss|your($2,n|rocket($2)),$1),$0),$3($0)),$0)
-example_end
-
-Sent: to Rusty ?
-Sem: 
 example_end
 
 Sent: what are you doing with the rocket ?
@@ -286,8 +286,8 @@ Sent: see you what ?
 Sem: lambda $0_{ev}.v|see(you,pro:per|you,$0)
 example_end
 
-Sent: it 's broken ?
-Sem: lambda $0_{ev}.Q(part|break-pastp(pro:per|it,$0))
+Sent: it 's broken .
+Sem: lambda $0_{ev}.part|break-pastp(pro:per|it,$0)
 example_end
 
 Sent: no it doesn 't come out .
@@ -754,8 +754,8 @@ Sent: okay you have your bib on ?
 Sem: lambda $0_{ev}.Q(and(and(v|have(pro:per|you,det:poss|your($1,n|bib($1)),$0),adv|on($0)),co|okay($0)))
 example_end
 
-Sent: you like it ?
-Sem: lambda $0_{ev}.Q(v|like(pro:per|you,pro:per|it,$0))
+Sent: you like it .
+Sem: lambda $0_{ev}.v|like(pro:per|you,pro:per|it,$0)
 example_end
 
 Sent: he dropped his pencil .
@@ -1128,5 +1128,97 @@ example_end
 
 Sent: penguins can 't fly .
 Sem: lambda $0_{ev}.not(mod|can(v|fly(lambda $1_{e}.n|penguin-pl($1),$0),$0),$0)
+example_end
+
+Sent: in the water ?
+Sem: Q(prep|in(det:art|the($0,n|water($0))))
+example_end
+
+Sent: cold outside yes .
+Sem: lambda $0_{ev}.and(and(n|cold($0),prep|outside($0)),co|yes($0))
+example_end
+
+Sent: yes the wind 's blowing .
+Sem: lambda $0_{ev}.and(aux|~be(part|blow-presp(det:art|the($1,n|wind($1)),$0),$0),co|yes($0))
+example_end
+
+Sent: did you see all the snow ?
+Sem: lambda $0_{ev}.Q(mod|do-past(v|see(pro:per|you,adv|all(det:art|the($1,n|snow($1))),$0),$0))
+example_end
+
+Sent: drummer show .
+Sem: lambda $0_{e}.and_comp(n|drum-dv($0),n|show($0))
+example_end
+
+Sent: oh look up the cowboy 's hat ?
+Sem: lambda $0_{ev}.Q(and(and(co|look(you,$0),prep|up(n|cow+boy's($1,det:art|the($2,n|hat($2),$1)),$0)),co|oh($0)))
+example_end
+
+Sent: didn 't you go out in the snow ?
+Sem: lambda $0_{ev}.Q(not(mod|do(and(and(v|go(pro:per|you,$0),adv|out($0)),prep|in(det:art|the($1,n|snow($1)),$0)),$0),$0))
+example_end
+
+Sent: you didn 't go for a walk in the snow ?
+Sem: lambda $0_{ev}.Q(not(mod|do(and(and(v|go(pro:per|you,$0),prep|for(det:art|a($1,n|walk($1)),$0)),prep|in(det:art|the($2,n|snow($2)),$0)),$0),$0))
+example_end
+
+Sent: did you go over to the library in the snow ?
+Sem: lambda $0_{ev}.Q(v|do-past(and(and(and(v|go(pro:per|you,$0),adv|over($0)),prep|to(det:art|the($1,n|library($1)),$0)),prep|in(det:art|the($2,n|snow($2)),$0)),$0))
+example_end
+
+Sent: and ride the elevator ?
+Sem: lambda $0_{ev}.Q(v|ride(you,det:art|the($1,n|elevator($1)),$0))
+example_end
+
+Sent: in the library ?
+Sem: Q(prep|in(det:art|the($0,n|library($0))))
+example_end
+
+Sent: Daddy took you for a walk ?
+Sem: lambda $0_{ev}.Q(and(v|take-past(n:prop|daddy,pro:per|you,$0),prep|for(det:art|a($1,n|walk($1)),$0)))
+example_end
+
+Sent: did you touch the snow Adam ?
+Sem: lambda $0_{ev}.Q(v|do-past(v|touch(pro:per|you,det:art|the($1,n|snow($1)),$0),$0))
+example_end
+
+Sent: did you throw some ?
+Sem: lambda $0_{ev}.Q(v|do-past(v|throw(pro:per|you,qn|some,$0),$0))
+example_end
+
+Sent: you threw some snow like Joshua ?
+Sem: lambda $0_{ev}.Q(and(v|throw-past(pro:per|you,qn|some($1,n|snow($1)),$0),co|like(n:prop|joshua,$0)))
+example_end
+
+Sent: Joshua throws like a penguin ?
+Sem: lambda $0_{ev}.Q(and(v|throw-3s(n:prop|joshua,$0),prep|like(det:art|a($1,n|penguin($1)),$0)))
+example_end
+
+Sent: penguins can 't throw can they ?
+Sem: lambda $0_{ev}.Q(and(not(mod|can(v|throw(lambda $1_{e}.n|penguin-pl($1),$0),$0),$0),mod|can(pro:sub|they,$0)))
+example_end
+
+Sent: yes they are big and heavy .
+Sem: lambda $0_{ev}.and(coord|and(adj|big(pro:sub|they,$0),adj|heavy(pro:sub|they,$0)),co|yes($0))
+example_end
+
+Sent: listen to you ?
+Sem: lambda $0_{ev}.Q(and(v|listen(you,$0),prep|to(pro:per|you,$0)))
+example_end
+
+Sent: what are you saying ?
+Sem: lambda $1_{e}.lambda $0_{ev}.aux|be-pres(part|say-presp(pro:per|you,$1,$0),$0)
+example_end
+
+Sent: yes I see you .
+Sem: lambda $0_{ev}.and(v|see(pro:sub|i,pro:per|you,$0),co|yes($0))
+example_end
+
+Sent: do you see me ?
+Sem: lambda $0_{ev}.Q(mod|do(v|see(pro:per|you,pro:obj|me,$0),$0))
+example_end
+
+Sent: it 's how I wonder what you are .
+Sem: lambda $0_{ev}.aux|~be(pro:per|it,lambda $1_{ev}.and(v|wonder(pro:sub|i,lambda $2_{ev}.pro:int|what(pro:per|you,$2),$1),adv:int|how($1)),$0)
 example_end
 

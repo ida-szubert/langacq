@@ -1,0 +1,12 @@
+Sent: no Adam !
+Sem: lambda $0_{ev}.co|no($0)
+example_end
+
+Sent: here it is ?
+Sem: lambda $0_{ev}.Q(and(cop|be-3s(pro:per|it,$0),adv|here($0)))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no($0,n|thank_you($0))
+example_end
+

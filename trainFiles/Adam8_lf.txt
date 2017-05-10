@@ -1,3 +1,7 @@
+Sent: this one ?
+Sem: lambda $0_{e}.Q(pro:dem|this($1,pro:indef|one($1),$0))
+example_end
+
 Sent: you missed it .
 Sem: lambda $0_{ev}.v|miss-past(pro:per|you,pro:per|it,$0)
 example_end
