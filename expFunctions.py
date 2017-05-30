@@ -66,19 +66,27 @@ def makeExp(predString, expString, vardict):
         # mod:aux, aux, mod, v, part, cop, co, n:gerund
         # pro:dem, det:dem, det:poss, det:art, qn
         # conj, coord
-        if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
-            e = quant(name,pos,args[0])
-            args = args[1:]
+        is_quant = isQuant(args)
+        # if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
+        if is_quant:
+            # e = quant(name,pos,args[0])
+            # args = args[1:]
+            e = predicate(name,numArgs,argTypes,pos,bindVar=True)
+            if args[0].__class__ == variable:
+                e.setNounMod()
         elif pos in ['conj', 'coord']:
             e = conjunction()
             e.setType(name)
         else:
             e = predicate(name,numArgs,argTypes,pos)
     elif numArgs == 3:
+        is_quant = isQuant(args)
         # DPs as sentential adjuncts
-        if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
-            e = quant(name,pos,args[0])
-            args = args[1:]
+        # if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
+        if is_quant:
+            # e = quant(name,pos,args[0])
+            # args = args[1:]
+            e = predicate(name,numArgs,argTypes,pos,bindVar=True)
         else:
             e = predicate(name,numArgs,argTypes,pos)
     else:
@@ -92,6 +100,18 @@ def makeExp(predString, expString, vardict):
 
     return e, expString
 
+def isQuant(args):
+    quant_with_var = args[0].__class__ == variable and args[0] in args[1].allSubExps()
+    quant_with_const = args[0].__class__ == constant and any([args[0].equals(x) for x in args[1].allSubExps()])
+    if len(args) == 2:
+        return quant_with_var or quant_with_const
+    if len(args) == 3:
+        if args[2].__class__ not in [variable, eventMarker]:
+            return False
+        else:
+            return quant_with_var or quant_with_const
+    else:
+        return False
 
 def makeExpWithArgs(expString,vardict):
     print "making ",expString
@@ -103,10 +123,14 @@ def makeExpWithArgs(expString,vardict):
     if is_lambda:
         vname = expString[7:expString.find("_{")]
         tstring = expString[expString.find("_{")+2:expString.find("}")]
-        t = semType.makeType(tstring)
+        # t = semType.makeType(tstring)
         v = variable(None)
+        t = semType.makeType(tstring)
         v.t = t
+        if tstring == "ev":
+            v.isEvent = True
         vardict[vname] = v
+        v.name = vname
         expString = expString[expString.find("}.")+2:]
         (f,expString) = makeExpWithArgs(expString,vardict)
         e = lambdaExp()
@@ -192,6 +216,7 @@ def makeVars(predstring,expString,vardict,parse_args=True):
         t = semType.makeType(tstring)
         e = variable(None)
         e.t = t
+        e.name = vname
         vardict[vname] = e
     else:
         e = vardict[predstring]
