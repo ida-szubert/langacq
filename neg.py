@@ -28,10 +28,14 @@ class neg(exp):
     def semprior(self):
         return -1.0 + self.arguments[0].semprior()
 
-    def makeShell(self):
-        n = neg(self.arguments[0].makeShell(), self.numArgs)
-        if self.numArgs == 2:
-            n.setEvent(self.arguments[1].makeShell())
+    def makeShell(self, expDict):
+        if self in expDict:
+            n = expDict[self]
+        else:
+            n = neg(self.arguments[0].makeShell(expDict), self.numArgs)
+            if self.numArgs == 2:
+                n.setEvent(self.arguments[1].makeShell(expDict))
+        expDict[self] = n
         return n
 
     def copy(self):

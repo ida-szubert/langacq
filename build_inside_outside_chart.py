@@ -56,7 +56,7 @@ class SemStore:
         self.store[sem.toString(True)] = sem
         if not self.store.has_key(sem.toStringShell(True)):
             # print "adding to ss ",sem.toStringShell(True),sem
-            self.store[sem.toStringShell(True)] = sem.makeShell()
+            self.store[sem.toStringShell(True)] = sem.makeShell({})
 
     def get(self, sem_key):
         if self.store.has_key(sem_key):

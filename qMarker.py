@@ -35,7 +35,7 @@ class qMarker(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringShell(self,top):
@@ -45,7 +45,7 @@ class qMarker(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringUBL(self,top):
@@ -55,7 +55,7 @@ class qMarker(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def type(self):
@@ -66,8 +66,12 @@ class qMarker(exp):
         for a in self.arguments: p += a.semprior()
         return p
 
-    def makeShell(self):
-        q = qMarker(self.arguments[0].makeShell())
+    def makeShell(self, expDict):
+        if self in expDict:
+            q = expDict[self]
+        else:
+            q = qMarker(self.arguments[0].makeShell(expDict))
+        expDict[self] = q
         # q.setEvent(self.arguments[1].makeShell())
         return q
 

@@ -22,9 +22,13 @@ class constant(exp):
     def semprior(self):
         return -1.0
 
-    def makeShell(self):
-        c = constant("placeholderC",self.numArgs,self.argTypes,self.posType)
-        c.makeCompNameSet()
+    def makeShell(self, expDict):
+        if self in expDict:
+            c = expDict[self]
+        else:
+            c = constant("placeholderC",self.numArgs,self.argTypes,self.posType)
+            c.makeCompNameSet()
+            expDict[self] = c
         return c
 
     def copy(self):

@@ -68,16 +68,20 @@ class conjunction(exp):
         for a in self.arguments: p += a.semprior()
         return p
 
-    def makeShell(self):
-        c = conjunction()
-        c.setType(self.name)
+    def makeShell(self, expDict):
+        if self in expDict:
+            c = expDict[self]
+        else:
+            c = conjunction()
+            c.setType(self.name)
         for i, a in enumerate(self.arguments):
         # for a in self.arguments:
             #print "gonna makeShell ",a.toString(True)
-            a2 = a.makeShell()
+            a2 = a.makeShell(expDict)
             #print "got it ",a2.toString(True)
             c.setArg(i, a2)
             # c.addArg(a2)
+        expDict[self] = c
         return c
 
     def copy(self):
@@ -295,7 +299,7 @@ class conjunction(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringShell(self,top):
@@ -311,7 +315,7 @@ class conjunction(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringUBL(self,top):
@@ -328,5 +332,5 @@ class conjunction(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
