@@ -358,7 +358,7 @@ Sent: radio .
 Sem:  lambda $0_{e}.n|radio($0)
 example_end
 
-Sent: what 'll you do with it ?
+Sent: what 'll you do with it ?tot
 Sem:  lambda $0_{e}.lambda $1_{ev}.and(aux|will(v|do(pro|you,$0,$1),$1),prep|with(pro|it,$1))
 example_end
 
