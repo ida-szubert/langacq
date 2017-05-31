@@ -47,6 +47,10 @@ class exp:
             if e.__class__ in [lambdaExp,quant]:
                 e.var.setBinder(e)
 
+    def repairBinding(self, orig):
+        for arg, orig_arg in zip(self.arguments, orig.arguments):
+            arg.repairBinding(orig_arg)
+
     def isQ(self):
         return False
 
@@ -579,11 +583,15 @@ class exp:
     def unboundVars(self):
         boundVars = []
         vars = []
-        for e in self.allSubExps():
-            try:
-                boundVars.append(e.var)
-            except AttributeError:
-                pass
+        subExps = self.allSubExps()
+        for e in subExps:
+            if e.__class__ == variable and e.binder:
+                if e.binder in subExps:
+                    boundVars.append(e)
+            # try:
+            #     boundVars.append(e.var)
+            # except AttributeError:
+            #     pass
             # if e.__class__ in [lambdaExp,quant,eventSkolem]:
             #     boundVars.append(e.var)
         self.getAllVars(vars)
@@ -632,6 +640,7 @@ class exp:
         
         # first of all, make function application
         origsem = self.copy()
+        orige = e.copy()
         pairs = []
         (belowvars,abovevars,bothvars) = self.partitionVars(e)
         ec = e.copyNoVar()
@@ -646,9 +655,8 @@ class exp:
         compvars = []
         numByComp = 0
         while not compdone:
-            if vars[varindex] == self.var and \
-				            vars[varindex] not in abovevars and \
-				            vars[varindex].__class__!=eventMarker:
+            current_v = vars[varindex]
+            if current_v == self.var and current_v not in abovevars and not current_v.isEvent:
                 compvars.append(vars[varindex])
                 numByComp += 1
                 p = compp.compositionSplit(vars,compvars,ec,e)
@@ -700,17 +708,24 @@ class exp:
         l1 =  pair[0].copy()
         e1 = pair[1].copy()
 
-        sem = l1.apply(e1)
+        try:
+            sem = l1.apply(e1)
+        except AttributeError:
+            sem = l1.apply(e1)
+
+        e.repairBinding(orige)
+        self.repairBinding(origsem)
+        # if sem == None:
+        #     sem = l1.apply(e1)
         if not sem.equals(self):
             print "sems dont match : "+sem.toString(True)+"  "+self.toString(True)
-        
-        if not self.equals(origsem):
-            print "\nnot back to orig"
-            print self.toString(True)
-            print origsem.toString(True)
-            print ""
+        # if not self.equals(origsem):
+        #     print "\nnot back to orig"
+        #     print self.toString(True)
+        #     print origsem.toString(True)
+        #     print ""
         return pairs
-        
+
     def arity(self):
         return 0
 
@@ -1122,7 +1137,17 @@ class exp:
         
         conjunctions = []
         for e in subExps:
-            
+            # for x in self.allSubExps():
+            #     if x.__class__ == lambdaExp:
+            #         if x.var.binder != x:
+            #             pass
+            #     else:
+            #         try:
+            #             if x.bindVar and not x.varIsConst and len(x.arguments) > 1:
+            #                 if x.arguments[0].binder != x:
+            #                     pass
+            #         except AttributeError:
+            #             pass
             # this is how we should add null if we're going to
             allowNull = True
             if e==self: 
@@ -1317,8 +1342,13 @@ class emptyExp(exp):
         self.inout = None
         self.doubleQuant = False
 
-    def makeShell(self):
-        return emptyExp()
+    def makeShell(self, expDict):
+        if self in expDict:
+            e = expDict[self]
+        else:
+            e = emptyExp
+        expDict[self] = e
+        return e
 
     def copy(self):
         return emptyExp()
@@ -1345,7 +1375,7 @@ class emptyExp(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringUBL(self,top):
@@ -1357,7 +1387,7 @@ class emptyExp(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def clearNames(self):
@@ -1387,7 +1417,17 @@ class variable(exp):
         self.inout=None
         self.doubleQuant = False
         self.nounMod = False
+        self.bindVar = None
+        self.varIsConst = None
         if e:
+            #if e is a quant type of predicate
+            try:
+                self.bindVar = e.bindVar
+                if self.bindVar:
+                    # self.varIsConst = True
+                    self.varIsConst = e.varIsConst
+            except AttributeError:
+                pass
             self.t = e.type()
             self.numArgs = e.numArgs
             self.argTypes = e.argTypes
@@ -1397,8 +1437,13 @@ class variable(exp):
                 #self.addAtFrontArg(a)
             #self.arguments = e.arguments
             self.returnType = e.getReturnType()
+            # if e is a predicate
             self.nounMod = e.isNounMod()
-
+            # if e is a variable
+            try:
+                self.isEvent = e.isEvent
+            except AttributeError:
+                self.isEvent = False
         else:
             self.numArgs = 0
             self.argTypes = []
@@ -1408,7 +1453,42 @@ class variable(exp):
             #self.returnType = "e"
             self.returnType = semType.eType()
             self.t = semType.eType()
+            self.isEvent = False
         self.isNull = False
+
+    def setArgHelper(self, position, argument):
+        self.arguments.pop(position)
+        self.arguments.insert(position,argument)
+        if isinstance(argument,exp):
+            argument.add_parent(self)
+            self.argSet = True
+
+    def setArg(self,position,argument):
+        if not self.bindVar:
+            self.setArgHelper(position, argument)
+        else:
+            if position == 0:
+                if argument.__class__ == variable and not argument.isEvent:
+                    if self.varIsConst == None:
+                        argument.setBinder(self)
+                        self.varIsConst = False
+                        self.returnType = semType.eType()
+                        # self.nounMod = True
+                else:
+                    if self.varIsConst == None:
+                        self.varIsConst = True
+                self.setArgHelper(position, argument)
+            if position >= 1:
+                if self.varIsConst:
+                    for a in argument.allArgs():
+                        if a.equals(self.arguments[0]):
+                            argument.replace2(a, self.arguments[0])
+                self.setArgHelper(position, argument)
+            # if position>1:
+            #     if argument.__class__ == eventMarker or (argument.__class__ == variable and argument.isEvent):
+            #         self.setArgHelper(position, argument)
+            #     else:
+            #         error("only eventMarker acceptable as second arg for quant")
 
     def setVarInOut(self):
         self.inout = self.binder.inout
@@ -1434,12 +1514,24 @@ class variable(exp):
         #return self.semprior()
         #return -3 * self.type().toString().count(",") - 1
 
-    def makeShell(self):
-        if self.varcopy is None: return None
+    def makeShell(self, expDict):
+        if self.varcopy:
+            v = self.varcopy
+        elif self in expDict:
+            v = expDict[self]
+        else:
+            v = variable(self)
+            v.name = self.name
+            expDict[self] = v
+        # if self.varcopy is None:
+            # return None
+            # v = variable(self)
+            # self.varcopy = v
+        # else:
+        #     v = self.varcopy
         args = []
         for a in self.arguments:
-            args.append(a.makeShell())
-        v = self.varcopy
+            args.append(a.makeShell(expDict))
         v.arguments = args
         return v
 
@@ -1452,21 +1544,72 @@ class variable(exp):
     def copy(self):
         if self.varcopy is None:
             return None
-        args = []
-        for a in self.arguments:
-            args.append(a.copy())
+        # variable with no arguments
         v = self.varcopy
         v.linkedVar = self.linkedVar
-        v.arguments = args
+        v.arguments = []
+        v.varIsConst = self.varIsConst
+        if self.arguments:
+            v.arguments = [None for a in self.arguments]
+            if not self.bindVar or (self.bindVar and self.varIsConst):
+                arg0Bound = False
+            else:
+                arg0Bound = self.arguments[0].binder == self
+            # variable in place of normal predicate
+            # if not self.bindVar or (self.bindVar and len(self.arguments) == 1):
+            if not self.bindVar or not arg0Bound:
+                args = []
+                for a in self.arguments:
+                    args.append(a.copy())
+                for i, a in enumerate(args):
+                    v.setArg(i,a)
+            else:
+                # variable in place of quant with bound variable
+                if not self.varIsConst:
+                    newvar = variable(None)
+                    self.arguments[0].setVarCopy(newvar)
+                # variable in place of quant with constant
+                else:
+                    newvar = self.arguments[0].copy()
+                args = [newvar]
+                args.extend([a.copy() for a in self.arguments[1:]])
+                for i, a in enumerate(args):
+                    v.setArg(i,a)
         return v
 
     def copyNoVar(self):
         return self
 
+    # def copyNoVar(self):
+    #     # variable with no arguments
+    #     if not self.arguments:
+    #         return self
+    #     else:
+    #         v = self.varcopy
+    #         v.linkedVar = self.linkedVar
+    #         v.arguments = [None for a in self.arguments]
+    #         # variable mimicking predicate
+    #         if not self.bindVar:
+    #             args = []
+    #             for a in self.arguments:
+    #                 args.append(a.copyNoVar())
+    #         # variable mimicking quant
+    #         else:
+    #             # with first arg being a constant
+    #             if self.varIsConst:
+    #                 args = [a.copyNoVar() for a in self.arguments]
+    #             # with first arg being a variable
+    #             else:
+    #                 args = [self.arguments[0]]
+    #                 args.extend([a.copyNoVar() for a in self.arguments[1:]])
+    #         for i, a in enumerate(args):
+    #             v.setArg(i,a)
+    #     return v
+
     def allSubExps(self):
         subexps = [self]
         if len(self.arguments)>0:
-            subexps.append(self)
+            # subexps.append(self)
             for a in self.arguments:
                 subexps.extend(a.allSubExps())
         return subexps
@@ -1514,7 +1657,7 @@ class variable(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringShell(self,top):
@@ -1537,7 +1680,7 @@ class variable(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringUBL(self,top):
@@ -1598,7 +1741,19 @@ class variable(exp):
         return other==self.equalother
 
     def equals(self,other):
+        if other.__class__ != variable: return False
         if len(self.arguments)!=len(other.arguments): return False
+        if self.isEvent != other.isEvent: return False
+        # if self and other both bind a variable, and bound variables are the first arguments
+        # of both self and other, set those variables to be equal
+        bindsVar = self.bindVar and not self.varIsConst and len(self.arguments) > 0
+        other_bindsVar = other.bindVar and not other.varIsConst and len(other.arguments) > 0
+        if bindsVar and other_bindsVar:
+            isBinder = self.arguments[0].binder == self
+            other_isBinder = other.arguments[0].binder == other
+            if isBinder and other_isBinder:
+                self.arguments[0].setEqualTo(other.arguments[0])
+                other.arguments[0].setEqualTo(self.arguments[0])
         i = 0
         for a in self.arguments:
             if not a.equals(other.arguments[i]): return False
@@ -1630,18 +1785,28 @@ class lambdaExp(exp):
         else:
             return self.funct.semprior()
 
+    def repairBinding(self, orig):
+        if orig.var.binder == orig:
+            self.var.binder = self
+        self.funct.repairBinding(orig.funct)
+
     def isQ(self):
         return self.funct.isQ()
 
-    def makeShell(self):
-        l = lambdaExp()
-        v = variable(self.var)
-        self.var.setVarCopy(v)
-        #print "var makeShell is ",v," for ",self.var
-        l.setVar(v)
-        f = self.funct.makeShell()
-        l.setFunct(f)
-        if self.getIsNull(): l.setIsNull()
+    def makeShell(self, expDict):
+        if self in expDict:
+            l = expDict[self]
+        else:
+            l = lambdaExp()
+            v = variable(self.var)
+            expDict[self.var] = v
+            # self.var.setVarCopy(v)
+            #print "var makeShell is ",v," for ",self.var
+            l.setVar(v)
+            f = self.funct.makeShell(expDict)
+            l.setFunct(f)
+            if self.getIsNull():
+                l.setIsNull()
         return l
 
     def copy(self):
@@ -1790,16 +1955,15 @@ class lambdaExp(exp):
         l.setFunct(p)
         l.setVar(newvariable)
         pair = (l.copy(),ec.copy())
-
         #print "pair from comp is ",pair[0].toString(True),"   ",pair[1].toString(True)
 
         #print "gonna recompose"
         l = l.copy()
         ec = ec.copy()
-        try:
-            sem = l.compose(ec)
-        except AttributeError:
-            pass
+        # try:
+        sem = l.compose(ec)
+        # except AttributeError:
+        #     pass
         #print "dun that"
 
 
@@ -1918,7 +2082,10 @@ class lambdaExp(exp):
         # print "trying to apply ",self.toString(True)," to ",e.toString(True)
 
         newExp = None
-        if self.var.type().equals(e.type()):
+        varType = self.var.type()
+        argType = e.type()
+        if varType.equals(argType):
+        # if self.var.type().equals(e.type()):
             for a in self.var.arguments:
                 if e.__class__==variable:
                     e.addArg(a)
@@ -1992,7 +2159,7 @@ class lambdaExp(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringShell(self,top):
@@ -2005,7 +2172,7 @@ class lambdaExp(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def toStringUBL(self,top):
@@ -2018,7 +2185,7 @@ class lambdaExp(exp):
             exp.varNum = 0
             exp.eventNum = 0
             exp.emptyNum = 0
-            self.clearNames()
+            # self.clearNames()
         return s
 
     def clearNames(self):
@@ -2052,7 +2219,7 @@ class lambdaExp(exp):
 
 
 class eventMarker(exp):
-    def __init__(self):
+    def __init__(self, e=None):
         self.name=None
         self.parents=[]
         self.arguments=[]
@@ -2065,6 +2232,8 @@ class eventMarker(exp):
         self.isNull = False
         self.inout = None
         self.doubleQuant = False
+        if e:
+            self.name=e.name
 
     def setBinder(self,e):
         #print "setting binder = ",e," for ",self
@@ -2104,7 +2273,7 @@ class eventMarker(exp):
     def clearNames(self):
         self.name=None
 
-    def makeShell(self):
+    def makeShell(self, expDict):
         return self
 
     def copy(self):
@@ -2125,6 +2294,8 @@ class eventMarker(exp):
         return self
 
     def equals(self,other):
+        if other.__class__ != eventMarker:
+            return False
         # always need to have set otherEvent first
 
         #print "trying for event, ",self
