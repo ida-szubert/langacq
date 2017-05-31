@@ -870,7 +870,9 @@ class cat:
                     if nc:
                         # print "reapplied cat is ",nc.toString()
                         # print "this is ",self.toString()
-                        if not nc.equals(self): print "not back to orig, should be ", self.toString()
+                        if not nc.equals(self):
+                            # print "not back to orig, should be ", self.toString()
+                            pass
                     else:
                         print "got back to orig "
                 else:
@@ -882,7 +884,9 @@ class cat:
                     if nc:
                         # print "recomposed cat is ",nc.toString()
                         # print "this is ",self.toString()
-                        if not nc.equals(self): print "not back to orig, should be ", self.toString()
+                        if not nc.equals(self):
+                            # print "not back to orig, should be ", self.toString()
+                            pass
                         # else: print "cannae do comp"
 
         catStore[self.toString()] = pairs

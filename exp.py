@@ -1137,17 +1137,7 @@ class exp:
         
         conjunctions = []
         for e in subExps:
-            # for x in self.allSubExps():
-            #     if x.__class__ == lambdaExp:
-            #         if x.var.binder != x:
-            #             pass
-            #     else:
-            #         try:
-            #             if x.bindVar and not x.varIsConst and len(x.arguments) > 1:
-            #                 if x.arguments[0].binder != x:
-            #                     pass
-            #         except AttributeError:
-            #             pass
+
             # this is how we should add null if we're going to
             allowNull = True
             if e==self: 

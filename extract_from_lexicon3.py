@@ -586,7 +586,7 @@ def fork_and_run_dax(dax_filename,output_filename,phenom,lexicon,sentence_count,
         return
 
 
-def main(output_fn, special_option='F', lexicon_fn = None, \
+def main(output_fn, special_option='L', lexicon_fn = None, \
              lexicon = None, sentence_count = None, sem_store = None, RuleSet = None):
 
     if lexicon_fn:
