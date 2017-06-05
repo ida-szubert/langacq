@@ -15,7 +15,6 @@ trans_binding2 = re.compile('lambda\\ \\$0\\_\\{e\\}\\.lambda\\ \\$1\\_\\{e\\}\\
 
 
 class synCat:
-    # wtf, there should be multiple args
     def __init__(self, head, arg, direction):
         self.funct = head
         self.arg = arg
@@ -33,12 +32,10 @@ class synCat:
 
     def equals(self, other):
         if other.atomic() != self.atomic():
-            # print "not syn eq 1 ",self.toString(),other.toString()
             return False
         retval = self.funct.equals(other.funct) and \
                  self.arg.equals(other.arg) and \
                  self.direction == other.direction
-        # if not retval: print "not syn eq 2 ",self.toString(),other.toString()
         return retval
 
     def atomic(self):
@@ -50,46 +47,29 @@ class synCat:
 
     @staticmethod
     def allSynCatsWithPos(e):  # put subscripts and shit
-        # print 'cattype is ',catType.toString()
         if e.__class__ == variable:
             return synCat.allSynCats(e.type())
         catType = e.type()
         synCats = []
-        # error()
-        # synCats.append(synCat(synCat.np,synCat.np,"fwd"))
         ## just function application for now
         if catType.atomic():
             if catType.isE(): return [synCat.np]
             if catType.isT(): return [synCat.st]
             if catType.isEvent(): return []
 
-            # pass
-
-        # othercats = getCat(catType)
-
         othercats = getCatAug(e)
         if othercats:
-            # print "got othercat"
             return othercats
 
-        # return [synCat.np]
-        # bracketing in here
-
-        # want to bracket funct (not arg)
-
-
         # don't we want to steal quite a lot from the parent?
-        # do for now and come back toit....
+        # do for now and come back to it....
         argCats = synCat.allSynCatsWithPos(e.getVar())
         functCats = synCat.allSynCatsWithPos(e.getFunct())
         for argCat in argCats:
             # bracketing, but need to be careful about where it goes.
             # should put in implicit bracketing. 
-            # arg not always bracketed 
-
-            # print "argCat is ",argCat.toString()
+            # arg not always bracketed
             for functCat in functCats:
-                # print "functCat is ",functCat.toString()
                 # fwd
                 synCats.append(synCat(functCat, argCat, "fwd"))
                 # back
@@ -99,27 +79,16 @@ class synCat:
 
     @staticmethod
     def allSynCats(catType):
-        # print 'cattype is ',catType.toString()
         synCats = []
-        # error()
-        # synCats.append(synCat(synCat.np,synCat.np,"fwd"))
         # just function application for now
         if catType.atomic():
             if catType.isE(): return [synCat.np]
             if catType.isT(): return [synCat.st]
             if catType.isEvent(): return []
 
-            # pass
-
         othercats = getCat(catType)
         if othercats:
-            # print "got othercat"
             return othercats
-
-        # return [synCat.np]
-        # bracketing in here
-
-        # want to bracket funct (not arg)
 
         # don't we want to steal quite a lot from the parent?
         # do for now and come back toit....
@@ -412,7 +381,6 @@ def getCat(catType):
     return cats
 
 
-# from exp import exp
 def getCatAug(e):
     t = e.type()
     pos = None
@@ -421,7 +389,8 @@ def getCatAug(e):
     # error()
     cats = []
     # <e,t> - can be N
-    if t.equals(nCat.getStaticType()) and (e.isNounMod() or e.isConjN()):
+    # if t.equals(nCat.getStaticType()) and (e.isNounMod() or e.isConjN()):
+    if t.equals(nCat.getStaticType()):
         cats.append(synCat.n)
         return cats
     if t.equals(ppCat.getStaticType()) and pos == "prep":

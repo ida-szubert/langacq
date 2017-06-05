@@ -1,11 +1,10 @@
+from exp import *
 from predicate import *
 from constant import *
-from quant import *
 from conjunction import *
-from lambdaExp import *
 from neg import *
 from qMarker import *
-from exp import *
+
 
 
 def makeExp(predString, expString, vardict):
@@ -59,8 +58,8 @@ def makeExp(predString, expString, vardict):
         # det:num, pro:exist, pro:int, v, part,
         # adv, adv:int, adv:tem, co, prep, post, qn
         e = predicate(name,numArgs,argTypes,pos)
-        if pos in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
-            e.setNounMod()
+        # if pos in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
+        #     e.setNounMod()
     elif numArgs == 2:
         # adj, n, n:prop, pro:int, pro:indef, prep
         # mod:aux, aux, mod, v, part, cop, co, n:gerund

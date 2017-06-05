@@ -11,7 +11,7 @@ from parser import *
 from cat import synCat
 import cat
 from exp import *
-from correct_dependencies_with_templates import checkIfWh
+# from correct_dependencies_with_templates import checkIfWh
 from errorFunct import error
 import expFunctions
 
@@ -59,7 +59,8 @@ def train_rules(sem_store, RuleSet, lexicon, inputpairs, output,
                 if not sem:
                     error("could not make exp")
 
-                if checkIfWh(sem):
+                # if checkIfWh(sem):
+                if sem.checkIfWh():
                     isQ = False
                     sc = synCat.swh
                 elif sem.isQ():

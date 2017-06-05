@@ -63,6 +63,17 @@ class exp:
     def isConjV(self):
         return False
 
+    def checkIfWh(self):
+        is_lambda = self.__class__ == lambdaExp
+        if is_lambda:
+            has_e_var = self.getVar().type() == semType.e
+            funct = self.getFunct()
+            funct_is_lambda = funct.__class__ == lambdaExp
+            if is_lambda and has_e_var and funct_is_lambda:
+                return True
+        else:
+            return False
+
     #IDA: used only in genAllSplits
     # ## from pseudocode ##
     # def buildSubTree(self,pset):
@@ -259,8 +270,8 @@ class exp:
     def getIsNull(self):
         return self.isNull
 
-    def isNounMod(self):
-        return self.nounMod
+    # def isNounMod(self):
+    #     return self.nounMod
         # if self.posType in ["n","adj"]:
         #      #or \
         #     #self.name=="qn|other" or \
@@ -1428,7 +1439,7 @@ class variable(exp):
             #self.arguments = e.arguments
             self.returnType = e.getReturnType()
             # if e is a predicate
-            self.nounMod = e.isNounMod()
+            # self.nounMod = e.isNounMod()
             # if e is a variable
             try:
                 self.isEvent = e.isEvent
@@ -1528,8 +1539,8 @@ class variable(exp):
     def isEmpty(self):
         return False
 
-    def isConjN(self):
-        return False
+    # def isConjN(self):
+    #     return False
 
     def copy(self):
         if self.varcopy is None:
@@ -2032,12 +2043,12 @@ class lambdaExp(exp):
     def getPosType(self):
         return self.funct.getPosType()
 
-    def isConjN(self):
-        try:
-            isConj = self.funct.isConjN()
-        except AttributeError:
-            isConj = False
-        return isConj
+    # def isConjN(self):
+    #     try:
+    #         isConj = self.funct.isConjN()
+    #     except AttributeError:
+    #         isConj = False
+    #     return isConj
         # if self.funct.__class__==conjunction:
         #     return self.funct.isConjN()
         # elif self.funct.__class__==lambdaExp:
@@ -2107,8 +2118,8 @@ class lambdaExp(exp):
         print "checking if args filled"
         return self.funct.argsFilled()
 
-    def isNounMod(self):
-        return self.funct.isNounMod()
+    # def isNounMod(self):
+    #     return self.funct.isNounMod()
         #return False
 
     def getReturnType(self):

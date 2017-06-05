@@ -10,7 +10,7 @@ class neg(exp):
             self.arguments=[arg,eventMarker()]
         else:
             self.arguments=[arg]
-            self.nounMod = arg.isNounMod()
+            # self.nounMod = arg.isNounMod()
         self.argTypes=arg.type()
         self.linkedVar = None
         arg.add_parent(self)
