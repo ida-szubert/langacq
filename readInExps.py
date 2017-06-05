@@ -11,7 +11,7 @@
 from exp import *
 from conjunction import *
 from constant import *
-from quant import *
+# from quant import *
 from predicate import *
 import expFunctions
 
@@ -23,7 +23,7 @@ def addFromFile(langFile,inFile,templates):
 				templates[e.getName()] = e
 				if e.getName()[:3]=="aux":
 					if langFile: print >> langFile,"("+e.getName()+"2:t t ev  t)"
-				elif e.__class__ in [constant,conjunction,quant]:
+				elif e.__class__ in [constant,conjunction]:
 					pass
 				elif e.getName()[:4] in ["prep"]:
 					if langFile: print >> langFile,"("+e.getName()+"2:t e ev t)"
