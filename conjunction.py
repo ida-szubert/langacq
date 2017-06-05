@@ -16,15 +16,15 @@ class conjunction(exp):
         self.isNull = False
         self.inout = None
     ##
-    def isConjN(self):
-        isconjn = True
-        for a in self.arguments:
-            if not a.isNounMod():
-                return False
-        return True
+    # def isConjN(self):
+    #     isconjn = True
+    #     for a in self.arguments:
+    #         if not a.isNounMod():
+    #             return False
+    #     return True
 
-    def isNounMod(self):
-        return self.isConjN()
+    # def isNounMod(self):
+    #     return self.isConjN()
 
     def isConjV(self):
         for a in self.arguments:
