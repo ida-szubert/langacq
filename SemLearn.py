@@ -39,7 +39,7 @@ from cat import synCat
 import cat
 import extract_from_lexicon3
 import exp
-from correct_dependencies_with_templates import checkIfWh
+# from correct_dependencies_with_templates import checkIfWh
 import expFunctions
 
 
@@ -53,11 +53,9 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
                 verb_repository=None, dump_verb_repo=False, analyze_lexicons=False, genoutfile=None):
     print "testout = ", test_out
     print "put in sent coutn = ", sentence_count
-    if not sentence_count:
-        sentence_count = 0
     datasize = 10000
     lexicon.set_learning_rates(datasize)
-    wordstocheck = []
+    # wordstocheck = []
     # wordstocheck.extend(['the','a','some','another','any'])
     # wordstocheck.extend(['the','a','some','another','an','any','all','both'])
     # wordstocheck.extend(['spoon','cup','pencil','name','coffee','lady','drink','duck'])
@@ -76,13 +74,8 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
 
     sentstogen = []
     train_limit = 10000
-    sentence_charts = {}
-    catStore = {}
-    sentence_limit = 10
+    max_sentence_length = 10
     line_count = 0
-    lo = None
-    sentence = None
-    topCatList = []
     with open("./trainFiles/Adam_troublesome_lf.txt", "a") as failed_out:
         while line_count < len(inputpairs):
             sent_line, sem_line, end_line = inputpairs[line_count:line_count+3]
@@ -90,401 +83,228 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
             if sent_line[:5] != "Sent:" and sem_line[:4] != "Sem:" and end_line[:11] != "example_end":
                 raise AssertionError("wrong triple of lines")
             else:
-                # try:
-                # get sentence, check if it's not too long
                 sentence = sent_line[6:].strip().rstrip()
-                if sentence.count(" ") > sentence_limit:
-                    print "rejecting ", sent_line
-                    continue
-                isQ = False
-                donetest = False
-                topCatList = []
-                sentisq = False
-
-                # get LF, check if it's not too complex
                 semstring = sem_line[5:].strip().rstrip()
-                r = expFunctions.makeExpWithArgs(semstring, {})
-                if len(r[0].allExtractableSubExps()) > 9 and truncate_complex_exps:
-                    print "rejecting ", r[0].toString(True)
-                    # for e in r[0].allExtractableSubExps():
-                    #     print e.toString(True)
+                #######################
+                # Read in the example
+                #######################
+                try:
+                    sem, _ = expFunctions.makeExpWithArgs(semstring, {})
+                except (AttributeError, IndexError):
+                    print >> output, "LF could not be parsed\nSent : " + sentence
+                    print >> output, "Sem: " + semstring + "\n\n"
                     continue
-                sem = None
-                if r:
-                    sem = r[0]
-                else:
+                if not sem:
                     raise (StandardError("could not make exp"))
+                reject = (sentence.count(" ") > max_sentence_length) or \
+                         (len(sem.allExtractableSubExps()) > 9 and truncate_complex_exps)
+                if reject:
+                    print "rejecting: example too long ", sent_line + sem_line
+                    continue
 
-                if checkIfWh(sem):
-                    isQ = False
-                    sc = synCat.swh
-                elif sem.isQ():
-                    isQ = True
-                    sc = synCat.q
-                    if topCatList == []: sentisq = True
-                else:
-                    isQ = False
-                    sc = synCat.allSynCats(sem.type())[0]
+                ########################
+                # Get syntactic category
+                ########################
+                topCatList = []
+                try:
+                    isQ, sc = get_top_cat(sem)
+                except IndexError:
+                    print "couldn't determine syntactic category ", sem_line
+                    continue
+                topCat = cat.cat(sc, sem)
+                topCatList.append(topCat)
 
                 words = sentence.split()
                 if not isQ and words[-1] in ["?", "."]:
                     words = words[:-1]
-                else:
-                    print "Is Q"
                 if len(words) == 0:
-                    words = None
-                    sentence = None
-                    sem = None
-                    sc = None
+                    print "rejecting: example too short ", sent_line + sem_line
                     continue
-                if dotest and not donetest:
-                    donetest = True
-                    print >> test_out, "\n****************\n", words
-                    (retsem, top_parse, topcat) = parse(words, sem_store, RuleSet, lexicon, sentence_count, test_out)
-                    print >> test_out, "\n", words
-                    if retsem and sem and retsem.equals(sem):
-                        print >> test_out, "CORRECT\n" + retsem.toString(True) + "\n" + topcat.toString()
-                    elif not retsem:
-                        print >> test_out, "NO PARSE"
-                    else:
-                        print >> test_out, "WRONG"
-                        print >> test_out, retsem.toString(True) + "\n" + topcat.toString()
-                        print >> test_out, sem.toString(True)
 
-                        print >> test_out, 'top parse:'
-                        print >> test_out, top_parse
-                        print >> test_out, "\n"
-                        if sem and retsem.equalsPlaceholder(sem):
-                            print >> test_out, "CORRECTPlaceholder\n" + retsem.toString(True) + "\n" + topcat.toString()
+                if dotest:
+                    test_during_training(test_out, sem, words, sem_store, RuleSet, lexicon, sentence_count)
 
-                print "sentence is ", sentence
-                topCat = cat.cat(sc, sem)
-                topCatList.append(topCat)
+                print_sent_info(sentence, output, sentence_count, lexicon, topCatList)
 
-
-
-                # end part
-                print '\ngot training pair'
-                print "Sent : " + sentence
-                print >> output, "Sent : " + sentence
-                print >> output, "update weight = ", lexicon.get_learning_rate(sentence_count)
-                print >> output, sentence_count
-                for topCat in topCatList:
-                    print "Cat : " + topCat.toString()
-                    print >> output, "Cat : " + topCat.toString()
-
+                ####################################
+                # Create parse forest
+                ####################################
                 catStore = {}
-                if len(words) > 8 or (noQ and "?" in sentence):
-                    sentence = []
-                    sem = None
+                try:
+                    chart = build_chart(topCatList, words, RuleSet, lexicon, catStore, sem_store, oneWord)
+                except (AttributeError, IndexError):
+                    print >> failed_out, "Sent : " + sentence
                     continue
-
-                chart = build_chart(topCatList, words, RuleSet, lexicon, catStore, sem_store, oneWord)
-
-                # do the update
                 print "got chart"
-                if chart is not None:
-                    i_o_oneChart(chart, sem_store, lexicon, RuleSet, True, 0.0, sentence_count)
 
-                    print "done io"
-                    sentence_count += 1
+                ####################################
+                # Run inside-outside calculations
+                ####################################
+                # if chart is not None:
+                i_o_oneChart(chart, sem_store, lexicon, RuleSet, True, 0.0, sentence_count)
+                print "done io"
+                sentence_count += 1
 
-                    # added 14/8/2014 for debugging purposes
-                    target_syn_keys = ["((S\NP)/NP)", "((S/NP)/NP)", "((S\NP)\NP)", "((S/NP)\NP)"]
-                    syn_distribution = extract_from_lexicon3.get_synt_distribution(target_syn_keys, \
-                                                                                   lexicon, sem_store, RuleSet,
-                                                                                   sentence_count)
-                    print('WATCH' + '\t' + sentence)
-                    for k, v in syn_distribution.items():
-                        print('WATCH' + '\t' + str(sentence_count) + '\t' + str(k) + '\t' + str(v))
+                ####################################
+                # Monitor rules, update verb repo,
+                # save the model
+                ####################################
+                watch_selected_rules(lexicon, sem_store, RuleSet, sentence_count, sentence)
+                if verb_repository:
+                    for cur_cat in set([c.semString() for c in lexicon.cur_cats]):
+                        verb_repository.add_verb(cur_cat, lexicon, sem_store, \
+                                                 RuleSet, sentence_count)
+                lexicon.cur_cats = []
+                dump_model(dump_lexicons, analyze_lexicons, dump_verb_repo, sentence_count,
+                           dump_interval, max_lex_dump, min_lex_dump, dump_out, sem_store,
+                           lexicon, RuleSet, verb_repository)
+                print_top_parse(chart, RuleSet, output, f_out_additional)
+                print_cat_probs(cats_to_check, lexicon, sem_store, RuleSet)
 
-                    if verb_repository:
-                        for cur_cat in set([c.semString() for c in lexicon.cur_cats]):
-                            verb_repository.add_verb(cur_cat, lexicon, sem_store, \
-                                                     RuleSet, sentence_count)
-                    lexicon.cur_cats = []
-
-                    # pickling lexicon (added by Omri)
-                    if dump_lexicons and sentence_count % dump_interval == 0:
-                        if max_lex_dump >= sentence_count >= min_lex_dump:
-                           # sentence_count <= max_lex_dump and \
-                           # sentence_count % dump_interval == 0:
-                            f_lexicon = open(dump_out + '_' + str(sentence_count), 'wb')
-                            to_pickle_obj = (lexicon, sentence_count, sem_store, RuleSet)
-                            cPickle.dump(to_pickle_obj, f_lexicon, cPickle.HIGHEST_PROTOCOL)
-                            f_lexicon.close()
-
-                    if analyze_lexicons and sentence_count % dump_interval == 0:
-                        extract_from_lexicon3.main(dump_out + '_' + str(sentence_count) + '.out', \
-                                                   lexicon=lexicon, sentence_count=sentence_count, \
-                                                   sem_store=sem_store, RuleSet=RuleSet)
-
-                    if dump_verb_repo and sentence_count % dump_interval == 0:
-                        f_repo = open(dump_out + '_' + str(sentence_count) + '.verb_repo', 'wb')
-                        cPickle.dump(verb_repository, f_repo, cPickle.HIGHEST_PROTOCOL)
-                        f_repo.close()
-
-                    print "getting topparses"
-                    topparses = []
-                    for entry in chart[len(chart)]:
-                        top = chart[len(chart)][entry]
-                        topparses.append((top.inside_score, top))
-                        # topparses.sort().reverse()
-
-                    top_parse = sample(sorted(topparses)[-1][1], chart, RuleSet)
-                    print >> output, 'top parse:'
-                    print >> output, top_parse
-                    print >> output, top.inside_score
-                    print >> output, "\n"
-
-                    if f_out_additional:
-                        print >> f_out_additional, '\ntop parse:'
-                        print >> f_out_additional, top_parse
-                        print >> f_out_additional, top.inside_score
-                        print >> f_out_additional, "\n"
-
-                    print "outputting cat probs"
-                    # this samples the probabilities of each of the syn cat for a given type
-                    for c in cats_to_check:
-                        posType = c[0]
-
-                        lfType = c[2]
-                        arity = c[3]
-                        # these go in cats
-                        cats = c[4]
-                        outputFile = c[1]
-                        outputCatProbs(posType, lfType, arity, cats, lexicon, sem_store, RuleSet, outputFile)
-                    print "done with sent\n\n"
-                    if sentence_count == train_limit: return sentence_count
-
+                ####################################
+                # Generate sentence from LF
+                ####################################
                 doingGenerate = False
                 if doingGenerate:
-                    sentnum = 1
-                    for (gensent, gensemstr) in sentstogen:
-                        gensem = expFunctions.makeExpWithArgs(gensemstr, {})[0]
-                        if checkIfWh(gensem):
-                            sc = synCat.swh
-                        elif gensem.isQ():
-                            sc = synCat.q
-                        else:
-                            sc = synCat.allSynCats(gensem.type())[0]
-                        genCat = cat.cat(sc, gensem)
-                        print "gonna generate sentence ", gensent
-                        generateSent(lexicon, RuleSet, genCat, catStore, sem_store, oneWord, gensent, genoutfile,
-                                     sentence_count, sentnum)
-                        sentnum += 1
-                sentence = None
-                sem = None
-                # except (AttributeError, IndexError, KeyError):
-                    # print "HERE THERE WAS SOMETHING BAD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-                    # failed_out.write("Sent: "+sentence+"\n")
-                    # failed_out.write("Sem: "+semstring+"\nexample_end\n\n")
-                    # continue
-            # if line[:5] == "Sent:":
-            #     isQ = False
-            #     donetest = False
-            #     sentence = line[6:].strip().rstrip()
-            #     if sentence.count(" ") > sentence_limit:
-            #         print "rejecting ", line
-            #         sentence = None
-            #         continue
-            #     topCatList = []
-            #     sentisq = False
+                    generate_sentences(sentstogen, lexicon, RuleSet, catStore, sem_store,
+                                       oneWord, genoutfile, sentence_count)
 
-            # if sentence and line[:4] == "Sem:":
-            #     # try:
-            #     semstring = line[5:].strip().rstrip()
-            #     r = expFunctions.makeExpWithArgs(semstring, {})
-            #     if len(r[0].allExtractableSubExps()) > 9 and truncate_complex_exps:
-            #         print "rejecting ", r[0].toString(True)
-            #         for e in r[0].allExtractableSubExps():
-            #             print e.toString(True)
-            #         r = None
-            #         sentence = None
-            #         continue
-            #     sem = None
-            #     if r:
-            #         sem = r[0]
-            #     else:
-            #         raise (StandardError("could not make exp"))
-            #
-            #     if checkIfWh(sem):
-            #         isQ = False
-            #         sc = synCat.swh
-            #     elif sem.isQ():
-            #         isQ = True
-            #         sc = synCat.q
-            #         if topCatList == []: sentisq = True
-            #     else:
-            #         isQ = False
-            #         try:
-            #             sc = synCat.allSynCats(sem.type())[0]
-            #         except IndexError:
-            #             failed_out.write("Sent: "+sentence+"\n")
-            #             failed_out.write("Sem: "+semstring+"\nexample_end\n\n")
-            #             continue
-            #
-            #     words = sentence.split()  # [:-11]
-            #     if not isQ and words[-1] in ["?", "."]:
-            #         words = words[:-1]
-            #     else:
-            #         print "Is Q"
-            #     if len(words) == 0:
-            #         words = None
-            #         sentence = None
-            #         sem = None
-            #         sc = None
-            #         continue
-            #     if dotest and not donetest:
-            #         donetest = True
-            #         print >> test_out, "\n****************\n", words
-            #         (retsem, top_parse, topcat) = parse(words, sem_store, RuleSet, lexicon, sentence_count, test_out)
-            #         print >> test_out, "\n", words
-            #         if retsem and sem and retsem.equals(sem):
-            #             print >> test_out, "CORRECT\n" + retsem.toString(True) + "\n" + topcat.toString()
-            #         elif not retsem:
-            #             print >> test_out, "NO PARSE"
-            #         else:
-            #             print >> test_out, "WRONG"
-            #             print >> test_out, retsem.toString(True) + "\n" + topcat.toString()
-            #             print >> test_out, sem.toString(True)
-            #
-            #             print >> test_out, 'top parse:'
-            #             print >> test_out, top_parse
-            #             print >> test_out, "\n"
-            #             if sem and retsem.equalsPlaceholder(sem):
-            #                 print >> test_out, "CORRECTPlaceholder\n" + retsem.toString(True) + "\n" + topcat.toString()
-            #
-            #     print "sentence is ", sentence
-            #     topCat = cat.cat(sc, sem)
-            #     topCatList.append(topCat)
-            #     # except IndexError:
-            #     #     failed_out.write("Sent: "+sentence+"\n")
-            #     #     failed_out.write("Sem: "+semstring+"\nexample_end\n\n")
-            #     #     sentence = None
+                print "done with sent\n\n"
+                if sentence_count == train_limit:
+                    return sentence_count
 
-            # if sentence and line[:11] == "example_end":
-                # try:
-                # print '\ngot training pair'
-                # print "Sent : " + sentence
-                # print >> output, "Sent : " + sentence
-                # print >> output, "update weight = ", lexicon.get_learning_rate(sentence_count)
-                # print >> output, sentence_count
-                # for topCat in topCatList:
-                #     print "Cat : " + topCat.toString()
-                #     print >> output, "Cat : " + topCat.toString()
-                #
-                # catStore = {}
-                # if len(words) > 8 or (noQ and "?" in sentence):
-                #     sentence = []
-                #     sem = None
-                #     continue
-                # try:
-                #     chart = build_chart(topCatList, words, RuleSet, lexicon, catStore, sem_store, oneWord)
-                # except AttributeError:
-                #     failed_out.write("Sent: "+sentence+"\n")
-                #     failed_out.write("Sem: "+semstring+"\nexample_end\n\n")
-                #     continue
-                #
-                # # do the update
-                # print "got chart"
-                # if chart is not None:
-                #     i_o_oneChart(chart, sem_store, lexicon, RuleSet, True, 0.0, sentence_count)
-                #
-                #     print "done io"
-                #     sentence_count += 1
-                #
-                #     # added 14/8/2014 for debugging purposes
-                #     target_syn_keys = ["((S\NP)/NP)", "((S/NP)/NP)", "((S\NP)\NP)", "((S/NP)\NP)"]
-                #     syn_distribution = extract_from_lexicon3.get_synt_distribution(target_syn_keys, \
-                #                                                                    lexicon, sem_store, RuleSet,
-                #                                                                    sentence_count)
-                #     print('WATCH' + '\t' + sentence)
-                #     for k, v in syn_distribution.items():
-                #         print('WATCH' + '\t' + str(sentence_count) + '\t' + str(k) + '\t' + str(v))
-                #
-                #     if verb_repository:
-                #         for cur_cat in set([c.semString() for c in lexicon.cur_cats]):
-                #             verb_repository.add_verb(cur_cat, lexicon, sem_store, \
-                #                                      RuleSet, sentence_count)
-                #     lexicon.cur_cats = []
-                #
-                #     # pickling lexicon (added by Omri)
-                #     if dump_lexicons and sentence_count % dump_interval == 0:
-                #         if max_lex_dump >= sentence_count >= min_lex_dump:
-                #            # sentence_count <= max_lex_dump and \
-                #            # sentence_count % dump_interval == 0:
-                #             f_lexicon = open(dump_out + '_' + str(sentence_count), 'wb')
-                #             to_pickle_obj = (lexicon, sentence_count, sem_store, RuleSet)
-                #             cPickle.dump(to_pickle_obj, f_lexicon, cPickle.HIGHEST_PROTOCOL)
-                #             f_lexicon.close()
-                #
-                #     if analyze_lexicons and sentence_count % dump_interval == 0:
-                #         extract_from_lexicon3.main(dump_out + '_' + str(sentence_count) + '.out', \
-                #                                    lexicon=lexicon, sentence_count=sentence_count, \
-                #                                    sem_store=sem_store, RuleSet=RuleSet)
-                #
-                #     if dump_verb_repo and sentence_count % dump_interval == 0:
-                #         f_repo = open(dump_out + '_' + str(sentence_count) + '.verb_repo', 'wb')
-                #         cPickle.dump(verb_repository, f_repo, cPickle.HIGHEST_PROTOCOL)
-                #         f_repo.close()
-                #
-                #     print "getting topparses"
-                #     topparses = []
-                #     for entry in chart[len(chart)]:
-                #         top = chart[len(chart)][entry]
-                #         topparses.append((top.inside_score, top))
-                #         # topparses.sort().reverse()
-                #
-                #     top_parse = sample(sorted(topparses)[-1][1], chart, RuleSet)
-                #     print >> output, 'top parse:'
-                #     print >> output, top_parse
-                #     print >> output, top.inside_score
-                #     print >> output, "\n"
-                #
-                #     if f_out_additional:
-                #         print >> f_out_additional, '\ntop parse:'
-                #         print >> f_out_additional, top_parse
-                #         print >> f_out_additional, top.inside_score
-                #         print >> f_out_additional, "\n"
-                #
-                #     print "outputting cat probs"
-                #     # this samples the probabilities of each of the syn cat for a given type
-                #     for c in cats_to_check:
-                #         posType = c[0]
-                #
-                #         lfType = c[2]
-                #         arity = c[3]
-                #         # these go in cats
-                #         cats = c[4]
-                #         outputFile = c[1]
-                #         outputCatProbs(posType, lfType, arity, cats, lexicon, sem_store, RuleSet, outputFile)
-                #     print "done with sent\n\n"
-                #     if sentence_count == train_limit: return sentence_count
-                # # except (AttributeError, IndexError):
-                # #     failed_out.write("Sent: "+sentence+"\n")
-                # #     failed_out.write("Sem: "+semstring+"\nexample_end\n\n")
-                #
-                # doingGenerate = False
-                # if doingGenerate:
-                #     sentnum = 1
-                #     for (gensent, gensemstr) in sentstogen:
-                #         gensem = expFunctions.makeExpWithArgs(gensemstr, {})[0]
-                #         if checkIfWh(gensem):
-                #             sc = synCat.swh
-                #         elif gensem.isQ():
-                #             sc = synCat.q
-                #         else:
-                #             sc = synCat.allSynCats(gensem.type())[0]
-                #         genCat = cat.cat(sc, gensem)
-                #         print "gonna generate sentence ", gensent
-                #         generateSent(lexicon, RuleSet, genCat, catStore, sem_store, oneWord, gensent, genoutfile,
-                #                      sentence_count, sentnum)
-                #         sentnum += 1
-                # sentence = None
-                # sem = None
         print "returning sentence count ", sentence_count
     return sentence_count
+
+def get_top_cat(sem):
+    if sem.checkIfWh():
+        isQ = False
+        sc = synCat.swh
+    elif sem.isQ():
+        isQ = True
+        sc = synCat.q
+    else:
+        isQ = False
+        sc = synCat.allSynCats(sem.type())[0]
+    return isQ, sc
+
+def print_sent_info(sentence, output, sentence_count, lexicon, topCatList):
+    print "sentence is ", sentence
+    print '\ngot training pair'
+    print "Sent : " + sentence
+    print >> output, "Sent : " + sentence
+    print >> output, "update weight = ", lexicon.get_learning_rate(sentence_count)
+    print >> output, sentence_count
+    for topCat in topCatList:
+        print "Cat : " + topCat.toString()
+        print >> output, "Cat : " + topCat.toString()
+
+def test_during_training(test_out, sem, words, sem_store, RuleSet, lexicon, sentence_count):
+    print >> test_out, "\n****************\n", words
+    (retsem, top_parse, topcat) = parse(words, sem_store, RuleSet, lexicon, sentence_count, test_out)
+    print >> test_out, "\n", words
+    if retsem and sem and retsem.equals(sem):
+        print >> test_out, "CORRECT\n" + retsem.toString(True) + "\n" + topcat.toString()
+    elif not retsem:
+        print >> test_out, "NO PARSE"
+    else:
+        print >> test_out, "WRONG"
+        print >> test_out, retsem.toString(True) + "\n" + topcat.toString()
+        print >> test_out, sem.toString(True)
+
+        print >> test_out, 'top parse:'
+        print >> test_out, top_parse
+        print >> test_out, "\n"
+        if sem and retsem.equalsPlaceholder(sem):
+            print >> test_out, "CORRECTPlaceholder\n" + retsem.toString(True) + "\n" + topcat.toString()
+
+def pickle_lexicon(max_lex_dump, sentence_count, min_lex_dump, dump_out, sem_store, lexicon, RuleSet):
+    if max_lex_dump >= sentence_count >= min_lex_dump:
+       # sentence_count <= max_lex_dump and \
+       # sentence_count % dump_interval == 0:
+        f_lexicon = open(dump_out + '_' + str(sentence_count), 'wb')
+        to_pickle_obj = (lexicon, sentence_count, sem_store, RuleSet)
+        cPickle.dump(to_pickle_obj, f_lexicon, cPickle.HIGHEST_PROTOCOL)
+        f_lexicon.close()
+
+def analyze_lexicon(dump_out, sentence_count, lexicon, sem_store, RuleSet):
+    extract_from_lexicon3.main(dump_out + '_' + str(sentence_count) + '.out',
+                               lexicon=lexicon, sentence_count=sentence_count,
+                               sem_store=sem_store, RuleSet=RuleSet)
+
+def save_verb_repo(dump_out, sentence_count, verb_repository):
+    f_repo = open(dump_out + '_' + str(sentence_count) + '.verb_repo', 'wb')
+    cPickle.dump(verb_repository, f_repo, cPickle.HIGHEST_PROTOCOL)
+    f_repo.close()
+
+def watch_selected_rules(lexicon, sem_store, RuleSet, sentence_count, sentence):
+    # added 14/8/2014 for debugging purposes
+    target_syn_keys = ["((S\NP)/NP)", "((S/NP)/NP)", "((S\NP)\NP)", "((S/NP)\NP)"]
+    syn_distribution = extract_from_lexicon3.get_synt_distribution(target_syn_keys, \
+                                                                   lexicon, sem_store, RuleSet,
+                                                                   sentence_count)
+    print('WATCH' + '\t' + sentence)
+    for k, v in syn_distribution.items():
+        print('WATCH' + '\t' + str(sentence_count) + '\t' + str(k) + '\t' + str(v))
+
+def print_top_parse(chart, RuleSet, output, f_out_additional):
+    print "getting topparses"
+    topparses = []
+    for entry in chart[len(chart)]:
+        top = chart[len(chart)][entry]
+        topparses.append((top.inside_score, top))
+
+    top_parse = sample(sorted(topparses)[-1][1], chart, RuleSet)
+    print >> output, 'top parse:'
+    print >> output, top_parse
+    print >> output, top.inside_score
+    print >> output, "\n"
+
+    if f_out_additional:
+        print >> f_out_additional, '\ntop parse:'
+        print >> f_out_additional, top_parse
+        print >> f_out_additional, top.inside_score
+        print >> f_out_additional, "\n"
+
+def print_cat_probs(cats_to_check, lexicon, sem_store, RuleSet):
+    print "outputting cat probs"
+    # this samples the probabilities of each of the syn cat for a given type
+    for c in cats_to_check:
+        posType = c[0]
+        lfType = c[2]
+        arity = c[3]
+        # these go in cats
+        cats = c[4]
+        outputFile = c[1]
+        outputCatProbs(posType, lfType, arity, cats, lexicon, sem_store, RuleSet, outputFile)
+
+def generate_sentences(sentstogen, lexicon, RuleSet, catStore, sem_store, oneWord, genoutfile, sentence_count):
+    sentnum = 1
+    for (gensent, gensemstr) in sentstogen:
+        gensem = expFunctions.makeExpWithArgs(gensemstr, {})[0]
+        if gensem.checkIfWh():
+            sc = synCat.swh
+        elif gensem.isQ():
+            sc = synCat.q
+        else:
+            sc = synCat.allSynCats(gensem.type())[0]
+        genCat = cat.cat(sc, gensem)
+        print "gonna generate sentence ", gensent
+        generateSent(lexicon, RuleSet, genCat, catStore, sem_store, oneWord, gensent, genoutfile,
+                     sentence_count, sentnum)
+        sentnum += 1
+
+def dump_model(dump_lexicons, analyze_lexicons, dump_verb_repo, sentence_count, dump_interval,
+               max_lex_dump, min_lex_dump, dump_out, sem_store, lexicon, RuleSet, verb_repository):
+    # pickling lexicon (added by Omri)
+    if dump_lexicons and sentence_count % dump_interval == 0:
+        pickle_lexicon(max_lex_dump, sentence_count, min_lex_dump, dump_out, sem_store, lexicon, RuleSet)
+
+    if analyze_lexicons and sentence_count % dump_interval == 0:
+        analyze_lexicon(dump_out, sentence_count, lexicon, sem_store, RuleSet)
+
+    if dump_verb_repo and sentence_count % dump_interval == 0:
+        save_verb_repo(dump_out, sentence_count, verb_repository)
 
 
 ##########################################################
@@ -510,7 +330,7 @@ def test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count):
             try:
                 (retsem, top_parse, topcat) = parse(sentence, sem_store, RuleSet, Current_Lex, sentence_count, test_out)
             except AttributeError:
-                continue
+                pass
             if retsem and sem and retsem.equals(sem):
                 print >> test_out, "CORRECT\n" + retsem.toString(True) + "\n" + topcat.toString()
 
@@ -596,23 +416,15 @@ def main(argv, options):
         #     test_file_index = 2
 
         for i in range(1, test_file_index):
-            input_file = options.inp_file
-            # input_file = options.inp_file.format(str(i))  # "trainFiles/trainPairs"
-            test_file = options.inp_file.format(test_file_index)  # "trainFiles/trainPairs"
+            input_file = options.inp_file.format(str(i))
+            test_file = options.inp_file.format(test_file_index)
+            # input_file = options.inp_file
+            # test_file = options.inp_file.format(test_file_index)
 
-            # # if numreps > 1:
-            # #     input_file = input_file + str(numreps) + "reps"
-            # # input_file = input_file + "_" + str(i)
-
-            # input_file += "{0:d}_lf.txt".format(i)
-            # if reverse:
-            #     test_file = test_file + "_" + str(test_file_index)
-            # else:
-            #     test_file = test_file + "_" + str(test_file_index)
             inputpairs = open(input_file).readlines()
 
-            outfile = options.train_parses + '_'
-            testoutfile = options.test_parses + '_'
+            outfile = options.train_parses.format(str(i)) + '_'
+            testoutfile = options.test_parses.format(str(i)) + '_'
 
             if oneWord:
                 outfile = outfile + "1W"
@@ -642,13 +454,13 @@ def main(argv, options):
 
             print "returned sentence count = ", sentence_count
 
-        dotest = options.dotest
-        if dotest:
-            test_out = open(testoutfile, "w")
-            print >> test_out, "trained on up to ", input_file, " testing on ", test_file
-            test_file = open(test_file, "r")
-            test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count)
-            test_out.close()
+            dotest = options.dotest
+            if dotest:
+                test_out = open(testoutfile, "w")
+                print >> test_out, "trained on up to ", input_file, " testing on ", test_file
+                test_file = open(test_file, "r")
+                test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count)
+                test_out.close()
         print "at end, lexicon size is ", len(Current_Lex.lex)
 
 
