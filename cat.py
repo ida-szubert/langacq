@@ -124,9 +124,9 @@ class synCat:
         # print "synstring is ",synstring
         if synstring[0] != "(":
             # atomic
-            if synstring == "PP":
-                return synCat.pp
-            elif synstring == "NP":
+            # if synstring == "PP":
+            #     return synCat.pp
+            if synstring == "NP":
                 return synCat.np
             elif synstring == "S":
                 return synCat.s
@@ -169,32 +169,32 @@ class synCat:
 # synCat.n = nCat()
 # synCat.pp = ppCat()
 
-class ppCat(synCat):
-    def __init__(self):
-        self.head = "PP"
-
-    def atomic(self):
-        return True
-
-    def prior(self):
-        return 0.2
-
-    def getType(self):
-        return semType(semType.event, semType.t)
-        # return semType.e
-
-    @staticmethod
-    def getStaticType():
-        return semType(semType.event, semType.t)
-
-    def copy(self):
-        return self
-
-    def toString(self):
-        return self.head
-
-    def equals(self, other):
-        return other.__class__ == ppCat
+# class ppCat(synCat):
+#     def __init__(self):
+#         self.head = "PP"
+#
+#     def atomic(self):
+#         return True
+#
+#     def prior(self):
+#         return 0.2
+#
+#     def getType(self):
+#         return semType(semType.event, semType.t)
+#         # return semType.e
+#
+#     @staticmethod
+#     def getStaticType():
+#         return semType(semType.event, semType.t)
+#
+#     def copy(self):
+#         return self
+#
+#     def toString(self):
+#         return self.head
+#
+#     def equals(self, other):
+#         return other.__class__ == ppCat
 
 
 class npCat(synCat):
@@ -364,9 +364,6 @@ class qCat(synCat):
 
 
 def getCat(catType):
-    # print "catType is ",catType.toString()
-    # nType = semType(semType.e,semType.t)
-    # sType = semType(semType.event,semType.t)
     cats = []
     # <e,t>
     if catType.equals(nCat.getStaticType()):
@@ -375,9 +372,9 @@ def getCat(catType):
     if catType.equals(sCat.getStaticType()):
         cats.append(synCat.s)
     # <ev,t> and PP - how can we know???
-    if catType.equals(ppCat.getStaticType()):
-        pass
-        # cats.append(synCat.pp)
+    # if catType.equals(ppCat.getStaticType()):
+    #     pass
+    #     # cats.append(synCat.pp)
     return cats
 
 
@@ -385,17 +382,15 @@ def getCatAug(e):
     t = e.type()
     pos = None
     pos = e.getPosType()
-    # print "type = ",t
-    # error()
     cats = []
     # <e,t> - can be N
     # if t.equals(nCat.getStaticType()) and (e.isNounMod() or e.isConjN()):
     if t.equals(nCat.getStaticType()):
         cats.append(synCat.n)
         return cats
-    if t.equals(ppCat.getStaticType()) and pos == "prep":
-        cats.append(synCat.pp)
-        return cats
+    # if t.equals(ppCat.getStaticType()) and pos == "prep":
+    #     cats.append(synCat.pp)
+    #     return cats
         # <ev,t> and not PP
     if t.equals(sCat.getStaticType()):
         cats.append(synCat.s)
@@ -459,14 +454,6 @@ class cat:
 
         if retsem:
             newcat = cat(newsyn, retsem)
-            # print "newsyn type is ",newsyn.getType().toString(),\
-            # " newsem type is ",retsem.type().toString()
-            # print "from comp got retsem ",retsem.toString(True)
-            # print "newcat is ",newcat.toString()
-
-            # print "syntomatch is ",syntomatch.toString()
-            # print "parent cat is ",self.syn.toString()
-            # print "child cat is ",c.syn.toString()
         else:
             print "compfuckup"
         return newcat
@@ -485,8 +472,6 @@ class cat:
 
     def semString(self):
         return self.sem.toString(True)
-        # def getNumCompAllowed(self,child):
-        # if
 
     def allPairs(self, catStore):
         if catStore.has_key(self.toString()): return catStore[self.toString()]
@@ -495,9 +480,6 @@ class cat:
         # really want to know :
         #    a) which cats can actually be played with
         #    b) whether or not we're going for composition
-
-        # numCompAllowed = self.getNumCompAllowed()
-        # print "going to split : ",self.toString()
 
         # newLambdas is the number of new lambda terms in the argument
         # numByComp says how many lambda terms composition was used on
@@ -533,28 +515,11 @@ class cat:
             # only interested in the most significant child lambdas that
             # really have to go
 
-
-
             # want the child to steal (borrow) a lot from the parent
-            # print "childSem type is ",childSem.type().toString()
-            # print "numNew is ",numNew
-            # print "numByComp is ",numByComp
-
-            # print "selfCat is ",self.syn.toString(),\
-            # "  selfType is ",self.sem.type().toString(),"  catType is ",\
-            # self.syn.getType().toString()
-            # print "parentSem is ",parentSem.toString(True)
-            # print "childSem is ",childSem.toString(True)
 
             # all nulls by composition
             isnull = False
             if fixeddircats is None:
-                # is a null cat
-                # numByComp = self.syn.arity()-1
-                # fixeddircats = []
-                # print "doing null"
-                # isnull = True
-                # elif False:
                 functcat = self.syn.copy()
 
                 argcat = self.syn.copy()
@@ -594,16 +559,11 @@ class cat:
             # break if not 
             compfunct = self.syn
             canDoComp = False
-            # print "numbycomp is ",numByComp
             for i in range(numByComp):
                 compvartype = lterm.var.type()
                 if compfunct.atomic():
-                    # print "atomic cat ",self.toString()
                     canDoComp = False
                     break
-                    # else:
-                    # print "compnumb = ",i
-                    # print "compfunct = ",compfunct.toString()
                 compcat = compfunct.arg
                 compfunct = compfunct.funct
                 if canDoComp and canDoComp != self.syn.direction:
@@ -614,50 +574,34 @@ class cat:
 
                 compcattype = compcat.getType()
                 if not compvartype.equals(compcattype): canDoComp = False
-                # print "compvartype is ",compvartype.toString(),"   ",\
-                # " compcattype is ",compcattype.toString()
                 lterm = lterm.funct
                 # need to make sure that type matches if allowed
-
                 compargs.append(compcat)
 
             if canDoComp:
                 pass
-                # print "can do comp for ",self.toString(),parentSem.toString(True),childSem.toString(True)
-                # print "dir is ",canDoComp
             else:
                 numByComp = 0
-            # if numByComp>0: break
             returncat = self.syn
             currcat = self.syn
             currlam = self.sem
             catstoappend = []
             # want to know about arg cat 
             lvars = childSem.getLvars()
-            # print "childSem is ",childSem.toString(True)
             t = childSem.type()
             pt = childSem
-            # print "orig t is ",t.toString()
             for i in range(numByComp):
                 if currcat.atomic():
-                    # print "composition atomic but shared lambda ",currcat.toString(),\
-                    # self.toString(),childSem.toString(True),t.toString()
                     break
-                # print "compvar is ",lvars[i]
-                # print "this compvar is ",currlam.var
                 del lvars[i]
 
                 t = t.functType
                 pt = pt.getFunct()
-                # print "t reduced by comp, is ",t.toString()
-
                 catstoappend.append((currcat.arg, currcat.direction))
                 currcat = currcat.funct
-                # print "currcat reduced to ",currcat.toString()
                 currlam = currlam.funct
 
             compbase = currcat
-            # print "compbase is ",compbase.toString()
             # is this ok??? yes???
             # do lots of debugging!!!!
             # get ALL splits of a top cat
@@ -665,12 +609,8 @@ class cat:
             if len(fixeddircats) > 0 and fixeddircats[0] == "typeraised":
                 fixeddircats = fixeddircats[1:]
                 istyperaised = True
-                # print "gonna typeraise"
                 t = parentSem.getVar().getArg(0).type()
                 pt = parentSem.getVar().getArg(0)
-                ##compbase = 
-                # print "orig childsem type is ",t.toString()
-                # continue
 
             # want cat for root and outermost args
 
@@ -684,76 +624,26 @@ class cat:
             # now we are interested in the cats for things that come 
             # from seen lambdas
             fixedcats = []
-            # print "fixeddircats has ",len(fixeddircats)," entries ",fixeddircats
-            # print "currlam is ",currlam.toString(True)
-
-
             seenfixeddircats = 0
-            # i = 0
-            # print len(fixeddircats)," fixeddircats"
-            # print "currcat arity ",currcat.arity()
-            # print "cat type is ",self.syn.getType().toString()
-            # if not t.equals(self.syn.getType()):
-            # print "types dont match"
-            # print self.syn.getType().toString(),"  ",t.toString()
-            # print self.toString()
-            # print t.toString()
-            # print "sem is ",self.sem.toString(True)
-            # print "lamb arity = ",self.sem.arity()
-            # print "t is ",t.toString()
+
             while seenfixeddircats < min(len(fixeddircats), currcat.arity() - 1):
                 if numByComp > seenfixeddircats:
                     seenfixeddircats += 1
                 else:
-                    # print "currlam var is ",currlam.var
-                    # print "i is ",i
                     if currlam.var == fixeddircats[seenfixeddircats]:
                         seenfixeddircats += 1
                         if currcat.atomic(): break
-                        # print "adding fixedcat "
                         fixedcats.append((currcat.arg, currcat.direction))
-                        # print "t reduced by fixed, is ",t.toString()
                         t = t.functType
                         pt = pt.getFunct()
-                        # print "t reduced by fixed, is ",t.toString()
-                        # seenfixeddircats+=1
                     currcat = currcat.funct
                     currlam = currlam.funct
-                    # else:
-                    # i += 1
-                    # print "fixedcats are ",fixedcats
 
-
-                    # while len(lvars) > numNew:
-                    # del lvars[0]
-                    # if currcat.atomic():
-                    # print "atomic but shared lambda ",currcat.toString(),\
-                    # self.toString(),childSem.toString(True),t.toString()
-                    # break
-                    # else:
-                    # t = t.functType
-                    ## this is not correct
-                    # catstoappend.append((currcat.arg,currcat.direction))
-                    # currcat = currcat.funct
-
-
-
-                    # print "lvars len = ",len(lvars)
-                    # print "t is ",t.toString()
-
-                    # for v in lvars:
-                    # vCat = lvars
-
-            # print "t is ",t.toString()
             # here there could be some dynamic programming surely???
             # need to work out the sharing for non comp cats
-            # print "t is ",t.toString()," cats are"
-            # print "compbase is ",compbase.toString()
             for sc in synCat.allSynCatsWithPos(pt):
-                # print sc.toString()
                 # fixed because lambda terms equivalent 
                 # to above
-
                 for ca in reversed(fixedcats):
                     sc = synCat(sc, ca[0], ca[1])
 
@@ -761,27 +651,18 @@ class cat:
                 # inside ones
 
                 pscf = synCat(compbase, sc, "fwd")
-                # print "parent cat is ",pscf.toString()
                 pscb = synCat(compbase, sc, "back")
-                # print "parent cat is ",pscb.toString()
 
                 # fixed by composition
                 for ca in reversed(catstoappend):
                     sc = synCat(sc, ca[0], ca[1])
                 # need to rebuild directional child cat
-                # if not istyperaised = True
                 childCat = cat(sc, childSem)
-                # if not sc.getType().equals(childSem.type()):
-                # print "types dont match 1 : ",childCat.toString(),\
-                # " ",sc.getType().toString()," ",childSem.type().toString(),"\n"
-
-
 
                 if not canDoComp or canDoComp == "fwd":
                     if istyperaised: print "typeraised"
                     parentCat = cat(pscf, parentSem)
                     if not pscf.getType().equals(parentSem.type()):
-                        # print "pare
                         print "types dont match 2 : ", parentCat.toString(), \
                             " ", pscf.getType().toString(), " ", parentSem.type().toString(), \
                             " comp is ", canDoComp, "\n"
@@ -791,19 +672,12 @@ class cat:
                         append_pairs(pairs, (parentCat, childCat, "fwd", numByComp))
                     else:
                         if canDoComp: raise (StandardError("typeraise on comp"))
-                        # error("typeraise on comp")
                         # want the parent to be looking in the opposite way from the
                         # child
                         parentCat = cat(pscf, childSem)
-                        # print "returncat is ",returncat.toString()
-                        # print "typeraised parent is ",parentCat.toString()
                         typeRaisedChildSyn = synCat(returncat, pscf, "back")
-                        # print "typeraised child syn is ",typeRaisedChildSyn.toString()
-                        # print "typeraised parent is ",parentCat.toString()
                         typeRaisedChild = cat(typeRaisedChildSyn, parentSem)
-                        # print "typeraised pair is : "+parentCat.toString()+"  "+typeRaisedChild.toString()
                         append_pairs(pairs, (parentCat, typeRaisedChild, "back", numByComp))
-                        # print "pair is ",parentCat.toString(),childCat.toString()
                         childCat = parentCat
                         parentCat = typeRaisedChild
 
@@ -819,12 +693,9 @@ class cat:
                         append_pairs(pairs, (childCat, parentCat, "back", numByComp))
                     else:
                         if canDoComp: raise (StandardError("typeraise on comp"))
-                        # error("typeraise on comp")
                         parentCat = cat(pscb, childSem)
-                        # print "pair is ",parentCat.toString(),childCat.toString()
                         typeRaisedChildSyn = synCat(returncat, pscb, "fwd")
                         typeRaisedChild = cat(typeRaisedChildSyn, parentSem)
-                        # print "typeraised pair is : "+typeRaisedChild.toString()+"  "+parentCat.toString()
                         append_pairs(pairs, (typeRaisedChild, parentCat, "fwd", numByComp))
                         childCat = parentCat
                         parentCat = typeRaisedChild
@@ -837,8 +708,6 @@ class cat:
                     else:
                         nc = pc.apply(cc, "back")
                     if nc:
-                        # print "reapplied cat is ",nc.toString()
-                        # print "this is ",self.toString()
                         if not nc.equals(self):
                             # print "not back to orig, should be ", self.toString()
                             pass
@@ -847,16 +716,11 @@ class cat:
                 else:
                     pc = parentCat.copy()
                     cc = childCat.copy()
-                    # print "doing composition in direction=",canDoComp
-                    # print "got ",pc.toString(),cc.toString()
                     nc = pc.compose(cc, canDoComp)
                     if nc:
-                        # print "recomposed cat is ",nc.toString()
-                        # print "this is ",self.toString()
                         if not nc.equals(self):
                             # print "not back to orig, should be ", self.toString()
                             pass
-                        # else: print "cannae do comp"
 
         catStore[self.toString()] = pairs
         return pairs
@@ -868,14 +732,10 @@ class cat:
     def readCat(catstring):
         synstring = catstring.split(" :: ")[0]
         semstring = catstring.split(" :: ")[1]
-        # print "semstring is |"+semstring+"|"
         (semrep, expString) = expFunctions.makeExpWithArgs(semstring, {})
-        # print "made sem: ",semrep.toString(True)
         syncat = synCat.readCat(synstring)
         c = cat(syncat, semrep)
         return c
-        # if semrep: print "madesemrep, is ",semrep.toString(True)
-        # else: print "couldna make semrep"
 
 
 ###########################
@@ -938,10 +798,6 @@ def orderOfVariables(cur_cat):
     return D.values()
 
 
-# def main():
-# cat.readCat("(((Syn\NP)\NP)\(((S\NP)\NP))):lambda $0_{<e,<e,<ev,t>>>}.lambda $1_{e}.lambda $2_{e}.Q(aux|will&COND(sk e3.($0($1,$2,e3))))")
-
-
 
 # make static cats #
 synCat.np = npCat()
@@ -950,7 +806,7 @@ synCat.st = stCat()
 synCat.swh = sWhCat()
 synCat.q = qCat()
 synCat.n = nCat()
-synCat.pp = ppCat()
+# synCat.pp = ppCat()
 
 
 def main(argv=None):
