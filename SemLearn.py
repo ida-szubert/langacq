@@ -117,9 +117,9 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
                 words = sentence.split()
                 if not isQ and words[-1] in ["?", "."]:
                     words = words[:-1]
-                if len(words) == 0:
-                    print "rejecting: example too short ", sent_line + sem_line
-                    continue
+                # if len(words) == 0:
+                #     print "rejecting: example too short ", sent_line + sem_line
+                #     continue
 
                 if dotest:
                     test_during_training(test_out, sem, words, sem_store, RuleSet, lexicon, sentence_count)
