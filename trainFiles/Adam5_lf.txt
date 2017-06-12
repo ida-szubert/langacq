@@ -1,12 +1,156 @@
+Sent: what happened Adam ?
+Sem: lambda $0_{r}.Q(v|happen-past_2(pro:int|what_1,$0))
+example_end
+
+Sent: you don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:per|you_1,$0),$0),$0)
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: don 't touch .
+Sem: lambda $0_{r}.not(mod|do_1(v|touch_3(you,$0),$0),$0)
+example_end
+
 Sent: no Adam !
-Sem: lambda $0_{ev}.co|no($0)
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what 's this ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|this_3,$0))
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what 's this ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|this_3,$0))
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what are you doing Adam .
+Sem: lambda $0_{r}.aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0)
+example_end
+
+Sent: that 's a train .
+Sem: lambda $0_{r}.det:art|a_3(pro:dem|that_1,n|train_4(pro:dem|that_1,$0))
+example_end
+
+Sent: where are you going ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|go-presp_4(pro:per|you_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: tape recorder ?
+Sem: lambda $0_{e}.Q(and_comp(n|tape_1($0),n|record-dv_2($0)))
+example_end
+
+Sent: no that 's tape .
+Sem: lambda $0_{r}.and(n|tape_4(pro:dem|that_2,$0),co|no_1($0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
+Sent: tape recorder ?
+Sem: lambda $0_{e}.Q(and_comp(n|tape_1($0),n|record-dv_2($0)))
+example_end
+
+Sent: what 's the matter ?
+Sem: lambda $0_{r}.Q(det:art|the_3(pro:int|what_1,v|matter_4(pro:int|what_1,$0)))
 example_end
 
 Sent: here it is ?
-Sem: lambda $0_{ev}.Q(and(cop|be-3s(pro:per|it,$0),adv|here($0)))
+Sem: lambda $0_{r}.Q(and(cop|be-3s_3(pro:per|it_2,$0),adv|here_1($0)))
+example_end
+
+Sent: where are you going ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|go-presp_4(pro:per|you_3,$0),adv:int|where_1($0)),$0))
 example_end
 
 Sent: no thank_you !
-Sem: qn|no($0,n|thank_you($0))
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: can you say that ?
+Sem: lambda $0_{r}.Q(mod|can_1(v|say_3(pro:per|you_2,pro:dem|that_4,$0),$0))
+example_end
+
+Sent: what are you doing Adam .
+Sem: lambda $0_{r}.aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0)
+example_end
+
+Sent: where are you going ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|go-presp_4(pro:per|you_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: get up .
+Sem: lambda $0_{r}.and(v|get_1(you,$0),adv|up_2($0))
+example_end
+
+Sent: who fell down ?
+Sem: lambda $0_{r}.Q(and(v|fall-past_2(pro:int|who_1,$0),adv|down_3($0)))
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: where is it ?
+Sem: lambda $0_{r}.Q(and(aux|be-3s_2(pro:per|it_3,$0),adv:int|where_1($0)))
+example_end
+
+Sent: what are you doing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
 example_end
 

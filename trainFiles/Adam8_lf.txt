@@ -1,8 +1,156 @@
 Sent: this one ?
-Sem: lambda $0_{e}.Q(pro:dem|this($1,pro:indef|one($1),$0))
+Sem: lambda $0_{e}.Q(pro:dem|this_1($1,pro:indef|one_2($1),$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: I see it .
+Sem: lambda $0_{r}.v|see_2(pro:sub|i_1,pro:per|it_3,$0)
+example_end
+
+Sent: where are you going ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|go-presp_4(pro:per|you_3,$0),adv:int|where_1($0)),$0))
 example_end
 
 Sent: you missed it .
-Sem: lambda $0_{ev}.v|miss-past(pro:per|you,pro:per|it,$0)
+Sem: lambda $0_{r}.v|miss-past_2(pro:per|you_1,pro:per|it_3,$0)
+example_end
+
+Sent: here 's one .
+Sem: lambda $0_{r}.and(cop|~be_2(pro:indef|one_3,$0),pro:exist|here_1($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: you don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:per|you_1,$0),$0),$0)
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: playing the piano .
+Sem: lambda $0_{r}.part|play-presp_1(you,det:art|the_2($1,n|piano_3($1)),$0)
+example_end
+
+Sent: what are you doing now ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),adv|now_5($0)),$0))
+example_end
+
+Sent: where did it go ?
+Sem: lambda $0_{r}.Q(mod|do-past_2(and(v|go_4(pro:per|it_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: what are you doing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what are you doing Adam .
+Sem: lambda $0_{r}.aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0)
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: on the table ?
+Sem: Q(prep|on_1(det:art|the_2($0,n|table_3($0))))
+example_end
+
+Sent: what are you doing now ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),adv|now_5($0)),$0))
+example_end
+
+Sent: look Adam .
+Sem: lambda $0_{r}.co|look_1(you,$0)
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what is he doing ?
+Sem: lambda $0_{r}.Q(cop|be-3s_2(part|do-presp_4(pro:sub|he_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's a tape recorder .
+Sem: lambda $0_{r}.det:art|a_3(pro:dem|that_1,and_comp(n|tape_4(pro:dem|that_1,$0),n|record-dv_5(pro:dem|that_1,$0)))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: where are you going ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(and(part|go-presp_4(pro:per|you_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: what are you doing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: busy bulldozer ?
+Sem: lambda $0_{e}.Q(and(adj|busy_1($0),n|bulldoze-dv_2($0)))
+example_end
+
+Sent: what are you doing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: I 'm sorry .
+Sem: lambda $0_{r}.adj|sorry_3(pro:sub|i_1,$0)
+example_end
+
+Sent: poor head .
+Sem: lambda $0_{e}.and(adj|poor_1($0),n|head_2($0))
 example_end
 

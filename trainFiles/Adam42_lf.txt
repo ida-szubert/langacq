@@ -1,0 +1,132 @@
+Sent: that 's alright .
+Sem: lambda $0_{r}.adj|alright_3(pro:dem|that_1,$0)
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: oh what is that ?
+Sem: lambda $0_{r}.Q(and(pro:int|what_2(pro:dem|that_4,$0),co|oh_1($0)))
+example_end
+
+Sent: you did what ?
+Sem: lambda $0_{r}.Q(v|do-past_2(pro:per|you_1,pro:int|what_3,$0))
+example_end
+
+Sent: oh I don 't know .
+Sem: lambda $0_{r}.and(not(mod|do_3(v|know_5(pro:sub|i_2,$0),$0),$0),co|oh_1($0))
+example_end
+
+Sent: look Adam .
+Sem: lambda $0_{r}.co|look_1(you,$0)
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: what kind is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_4,n|kind_2(pro:dem|that_4,$0)))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: what d you have ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|have_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's one .
+Sem: lambda $0_{r}.pro:indef|one_3(pro:dem|that_1,$0)
+example_end
+
+Sent: you do ?
+Sem: lambda $0_{r}.Q(v|do_2(pro:per|you_1,$0))
+example_end
+
+Sent: oh I see .
+Sem: lambda $0_{r}.and(v|see_3(pro:sub|i_2,$0),co|oh_1($0))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: you do it .
+Sem: lambda $0_{r}.v|do_2(pro:per|you_1,pro:per|it_3,$0)
+example_end
+
+Sent: is it ?
+Sem: lambda $0_{e}.lambda $1_{r}.pro:per|it_2($0,$1)
+example_end
+
+Sent: here 's another one .
+Sem: lambda $0_{r}.and(cop|~be_2(qn|another_3($1,pro:indef|one_4($1)),$0),pro:exist|here_1($0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: what 're you going to make ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|go-presp_4(pro:per|you_3,lambda $1_{r}.v|make_6(pro:per|you_3,pro:int|what_1,$1),$0),$0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: what 're you doing ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what 're you doing ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what did you buy ?
+Sem: lambda $0_{r}.Q(mod|do-past_2(v|buy_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: you 're welcome .
+Sem: lambda $0_{r}.adj|welcome_3(pro:per|you_1,$0)
+example_end
+
+Sent: that 's alright .
+Sem: lambda $0_{r}.adj|alright_3(pro:dem|that_1,$0)
+example_end
+

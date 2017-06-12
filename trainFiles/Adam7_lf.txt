@@ -1,20 +1,160 @@
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: bumble bee ?
+Sem: lambda $0_{e}.Q(n|bee_2_bumble_1($0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: where did it go ?
+Sem: lambda $0_{r}.Q(mod|do-past_2(and(v|go_4(pro:per|it_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
 Sent: you 're dripping .
-Sem: lambda $0_{ev}.aux|~be(part|drip-presp(pro:per|you,$0),$0)
+Sem: lambda $0_{r}.aux|~be_2(part|drip-presp_3(pro:per|you_1,$0),$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what kind of truck is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_6,att(n|kind_2(pro:per|it_6,$0),prep|of_3(lambda $1_{e}.n|truck_4($1)))))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
 example_end
 
 Sent: excuse me please .
-Sem: lambda $0_{ev}.and(v|excuse(you,pro:obj|me,$0),co|please($0))
+Sem: lambda $0_{r}.and(v|excuse_1(you,pro:obj|me_2,$0),co|please_3($0))
 example_end
 
 Sent: too big .
-Sem: lambda $0_{e}.adv|too(adj|big($0))
+Sem: lambda $0_{e}.adv|too_1(adj|big_2($0))
+example_end
+
+Sent: that one ?
+Sem: lambda $0_{e}.Q(pro:dem|that_1($1,pro:indef|one_2($1),$0))
+example_end
+
+Sent: you fell down .
+Sem: lambda $0_{r}.and(v|fall-past_2(pro:per|you_1,$0),adv|down_3($0))
+example_end
+
+Sent: did you hurt yourself ?
+Sem: lambda $0_{r}.Q(v|do-past_1(v|hurt-zero_3(pro:per|you_2,pro:refl|yourself_4,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: tape recorder ?
+Sem: lambda $0_{e}.Q(and_comp(n|tape_1($0),n|record-dv_2($0)))
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what are you doing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
 example_end
 
 Sent: be careful .
-Sem: lambda $0_{e}.lambda $1_{ev}.adj|care-dn($0,$1)
+Sem: lambda $0_{e}.lambda $1_{r}.adj|care-dn_2($0,$1)
+example_end
+
+Sent: you fell down .
+Sem: lambda $0_{r}.and(v|fall-past_2(pro:per|you_1,$0),adv|down_3($0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: you tell me .
+Sem: lambda $0_{r}.v|tell_2(pro:per|you_1,pro:obj|me_3,$0)
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: did you hurt yourself ?
+Sem: lambda $0_{r}.Q(v|do-past_1(v|hurt-zero_3(pro:per|you_2,pro:refl|yourself_4,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
 example_end
 
 Sent: that 's his tongue ?
-Sem: lambda $0_{ev}.Q(det:poss|his(pro:dem|that,n|tongue(pro:dem|that,$0)))
+Sem: lambda $0_{r}.Q(det:poss|his_3(pro:dem|that_1,n|tongue_4(pro:dem|that_1,$0)))
+example_end
+
+Sent: what 's the matter ?
+Sem: lambda $0_{r}.Q(det:art|the_3(pro:int|what_1,v|matter_4(pro:int|what_1,$0)))
 example_end
 

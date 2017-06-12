@@ -1,0 +1,156 @@
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: that 's alright .
+Sem: lambda $0_{r}.adj|alright_3(pro:dem|that_1,$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: you don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:per|you_1,$0),$0),$0)
+example_end
+
+Sent: alright Adam .
+Sem: lambda $0_{r}.co|alright_1($0)
+example_end
+
+Sent: you try it .
+Sem: lambda $0_{r}.v|try_2(pro:per|you_1,pro:per|it_3,$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: you made it ?
+Sem: lambda $0_{r}.Q(v|make-past_2(pro:per|you_1,pro:per|it_3,$0))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: oh Adam .
+Sem: lambda $0_{r}.and(n:prop|adam_2($0),co|oh_1($0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: one two three four .
+Sem: lambda $0_{e}.det:num|one_1(det:num|two_2(det:num|three_3(det:num|four_4($0))))
+example_end
+
+Sent: I 'm watching .
+Sem: lambda $0_{r}.aux|~be_2(part|watch-presp_3(pro:sub|i_1,$0),$0)
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: wait a minute .
+Sem: lambda $0_{r}.v|wait_1(you,det:art|a_2($1,n|minute_3($1)),$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: yes please .
+Sem: lambda $0_{r}.and(co|please_2($0),co|yes_1($0))
+example_end
+
+Sent: you show me how .
+Sem: lambda $0_{r}.and(v|show_2(pro:per|you_1,pro:obj|me_3,$0),adv:int|how_4($0))
+example_end
+
+Sent: oh I see .
+Sem: lambda $0_{r}.and(v|see_3(pro:sub|i_2,$0),co|oh_1($0))
+example_end
+
+Sent: a lion .
+Sem: det:art|a_1($0,n|lion_2($0))
+example_end
+
+Sent: you do ?
+Sem: lambda $0_{r}.Q(v|do_2(pro:per|you_1,$0))
+example_end
+
+Sent: can you tell time ?
+Sem: lambda $0_{r}.Q(mod|can_1(v|tell_3(pro:per|you_2,lambda $1_{e}.n|time_4($1),$0),$0))
+example_end
+
+Sent: be careful .
+Sem: lambda $0_{e}.lambda $1_{r}.adj|care-dn_2($0,$1)
+example_end
+
+Sent: what d you mean ?
+Sem: lambda $0_{r}.Q(mod|do_2(adj|mean_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what d you mean ?
+Sem: lambda $0_{r}.Q(mod|do_2(adj|mean_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: and what else ?
+Sem: lambda $0_{e}.Q(post|else_3(pro:int|what_2,$0))
+example_end
+
+Sent: and macaroni .
+Sem: lambda $0_{e}.n|macaroni_2($0)
+example_end
+
+Sent: some macaroni ?
+Sem: lambda $0_{e}.Q(qn|some_1($1,n|macaroni_2($1),$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what was his name ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(det:poss|his_3($1,n|name_4($1)),$0))
+example_end
+
+Sent: what d you think ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|think_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+

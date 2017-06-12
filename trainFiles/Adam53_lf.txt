@@ -1,0 +1,88 @@
+Sent: are you finished ?
+Sem: lambda $0_{r}.Q(cop|be-pres_1(v|finish-past_3(pro:per|you_2,$0),$0))
+example_end
+
+Sent: what d you think ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|think_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what d you think ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|think_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what are you writing ?
+Sem: lambda $0_{r}.Q(aux|be-pres_2(part|write-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: is it ?
+Sem: lambda $0_{e}.lambda $1_{r}.pro:per|it_2($0,$1)
+example_end
+
+Sent: it is .
+Sem: lambda $0_{r}.cop|be-3s_2(pro:per|it_1,$0)
+example_end
+
+Sent: try again .
+Sem: lambda $0_{r}.and(v|try_1(you,$0),adv|again_2($0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: that 's very nice .
+Sem: lambda $0_{r}.adv|very_3(adj|nice_4(pro:dem|that_1,$0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: what 's this ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|this_3,$0))
+example_end
+
+Sent: no he 's not .
+Sem: lambda $0_{r}.and(not(aux|~be_3(pro:sub|he_2,$0),$0),co|no_1($0))
+example_end
+
+Sent: what 's the matter ?
+Sem: lambda $0_{r}.Q(det:art|the_3(pro:int|what_1,v|matter_4(pro:int|what_1,$0)))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: what 're you doing ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's a good idea .
+Sem: lambda $0_{r}.det:art|a_3(pro:dem|that_1,and(n|idea_5(pro:dem|that_1,$0),adj|good_4(pro:dem|that_1,$0)))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: like that ?
+Sem: Q(prep|like_1(pro:dem|that_2))
+example_end
+
+Sent: that 's a good idea .
+Sem: lambda $0_{r}.det:art|a_3(pro:dem|that_1,and(n|idea_5(pro:dem|that_1,$0),adj|good_4(pro:dem|that_1,$0)))
+example_end
+
+Sent: is that yours ?
+Sem: lambda $0_{r}.Q(pro:poss|yours_3(pro:dem|that_2,$0))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+

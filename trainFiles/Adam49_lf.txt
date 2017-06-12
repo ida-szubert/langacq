@@ -1,0 +1,44 @@
+Sent: yes what is that ?
+Sem: lambda $0_{r}.Q(and(pro:int|what_2(pro:dem|that_4,$0),co|yes_1($0)))
+example_end
+
+Sent: oh I don 't think so .
+Sem: lambda $0_{r}.and(not(mod|do_3(and(v|think_5(pro:sub|i_2,$0),co|so_6($0)),$0),$0),co|oh_1($0))
+example_end
+
+Sent: no thank_you !
+Sem: qn|no_1($0,n|thank_you_2($0))
+example_end
+
+Sent: see it .
+Sem: lambda $0_{r}.v|see_1(you,pro:per|it_2,$0)
+example_end
+
+Sent: you missed .
+Sem: lambda $0_{r}.v|miss-past_2(pro:per|you_1,$0)
+example_end
+
+Sent: yes I think so .
+Sem: lambda $0_{r}.and(and(v|think_3(pro:sub|i_2,$0),co|so_4($0)),co|yes_1($0))
+example_end
+
+Sent: oh I see .
+Sem: lambda $0_{r}.and(v|see_3(pro:sub|i_2,$0),co|oh_1($0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: oh I 'm sorry .
+Sem: lambda $0_{r}.and(adj|sorry_4(pro:sub|i_2,$0),co|oh_1($0))
+example_end
+
+Sent: what kind of bird is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_6,att(n|kind_2(pro:dem|that_6,$0),prep|of_3(lambda $1_{e}.n|bird_4($1)))))
+example_end
+

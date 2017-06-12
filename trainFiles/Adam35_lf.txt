@@ -1,0 +1,144 @@
+Sent: you don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:per|you_1,$0),$0),$0)
+example_end
+
+Sent: that 's very nice .
+Sem: lambda $0_{r}.adv|very_3(adj|nice_4(pro:dem|that_1,$0))
+example_end
+
+Sent: what are they ?
+Sem: lambda $0_{r}.Q(det:int|what_1(pro:sub|they_3,$0))
+example_end
+
+Sent: what else did you do ?
+Sem: lambda $0_{r}.Q(mod|do-past_3(v|do_5(pro:per|you_4,post|else_2(pro:int|what_1),$0),$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: how are they different ?
+Sem: lambda $0_{r}.Q(adv:int|how_1(adj|different_4(pro:sub|they_3,$0)))
+example_end
+
+Sent: what d you mean ?
+Sem: lambda $0_{r}.Q(mod|do_2(adj|mean_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: it 's time for what ?
+Sem: lambda $0_{r}.Q(cop|~be_2(lambda $1_{e}.att(n|time_3($1),prep|for_4(pro:int|what_5)),$0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: what 're you doing Adam ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: oh what is that ?
+Sem: lambda $0_{r}.Q(and(pro:int|what_2(pro:dem|that_4,$0),co|oh_1($0)))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: it 's what ?
+Sem: lambda $0_{r}.Q(pro:int|what_3(pro:per|it_1,$0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: don 't do that Adam .
+Sem: lambda $0_{r}.not(mod|do_1(v|do_3(you,det:dem|that_4,$0),$0),$0)
+example_end
+
+Sent: you put it together .
+Sem: lambda $0_{r}.and(v|put-zero_2(pro:per|you_1,pro:per|it_3,$0),adv|together_4($0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+
+Sent: here 's one .
+Sem: lambda $0_{r}.and(cop|~be_2(pro:indef|one_3,$0),pro:exist|here_1($0))
+example_end
+
+Sent: you have ?
+Sem: lambda $0_{r}.Q(v|have_2(pro:per|you_1,$0))
+example_end
+
+Sent: what is this .
+Sem: lambda $0_{r}.pro:int|what_1(pro:dem|this_3,$0)
+example_end
+
+Sent: you do ?
+Sem: lambda $0_{r}.Q(v|do_2(pro:per|you_1,$0))
+example_end
+
+Sent: let me see .
+Sem: lambda $0_{r}.v|let-zero_1(you,lambda $1_{r}.v|see_3(pro:obj|me_2,$1),$0)
+example_end
+
+Sent: I 'll hold it .
+Sem: lambda $0_{r}.mod|~will_2(v|hold_3(pro:sub|i_1,pro:per|it_4,$0),$0)
+example_end
+
+Sent: you do it .
+Sem: lambda $0_{r}.v|do_2(pro:per|you_1,pro:per|it_3,$0)
+example_end
+
+Sent: you do it .
+Sem: lambda $0_{r}.v|do_2(pro:per|you_1,pro:per|it_3,$0)
+example_end
+
+Sent: you do ?
+Sem: lambda $0_{r}.Q(v|do_2(pro:per|you_1,$0))
+example_end
+
+Sent: are you sure ?
+Sem: lambda $0_{r}.Q(adj|sure_3(pro:per|you_2,$0))
+example_end
+
+Sent: a wrench .
+Sem: det:art|a_1($0,v|wrench_2($0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: where 's your screwdriver ?
+Sem: lambda $0_{r}.Q(and(cop|~be_2(det:poss|your_3($1,n|screw+driver_4($1)),$0),adv:int|where_1($0)))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: is that a garage ?
+Sem: lambda $0_{r}.Q(det:art|a_3(pro:rel|that_2,n|garage_4(pro:rel|that_2,$0)))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+

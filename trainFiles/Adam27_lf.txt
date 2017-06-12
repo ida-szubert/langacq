@@ -1,0 +1,164 @@
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: I see it .
+Sem: lambda $0_{r}.v|see_2(pro:sub|i_1,pro:per|it_3,$0)
+example_end
+
+Sent: you missed .
+Sem: lambda $0_{r}.v|miss-past_2(pro:per|you_1,$0)
+example_end
+
+Sent: I don 't know what that is .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,lambda $1_{r}.pro:int|what_5(pro:dem|that_6,$1),$0),$0),$0)
+example_end
+
+Sent: you found it ?
+Sem: lambda $0_{r}.Q(v|find-past_2(pro:per|you_1,pro:per|it_3,$0))
+example_end
+
+Sent: my turn ?
+Sem: lambda $0_{e}.Q(det:poss|my_1($1,n|turn_2($1),$0))
+example_end
+
+Sent: I see it .
+Sem: lambda $0_{r}.v|see_2(pro:sub|i_1,pro:per|it_3,$0)
+example_end
+
+Sent: my turn ?
+Sem: lambda $0_{e}.Q(det:poss|my_1($1,n|turn_2($1),$0))
+example_end
+
+Sent: my turn ?
+Sem: lambda $0_{e}.Q(det:poss|my_1($1,n|turn_2($1),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: you turn it around ?
+Sem: lambda $0_{r}.Q(and(v|turn_2(pro:per|you_1,pro:per|it_3,$0),adv|around_4($0)))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: is that Adam ?
+Sem: lambda $0_{r}.Q(n:prop|adam_3(pro:rel|that_2,$0))
+example_end
+
+Sent: it 's not broken .
+Sem: lambda $0_{r}.not(part|break-pastp_4(pro:per|it_1,$0),$0)
+example_end
+
+Sent: you 're going to do what ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|go-presp_3(pro:per|you_1,lambda $1_{r}.v|do_5(pro:per|you_1,pro:int|what_6,$1),$0),$0))
+example_end
+
+Sent: you 're a boy .
+Sem: lambda $0_{r}.det:art|a_3(pro:per|you_1,n|boy_4(pro:per|you_1,$0))
+example_end
+
+Sent: what d you see ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|see_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: a box .
+Sem: det:art|a_1($0,n|box_2($0))
+example_end
+
+Sent: what is what ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:int|what_3,$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: it works .
+Sem: lambda $0_{r}.v|work-3s_2(pro:per|it_1,$0)
+example_end
+
+Sent: very gently .
+Sem: lambda $0_{e}.adv|very_1(adv|gentle-dadj_2($0))
+example_end
+
+Sent: no it 's not broken .
+Sem: lambda $0_{r}.and(not(cop|~be_3(part|break-pastp_5(pro:per|it_2,$0),$0),$0),co|no_1($0))
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
+Sent: what kind of cake ?
+Sem: lambda $0_{e}.Q(pro:int|what_1($1,att(n|kind_2($1),prep|of_3(lambda $2_{e}.n|cake_4($2))),$0))
+example_end
+
+Sent: what shall I do ?
+Sem: lambda $0_{r}.Q(mod|shall_2(v|do_4(pro:sub|i_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's alright .
+Sem: lambda $0_{r}.adj|alright_3(pro:dem|that_1,$0)
+example_end
+
+Sent: yes thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|yes_1($0))
+example_end
+
+Sent: yes thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|yes_1($0))
+example_end
+
+Sent: that 's all .
+Sem: lambda $0_{r}.pro:indef|all_3(pro:dem|that_1,$0)
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: you 're very kind .
+Sem: lambda $0_{r}.adv|very_3(adj|kind_4(pro:per|you_1,$0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: what d you see ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|see_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: I 'm sorry .
+Sem: lambda $0_{r}.adj|sorry_3(pro:sub|i_1,$0)
+example_end
+
+Sent: may I see it ?
+Sem: lambda $0_{r}.Q(mod|may_1(v|see_3(pro:sub|i_2,pro:per|it_4,$0),$0))
+example_end
+
+Sent: no no !
+Sem: lambda $0_{r}.and(co|no_2($0),co|no_1($0))
+example_end
+

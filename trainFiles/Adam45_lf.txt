@@ -1,0 +1,96 @@
+Sent: come on .
+Sem: lambda $0_{r}.and(v|come_1(you,$0),adv|on_2($0))
+example_end
+
+Sent: what is this .
+Sem: lambda $0_{r}.pro:int|what_1(pro:dem|this_3,$0)
+example_end
+
+Sent: what 's that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: it is .
+Sem: lambda $0_{r}.cop|be-3s_2(pro:per|it_1,$0)
+example_end
+
+Sent: don 't do that .
+Sem: lambda $0_{r}.not(mod|do_1(v|do_3(you,pro:dem|that_4,$0),$0),$0)
+example_end
+
+Sent: yes dear .
+Sem: lambda $0_{r}.and(co|dear_2($0),co|yes_1($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: what d you see ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|see_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: shame on you .
+Sem: lambda $0_{e}.att(n|shame_1($0),prep|on_2(pro:per|you_3))
+example_end
+
+Sent: and what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_2(pro:dem|that_4,$0))
+example_end
+
+Sent: oh I see .
+Sem: lambda $0_{r}.and(v|see_3(pro:sub|i_2,$0),co|oh_1($0))
+example_end
+
+Sent: what is this .
+Sem: lambda $0_{r}.pro:int|what_1(pro:dem|this_3,$0)
+example_end
+
+Sent: let 's see Adam .
+Sem: lambda $0_{r}.v:obj|let_1(you,lambda $1_{r}.v|see_3(pro:obj|~us_2,$1),$0)
+example_end
+
+Sent: here it is ?
+Sem: lambda $0_{r}.Q(and(cop|be-3s_3(pro:per|it_2,$0),adv|here_1($0)))
+example_end
+
+Sent: shame on you .
+Sem: lambda $0_{e}.att(n|shame_1($0),prep|on_2(pro:per|you_3))
+example_end
+
+Sent: where 's the cat ?
+Sem: lambda $0_{r}.Q(and(cop|~be_2(det:art|the_3($1,n|cat_4($1)),$0),adv:int|where_1($0)))
+example_end
+
+Sent: no Adam !
+Sem: lambda $0_{r}.co|no_1($0)
+example_end
+
+Sent: oh Adam .
+Sem: lambda $0_{r}.and(n:prop|adam_2($0),co|oh_1($0))
+example_end
+
+Sent: oh thank_you .
+Sem: lambda $0_{r}.and(n|thank_you_2($0),co|oh_1($0))
+example_end
+
+Sent: you do ?
+Sem: lambda $0_{r}.Q(v|do_2(pro:per|you_1,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+

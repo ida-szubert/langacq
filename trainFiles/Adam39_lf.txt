@@ -1,0 +1,132 @@
+Sent: what is that ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:dem|that_3,$0))
+example_end
+
+Sent: and what else ?
+Sem: lambda $0_{e}.Q(post|else_3(pro:int|what_2,$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: yes I think so .
+Sem: lambda $0_{r}.and(and(v|think_3(pro:sub|i_2,$0),co|so_4($0)),co|yes_1($0))
+example_end
+
+Sent: what 're you doing ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: I don 't know either .
+Sem: lambda $0_{r}.not(mod|do_2(and(v|know_4(pro:sub|i_1,$0),adv|either_5($0)),$0),$0)
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: whoops you had an accident .
+Sem: lambda $0_{r}.and(v|have-past_3(pro:per|you_2,det:art|a_4($1,n|accident_5($1)),$0),co|whoops_1($0))
+example_end
+
+Sent: a real one ?
+Sem: lambda $0_{e}.Q(det:art|a_1($1,and(adj|real_2($1),pro:indef|one_3($1)),$0))
+example_end
+
+Sent: I don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:sub|i_1,$0),$0),$0)
+example_end
+
+Sent: what is it ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:per|it_3,$0))
+example_end
+
+Sent: oh what is that ?
+Sem: lambda $0_{r}.Q(and(pro:int|what_2(pro:dem|that_4,$0),co|oh_1($0)))
+example_end
+
+Sent: and what else ?
+Sem: lambda $0_{e}.Q(post|else_3(pro:int|what_2,$0))
+example_end
+
+Sent: yes that 's right .
+Sem: lambda $0_{r}.and(n|right_4(pro:dem|that_2,$0),co|yes_1($0))
+example_end
+
+Sent: I 'm sorry .
+Sem: lambda $0_{r}.adj|sorry_3(pro:sub|i_1,$0)
+example_end
+
+Sent: what else did you see .
+Sem: lambda $0_{r}.mod|do-past_3(v|see_5(pro:per|you_4,post|else_2(pro:int|what_1),$0),$0)
+example_end
+
+Sent: you don 't remember ?
+Sem: lambda $0_{r}.Q(not(mod|do_2(v|remember_4(pro:per|you_1,$0),$0),$0))
+example_end
+
+Sent: it works .
+Sem: lambda $0_{r}.v|work-3s_2(pro:per|it_1,$0)
+example_end
+
+Sent: what d you think ?
+Sem: lambda $0_{r}.Q(mod|do_2(v|think_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: what is that Adam ?
+Sem: lambda $0_{r}.Q(pro:int|what_1(pro:rel|that_3,$0))
+example_end
+
+Sent: you don 't know .
+Sem: lambda $0_{r}.not(mod|do_2(v|know_4(pro:per|you_1,$0),$0),$0)
+example_end
+
+Sent: put it down .
+Sem: lambda $0_{r}.and(v|put-zero_1(you,pro:per|it_2,$0),adv|down_3($0))
+example_end
+
+Sent: hi Paul .
+Sem: lambda $0_{r}.and(n:prop|paul_2($0),co|hi_1($0))
+example_end
+
+Sent: careful Adam !
+Sem: lambda $0_{e}.co|careful_1($0)
+example_end
+
+Sent: oh don 't do that .
+Sem: lambda $0_{r}.and(not(mod|do_2(v|do_4(you,pro:dem|that_5,$0),$0),$0),co|oh_1($0))
+example_end
+
+Sent: where did that go ?
+Sem: lambda $0_{r}.Q(mod|do-past_2(and(v|go_4(pro:rel|that_3,$0),adv:int|where_1($0)),$0))
+example_end
+
+Sent: you missed .
+Sem: lambda $0_{r}.v|miss-past_2(pro:per|you_1,$0)
+example_end
+
+Sent: what 're you doing ?
+Sem: lambda $0_{r}.Q(aux|~be_2(part|do-presp_4(pro:per|you_3,pro:int|what_1,$0),$0))
+example_end
+
+Sent: that 's right ?
+Sem: lambda $0_{r}.Q(n|right_3(pro:dem|that_1,$0))
+example_end
+
+Sent: oh yes .
+Sem: lambda $0_{r}.and(co|yes_2($0),co|oh_1($0))
+example_end
+
+Sent: you missed .
+Sem: lambda $0_{r}.v|miss-past_2(pro:per|you_1,$0)
+example_end
+
