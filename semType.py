@@ -74,7 +74,8 @@ class semType:
 	def makeType(typestring):
 		if typestring=="e": return semType.e
 		elif typestring=="t": return semType.t
-		elif typestring=="ev": return semType.event
+		elif typestring=="r": return semType.event
+		# elif typestring=="ev": return semType.event
 		elif typestring[0]!="<":
 			print "type error ",typestring
 			error('tye error')

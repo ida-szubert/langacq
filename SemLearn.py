@@ -8,23 +8,6 @@
 ## want ONE function to check parses (deal with search problem)
 ## MAKE INTO SEPARATE FILES
 
-# import pdb
-# import copy
-# import math
-# import random
-# import os
-# from math import log
-# from math import exp
-# from scipy.special import psi
-# from timeit import Timer
-# from tools import *
-# from semc import *
-# from build_inside_outside_chart import *
-# from inside_outside_calc import *
-# from print_parses import *
-# from semType import semType
-# from correct_dependencies_with_templates import repFromExample
-# import readInExps
 import cPickle
 import sys
 import verb_repo
@@ -39,7 +22,6 @@ from cat import synCat
 import cat
 import extract_from_lexicon3
 import exp
-# from correct_dependencies_with_templates import checkIfWh
 import expFunctions
 
 
@@ -109,10 +91,12 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
                 try:
                     isQ, sc = get_top_cat(sem)
                 except IndexError:
-                    print "couldn't determine syntactic category ", sem_line
+                    # print "couldn't determine syntactic category ", sem_line
+                    print_sent_info(sentence, output, sentence_count, lexicon, topCatList)
                     continue
                 topCat = cat.cat(sc, sem)
                 topCatList.append(topCat)
+                print_sent_info(sentence, output, sentence_count, lexicon, topCatList)
 
                 words = sentence.split()
                 if not isQ and words[-1] in ["?", "."]:
@@ -124,7 +108,7 @@ def train_rules(sem_store, RuleSet, lexicon, oneWord, inputpairs,
                 if dotest:
                     test_during_training(test_out, sem, words, sem_store, RuleSet, lexicon, sentence_count)
 
-                print_sent_info(sentence, output, sentence_count, lexicon, topCatList)
+                # print_sent_info(sentence, output, sentence_count, lexicon, topCatList)
 
                 ####################################
                 # Create parse forest
@@ -189,15 +173,20 @@ def get_top_cat(sem):
     return isQ, sc
 
 def print_sent_info(sentence, output, sentence_count, lexicon, topCatList):
-    print "sentence is ", sentence
-    print '\ngot training pair'
-    print "Sent : " + sentence
+    if topCatList:
+        print "sentence is ", sentence
+        print '\ngot training pair'
+        print "Sent : " + sentence
     print >> output, "Sent : " + sentence
     print >> output, "update weight = ", lexicon.get_learning_rate(sentence_count)
     print >> output, sentence_count
-    for topCat in topCatList:
-        print "Cat : " + topCat.toString()
-        print >> output, "Cat : " + topCat.toString()
+    if topCatList:
+        for topCat in topCatList:
+            print "Cat : " + topCat.toString()
+            print >> output, "Cat : " + topCat.toString()
+    else:
+        print "couldn't determine syntactic category"
+        print >> output, "couldn't determine syntactic category"
 
 def test_during_training(test_out, sem, words, sem_store, RuleSet, lexicon, sentence_count):
     print >> test_out, "\n****************\n", words
@@ -329,7 +318,7 @@ def test(test_file, sem_store, RuleSet, Current_Lex, test_out, sentence_count):
             top_parse = None
             try:
                 (retsem, top_parse, topcat) = parse(sentence, sem_store, RuleSet, Current_Lex, sentence_count, test_out)
-            except AttributeError:
+            except (AttributeError, IndexError):
                 pass
             if retsem and sem and retsem.equals(sem):
                 print >> test_out, "CORRECT\n" + retsem.toString(True) + "\n" + topcat.toString()
