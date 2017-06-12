@@ -4,100 +4,53 @@ from constant import *
 from conjunction import *
 from neg import *
 from qMarker import *
+import re
 
 
 
-def makeExp(predString, expString, vardict):
-    # CHILDES POS tags are:
-    #n:prop, n:gerund, n, adj
-    #pro:sub, pro:obj, pro:per, pro:poss, pro:rel, pro:refl, pro:exist, pro:int, pro:dem, pro:indef
-    #mod:aux, aux, mod, v, part, cop
-    #det:dem, det:num, det:poss, det:art
-    #adv, adv:int, adv:tem
-    #conj, coord, co, prep, post
-    #qn
-
-    #n, adj can be like a nominal (one arg, a variable), predicate, or article (if possesive)
-    #n:prop can be a constant, predicate, or an article (if possesive)
-    #n:gerund can be like a nominal or like a predicate
-    #pro:exist has one arg (event)
-    #pro:int can be a constant, a placeholder for a nominal, or a predicate (anything really)
-    #pro:dem can be a constant or a determiner (2 args)
-    #pro:indef can be a constant, a placeholder for a nominal, or a predicate
-    #mod:aux, aux, mod are a predicate (2 args, a predicate expression and an event)
-    #v, part are a predicate with max 4 arguments (one event and the rest can be e or <ev, t>)
-    #cop is like any other verb (if it was parsed as a copula, it wouldn't show up)
-    #det:dem is constant or like an article
-    #det:num predicate with one arg (nominal or variable(if standing in for a nominal)), constant
-    #det:poss should be like articles, some constants due to POS mistakes
-    #det:art like article, first arg a variable/constant
-    #adv has one argument (variable or predicate)
-    #adv:int, adv:tem have one argument (variable)
-    #conj has 2 args (predicates)
-    #coord has 2 args (can be anything)
-    #co is mostly adjunct (one arg, the event), but can be a constant or a predicate
-    #prep mostly has 2 args (nominal and event variable), but can have one of them
-    #post has one arg (constant, lambda expression, predicate, variable)
-    #qn is like an article or adjective
+def makeExp(predString, expString, expDict):
+    if predString in expDict:
+        e, coveredString = expDict[predString]
+        expStringRemaining = expString if not coveredString else expString.split(coveredString)[1]
+        return e, expStringRemaining
 
     name = predString.strip().rstrip()
+    nameNoIndex = re.compile("_\d+").split(name)[0]
     pos = name.split("|")[0]
-    args, expString = extractArguments(expString, vardict)
+    args, expStringRemaining = extractArguments(expString, expDict)
     argTypes = [x.type() for x in args]
     numArgs = len(args)
 
-    #constants or variables
     if numArgs == 0:
-        # pro:sub, pro:obj, pro:per (mostly), pro:refl
-        # pro:rel (unless used as complementizers or mistaken with det:dem)
-        # some tokens of: pro:int, pro:dem, pro:indef, det:dem, det:num, co
-        e = constant(name,numArgs,argTypes,pos)
+        e = constant(nameNoIndex,numArgs,argTypes,pos)
         e.makeCompNameSet()
-    elif numArgs == 1:
-        # adj, n, n:gerund, n:prop, pro:indef,
-        # det:num, pro:exist, pro:int, v, part,
-        # adv, adv:int, adv:tem, co, prep, post, qn
-        e = predicate(name,numArgs,argTypes,pos)
-        # if pos in ['adj', 'n', 'n:gerund', 'n:prop', 'pro:indef', 'qn']:
-        #     e.setNounMod()
-    elif numArgs == 2:
-        # adj, n, n:prop, pro:int, pro:indef, prep
-        # mod:aux, aux, mod, v, part, cop, co, n:gerund
-        # pro:dem, det:dem, det:poss, det:art, qn
-        # conj, coord
+    elif numArgs in [2,3]:
         is_quant = isQuant(args)
-        # if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
-        if is_quant:
-            # e = quant(name,pos,args[0])
-            # args = args[1:]
-            e = predicate(name,numArgs,argTypes,pos,bindVar=True)
-            if args[0].__class__ == variable:
-                e.setNounMod()
-        elif pos in ['conj', 'coord']:
+        if pos in ['conj', 'coord']:
             e = conjunction()
             e.setType(name)
+        elif is_quant:
+            e = predicate(nameNoIndex,numArgs,argTypes,pos,bindVar=True)
         else:
-            e = predicate(name,numArgs,argTypes,pos)
-    elif numArgs == 3:
-        is_quant = isQuant(args)
-        # DPs as sentential adjuncts
-        # if pos in ['pro:dem', 'det:dem', 'det:poss', 'det:art', 'qn']:
-        if is_quant:
-            # e = quant(name,pos,args[0])
-            # args = args[1:]
-            e = predicate(name,numArgs,argTypes,pos,bindVar=True)
-        else:
-            e = predicate(name,numArgs,argTypes,pos)
+            e = predicate(nameNoIndex,numArgs,argTypes,pos)
     else:
-        # adj, n, pro:indef, pro:int, n:prop
-        # v, part, cop, co, n:gerund
-        e = predicate(name,numArgs,argTypes,pos)
+        e = predicate(nameNoIndex,numArgs,argTypes,pos)
 
     for i, arg in enumerate(args):
         e.setArg(i,arg)
     e.setString()
 
-    return e, expString
+    expDict[predString] = [e, getCoveredString(expString, expStringRemaining)]
+    return e, expStringRemaining
+
+def getCoveredString(expString, expStringRemaining):
+    if expString and not expStringRemaining:
+        coveredString = expString
+    elif expString:
+        coveredString = expString.split(expStringRemaining)[0]
+    else:
+        coveredString = ""
+    return coveredString
 
 def isQuant(args):
     quant_with_var = args[0].__class__ == variable and args[0] in args[1].allSubExps()
@@ -112,7 +65,7 @@ def isQuant(args):
     else:
         return False
 
-def makeExpWithArgs(expString,vardict):
+def makeExpWithArgs(expString, expDict):
     print "making ",expString
     is_lambda = expString[:6]=="lambda"
     arguments_present = -1<expString.find("(")<expString.find(")")
@@ -120,67 +73,59 @@ def makeExpWithArgs(expString,vardict):
     commas_inside_parens = -1<expString.find("(")<expString.find(",")
 
     if is_lambda:
-        vname = expString[7:expString.find("_{")]
-        tstring = expString[expString.find("_{")+2:expString.find("}")]
-        # t = semType.makeType(tstring)
-        v = variable(None)
-        t = semType.makeType(tstring)
-        v.t = t
-        if tstring == "ev":
-            v.isEvent = True
-        vardict[vname] = v
-        v.name = vname
-        expString = expString[expString.find("}.")+2:]
-        (f,expString) = makeExpWithArgs(expString,vardict)
-        e = lambdaExp()
-        e.setFunct(f)
-        e.setVar(v)
-        e.setString()
-
+        e, expStringRemaining = makeLambda(expString, expDict)
     elif arguments_present and (commas_inside_parens or no_commas):
-        predstring, expString = expString.split("(",1)
-        e, expString = makeLogExp(predstring,expString,vardict)
-        if e:
-            return e, expString
-        else:
-            if predstring[0]=="$":
-                e, expString = makeVars(predstring,expString,vardict)
-            else:
-                e, expString = makeExp(predstring, expString, vardict)
-            if e is None:
-                print "none e for |" + predstring + "|"
-        # else:
-        #     e, expString = makeVerbs(predstring,expString,vardict)
-        #     if e is None:
-        #         if predstring[0]=="$":
-        #             e, expString = makeVars(predstring,expString,vardict)
-        #         else:
-        #             e, expString = makeExp(predstring, expString, vardict)
-        #         if e is None:
-        #             print "none e for |" + predstring + "|"
-                # IDA: variable object is created when parsing a quantifier/determiner expression
-                # if e.__class__  == quant:
-                #     var = e.getVar()
-                #     var.t = semType.e
-                #     varname = expString[:expString.find(",")]
-                #     vardict[varname]=var
-                #     expString = expString[expString.find(","):]
+        e, expStringRemaining = makeComplexExpression(expString, expDict)
     else:
-        if expString.__contains__(",") and expString.__contains__(")"):
-            constend = min(expString.find(","),expString.find(")"))
-        else:
-            constend = max(expString.find(","),expString.find(")"))
-        if constend == -1:
-            constend = len(expString)
-        conststring = expString[:constend]
-        if conststring[0]=="$":
-            e, expString = makeVars(conststring, expString[constend:], vardict, parse_args=False)
-        else:
-            e, expString = makeExp(conststring, "", vardict)
-    return e,expString
+        e, expStringRemaining = makeVarOrConst(expString, expDict)
 
+    return e,expStringRemaining
 
-def extractArguments(expString, vardict):
+def makeLambda(expString, expDict):
+    vname = expString[7:expString.find("_{")]
+    tstring = expString[expString.find("_{")+2:expString.find("}")]
+    v = variable(None)
+    t = semType.makeType(tstring)
+    v.t = t
+    if tstring == "r":
+        v.isEvent = True
+    expDict[vname] = v
+    v.name = vname
+    expString = expString[expString.find("}.")+2:]
+    (f,expStringRemaining) = makeExpWithArgs(expString, expDict)
+    e = lambdaExp()
+    e.setFunct(f)
+    e.setVar(v)
+    e.setString()
+    return e,expStringRemaining
+
+def makeComplexExpression(expString, expDict):
+    predstring, expString = expString.split("(",1)
+    if predstring in ["and", "and_comp", "not", "Q"]:
+        e, expStringRemaining = makeLogExp(predstring, expString, expDict)
+    elif predstring[0]=="$":
+        e, expStringRemaining = makeVars(predstring, expString, expDict)
+    else:
+        e, expStringRemaining = makeExp(predstring, expString, expDict)
+    if e is None:
+        print "none e for |" + predstring + "|"
+    return e,expStringRemaining
+
+def makeVarOrConst(expString, expDict):
+    if expString.__contains__(",") and expString.__contains__(")"):
+        constend = min(expString.find(","),expString.find(")"))
+    else:
+        constend = max(expString.find(","),expString.find(")"))
+    if constend == -1:
+        constend = len(expString)
+    conststring = expString[:constend]
+    if conststring[0]=="$":
+        e, expStringRemaining = makeVars(conststring, expString[constend:], expDict, parse_args=False)
+    else:
+        e, expStringRemaining = makeExp(conststring, "", expDict)
+    return e,expStringRemaining
+
+def extractArguments(expString, expDict):
     finished = False if expString else True
     numBrack = 1
     i = 0
@@ -191,7 +136,7 @@ def extractArguments(expString, vardict):
             finished = True
         elif expString[i] in [",",")"] and numBrack==1:
             if i>j:
-                a, _ = makeExpWithArgs(expString[j:i],vardict)
+                a, _ = makeExpWithArgs(expString[j:i], expDict)
                 if not a:
                     error("cannot make exp for "+expString[j:i])
                 arglist.append(a)
@@ -225,19 +170,6 @@ def makeVars(predstring,expString,vardict,parse_args=True):
         for arg in args:
             e.addArg(arg)
     return e, expString
-
-# IDA: there's nothing special about parsing verbs any more
-# def makeVerbs(predstring,expString,vardict):
-#     if predstring.split("|")[0] not in ["v","part"]:
-#         return None, expString
-#     args, expString = extractArguments(expString, vardict)
-#     argTypes = [x.type() for x in args]
-#     numArgs = len(args)
-#     verb = predicate(predstring,numArgs,argTypes,predstring.split("|")[0])
-#     for i, arg in enumerate(args):
-#         verb.setArg(i,arg)
-#     verb.setString()
-#     return verb,expString
 
 
 def makeLogExp(predstring,expString,vardict):
