@@ -56,11 +56,6 @@ class predicate(exp):
                         if a.equals(self.arguments[0]):
                             argument.replace2(a, self.arguments[0])
                 self.setArgHelper(position, argument)
-            # if position>1:
-            #     if argument.__class__ in [eventMarker, variable]:
-            #         self.setArgHelper(position, argument)
-            #     else:
-            #         error("only eventMarker acceptable as second arg for quant")
 
     def allExtractableSubExps(self):
         subExps = []
@@ -73,7 +68,6 @@ class predicate(exp):
             for a in arg_subExps:
                 if a not in subExps:
                     subExps.append(a)
-            # subExps.extend(arg_subExps)
         return subExps
 
     def setReturnType(self):
@@ -81,10 +75,7 @@ class predicate(exp):
 
     def semprior(self):
         p = -1.0
-        try:
-            for a in self.arguments: p += a.semprior()
-        except AttributeError:
-            for a in self.arguments: p += a.semprior()
+        for a in self.arguments: p += a.semprior()
         return p
 
     def makeShell(self, expDict):
@@ -163,14 +154,10 @@ class predicate(exp):
         for arg, orig_arg in zip(self.arguments, orig.arguments):
             arg.repairBinding(orig_arg)
 
-    def setEvent(self,event):
-        self.arguments[-1]=event
-
     def getEvent(self):
-        if not self.checkIfVerb():
-            return None
-        if not self.arguments[-1]: return None
-        if not self.arguments[-1].__class__==eventMarker: return None
+        lastArg = self.arguments[-1]
+        if not lastArg: return None
+        if not (lastArg.__class__==eventMarker or (lastArg.__class__==variable and lastArg.isEvent)): return None
         return self.arguments[-1]
 
     # this may need a little thinking

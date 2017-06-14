@@ -7,30 +7,11 @@ class conjunction(exp):
         self.arguments = [emptyExp(), emptyExp()]
         self.argTypes=[]
         self.parents = []
-        self.returnType = "t"
-        #self.hasEvent()
         self.posType="and"
         self.argSet=False
         self.name="and"
-        self.returnType = None
         self.isNull = False
         self.inout = None
-    ##
-    # def isConjN(self):
-    #     isconjn = True
-    #     for a in self.arguments:
-    #         if not a.isNounMod():
-    #             return False
-    #     return True
-
-    # def isNounMod(self):
-    #     return self.isConjN()
-
-    def isConjV(self):
-        for a in self.arguments:
-            if a.checkIfVerb:
-                return True
-        return False
 
     def setType(self,name):
         self.name = name
@@ -44,24 +25,8 @@ class conjunction(exp):
             else: t = a.getReturnType()
             return t
 
-    def getPosType(self):
-        t = None
-        for a in self.arguments:
-            if t and t!=a.getPosType():
-                return None
-            else:
-                t = a.getPosType()
-        return t
-
     def getReturnType(self):
         return self.type()
-
-    def markCanBePulled(self):
-        self.canbepulled = True
-        for a in self.arguments:
-            # a over a????
-            a.canbepulled = True
-            a.markCanBePulled()
 
     def semprior(self):
         p = -1.0
@@ -75,27 +40,18 @@ class conjunction(exp):
             c = conjunction()
             c.setType(self.name)
         for i, a in enumerate(self.arguments):
-        # for a in self.arguments:
-            #print "gonna makeShell ",a.toString(True)
             a2 = a.makeShell(expDict)
-            #print "got it ",a2.toString(True)
             c.setArg(i, a2)
-            # c.addArg(a2)
         expDict[self] = c
         return c
 
     def copy(self):
-        #print "copying ",self.toString(True)
         c = conjunction()
         c.linkedVar = self.linkedVar
         c.setType(self.name)
         for i, a in enumerate(self.arguments):
-        # for a in self.arguments:
-            #print "gonna copy ",a.toString(True)
             a2 = a.copy()
-            #print "got it ",a2.toString(True)
             c.setArg(i, a2)
-            # c.addArg(a2)
         return c
 
     def copyNoVar(self):
@@ -105,20 +61,14 @@ class conjunction(exp):
         for i, a in enumerate(self.arguments):
             a2 = a.copyNoVar()
             c.setArg(i, a2)
-            # c.addArg(a2)
         return c
 
     def addArg(self,arg):
-        #if self==arg: return
         if isinstance(arg,conjunction):
-            #print "here, arg is :",arg," this is :",self
             for a in arg.arguments:
-                #print "a is ",a.toString(True)
                 self.addArg(a)
                 a.remove_parent(arg)
             return
-        #print "here2, adding ",arg.toString(True)
-        # self.numArgs += 1
         self.arguments.append(arg)
         arg.add_parent(self)
         self.argSet=True
@@ -138,41 +88,17 @@ class conjunction(exp):
         newargset = []
         for a in self.arguments:
             newargset.append(a.replace2(e1,e2))
-        # self.arguments = []
         for i, a in enumerate(newargset):
-            # self.addArg(a)
             self.setArg(i, a)
         return self
 
     def setArg(self,position,argument):
-        #error()
-        #print "setting arg in ",self.toString(True)
-        #print "old arg is ",self.arguments[position].toString(True),argument
-        #print "new arg is ",argument.toString(True),argument
         self.arguments[position]=argument
-#        self.addArg(argument)
 
     def checkIfVerb(self):
         for a in self.arguments:
             if a.checkIfVerb(): return True
         return False
-    #def getEvent(self):
-        #if self.numArgs==0: return None
-        #ev = self.arguments[0].getEvent()
-        #for a in self.arguments:
-            #if a.getEvent()!=ev: return None
-        #return ev
-
-    def setEvent(self,event):
-        for a in self.arguments:
-            a.setEvent(event)
-        #self.setArg(1,event)
-
-    def isEntity(self):
-        if len(self.arguments)==0: return False
-        for a in self.arguments:
-            if not a.isEntity(): return False
-        return True
 
     def hasArg(self,arg):
         for a in self.arguments:
@@ -190,7 +116,6 @@ class conjunction(exp):
 
     def equalsPlaceholder(self,other):
         if other.__class__!=conjunction:
-            #print
             return False
         if len(self.arguments)!=len(other.arguments):
             print "conj fail1 ",len(self.arguments),len(other.arguments)," on ",self.toString(True)
@@ -203,10 +128,7 @@ class conjunction(exp):
         return True
 
     def equals(self,other):
-        #self.clearOtherEvent()
-        #other.clearOtherEvent()
         if other.__class__!=conjunction:
-            #print
             return False
         if len(self.arguments)!=len(other.arguments):
             print "conj fail1 ",len(self.arguments),len(other.arguments)," on ",self.toString(True)
@@ -218,79 +140,15 @@ class conjunction(exp):
                 return False
         return True
 
-    #def clearOtherEvent(self):
-        #for a in self.arguments:
-            #a.clearOtherEvent()
-
-    #def allSubExps(self):
-        #allsubexps = []
-        ### need all combinations
-        #combinations = []
-        #allcombinations(self.arguments,0,combinations)
-        #for combination in combinations:
-            #newconj = conjunction()
-
-            #pass
-        #return []mini
-    #def replace(self,e1,e2):
-        ## replaces all instances of e1 with e2r
-        #i=0
-        #for a in self.arguments:
-            #if a==e1:
-                #self.arguments.remove(a)
-                #self.addArg(e2)
-                #for a2 in self.arguments:
-                    #a2.add_parent(self)
-            #else: a.replace(e1,e2)
-            #i+=1
-
     def allExtractableSubExps(self):
         subexps = [self]
-        inallsubexps = set([])
-        i = 0
         for a in self.arguments:
             subexps.append(a)
             subexps.extend(a.allExtractableSubExps())
-#            if i==0:
-#                inallsubexps = set(a.allExtractableSubExps())
-#            else:
-#                inallsubexps = inallsubexps.intersection(set(a.allExtractableSubExps()))
-#            i+=1
-#        subexps.extend(list(inallsubexps))
-#        print len(inallsubexps)," in all subexps"
-
-        #error()
-            #subexps.extend(a.allExtractableSubExps())
-            # not doing across the board bullshit.
-            #subexps.extend(a.allExtractableSubExps())
         return subexps
-
-    ## this returns all splits of a conjunction
-    def getconjsplits(self):
-        conjsplits = []
-        conjunctionorders = []
-        allcombinations(self.arguments,0,conjunctionorders)
-        for combination in conjunctionorders:
-            inconj = conjunction()
-            outconj = conjunction()
-            for i, a in enumerate(self.arguments):
-                if a in combination:
-                    outconj.setArg(i, a.copy())
-                    # outconj.addArg(a.copy())
-                else:
-                    inconj.setArg(i, a.copy())
-                    # inconj.addArg(a.copy())
-            conjsplits.append((inconj,outconj))
-        return conjsplits
-
-    def printOut(self,top,varNum):
-        print self.toString(top)
 
     def toString(self,top):
         s="and("
-        #for i in range(len(self.arguments)):
-            #s=s+self.arguments[i].toString(False)
-            #if i<len(self.arguments)-1: s=s+"^"
         for i in range(len(self.arguments)):
             s=s+self.arguments[i].toString(False)
             if i<len(self.arguments)-1: s=s+","
@@ -304,9 +162,6 @@ class conjunction(exp):
 
     def toStringShell(self,top):
         s="and("
-        #for i in range(len(self.arguments)):
-            #s=s+self.arguments[i].toString(False)
-            #if i<len(self.arguments)-1: s=s+"^"
         for i in range(len(self.arguments)):
             s=s+self.arguments[i].toStringShell(False)
             if i<len(self.arguments)-1: s=s+","
@@ -320,9 +175,6 @@ class conjunction(exp):
 
     def toStringUBL(self,top):
         s="(and "
-        #for i in range(len(self.arguments)):
-            #s=s+self.arguments[i].toString(False)
-            #if i<len(self.arguments)-1: s=s+"^"
         for i in range(len(self.arguments)):
             s = s + self.arguments[i].toStringUBL(False)
             if i<len(self.arguments)-1:

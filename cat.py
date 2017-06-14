@@ -380,8 +380,6 @@ def getCat(catType):
 
 def getCatAug(e):
     t = e.type()
-    pos = None
-    pos = e.getPosType()
     cats = []
     # <e,t> - can be N
     # if t.equals(nCat.getStaticType()) and (e.isNounMod() or e.isConjN()):
