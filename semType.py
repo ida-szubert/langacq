@@ -43,9 +43,9 @@ class eventType:
 	def __init__(self):
 		pass
 	def toString(self):
-		return "ev"
+		return "r"
 	def toStringUBL(self):
-		return "ev"
+		return "r"
 	def isE(self):
 		return False
 	def isT(self):
