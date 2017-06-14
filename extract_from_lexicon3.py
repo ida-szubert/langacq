@@ -199,6 +199,41 @@ def get_transitive_cats(lexicon,sentence_count,sem_store,RuleSet,syn_cat_distrib
     output['SOV'] = syn_cat_distribution['((S\\NP)\\NP)'] * pr_notaligned
     return output
 
+def get_adjective_order(lexicon,sentence_count,sem_store,RuleSet,syn_cat_distribution):
+    """
+    Returns all the 8 transtive categories.
+    """
+    syn_key  = '((NP|NP)|NP)'
+    transitive_shells = [k[1] for k in lexicon.sem_distribution.type_shell_to_count.keys() \
+                             if k[0] == syn_key]
+    L_pr_aligned = []
+    L_pr_notaligned = []
+    for sh in transitive_shells:
+        ov = orderOfVariables(sh)
+        if ov is None:
+            continue
+        log_pr = \
+            lexicon.get_log_shell_given_type_prob(syn_key,sh,sem_store,sentence_count)
+        if ov:
+            L_pr_aligned.append(log_pr)
+        else:
+            L_pr_notaligned.append(log_pr)
+    log_pr_aligned = scipy.misc.logsumexp(L_pr_aligned)
+    log_pr_notaligned = scipy.misc.logsumexp(L_pr_notaligned)
+    pr_aligned = math.exp(log_pr_aligned) / \
+        (math.exp(log_pr_aligned) + math.exp(log_pr_notaligned))
+    pr_notaligned = 1 - pr_aligned
+    output = {}
+    output['SVO'] = syn_cat_distribution['((S\\NP)/NP)']
+    output['weird SVO'] = 0.0
+    output['OVS'] = syn_cat_distribution['((S/NP)\\NP)']
+    output['weird OVS'] = 0.0
+    output['VSO'] = syn_cat_distribution['((S/NP)/NP)'] * pr_aligned
+    output['VOS'] = syn_cat_distribution['((S/NP)/NP)'] * pr_notaligned
+    output['OSV'] = syn_cat_distribution['((S\\NP)\\NP)'] * pr_aligned
+    output['SOV'] = syn_cat_distribution['((S\\NP)\\NP)'] * pr_notaligned
+    return output
+
 def orderOfVariables(sem_str):
     """Returns true if the order of appearance is the same as the order of binding. False otherwise."""
     all_vars = re.findall('\\$[0-9]',sem_str)
@@ -287,7 +322,10 @@ class Phenomenon:
         """the correct word that matches this lf"""
         L = [x[0] for x in self._word_LF if x[1] == lf]
         if len(L) != 1:
-            raise Exception('Incorrectly defined Phenomenon')
+            print('Incorrectly defined Phenomenon')
+            print("\n\n*******" + lf + "*******\n\n")
+            # raise Exception('Incorrectly defined Phenomenon')
+            return ''
         return L[0]
     
     def target_words(self):
@@ -320,9 +358,9 @@ def get_phenomena():
                                     ['(N\N)', '(N/N)'],sem_type='(N|N)'))
     
     # getting prepositions
-    word_lfs = get_prep_lfs()
-    phenomena.append(Phenomenon('Prepositions', word_lfs, '(PP/NP)', \
-                                    ['(PP/NP)', "(PP\NP)"],sem_type='(PP|NP)'))
+    # word_lfs = get_prep_lfs()
+    # phenomena.append(Phenomenon('Prepositions', word_lfs, '(PP/NP)', \
+    #                                 ['(PP/NP)', "(PP\NP)"],sem_type='(PP|NP)'))
     
     # getting determiners
     word_lfs = get_det_lfs()
@@ -586,7 +624,7 @@ def fork_and_run_dax(dax_filename,output_filename,phenom,lexicon,sentence_count,
         return
 
 
-def main(output_fn, special_option='L', lexicon_fn = None, \
+def main(output_fn, special_option='N', lexicon_fn = None, \
              lexicon = None, sentence_count = None, sem_store = None, RuleSet = None):
 
     if lexicon_fn:
