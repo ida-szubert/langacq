@@ -1,5 +1,61 @@
-Sent: She likes to see that .
-Sem: lambda $0_{r}.v|like_2(pro:sub|she_1,lambda $1_{r}.v|see_4(pro:sub|she_1,pro:dem|that_5,$1),$0)
+Sent: milk .
+Sem:  lambda $0_{e}.n|milk_1($0)
+example_end
+
+Sent: more juice ?
+Sem:  Q(qn|more_1($1,n|juice_2($1)))
+example_end
+
+Sent: a fly .
+Sem:  det|a_1($0,n|fly_2($0))
+example_end
+
+Sent: there .
+Sem:  lambda $0_{r}.adv:loc|there_1($0)
+example_end
+
+Sent: you ate it .
+Sem:  lambda $0_{r}.v|eat&PAST_2(pro|you_1,pro|it_3,$0)
+example_end
+
+Sent: coffee .
+Sem:  lambda $0_{e}.n|coffee_1($0)
+example_end
+
+Sent: you go .
+Sem:  lambda $0_{r}.v|go_1(pro|you_2,$0)
+example_end
+
+Sent: bottle .
+Sem:  lambda $0_{e}.n|bottle_1($0)
+example_end
+
+Sent: a hat .
+Sem:  det|a_1($1,n|hat_2($1))
+example_end
+
+Sent: soldiers .
+Sem:  lambda $0_{e}.n|soldier-PL_1($0)
+example_end
+
+Sent: Eve
+Sem:  n:prop|Eve_1
+example_end
+
+Sent: Eve has a hat .
+Sem:  lambda $0_{r}.v|have&3S_2(n:prop|Eve_1,det|a_3($1,n|hat_4($1)),$0)
+example_end
+
+Sent: you write a letter .
+Sem:  lambda $0_{r}.v|write_2(pro|you_1,det|a_3($1,n|letter_4($1)),$0)
+example_end
+
+Sent: the pencil ?
+Sem:  Q(det|the_1($1,n|pencil_2($1)))
+example_end
+
+Sent: that 's your pencil .
+Sem:  lambda $0_{r}.your_3(pro:dem|that_1,n|pencil_4(pro:dem|that_1),$0)
 example_end
 
 Sent: big drum ?
