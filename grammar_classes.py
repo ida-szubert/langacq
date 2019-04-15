@@ -105,24 +105,9 @@ class Rule:
     #######################################
     def update_bottom(self,a_pq,B_pq):
         self.bottom_term += a_pq*B_pq
-        
-    #def update_target_p(self,a_pq,B_pd,B_dq,target):
-        #rule_prob = self.return_prob(target)
-        #if target == self.Rule_Head+'_LEX':
-            #pass
-        #self.Targets[target].update_p(a_pq,B_pd,B_dq,rule_prob)
-        
-    # just want ot add to the parameters
-    #def update_target_log_p(self,target,log_prob):
-        #prob = exp(log_prob)
-        #self.Targets[target].update_p(prob)
-        #pass
 
     def update_temp_params(self,target,prob):
         print "this is ",self
-        #print "log prob is ",log_prob," for ",target
-        #prob = exp(log_prob)
-        #print "param update is ",prob," for ",target
         print "temp beta tot is ",self.temp_beta_tot
         print "temp beta lex is ",self.temp_beta_lex
         print "beta tot is ",self.beta_tot
@@ -140,9 +125,6 @@ class Rule:
     
 
     def set_temp_params(self,target):
-        #print "log prob is ",log_prob," for ",target
-        #prob = exp(log_prob)
-        #print "param update is ",prob," for ",target
         self.temp_beta_tot = self.beta_tot 
         if target == self.Rule_Head+'_LEX':
             self.temp_beta_lex = self.beta_lex
@@ -152,10 +134,7 @@ class Rule:
     
 
     def update_params(self,target,prob,learningrate,datasize,gamma):
-        #print "log prob is ",log_prob," for ",target
-        #prob = exp(log_prob)
         verbose = False
-        # verbose = True
         if verbose:
             print "param update is ",prob," for ",target
             print "learning rate is ",learningrate
@@ -172,72 +151,18 @@ class Rule:
         self.Targets[target].increment_alpha(((prob*learningrate)/gamma)*datasize  - learningrate*self.Targets[target].alpha)
     
     def update_log_params(self,target,log_prob):
-        #print "log prob is ",log_prob," for ",target
         prob = exp(log_prob)
-        #print "param update is ",prob," for ",target
         self.beta_tot += prob
         if target == self.Rule_Head+'_LEX':
             self.beta_lex += prob
         else: self.alpha_tot += prob
         self.Targets[target].increment_alpha(prob)
-
-    #def update_alphas(self):
-        #for target in self.Targets:
-##            print 'trying to divide ',self.Targets[target].top_term,' by ',self.bottom_term
-            #p = self.Targets[target].top_term/self.bottom_term
-            #if target == self.Rule_Head+'_LEX':
-                #self.beta_tot = self.beta_tot + p
-                #self.beta_lex = self.beta_lex + p
-            #else:
-                #self.alpha_tot = self.alpha_tot + p
-                #self.beta_tot = self.beta_tot + p
-            #if p > 0:
-                ##print 'incrementing alpha for ',target,' by ',p
-                #self.Targets[target].increment_alpha(p)
             
     def return_prob(self,target,sentence_count):
         return exp(self.return_log_prob(target,sentence_count))
-        # keep in logspace
-        # really need to work out how this actually deals
-        # with new rules
-        # where is the prior????
-        #print "temp beta lex is ",self.beta_lex
-        #print "beta lex is ",self.beta_lex
-        #print "temp beta tot is ",self.beta_tot
-        #print "beta tot is ",self.beta_tot
-        #print "this is ",self
-        #print "bl = ",self.beta_lex
-        #print "bt = ",self.beta_tot
-        #prior = 0.01
-        
-        #if not self.Targets.has_key(target): return prior
-        #if True == False and target == self.Rule_Head+'_LEX':
-            #prob = exp(psi(self.beta_lex))/exp(psi(self.beta_tot))
-        #else:
-            #a_t = prior
-            #if self.Targets.has_key(target): a_t = max(self.Targets[target].alpha,prior)
-##            print self.beta_tot,  self.beta_lex
-            #prob = exp(psi(self.beta_tot - self.beta_lex))/exp(psi(self.beta_tot))
 
-            #prob = 1.0
-            #p1 = psi(a_t)
-            #p2 = psi(self.alpha_tot)
-            ##print "for ",target
-            ##print "p1 = ",p1," p2 = ",p2
-            ##print "at = ",a_t," altot = ",self.alpha_tot
-            #prob = prob*exp(p1-p2)#psi(a_t) - psi(self.alpha_tot))            
-        #if prob > 1.0:
-            #print 'rule prob over 1 for ',target, self.Targets[target].alpha, self.alpha_tot, prob
-            #print self.beta_lex,self.beta_tot
-
-        #return prob
     def return_log_prob(self,target,sentence_count):
-        #log_prior = -10
-        #alpha_unseen = 0.5*self.alpha_top
-        #verbose = True
         verbose = False
-        
-        
         if sentence_count != 0:
             scale = Rules.extrascale*sentence_count
         else:
@@ -264,8 +189,6 @@ class Rule:
             print "scale is ",scale
         return log_prob
 
-
-
     def return_map_log_prob(self,target,sentence_count):
         verbose = False
         if sentence_count != 0:
@@ -285,9 +208,6 @@ class Rule:
         if a_t <= 10E-100:
             print "a_t is ",a_t
             return unseen
-        #print "a_t is ",a_t
-        #print "scale is ",scale
-        #print "alpha tot is ",self.alpha_tot
         log_seen = log(a_t) - log(scale * self.alpha_tot + scale * self.alpha_top)
         log_prob = log_sum(log_seen,unseen)
         if verbose:
@@ -301,9 +221,6 @@ class Rule:
             print "scale is ",scale
         return log_prob
 
-
-
-
     def check_alpha_tot(self):  
         pass
         
@@ -311,8 +228,6 @@ class Rule:
         at = 0
         for t in self.Targets:
             at+=self.Targets[t].alpha
-            #print "for ",t," alpha is ",self.Targets[t].alpha
-      
         if not at+10E-5>self.alpha_tot>at-10E-5:
             print "at = ",at
             print "alpha tot = ",self.alpha_tot 
@@ -344,25 +259,13 @@ class Rule:
         if prob > 1.0:
             print 'rule prob over 1 for ',target, self.Targets[target].temp_alpha, self.temp_alpha_tot, prob
             print self.temp_beta_lex,self.temp_beta_tot
-
         return prob
         
     def clear_probs(self):
         for t in self.Targets:
             self.Targets[t].clear_probs()
         self.bottom_term = 0
-    #def compare_probs(self):
-        #converged = True
-        #for t in self.Targets:
-            #t_prob = self.return_prob(t)
-            #old_t_prob = self.Targets[t].old_prob
-            #if abs(t_prob-old_t_prob)/old_t_prob > old_t_prob/10:
-                ##print t,' old = ',old_t_prob,' new = ',t_prob
-                #converged = False
-            #self.Targets[t].old_prob = t_prob
-        ##if converged:
-            ##print 'rule converged'
-        #return converged
+
 ###########################################
 
 ###########################################
@@ -370,7 +273,7 @@ class Rule:
 # that come from a rule_head.             #
 ###########################################
 class Target:
-    def __init__(self, Rule_Head, t): #Left_Rep, Right_Rep):
+    def __init__(self, Rule_Head, t):
         self.Rule_Head = Rule_Head
         self.prior = None
         if t == 'LEX':
@@ -380,8 +283,6 @@ class Target:
         else:
             self.Left_Rep = t[0]
             self.Right_Rep = t[1]
-            #self.Reqd_Sem_Type = Reqd_Sem_Type
-            #self.Head_L_R = Head_L_R
             if t[1]: self.key = self.Left_Rep+'#####'+self.Right_Rep
             else: self.key = self.Left_Rep
         self.alpha = 0.0
@@ -398,20 +299,9 @@ class Target:
 
     def increment_alpha(self,a):
         self.alpha = self.alpha+a
-#        print 'incrementing alpha for ',self.key,' by ',a
-    #def update_p(self,a_pq,B_pd,B_dq,rule_prob):
-        #self.top_term += a_pq*rule_prob*B_pd*B_dq
-    #def update_p(self,prob):
-        #self.alpha += prob
+
     def clear_probs(self):
         self.top_term = 0
-        
-#class Start_Target:
-    #def __init__(self,t):
-        #self.Rule_Head = 'START'
-        #self.Target = t
-        #self.alpha = 1
-    ##def 
 
 ###########################################
 
@@ -446,7 +336,6 @@ class Rules:
         self.Targets[c] = "START"
         print "adding ",c," to START"
     def check_rule(self,rule_head,left_syn,right_syn,direction,numcomp):
-        #print "checking ",rule_head,left_syn,right_syn
         if not self.Rules.has_key(rule_head):
             self.Rules[rule_head] = Rule(rule_head,self.alpha_top,self.beta_tot,self.beta_lex)
             self.Targets[rule_head+'_LEX'] = rule_head
@@ -454,26 +343,16 @@ class Rules:
             self.Rules[rule_head].check_target(left_syn,right_syn,direction,numcomp)
             if not self.Targets.has_key(left_syn.toString()+'#####'+right_syn.toString()):
                 self.Targets[left_syn.toString()+'#####'+right_syn.toString()] = rule_head
-                #print "adding ",left_syn+'#####'+right_syn
 
-    
     def check_target(self,t):
         if self.Targets.has_key(t):
-            return True#((self.Targets[t].Rule_Head,t),self.Targets[t].Head_L_R)
+            return True
         else:
             return None
-            
-    #def increment_start_target(self,t):
-        #if not t in self.Rules['START'].Targets:
-            #self.Rules['START'].Targets.
+
     def update_bottom(self,rule_head,a_pq,B_pq):
         self.Rules[rule_head].update_bottom(a_pq,B_pq)
-    #def update_target_p(self,a_pq,B_pd,B_dq,target):
-        #r = self.Targets[target]
-        #self.Rules[r].update_target_p(a_pq,B_pd,B_dq,target)
-        #def update_params(self,target,log_prob):
-        #r = self.Targets[target]
-        #self.Rules[r].update_params(target,log_prob)
+
     def set_temp_params(self,target):
         r = self.Targets[target]
         self.Rules[r].set_temp_params(target)
@@ -481,8 +360,8 @@ class Rules:
     def update_log_params(self,target,log_prob):
         r = self.Targets[target]
         self.Rules[r].update_log_params(target,log_prob)
+
     def store_log_update(self,target,log_prob):
-        #print "logprob is ",log_prob," for ",target
         if log_prob > 10E-4:
             print "logprob is ",log_prob," for ",target
             error("logprob is too large")
@@ -492,10 +371,6 @@ class Rules:
         else: self.updates[target] += prob
             
     def perform_updates(self,learningrate,datasize,sentence_count):
-        #for target in self.Targets:
-        #if self.updates.has_key(target):
-        #self.updates[target] = (learningrate/gamma)*self.updates[target]-learningrate*get_alpha
-        
         gamma = self.orig_alpha_top + datasize
         if not self.usegamma: gamma = 1.0
         if sentence_count > 0:
@@ -520,15 +395,11 @@ class Rules:
             print "deleting rule ",r
             del self.Rules[r]
         self.sentence_count = sentence_count
-        #self.updates = {}
-        
-        
         
     def set_temp_params(self):
         for target in self.updates:
             r = self.Targets[target]
             self.Rules[r].set_temp_params(target)
-        
             
     def perform_temp_updates(self):
         for target in self.updates:
@@ -539,33 +410,20 @@ class Rules:
     def clear_updates(self):
         self.updates = {}
 
-
-
-
     def return_prob(self,head,target):
         prob = self.Rules[head].return_prob(target,self.sentence_count)
         return prob
-    #@staticmethod
-    #def get_log_prior(argcat,direction,numcomp):
-    #if argcat.find("LEX")!=-1: return 0.5
-
 
     def return_map_log_prob(self,head,target):
-        #print "prior is ",self.Rules[head].Targets[target].prior,"  for  ",target
         if head == "START" and not self.Targets.has_key(target):
             print "in get log prob and not got ",target
             self.check_start_rule(target)
-
         logprior = log(self.Rules[head].Targets[target].prior)
-
         if self.Rules.has_key(head):
             log_prob = self.Rules[head].return_map_log_prob(target,self.sentence_count)
         else:
             return logprior
-        #if self.sentence_count > 40:
-            #print "rule prob is ",exp(log_prob)," for ",target
-        return log_prob    
-
+        return log_prob
 
     def return_map_prob_distribution(self,head):
         if not self.Rules.has_key(head):
@@ -600,7 +458,6 @@ class Rules:
             return self.return_map_log_prob(head,head+'_LEX')
 
     def return_log_prob(self,head,target):
-        #print "prior is ",self.Rules[head].Targets[target].prior,"  for  ",target
         if head == "START" and not self.Targets.has_key(target):
             print "in get log prob and not got ",target
             self.check_start_rule(target)
@@ -611,16 +468,12 @@ class Rules:
             log_prob = self.Rules[head].return_log_prob(target,self.sentence_count)
         else:
             return logprior
-        #if self.sentence_count > 40:
-            #print "rule prob is ",exp(log_prob)," for ",target
         return log_prob    
 
     def update_alphas(self):
         for r in self.Rules:
             if self.Rules[r].bottom_term > 0:
                 self.Rules[r].update_alphas(self.updateweight)
-        #head = self.Targets[target]
-        #self.Rules[head].update_alpha(target)
     def compare_probs(self):
         converged = True
         for r in self.Rules:

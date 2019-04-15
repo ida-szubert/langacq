@@ -32,7 +32,6 @@ class constant(exp):
         return c
 
     def copy(self):
-        #print "copying ",self.toString(True)
         c = constant(self.name,self.numArgs,self.argTypes,self.posType)
         c.makeCompNameSet()
         c.linkedVar = self.linkedVar
@@ -43,8 +42,8 @@ class constant(exp):
         c.linkedVar = self.linkedVar
         return c
 
-    def isEntity(self):
-        return True
+    # def isEntity(self):
+    #     return True
 
     def equalsPlaceholder(self,other):
         if other.__class__ != constant:
@@ -52,19 +51,13 @@ class constant(exp):
         if other.name!=self.name and not \
                 (other.name=="placeholderC" or \
                      self.name=="placeholderC"):
-            #print "const fail"
             return False
         return True
 
     def equals(self,other):
         if other.__class__ != constant:
-            #print "const fail"
-            #print "this is ",self.toString(True)
-            #print "other is ",other.toString(True)
-            #error9()
             return False
         if other.name!=self.name:
-            #print "const fail"
             return False
         return True
 

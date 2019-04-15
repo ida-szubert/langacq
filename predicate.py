@@ -4,7 +4,7 @@ from exp import *
 # predicates take a number of arguments (not fixed) and
 # return a truth value
 class predicate(exp):
-    def __init__(self,name,numArgs,argTypes,posType,bindVar=False,varIsConst=None):
+    def __init__(self,name,numArgs,argTypes,posType,bindVar=False,varIsConst=None,args=[], returnType=None):
         self.bindVar = bindVar
         self.varIsConst = varIsConst
         self.onlyinout = None
@@ -16,11 +16,27 @@ class predicate(exp):
         self.argTypes = argTypes
         self.arguments = []
         self.parents = []
+
         for aT in argTypes:
             self.arguments.append(emptyExp())
-        self.setReturnType()
+        # for i,a in enumerate(args):
+        #     self.setArg(i,a)
+
+        if returnType:
+            self.returnType = returnType
+        else:
+            if bindVar and not varIsConst:
+                self.returnType = semType.eType()
+            else:
+                self.returnType = semType.tType()
+            # if args[-1].__class__ == variable and args[-1].isEvent:
+            #     self.returnType = semType.tType()
+            # else:
+            #     self.returnType = semType.eType()
+
+        # self.setReturnType()
         self.functionExp = self
-        self.nounMod = False
+        # self.nounMod = False
         self.posType = posType
         self.argSet = False
         self.isVerb=False
@@ -70,8 +86,11 @@ class predicate(exp):
                     subExps.append(a)
         return subExps
 
-    def setReturnType(self):
-        self.returnType = semType.tType()
+    # def setReturnType(self):
+    #     if self.bindVar and not self.varIsConst:
+    #         self.returnType = semType.eType()
+    #     else:
+    #         self.returnType = semType.tType()
 
     def semprior(self):
         p = -1.0
@@ -86,12 +105,12 @@ class predicate(exp):
             e = expDict[self]
         elif self.bindVar and len(args) > 1:
             e = predicate("placeholderP",self.numArgs,self.argTypes,self.posType,
-                          bindVar=self.bindVar)
+                          bindVar=self.bindVar, returnType=self.returnType)
         elif self.bindVar:
             e = predicate("placeholderP",self.numArgs,self.argTypes,self.posType,
-                          bindVar=self.bindVar,varIsConst=self.varIsConst)
+                          bindVar=self.bindVar,varIsConst=self.varIsConst, returnType=self.returnType)
         else:
-            e = predicate("placeholderP",self.numArgs,self.argTypes,self.posType)
+            e = predicate("placeholderP",self.numArgs,self.argTypes,self.posType, returnType=self.returnType)
         i=0
         for a in args:
             e.setArg(i,a)
@@ -104,7 +123,7 @@ class predicate(exp):
             args = []
             for a in self.arguments:
                 args.append(a.copy())
-            e = predicate(self.name,self.numArgs,self.argTypes,self.posType)
+            e = predicate(self.name,self.numArgs,self.argTypes,self.posType, returnType=self.returnType)
             e.linkedVar = self.linkedVar
             for i, a in enumerate(args):
                 e.setArg(i,a)
@@ -112,10 +131,10 @@ class predicate(exp):
             if not self.varIsConst:
                 newvar = variable(None)
                 self.arguments[0].setVarCopy(newvar)
-                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True)
+                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True, returnType=self.returnType)
             else:
                 newvar = self.arguments[0].copy()
-                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True,varIsConst=self.varIsConst)
+                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True,varIsConst=self.varIsConst, returnType=self.returnType)
             args = [newvar]
             args.extend([a.copy() for a in self.arguments[1:]])
             for i, a in enumerate(args):
@@ -128,7 +147,7 @@ class predicate(exp):
             args = []
             for a in self.arguments:
                 args.append(a.copyNoVar())
-            e = predicate(self.name,self.numArgs,self.argTypes,self.posType)
+            e = predicate(self.name,self.numArgs,self.argTypes,self.posType,returnType=self.returnType)
             e.linkedVar = self.linkedVar
             i=0
             for a in args:
@@ -137,11 +156,11 @@ class predicate(exp):
         else:
             if self.varIsConst:
                 args = [a.copyNoVar() for a in self.arguments]
-                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True,varIsConst=self.varIsConst)
+                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True,varIsConst=self.varIsConst, returnType=self.returnType)
             else:
                 args = [self.arguments[0]]
                 args.extend([a.copyNoVar() for a in self.arguments[1:]])
-                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True)
+                e = predicate(self.name,self.numArgs,self.argTypes,self.posType,bindVar=True, returnType=self.returnType)
             for i, a in enumerate(args):
                 e.setArg(i,a)
             e.linkedVar = self.linkedVar
@@ -162,7 +181,8 @@ class predicate(exp):
 
     # this may need a little thinking
     def type(self):
-        return semType.tType()
+        return self.returnType
+        # return semType.tType()
 
     def equalsPlaceholder(self,other):
         if other.__class__ != predicate or \

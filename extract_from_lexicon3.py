@@ -519,7 +519,12 @@ def print_cat_stats(phenom,lexicon,sentence_count,sem_store,RuleSet,f_out,prefix
             continue
         synt_given_LF, temp = get_synt_given_LF(lexicon,sentence_count,sem_store,RuleSet,\
                                                     phenom.all_target_syns(),target_lf,synt_cat_distribution)
-        f_out.write(prefix+'\t'.join([phenom.name(),str(sentence_count),'Pr(correct syn|LF)',str(target_lf),\
+        try:
+            f_out.write(prefix+'\t'.join([phenom.name(),str(sentence_count),'Pr(correct syn|LF)',str(target_lf),\
+                                          phenom.target_word(target_lf),\
+                                          str(synt_given_LF[phenom.target_syn()])])+'\n')
+        except KeyError:
+            f_out.write(prefix+'\t'.join([phenom.name(),str(sentence_count),'Pr(correct syn|LF)',str(target_lf),\
                                           phenom.target_word(target_lf),\
                                           str(synt_given_LF[phenom.target_syn()])])+'\n')
         

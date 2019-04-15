@@ -431,7 +431,7 @@ def main(argv, options):
             output = open(outfile, "w")
 
             sentence_count = train_rules(sem_store, RuleSet, Current_Lex, oneWord, inputpairs,
-                                         cats_to_check, output, None, False, sentence_count,
+                                         cats_to_check, output, None, False , sentence_count,
                                          min_lex_dump=options.min_lex_dump,
                                          max_lex_dump=options.max_lex_dump,
                                          dump_lexicons=options.dump_lexicons,

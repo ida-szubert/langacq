@@ -159,44 +159,6 @@ class synCat:
                 i += 1
 
 
-                # elif synstring == "S": return sCat
-
-
-# synCat.np = npCat()
-# synCat.s = sCat()
-# synCat.swh = sWhCat()
-# synCat.q = qCat()
-# synCat.n = nCat()
-# synCat.pp = ppCat()
-
-# class ppCat(synCat):
-#     def __init__(self):
-#         self.head = "PP"
-#
-#     def atomic(self):
-#         return True
-#
-#     def prior(self):
-#         return 0.2
-#
-#     def getType(self):
-#         return semType(semType.event, semType.t)
-#         # return semType.e
-#
-#     @staticmethod
-#     def getStaticType():
-#         return semType(semType.event, semType.t)
-#
-#     def copy(self):
-#         return self
-#
-#     def toString(self):
-#         return self.head
-#
-#     def equals(self, other):
-#         return other.__class__ == ppCat
-
-
 class npCat(synCat):
     def __init__(self):
         self.head = "NP"
@@ -221,8 +183,6 @@ class npCat(synCat):
         return self.head
 
     def equals(self, other):
-        # if not other.__class__==npCat:
-        # print "np mismatch ",other.toString()
         return other.__class__ == npCat
 
 
@@ -277,7 +237,6 @@ class stCat(synCat):
         return self.head
 
     def equals(self, other):
-        # if not other.__class__==stCat: print "s mismatch"
         return other.__class__ == stCat
 
 
@@ -305,7 +264,6 @@ class sCat(synCat):
         return self.head
 
     def equals(self, other):
-        # if not other.__class__==sCat: print "s mismatch"
         return other.__class__ == sCat
 
 
@@ -368,33 +326,20 @@ def getCat(catType):
     # <e,t>
     if catType.equals(nCat.getStaticType()):
         cats.append(synCat.n)
-    # <ev,t> and not PP
+    # <ev,t>
     if catType.equals(sCat.getStaticType()):
         cats.append(synCat.s)
-    # <ev,t> and PP - how can we know???
-    # if catType.equals(ppCat.getStaticType()):
-    #     pass
-    #     # cats.append(synCat.pp)
     return cats
 
 
 def getCatAug(e):
     t = e.type()
     cats = []
-    # <e,t> - can be N
-    # if t.equals(nCat.getStaticType()) and (e.isNounMod() or e.isConjN()):
     if t.equals(nCat.getStaticType()):
         cats.append(synCat.n)
         return cats
-    # if t.equals(ppCat.getStaticType()) and pos == "prep":
-    #     cats.append(synCat.pp)
-    #     return cats
-        # <ev,t> and not PP
     if t.equals(sCat.getStaticType()):
         cats.append(synCat.s)
-        # <ev,t> and PP - how can we know???
-
-        # cats.append(synCat.pp)
     return cats
 
 
@@ -419,7 +364,6 @@ class cat:
             retsem = self.sem.apply(c.sem)
             if retsem:
                 newcat = cat(self.syn.funct.copy(), retsem)
-                # else: print "semapply didnt work ",self.sem.toString(True),c.sem.toString(True)
         else:
             return None
         return newcat
@@ -434,7 +378,6 @@ class cat:
         # crossing???
         # return None
         while syntomatch:
-            # print "syntomatch is ",syntomatch.toString()
             # something about number of arguments
             if self.syn.arg.equals(syntomatch) and self.syn.direction == dir:
                 retsem = self.sem.compose(c.sem)
@@ -445,7 +388,6 @@ class cat:
 
             else:
                 syntomatch = None
-
         # how does the compcat work???
         newsyn = self.syn.funct.copy()
         for a in reversed(argsremoved): newsyn = synCat(newsyn, a, dir)
@@ -804,7 +746,6 @@ synCat.st = stCat()
 synCat.swh = sWhCat()
 synCat.q = qCat()
 synCat.n = nCat()
-# synCat.pp = ppCat()
 
 
 def main(argv=None):

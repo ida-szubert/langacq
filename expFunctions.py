@@ -30,11 +30,11 @@ def makeExp(predString, expString, expDict):
             e = conjunction()
             e.setType(name)
         elif is_quant:
-            e = predicate(nameNoIndex,numArgs,argTypes,pos,bindVar=True)
+            e = predicate(nameNoIndex,numArgs,argTypes,pos,bindVar=True,args=args)
         else:
-            e = predicate(nameNoIndex,numArgs,argTypes,pos)
+            e = predicate(nameNoIndex,numArgs,argTypes,pos,args=args)
     else:
-        e = predicate(nameNoIndex,numArgs,argTypes,pos)
+        e = predicate(nameNoIndex,numArgs,argTypes,pos,args=args)
 
     for i, arg in enumerate(args):
         e.setArg(i,arg)
@@ -155,6 +155,7 @@ def makeVars(predstring,expString,vardict,parse_args=True):
             vname = predstring[:predstring.find("_{")]
             tstring = predstring[predstring.find("_{")+2:predstring.find("}")]
         else:
+            # variable bound by a quantifier
             vname = predstring
             tstring = 'e'
         t = semType.makeType(tstring)

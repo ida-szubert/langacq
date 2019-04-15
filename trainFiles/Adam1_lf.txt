@@ -58,6 +58,74 @@ Sent: that 's your pencil .
 Sem:  lambda $0_{r}.your_3(pro:dem|that_1,n|pencil_4(pro:dem|that_1),$0)
 example_end
 
+Sent: shoe .
+Sem:  lambda $0_{e}.n|shoe_1($0)
+example_end
+
+Sent: Eve read book .
+Sem:  lambda $0_{r}.v|read-zero_2(n:prop|Eve_1,lambda $1_{e}.n|book_3($1),$0)
+example_end
+
+Sent: you read the book .
+Sem:  lambda $0_{r}.v|read-zero_2(pro|you_1,det|the_3($1,n|book_4($1)),$0)
+example_end
+
+Sent: come ?
+Sem:  lambda $0_{r}.Q(v|come_1(pro|you,$0),$0)
+example_end
+
+Sent: you want some milk ?
+Sem:  lambda $0_{r}.Q(v|want_2(pro|you_1,qn|some_3($1,n|milk_4($1)),$0))
+example_end
+
+Sent: cup ?
+Sem:  lambda $0_{e}.n|cup_1($0)
+example_end
+
+Sent: radio .
+Sem:  lambda $0_{e}.n|radio_1($0)
+example_end
+
+Sent: hat ?
+Sem:  lambda $0_{e}.n|hat_1($0)
+example_end
+
+Sent: book .
+Sem:  lambda $0_{e}.n|book_1($0)
+example_end
+
+Sent: stool .
+Sem:  lambda $0_{e}.n|stool_1($0)
+example_end
+
+Sent: Eve 's sitting on the stool .
+Sem:  lambda $0_{r}.and(aux|be&3S_2(part|sit-prog_3(n:prop|Eve_1,$0),$0),prep|on_4(det|the_5($1,n|stool_6($1)),$0))
+example_end
+
+Sent: that .
+Sem:  pro:dem|that_1
+example_end
+
+Sent: Neil sit .
+Sem:  lambda $0_{r}.v|sit_2(n:prop|Neil_1,$0)
+example_end
+
+Sent: give me the cheese .
+Sem:  lambda $0_{r}.v|give_1(pro|you,pro|me_2,det|the_3($1,n|cheese_4($1)),$0)
+example_end
+
+Sent: more pudding .
+Sem:  qn|more($0,n|pudding($0))
+example_end
+
+Sent: celery .
+Sem:  lambda $0_{e}.n|celery_1($0)
+example_end
+
+Sent: the dolly eats his celery .
+Sem:  lambda $0_{r}.v|eat-3S_3(det|the_1($1,n|doll-dim_2($1)),pro:poss:det|his_3($2,n|celery_4($2)),$0)
+example_end
+
 Sent: big drum ?
 Sem: lambda $0_{e}.Q(and(adj|big_1($0),n|drum_2($0)))
 example_end

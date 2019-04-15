@@ -7,6 +7,7 @@ class conjunction(exp):
         self.arguments = [emptyExp(), emptyExp()]
         self.argTypes=[]
         self.parents = []
+        self.returnType = "t"
         self.posType="and"
         self.argSet=False
         self.name="and"

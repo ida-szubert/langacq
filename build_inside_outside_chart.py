@@ -28,8 +28,6 @@ class SemStore:
 
     def check(self, sem_key):
         if not isinstance(sem_key, str):
-            # print 'key isnt string'
-            # error()
             raise (StandardError('key isnt string'))
 
         if not self.store.has_key(sem_key):
@@ -38,24 +36,19 @@ class SemStore:
             return True
 
     def get_log_prior(self, sem_key):
-        # constpen = -10
         if not self.check(sem_key):
             print "not got ", sem_key
             sem = expFunctions.makeExpWithArgs(sem_key, {})
             # OMRI ADDED THE NEXT TWO LINES
             if isinstance(sem, tuple):
                 sem = sem[0]
-                # return min(constpen*len(sem.allSubExps()),constpen)
-                # error()
         else:
             sem = self.store[sem_key]
         return sem.semprior()
 
     def add(self, sem):
-        # print "adding sem ",sem.toString(True)
         self.store[sem.toString(True)] = sem
         if not self.store.has_key(sem.toStringShell(True)):
-            # print "adding to ss ",sem.toStringShell(True),sem
             self.store[sem.toStringShell(True)] = sem.makeShell({})
 
     def get(self, sem_key):
@@ -112,7 +105,6 @@ class chart_entry:
         self.parents = []
         self.numParses = 0
 
-    # def copy(self)
     def lexKey(self):
         return self.word_target + " :: " + self.syn_key + " :: " + self.sem_key
 
@@ -149,7 +141,6 @@ def expand_chart(entry, chart, catStore, sem_store, RuleSet, lexicon, oneWord, c
     to the set of pairs they can decompose to. It's a cache essentially.
     """
 
-    # (c1,chart,sem_store,RuleSet,lexicon,oneWord)
     if entry.ccgCat.sem.getIsNull(): return
     if entry.p < entry.q - 1:
         for d in range(entry.p + 1, entry.q):
@@ -183,9 +174,6 @@ def expand_chart(entry, chart, catStore, sem_store, RuleSet, lexicon, oneWord, c
                 RuleSet.check_rule(entry.ccgCat.synString(), l_syncat, r_syncat, direction, numcomp)
                 RuleSet.check_rule(l_syn, None, None, None, None)
                 RuleSet.check_rule(r_syn, None, None, None, None)
-
-                # print "got lexical item ",(words_l,l_syn,l_sem)
-                # print "got lexical item ",(words_r,r_syn,r_sem)
 
                 if correct_index:
                     lexicon.cur_cats.extend([r_cat, l_cat])

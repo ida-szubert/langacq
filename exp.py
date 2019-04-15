@@ -27,7 +27,7 @@ class exp:
             self.arguments.append(emptyExp())
         self.setReturnType()
         self.functionExp = self
-        self.nounMod = False
+        # self.nounMod = False
         self.posType = posType    
         self.argSet = False
         self.isVerb=False
@@ -82,8 +82,8 @@ class exp:
         return None
             
     #########################################
-    def setNounMod(self):
-        self.nounMod = True
+    # def setNounMod(self):
+    #     self.nounMod = True
 
     def setIsNull(self):
         self.isNull=True
